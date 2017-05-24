@@ -39,8 +39,8 @@ app.use((req, res, next) => {
   next();
 });
 
-require('./routes')(app, db);
+require('./routes')(app, firebase);
 
 app.listen(port, () => {
-  // console.log(`We are live on ${port}`);
+  console.log(`We are live on ${port}`);
 });

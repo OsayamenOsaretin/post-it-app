@@ -1,6 +1,8 @@
 const signUpRoute = require('./user_signup_route');
+const signInRoute = require('./user_signin_route');
 
-module.exports = function (app, db) {
+module.exports = (app, firebase) => {
   // this signs up the user
-  signUpRoute(app, db);
+  signUpRoute(app, firebase);
+  signInRoute(app, firebase);
 };
