@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "babel-watch server/server.js",
-    "start": "babel-watch server/server.js"
+    "start": "babel-watch server/server.js",
+    "test" : "webpack"
+    
   },
   "repository": {
     "type": "git",
@@ -18,14 +20,16 @@
   },
   "homepage": "https://github.com/OsayamenOsaretin/post-it-app#readme",
   "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-watch": "^2.0.6",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "firebase": "^4.0.0",
-    "webpack": "^2.6.1",
-    "babel-core": "^6.24.1",
-    "babel-eslint": "^7.2.3",
-    "babel-watch": "^2.0.6",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "webpack": "^2.6.1"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
