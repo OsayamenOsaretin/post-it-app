@@ -4,7 +4,8 @@
   "description": "PostIt is an app that allows users send broadcast messages to other users in groups",
   "main": "index.js",
   "scripts": {
-    "dev": "babel-watch server/server.js"
+    "dev": "babel-watch server/server.js",
+    "start": "babel-watch server/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,12 +21,13 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "firebase": "^4.0.0",
-    "morgan": "^1.8.1"
-  },
-  "devDependencies": {
+    "webpack": "^2.6.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-watch": "^2.0.6",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-friendly-formatter": "^3.0.0",
