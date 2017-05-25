@@ -30,6 +30,11 @@ app.use(bodyParser.json());
 // use routes imported
 routes(app, firebase);
 
+// default route
+app.get('/*', (req, res) => {
+  res.send({ message: 'Welcome to Post it app' });
+});
+
 app.listen(port, () => {
   console.log(`We are live on ${port}`);
 });
