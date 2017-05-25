@@ -15,7 +15,7 @@ module.exports = (app, firebase) => {
         displayName: userName,
       }).then(() => {
         // console.log('Username updated successfully');
-        console.log(user);
+        // console.log(user);
       });
       res.send({ message: 'Sign up Successful!' });
     }).catch(() => {
