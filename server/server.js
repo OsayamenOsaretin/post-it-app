@@ -1,3 +1,5 @@
+import routes from './routes';
+
 // Set up express
 const express = require('express');
 
@@ -7,8 +9,8 @@ const bodyParser = require('body-parser');
 // import firebase
 const firebase = require('firebase');
 
+// configure port
 const port = process.env.PORT || 6969;
-
 
 // configure firebase
 const config = {
@@ -21,25 +23,12 @@ const config = {
 };
 firebase.initializeApp(config);
 
-
-const db = firebase.database();
-
-// Configure app
-
-
 // body parser, used to grab information from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POSTS');
-  res.setHeader('Access-Control-Allow-Headers',
-  'X-Requested-With,content-type, Authorization');
-  next();
-});
-
-require('./routes')(app, firebase);
+// use routes imported
+routes(app, firebase);
 
 app.listen(port, () => {
   console.log(`We are live on ${port}`);
