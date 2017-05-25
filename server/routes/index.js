@@ -1,10 +1,12 @@
-const signUpRoute = require('./user_signup_route');
-const signInRoute = require('./user_signin_route');
-const createGroup = require('./create_group_routes');
-const addUser = require('./add_user_group_routes.js');
+// import seperate route modules
+
+import signUpRoute from './user_signup_route';
+import signInRoute from './user_signin_route';
+import createGroup from './create_group_routes';
+import addUser from './add_user_group_routes';
 
 module.exports = (app, firebase) => {
-  // this signs up the user
+  // These are the endpoints for the post-it api
   signUpRoute(app, firebase);
   signInRoute(app, firebase);
   createGroup(app, firebase);
