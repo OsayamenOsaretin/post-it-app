@@ -27,7 +27,7 @@ module.exports = function (app, firebase) {
         });
 
         // add group key to list of a user's group
-        db.ref('/users/' + userId + '/groups/').child(newGroupKey).set({ name: groupName });
+        db.ref('/users/' + userId + '/groups/').child(newGroupKey).set({ id: newGroupKey });
 
         res.send({
           message: 'Created Group'

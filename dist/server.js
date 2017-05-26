@@ -36,6 +36,11 @@ app.use(bodyParser.json());
 // use routes imported
 (0, _routes2.default)(app, firebase);
 
+// default route
+app.get('/*', function (req, res) {
+  res.send({ message: 'Welcome to the PostIt app, fostering collaboration and building relationships' });
+});
+
 app.listen(port, function () {
   console.log('We are live on ' + port);
 });

@@ -17,7 +17,7 @@ module.exports = function (app, firebase) {
         user.updateProfile({
           displayName: userName
         });
-        res.send({ message: 'Sign up Successful!' });
+        res.send({ message: 'Welcome to the Post It. The fate of the Universe might depend on this' });
       }).catch(function () {
         res.send({ message: 'Error signing up :(' });
       });
