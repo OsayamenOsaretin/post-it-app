@@ -10,7 +10,7 @@ Different levels of priority can be set, so that users get notifications that be
         - In [development](https://postit-app-develop.herokuapp.com/) 
 
 
-        - [Production]((https://postit-app-prod.herokuapp.com/))
+        - [Production](https://postit-app-prod.herokuapp.com/)
         
 
 To use backend API's alone, please use the following instructions. 
@@ -30,7 +30,7 @@ To use backend API's alone, please use the following instructions.
 
 
 ### Using Postman:
- - Install [Postman]((https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en))
+ - Install [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
  - In the postman window, populate the url window with the API endpoint you want to take for a test run.
  - For the Service API's listed above, click on the dropdown by the right of the url window, change from get to post
  - Click on the body tab, select the radio button: x-www-form-urlencoded
@@ -44,7 +44,7 @@ To use backend API's alone, please use the following instructions.
 ## Prerequisites
  This are what you need installed on your computer to use the application:
 
- - [chrome] (https://www.google.com/chrome/browser/desktop/) browser
+ - [chrome](https://www.google.com/chrome/browser/desktop/) browser
  - [Postman]((https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en))
 
  #### for devs:
