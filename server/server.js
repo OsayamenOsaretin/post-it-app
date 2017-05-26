@@ -32,7 +32,7 @@ routes(app, firebase);
 
 // default route
 app.get('/*', (req, res) => {
-  res.send({ message: 'Welcome to Post it app' });
+  res.send({ message: 'Welcome to the PostIt app, fostering collaboration and building relationships' });
 });
 
 app.listen(port, () => {
