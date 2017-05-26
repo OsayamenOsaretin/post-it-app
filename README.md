@@ -7,18 +7,19 @@ Different levels of priority can be set, so that users get notifications that be
 
 ## Getting Started
  PostIt is hosted on heroku and can be accessed by following these links: 
-        In development: https://postit-app-develop.herokuapp.com/
+        - In [development](https://postit-app-develop.herokuapp.com/) 
 
-        Production:
-        https://postit-app-prod.herokuapp.com/
 
-To use backend api's alone, please use the following instructions. 
+        - [Production]((https://postit-app-prod.herokuapp.com/))
+        
+
+To use backend API's alone, please use the following instructions. 
   - Download and install [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
   - Make sure you have working internet
   - Use the Service Api's below with Postman (See how in: Using Postman, below)
 
 
-### Service Api's:
+### Service API's:
   - [Register](https://postit-app-develop.herokuapp.com/user/signup): Uses username, email and password
   - [log-in](https://postit-app-develop.herokuapp.com/user/signin):
   Uses email and password
@@ -30,8 +31,8 @@ To use backend api's alone, please use the following instructions.
 
 ### Using Postman:
  - Install [Postman]((https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en))
- - In the postman window, populate the url window with the Api you want to take for a test run.
- - For the Service Api's listed above, click on the dropdown by the right of the url window, change from get to post
+ - In the postman window, populate the url window with the API endpoint you want to take for a test run.
+ - For the Service API's listed above, click on the dropdown by the right of the url window, change from get to post
  - Click on the body tab, select the radio button: x-www-form-urlencoded
  - Populate the request body with the appropriate key value pairs: 
       - register : keys - email, password, userName
