@@ -26,7 +26,7 @@ module.exports = (app, firebase) => {
 
         // add group key to list of a user's group
         db.ref(`/users/${userId}/groups/`).child(newGroupKey).set(
-          { name: groupName }
+          { id: newGroupKey }
           );
 
         res.send({
