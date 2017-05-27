@@ -16,13 +16,14 @@ module.exports = (app, firebase) => {
          user.updateProfile({
            displayName: userName,
          });
-         res.send({ message: 'Welcome to the Post It. The fate of the Universe might depend on this' });
-       }).catch(() => {
-         res.send({ message: 'Error signing up :(' });
+         res.send({ message: 'Welcome to the Post It' });
+       }).catch((error) => {
+         const errorMessage = error.message;
+         res.status(400).send({ message: `Error signing up :( ${errorMessage}` });
        });
     } else {
-      // if email and password strings are empty
-      res.send({
+      // if email or password or username strings are empty
+      res.status(400).send({
         message: 'Please make sure you enter all data'
       });
     }
