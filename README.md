@@ -7,10 +7,8 @@ Different levels of priority can be set, so that users get notifications that be
 
 ## Getting Started
  PostIt is hosted on heroku and can be accessed by following these links: 
-        - In [development](https://postit-app-develop.herokuapp.com/) 
-
-
-        - [Production](https://postit-app-prod.herokuapp.com/)
+   - [development](https://postit-app-develop.herokuapp.com/) 
+   - [Production](https://postit-app-prod.herokuapp.com/)
         
 
 To use backend API's alone, please use the following instructions. 
