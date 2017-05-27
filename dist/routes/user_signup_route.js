@@ -24,7 +24,9 @@ module.exports = function (app, firebase) {
         user.updateProfile({
           displayName: userName
         });
-        res.send({ message: 'Welcome to the Post It' });
+        user.sendEmailVerification().then(function () {
+          res.send({ message: 'Welcome to the Post It, An email has been sent to you' });
+        });
       }).catch(function (error) {
         var errorMessage = error.message;
         res.status(400).send({ message: 'Error signing up :( ' + errorMessage });
