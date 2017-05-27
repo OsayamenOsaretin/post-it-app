@@ -1,4 +1,5 @@
 // routes to user sign in
+import validateEmail from '../utilities/validate_email';
 
 module.exports = (app, firebase) => {
   app.post('/user/signin', (req, res) => {
@@ -6,16 +7,17 @@ module.exports = (app, firebase) => {
     const password = req.body.password;
 
     // check that email and password body are not empty
-    if (email && password) {
+    if (validateEmail(email) && password) {
       // sign in with user and email using firebase authentication
       firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
         res.send({ message: 'Welcome User, or Ranger.' });
-      }).catch(() => {
-        res.send({ message: 'Error signing in :(' });
+      }).catch((error) => {
+        const errorMessage = error.message;
+        res.status(401).send({ message: `Error signing in :( : ${errorMessage}` });
       });
     } else {
       // send error message in case of empty email and password
-      res.send({ message: 'Please enter the right email and password' });
+      res.status(400).send({ message: 'Please fill in both fields' });
     }
   });
 };

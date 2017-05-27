@@ -33,7 +33,7 @@ module.exports = (app, firebase) => {
           message: 'Created Group',
         });
       } else {
-        res.send({
+        res.status(403).send({
           // user is not signed in
           message: 'You are not signed in right now!'
         });
