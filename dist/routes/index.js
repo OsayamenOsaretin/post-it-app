@@ -16,9 +16,11 @@ var _add_user_group_routes = require('./add_user_group_routes');
 
 var _add_user_group_routes2 = _interopRequireDefault(_add_user_group_routes);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _sign_out_route = require('./sign_out_route');
 
-// import seperate route modules
+var _sign_out_route2 = _interopRequireDefault(_sign_out_route);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = function (app, firebase) {
   // These are the endpoints for the post-it api
@@ -26,4 +28,5 @@ module.exports = function (app, firebase) {
   (0, _user_signin_route2.default)(app, firebase);
   (0, _create_group_routes2.default)(app, firebase);
   (0, _add_user_group_routes2.default)(app, firebase);
-};
+  (0, _sign_out_route2.default)(app, firebase);
+}; // import seperate route modules
