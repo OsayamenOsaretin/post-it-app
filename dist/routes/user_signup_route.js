@@ -1,6 +1,10 @@
 'use strict';
 
-// routes to user sign-up
+var _validate_email = require('../utilities/validate_email');
+
+var _validate_email2 = _interopRequireDefault(_validate_email);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = function (app, firebase) {
   app.post('/user/signup', function (req, res) {
@@ -9,8 +13,11 @@ module.exports = function (app, firebase) {
     var email = req.body.email;
     var password = req.body.password;
 
-    // check that the user doesn't enter an empty field
-    if (userName && email && password) {
+    if (!(0, _validate_email2.default)(email)) {
+      res.status(400).send({
+        message: 'Please use a valid email address'
+      });
+    } else if (userName && password) {
       // create user with email and password
       firebase.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
         // update the username of the user
@@ -29,4 +36,4 @@ module.exports = function (app, firebase) {
       });
     }
   });
-};
+}; // routes to user sign-up
