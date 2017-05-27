@@ -1,4 +1,5 @@
 // routes to user sign-up
+import validateEmail from '../utilities/validate_email';
 
 module.exports = (app, firebase) => {
   app.post('/user/signup', (req, res) => {
@@ -7,8 +8,11 @@ module.exports = (app, firebase) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    // check that the user doesn't enter an empty field
-    if (userName && email && password) {
+    if (!validateEmail(email)) {
+      res.status(400).send({
+        message: 'Please use a valid email address',
+      });
+    } else if (userName && password) {
       // create user with email and password
       firebase.auth().createUserWithEmailAndPassword(email, password)
        .then((user) => {
