@@ -7,7 +7,7 @@
     "jasmine": true
   },
   "rules": {
-    "max-len":["error", 80, 2],
+    "max-len":["error", 100, 2],
     "indent": ["error", 2],
     "one-var": 0,
     "one-var-declaration-per-line": 0,
