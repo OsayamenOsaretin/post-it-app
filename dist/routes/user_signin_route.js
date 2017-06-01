@@ -15,10 +15,7 @@ module.exports = function (app, firebase) {
       res.status(400).send({
         message: 'Please use a valid email address'
       });
-    }
-
-    // check that email and password body are not empty
-    if (password) {
+    } else if (password) {
       // sign in with user and email using firebase authentication
       firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
         res.send({ message: 'Welcome User, or Ranger.' });
