@@ -7,7 +7,7 @@
     "dev": "babel-watch server/server.js",
     "start": "node ./dist/server.js",
     "build": "babel server/ -d dist",
-    "test": "webpack"
+    "test": "mocha --timeout 10000 dist/tests/test.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "webpack": "^2.6.1"
   },
   "devDependencies": {
+    "chai": "^4.0.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-friendly-formatter": "^3.0.0",
