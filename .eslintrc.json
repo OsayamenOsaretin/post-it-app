@@ -6,6 +6,12 @@
     "es6": true,
     "jasmine": true
   },
+   "plugins": [
+        "react",
+        "jsx-a11y",
+        "import",
+        "jsx"
+    ],
   "rules": {
     "max-len":["error", 100, 2],
     "indent": ["error", 2],
