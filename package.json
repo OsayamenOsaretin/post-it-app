@@ -36,6 +36,7 @@
     "flux": "^3.1.2",
     "morgan": "^1.8.1",
     "react": "^15.5.4",
+    "style-loader": "^0.18.1",
     "webpack": "^2.6.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-hot-middleware": "^2.18.0"
