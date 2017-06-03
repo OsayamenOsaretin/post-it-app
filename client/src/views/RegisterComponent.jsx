@@ -45,7 +45,7 @@ class RegisterForm extends React.Component{
         className = 'button'
         type = 'submit'
         disabled = { !this.state.username || !this.state.email }>
-        Log in
+        Register
         </button>
       </form>
     )

@@ -1,5 +1,6 @@
 import React from 'react';
 import FormField from './FormInput';
+import PostItActions from '../data/PostItActions';
 
 class LoginForm extends React.Component{
   constructor(props){
@@ -43,3 +44,6 @@ class LoginForm extends React.Component{
     )
   }
 }
+
+
+
