@@ -1,19 +1,28 @@
 // Set up express
 import express from 'express';
-
+import path from 'path';
+import webpack from 'webpack';
+import firebase from 'firebase';
+import webpackMiddleWare from 'webpack-dev-middleware';
 import bodyParser from 'body-parser';
+import config from '../webpack.config.js';
 
 import routes from './routes';
 
-import firebase from './firebase';
 
 const app = express();
+
+const compiler = webpack(config);
+
+app.use(express.static(__dirname + '../dist'));
+app.use(webpackMiddleWare(compiler));
+
 
 // configure port
 const port = process.env.PORT || 6969;
 
 // configure firebase
- const config = {
+ const firebaseConfig = {
    apiKey: 'AIzaSyAOCl6QRw5NYGGENE8URKteNO1rV7f1yo8',
    authDomain: 'post-it-69a9a.firebaseapp.com',
    databaseURL: 'https://post-it-69a9a.firebaseio.com',
@@ -21,7 +30,7 @@ const port = process.env.PORT || 6969;
    storageBucket: 'post-it-69a9a.appspot.com',
    messagingSenderId: '383450311400',
  };
- firebase.initializeApp(config);
+ firebase.initializeApp(firebaseConfig);
 
 // body parser, used to grab information from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,8 +40,8 @@ app.use(bodyParser.json());
 routes(app, firebase);
 
 // default route
-app.get('/*', (req, res) => {
-  res.send({ message: 'Welcome to the PostIt app, fostering collaboration and building relationships' });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'))
 });
 
 app.listen(port, () => {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "babel-watch server/server.js",
-    "start": "node ./dist/server.js",
+    "start": "babel-node server/server.js",
     "build": "babel server/ -d dist",
     "test": "mocha --timeout 10000 dist/tests/test.js"
   },
@@ -36,7 +36,8 @@
     "flux": "^3.1.2",
     "morgan": "^1.8.1",
     "react": "^15.5.4",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "webpack-dev-middleware": "^1.10.2"
   },
   "devDependencies": {
     "chai": "^4.0.0",
