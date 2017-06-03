@@ -1,16 +1,23 @@
-const path = require('path');
+import path from 'path';
+import webpack from 'webpack';
 
 
 const config = {
   devtool: 'eval-source-map',
 
-  entry: path.join(__dirname, './main.js'),
+  entry: [
+    'webpack-hot-middleware/client',
+    path.join(__dirname, './main.js')],
 
   output: {
     path: path.join(__dirname, '/dist/'),
     publicPath: '/',
     filename: 'bundle.js',
   },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 
   module: {
     loaders: [
@@ -22,7 +29,12 @@ const config = {
         query: {
           presets: ['es2015']
         }
-      }
+      },
+
+      {
+      test: /\.css?$/,
+      loader: 'style!css'
+    }
     ]
   },
 };

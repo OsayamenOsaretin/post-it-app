@@ -4,7 +4,7 @@ import path from 'path';
 import webpack from 'webpack';
 import firebase from 'firebase';
 import webpackMiddleWare from 'webpack-dev-middleware';
-import webpackHotMiddleWAre from 'webpack-hot-middleware';
+import webpackHotMiddleWare from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
 import config from '../webpack.config.js';
 
