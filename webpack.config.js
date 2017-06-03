@@ -2,19 +2,14 @@ const path = require('path');
 
 
 const config = {
-  entry: './server/server.js',
+  devtool: 'eval-source-map',
+
+  entry: path.join(__dirname, post-it-app/main.js),
 
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, '/dist/'),
     publicPath: '/',
     filename: 'bundle.js',
-  },
-
-  devServer: {
-    contentBase: './public',
-    inline: true,
-    hot: true,
-    port: 6969,
   },
 
   module: {
@@ -22,7 +17,7 @@ const config = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: 'babel',
 
         query: {
           presets: ['es2015']
@@ -30,8 +25,6 @@ const config = {
       }
     ]
   },
-  resolve: {
-    extensions: ['.js']
-  }
 };
+
 module.exports = config;
