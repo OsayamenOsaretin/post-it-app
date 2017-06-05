@@ -23,7 +23,7 @@ class RegisterForm extends React.Component{
     });
   }
 
-  handleSubmit()
+  handleSubmit(){}
 
   render() {
     return(

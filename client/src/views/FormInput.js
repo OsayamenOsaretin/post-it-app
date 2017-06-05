@@ -43,3 +43,5 @@ FormInput.propTypes = {
   label: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 }
+
+export default FormInput;

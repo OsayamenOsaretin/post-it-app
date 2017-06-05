@@ -22,7 +22,7 @@ class LoginForm extends React.Component{
     });
   }
 
-  handleSubmit()
+  handleSubmit(){}
 
   render() {
     return (
@@ -44,6 +44,8 @@ class LoginForm extends React.Component{
     )
   }
 }
+
+export default LoginForm;
 
 
 
