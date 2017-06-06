@@ -49,8 +49,6 @@ export default class LoginForm extends Component {
     signInAction(this.state);
   }
 
-
-
 /**
  * @memberof LoginComponent
  * @returns {void}
