@@ -1,14 +1,15 @@
 import React from 'react';
-import FormField from './FormInput';
-import PostItActions from '../data/PostItActions';
+import FormField from './FormInput'
 
-class LoginForm extends React.Component{
+class RegisterForm extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
-      password: '',
+      username: '',
       email: '',
+      password: '',
+      confirmPassword: '',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -17,33 +18,36 @@ class LoginForm extends React.Component{
   handleChange(inputFieldState, label){
     this.setState(function (){
       return {
-        label: inputFieldState
+        label: inputFieldState,
       }
     });
   }
 
-  handleSubmit()
+  handleSubmit(){}
 
   render() {
-    return (
-      <form className = 'inputform' onSubmit = { this.handleSubmit }>
+    return(
+       <form className = 'inputform' onSubmit = { this.handleSubmit }>
+        <FormField
+        label = 'username'
+        handleChange = {this.handleChange} />
         <FormField 
         label = "email"
         handleChange = { this.handleChange }/>
         <FormField 
         label="password"
         handleChange = { this.handleChange }/>
+        <FormField
+        label='confirmPassword'
+        handleChange = { this.hnaldeChange} />
 
         <button
         className = 'button'
         type = 'submit'
         disabled = { !this.state.username || !this.state.email }>
-        Log in
+        Register
         </button>
       </form>
     )
   }
 }
-
-
-

@@ -1,37 +1,46 @@
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const config = {
-  entry: './server/server.js',
+  devtool: 'source-map',
+
+  entry: [
+    'webpack-hot-middleware/client',
+    path.join(__dirname, './client/src/main.js')],
 
   output: {
-    path: path.join(__dirname, 'public'),
-    publicPath: '/',
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index_bundle.js',
+    
   },
 
-  devServer: {
-    contentBase: './public',
-    inline: true,
-    hot: true,
-    port: 6969,
-  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './client/src/index.html'
+    })
+  ],
 
   module: {
     loaders: [
       {
-        test: /\.js?$/,
+        test: /\.(js)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
 
         query: {
           presets: ['es2015']
         }
-      }
+      },
+
+      {
+      test: /\.css?$/,
+      loader: 'style!css'
+    }
     ]
   },
-  resolve: {
-    extensions: ['.js']
-  }
 };
+
 module.exports = config;
