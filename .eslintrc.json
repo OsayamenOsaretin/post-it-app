@@ -12,6 +12,13 @@
         "import",
         "jsx"
     ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+        },
   "rules": {
     "max-len":["error", 100, 2],
     "indent": ["error", 2],
@@ -21,6 +28,8 @@
     "consistent-return": 0,
     "no-param-reassign": 0,
     "comma-dangle": 0,
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
     "curly": ["error", "multi-line"],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "valid-jsdoc": ["error", {
@@ -37,4 +46,9 @@
         }
     }]
   }
+  ,
+    "jsx/uses-factory": [1, {"pragma": "JSX"}],
+    "jsx/factory-in-scope": [1, {"pragma": "JSX"}],
+    "jsx/mark-used-vars": 1,
+    "jsx/no-undef": 1
 }
