@@ -1,6 +1,15 @@
-import React from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 
-class FormInput extends React.Component {
+/**
+ *
+ */
+export default class FormInput extends Component {
+
+ /**
+  *
+  * @param {*} props
+  */
   constructor(props) {
     super(props);
 
@@ -10,21 +19,28 @@ class FormInput extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
   }
-
+/**
+ * @returns {void}
+ * @param {*} event
+ */
   handleChange(event) {
     const value = event.target.value;
 
-    this.setState(() => {
-      return {
-        fieldInput: value
-      };
-    });
+    this.setState(() => ({
+      fieldInput: value,
+    })
+    );
 
-    this.props.handleChange(this.state.fieldInput, this.props.label)
+    this.props.handleChange(this.state.fieldInput, this.props.label);
   }
 
-  render(){
-    return(
+/**
+ * renders the Form input field component
+ * @returns {void}
+ * @memberof FormInput
+ */
+  render() {
+    return (
       <div className = "inputField">
       <input
       id = 'formInput'
@@ -32,16 +48,14 @@ class FormInput extends React.Component {
       type ='text'
       autoComplete = 'off'
       value = {this.state.fieldInput}
-      onChange = {this.handleChange} /> 
+      onChange = {this.handleChange} />
 
       </div>
-    )
+    );
   }
 }
 
 FormInput.propTypes = {
   label: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-}
-
-export default FormInput;
+};
