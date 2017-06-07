@@ -1,24 +1,23 @@
 import axios from 'axios';
 import PostItActionTypes from '../PostItActionTypes';
-import PostItDispatcher from '.../PostItDispatcher';
 
 
 export default (userDetails) => {
-  return(dispatch) => {
+  return (dispatch) => {
     axios.get('user/signin', {
       body: userDetails
     })
-    .then((response) => {
+    .then(() => {
       dispatch({
         type: PostItActionTypes.GET_GROUPS,
-      })
+      });
     })
     .catch((err) => {
-        dispatch({
-          type: PostItActionTypes.FAILED_SIGNIN,
-          err: err.message,
-          status: 'failed'
-        })
-    })
+      dispatch({
+        type: PostItActionTypes.FAILED_SIGNIN,
+        err: err.message,
+        status: 'failed'
+      });
+    });
   }
 }
