@@ -1,6 +1,13 @@
 import axios from 'axios';
 import PostItActionTypes from '../PostItActionTypes';
 
+/**
+ *userSignInAction - signs in user & dispatches actions to get groups
+ * @export
+ * @function
+ * @returns {void}
+ * @param {userDetails} userDetails
+ */
 
 export default userDetails => (
   (dispatch) => {
