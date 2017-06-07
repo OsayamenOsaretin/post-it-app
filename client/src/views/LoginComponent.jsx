@@ -45,7 +45,7 @@ export default class LoginForm extends Component {
    * @memberof LoginComponent
    * @returns {void}
    */
-  onHandleSubmit() {
+  handleSubmit() {
     signInAction(this.state);
   }
 
