@@ -19,5 +19,5 @@ export default (userDetails) => {
         status: 'failed'
       });
     });
-  }
-}
+  };
+};
