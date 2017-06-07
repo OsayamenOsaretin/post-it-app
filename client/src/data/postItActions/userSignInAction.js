@@ -2,9 +2,9 @@ import axios from 'axios';
 import PostItActionTypes from '../PostItActionTypes';
 
 
-export default (userDetails) => {
-  return (dispatch) => {
-    axios.get('user/signin', {
+export default userDetails => (
+  (dispatch) => {
+    axios.post('user/signin', {
       body: userDetails
     })
     .then(() => {
@@ -19,5 +19,5 @@ export default (userDetails) => {
         status: 'failed'
       });
     });
-  };
-};
+  }
+);
