@@ -88,10 +88,10 @@ export default class RegisterForm extends Component {
         handleChange = {this.handleChange} />
         <FormField
         label = "email"
-        handleChange = { this.handleChange }/>
+        handleChange = { this.handleChange } />
         <FormField
         label="password"
-        handleChange = { this.handleChange }/>
+        handleChange = { this.handleChange } />
         <FormField
         label='confirmPassword'
         handleChange = { this.hnaldeChange} />
