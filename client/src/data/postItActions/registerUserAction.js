@@ -1,30 +1,31 @@
 import axios from 'axios';
 import PostItActionTypes from '../PostItActionTypes';
 
+
 /**
- *userSignInAction - signs in user & dispatches actions to get groups
+ *registerUserAction - registers a new user and dispatches to Log in user
  * @export
  * @function
  * @returns {void}
- * @param {userDetails} userDetails
+ * @param {newUserDetails} newUserDetails
  */
-
-export default userDetails => (
+export default newUserDetails => (
   (dispatch) => {
-    axios.post('user/signin', {
-      body: userDetails
+    axios.post('user/signup', {
+      body: newUserDetails
     })
     .then(() => {
       dispatch({
-        type: PostItActionTypes.GET_GROUPS,
+        type: PostItActionTypes.LOGIN_USER,
       });
     })
     .catch((err) => {
       dispatch({
-        type: PostItActionTypes.FAILED_SIGNIN,
+        type: PostItActionTypes.FAILED_REGISTER,
         err: err.message,
         status: 'failed'
       });
     });
   }
 );
+

@@ -34,11 +34,16 @@ const config = {
           presets: ['es2015']
         }
       },
+      {
+        test: /\.(jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
 
       {
-      test: /\.css?$/,
-      loader: 'style!css'
-    }
+        test: /\.css?$/,
+        loader: 'style!css'
+      }
     ]
   },
 };
