@@ -1,17 +1,17 @@
-import { Component } from 'react';
-import FormField from './FormInput';
+import React from 'react';
+import FormField from './FormInput.jsx';
 import registerAction from '../data/postItActions/registerUserAction';
 
 /**
  *
  */
-export default class RegisterForm extends Component {
+export default class RegisterForm extends React.Component {
   /**
   *
-  * @param {*} props
+  *
   */
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       userName: '',
@@ -21,6 +21,7 @@ export default class RegisterForm extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 /**
@@ -31,7 +32,7 @@ export default class RegisterForm extends Component {
  */
   handleChange(inputFieldState, label) {
     switch (label) {
-    case 'username': {
+    case 'userName': {
       this.setState(() => ({
         userName: inputFieldState
       }));
@@ -87,19 +88,20 @@ export default class RegisterForm extends Component {
         label = 'userName'
         handleChange = {this.handleChange} />
         <FormField
-        label = "email"
+        label = 'email'
         handleChange = { this.handleChange } />
         <FormField
-        label="password"
+        label='password'
         handleChange = { this.handleChange } />
         <FormField
         label='confirmPassword'
-        handleChange = { this.hnaldeChange} />
+        handleChange = { this.handleChange} />
 
         <button
         className = 'button'
         type = 'submit'
-        disabled = { !this.state.username || !this.state.email }>
+        disabled = { !this.state.userName || !this.state.email ||
+         !this.state.password || !this.state.confirmPassword }>
         Register
         </button>
       </form>
