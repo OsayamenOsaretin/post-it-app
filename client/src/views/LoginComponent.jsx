@@ -1,18 +1,18 @@
-import { Component } from 'react';
-import { FormField } from './FormInput';
+import React from 'react';
+import FormField from './FormInput.jsx';
 import signInAction from '../data/postItActions/userSignInAction';
 
 
 /**
  *
  */
-export default class LoginForm extends Component {
+class LoginForm extends React.Component {
   /**
   *
-  * @param {*} props
+  *
   */
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       password: '',
@@ -58,18 +58,20 @@ export default class LoginForm extends Component {
       <form className = 'inputform' onSubmit = { this.handleSubmit }>
         <FormField
         label = "email"
-        handleChange = { this.handleChange }/>
+        handleChange = { this.handleChange } />
         <FormField
-        label="password"
-        handleChange = { this.handleChange }/>
+        label = "password"
+        handleChange = { this.handleChange } />
 
         <button
         className = 'button'
         type = 'submit'
-        disabled = { !this.state.username || !this.state.email }>
+        disabled = { !this.state.password || !this.state.email }>
         Log in
         </button>
       </form>
     );
   }
 }
+
+module.exports = LoginForm;
