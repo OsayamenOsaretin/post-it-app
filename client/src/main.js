@@ -1,6 +1,6 @@
-//import AppContainer from './containers/PostItContainer';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DummyView from './views/DummyView.js';
+import LandingPageContainer from './views/LandingPageContainer.jsx';
+import './index.css';
 
-ReactDOM.render(<DummyView />, document.getElementById('app'));
+ReactDOM.render(<LandingPageContainer />, document.getElementById('app'));

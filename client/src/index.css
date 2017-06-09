@@ -68,3 +68,29 @@ ul {
   border: none;
 }
 
+.landing-page-container {
+  margin: auto;
+  padding: 100px;
+}
+
+.landing-img-container {
+  float: left;
+  width: 40%;
+}
+
+.login-register-container {
+  float: right;
+  width: 60%;
+  margin: auto;
+}
+
+.post-it-img {
+  z-index: 1;
+  height: 20%;
+  width: 40%;
+}
+
+.mail-box-img {
+  
+}
+
