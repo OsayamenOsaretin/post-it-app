@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -13,7 +12,7 @@ function Nav() {
     <ul className = 'nav'>
      <li>
        <NavLink exact activeClassName='active' to='/login'>
-         Login
+         Log in
        </NavLink>
      </li>
 
