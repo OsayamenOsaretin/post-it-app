@@ -72,5 +72,3 @@ PostItDispatcher.register((payload) => {
 
 module.exports = groupStore;
 
-
-
