@@ -1,3 +1,11 @@
 import { Dispatcher } from 'flux';
 
-export default new Dispatcher();
+/**
+ * DispatcherClass(singleton) extends flux Dispatcher module
+ *
+ */
+class DispatcherClass extends Dispatcher {
+
+}
+const PostItDispatcher = new DispatcherClass();
+module.exports = PostItDispatcher;
