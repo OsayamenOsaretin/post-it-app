@@ -13,18 +13,24 @@ module.exports = (app, firebase) => {
         const groupsReference = db.ref(`/users/${userId}/groups/`);
         groupsReference.on('value', (snapshot) => {
           const groupKeys = [];
+
+          // get the keys for each user's group
           snapshot.forEach(groupSnapshot => (
             groupKeys.push(groupSnapshot.key)
           ));
+
+          // map to promises to asynchronously collect group info
           const promises = groupKeys.map(groupKey => (
             new Promise((resolve) => {
               const groupReference = db.ref(`groups/${groupKey}`);
               groupReference.on('value', (snap) => {
+                // add group info to list of groups
                 groups.push(snap.val());
                 resolve();
               });
             })
           ));
+          // collect resolved promises
           Promise.all(promises)
           .then(() => {
             res.send({
