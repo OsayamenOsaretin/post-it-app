@@ -10,8 +10,8 @@ import mailboxImage from '../mailbox.png';
  */
 function LandingPageContainer() {
   return (
-    <div className = 'landing-page-container'>
-    <div className = 'landing-img-container'>
+    <div className='landing-page-container'>
+      <div className='landing-img-container'>
     <div className = "post-it-img">
       <img src = {postItImage} />
     </div>
