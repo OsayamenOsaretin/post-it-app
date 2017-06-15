@@ -1,8 +1,8 @@
 import React from 'react';
 import LoginRegisterComponent from './LoginRegisterContainer.jsx';
 
-import postItImage from '../postIt.png';
-import mailboxImage from '../mailbox.png';
+import postItImage from '../resources/postIt.png';
+import mailboxImage from '../resources/mailbox.png';
 
 /**
  * LandingPageContainer holds the landing page including register and login

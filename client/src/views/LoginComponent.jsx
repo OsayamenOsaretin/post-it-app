@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.onHandleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 /**
  * @memberof LoginComponent
@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
    * @returns {void}
    */
   handleSubmit() {
-    signInAction(this.state);
+    return signInAction(this.state);
   }
 
 /**

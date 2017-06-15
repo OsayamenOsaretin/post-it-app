@@ -1,22 +1,13 @@
 import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import GroupStore from '../data/postItStores/PostItGroupStore';
 import GroupContainer from './GroupContainer.jsx';
+import GroupDetailContainerView from './GroupDetailContainerView.jsx';
+import GroupDefaultView from './GroupDefaultView.jsx';
 
 /**
  * GroupList is a container for the list of groups, also doubles as a navlink
  */
 class GroupList extends React.Component {
-  /**
-   * React component constructor
-   * @return {void}
-   */
-  constructor() {
-    super();
-    this.state = {
-      groups: GroupStore.getGroups(),
-    };
-  }
 
 /** render groups
  * @memberof GroupListContainer
@@ -24,13 +15,12 @@ class GroupList extends React.Component {
  */
   render() {
     return (
-    <BrowserRouter >
+    <BrowserRouter className="group-list-container">
       <div>
-      <GroupContainer groups={this.state.groups}/>
+      <GroupContainer groups={this.props.groups}/>
       <Switch>
-        <Route exact path='/' />
-        <Route exact path='/groupBody' />
-        <Route path='/groupBody/:groupId' />
+        <Route exact path='/' component={GroupDefaultView}/>
+        <Route path='/groupBody/:groupId' component={GroupDetailContainerView}/>
       </Switch>
     </div>
     </BrowserRouter>

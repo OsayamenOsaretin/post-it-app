@@ -5,9 +5,6 @@ import RegisterForm from './RegisterComponent.jsx';
 import Nav from './Nav';
 
 
-
-
-
 /**
  * LoginRegisterContainer holds the login and register components
  * @returns {void}

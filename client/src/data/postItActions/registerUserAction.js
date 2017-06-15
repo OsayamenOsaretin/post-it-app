@@ -16,13 +16,13 @@ export default newUserDetails => (
     })
     .then((res) => {
       if (res.status === 200) {
-        // dispatch action to Login user on successful registration
-        PostItDispatcher.handleViewAction({
-          actionType: PostItActionTypes.LOGIN_USER,
+        // dispatch action to get groups on successful registration
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.LOGIN_USER,
         });
       } else {
         PostItDispatcher.handleViewAction({
-          actionType: PostItActionTypes.FAILED_REGISTER,
+          type: PostItActionTypes.FAILED_REGISTER,
           error: res.message,
           status: 'failed'
         });

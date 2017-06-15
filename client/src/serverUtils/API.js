@@ -11,7 +11,14 @@ export function getGroups() {
   axios.get('/groups')
   .then((res) => {
     // call server action to handle recieved groups info
-    recieveGroups(res);
+    if (res.status === 200) {
+      recieveGroups(res);
+    } else {
+      PostItDispatcher.handleServerAction({
+        actionType: PostItActionTypes.FAILED_GROUPS,
+        error: res.message
+      });
+    }
   })
   .catch((err) => {
     PostItDispatcher.handleViewAction({
