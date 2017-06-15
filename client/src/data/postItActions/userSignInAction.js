@@ -11,9 +11,8 @@ import PostItActionTypes from '../PostItActionTypes';
  */
 
 export default userDetails => (
-    axios.post('user/signin', {
-      body: userDetails
-    })
+    axios.post('user/signin', userDetails
+    )
     .then((res) => {
       if (res.status === 200) {
         // dispatch action to get groups(view) in the case of successful login

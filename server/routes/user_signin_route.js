@@ -13,6 +13,7 @@ module.exports = (app, firebase) => {
     } else if (password) {
       // sign in with user and email using firebase authentication
       firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+        console.log('signs in user');
         res.send({ message: 'Welcome User, or Ranger.' });
       }).catch((error) => {
         const errorMessage = error.message;

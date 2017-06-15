@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.onHandleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 /**
  * @memberof LoginComponent
@@ -28,17 +28,12 @@ class LoginForm extends React.Component {
  * @param {String} inputFieldState
  * @param {String} label
  */
-  handleChange(inputFieldState, label) {
-    if (label === 'password') {
-      this.setState(() => ({
-        password: inputFieldState
-      }));
-    } else {
-      this.setState(() => ({
-        email: inputFieldState
-      })
-    );
-    }
+  handleChange(event) {
+    const value = event.target.value;
+
+    this.setState({
+      [event.target.name]: value
+    });
   }
 
   /**
@@ -46,6 +41,7 @@ class LoginForm extends React.Component {
    * @returns {void}
    */
   handleSubmit() {
+    console.log('calls sign in action');
     signInAction(this.state);
   }
 
@@ -55,16 +51,28 @@ class LoginForm extends React.Component {
  */
   render() {
     return (
-      <form className = 'inputform' onSubmit = { this.handleSubmit }>
-        <FormField
-        label = "email"
-        handleChange = { this.handleChange } />
-        <FormField
-        label = "password"
-        handleChange = { this.handleChange } />
+      <form className = 'inputform'>
+        <input
+        id = 'formInput'
+        name = 'email'
+        placeholder = 'email'
+        type ='text'
+        autoComplete = 'off'
+        value = {this.state.email}
+        onChange = {this.handleChange} />
+
+      <input
+        id = 'formInput'
+        name = 'password'
+        placeholder = 'password'
+        type ='text'
+        autoComplete = 'off'
+        value = {this.state.password}
+        onChange = {this.handleChange} />
 
         <button
         className = 'button'
+        onClick = {this.handleSubmit}
         type = 'submit'
         disabled = { !this.state.password || !this.state.email }>
         Log in
