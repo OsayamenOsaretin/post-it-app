@@ -6,7 +6,7 @@ import firebase from 'firebase';
 import webpackMiddleWare from 'webpack-dev-middleware';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
-import config from '../webpack.config.js';
+import config from '../webpack.config';
 
 import routes from './routes';
 
@@ -44,7 +44,7 @@ app.use(webpackHotMiddleWare(compiler));
 routes(app, firebase);
 
 // default route
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
