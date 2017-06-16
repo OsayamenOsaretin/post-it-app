@@ -14,9 +14,12 @@ module.exports = (app, firebase) => {
       // sign in with user and email using firebase authentication
       const promise = firebase.auth().signInWithEmailAndPassword(email, password);
 
-      promise.then(() => {
+      promise.then((user) => {
         console.log('signs in user');
-        res.status(200).send({ message: 'Welcome User, or Ranger.' });
+        res.status(200).send({
+          message: 'Welcome User, or Ranger.',
+          userData: user
+        });
       }).catch((error) => {
         const errorMessage = error.message;
         res.status(401).send({ message: `Error signing in :( : ${errorMessage}` });
