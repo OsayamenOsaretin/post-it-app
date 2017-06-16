@@ -40,7 +40,8 @@ class LoginForm extends React.Component {
    * @memberof LoginComponent
    * @returns {void}
    */
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     console.log('calls sign in action');
     signInAction(this.state);
   }
