@@ -12,9 +12,11 @@ module.exports = (app, firebase) => {
       });
     } else if (password) {
       // sign in with user and email using firebase authentication
-      firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+      const promise = firebase.auth().signInWithEmailAndPassword(email, password);
+
+      promise.then(() => {
         console.log('signs in user');
-        res.send({ message: 'Welcome User, or Ranger.' });
+        res.status(200).send({ message: 'Welcome User, or Ranger.' });
       }).catch((error) => {
         const errorMessage = error.message;
         res.status(401).send({ message: `Error signing in :( : ${errorMessage}` });

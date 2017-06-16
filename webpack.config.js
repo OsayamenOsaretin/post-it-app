@@ -13,6 +13,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index_bundle.js',
+    publicPath: '/',
   },
 
   plugins: [
@@ -36,7 +37,7 @@ const config = {
       {
         test: /\.(jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: ['react-hot-loader', 'babel-loader'],
       },
 
       {

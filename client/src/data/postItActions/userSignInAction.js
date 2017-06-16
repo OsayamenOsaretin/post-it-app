@@ -10,8 +10,11 @@ import PostItActionTypes from '../PostItActionTypes';
  * @param {userDetails} userDetails
  */
 
-export default userDetails => (
-    axios.post('user/signin', userDetails
+export default (userDetails) => {
+    axios.post('user/signin', {
+      email: userDetails.email,
+      password: userDetails.password
+    }
     )
     .then((res) => {
       if (res.status === 200) {
@@ -37,5 +40,5 @@ export default userDetails => (
         error: err.message,
         status: 'failed'
       });
-    })
-);
+    });
+};

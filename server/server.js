@@ -14,14 +14,20 @@ import routes from './routes';
 const app = express();
 
 const compiler = webpack(config);
-
-app.use(express.static(__dirname + '../dist'));
-app.use(webpackMiddleWare(compiler));
-app.use(webpackHotMiddleWare(compiler));
-
-
 // configure port
 const port = process.env.PORT || 6969;
+
+// body parser, used to grab information from POST requests
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(webpackMiddleWare(compiler, {
+  hot: true,
+  publicPath: config.output.publicPath,
+  noInfo: true,
+}));
+app.use(webpackHotMiddleWare(compiler));
+
 
 // configure firebase
  const firebaseConfig = {
@@ -34,16 +40,12 @@ const port = process.env.PORT || 6969;
  };
  firebase.initializeApp(firebaseConfig);
 
-// body parser, used to grab information from POST requests
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
 // use routes imported
 routes(app, firebase);
 
 // default route
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'))
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 app.listen(port, () => {
