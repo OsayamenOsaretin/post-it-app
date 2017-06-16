@@ -25,8 +25,7 @@ class LoginForm extends React.Component {
 /**
  * @memberof LoginComponent
  * @returns {void}
- * @param {String} inputFieldState
- * @param {String} label
+ * @param {*} event
  */
   handleChange(event) {
     const value = event.target.value;
@@ -39,6 +38,7 @@ class LoginForm extends React.Component {
   /**
    * @memberof LoginComponent
    * @returns {void}
+   * @param {*} event
    */
   handleSubmit(event) {
     event.preventDefault();
