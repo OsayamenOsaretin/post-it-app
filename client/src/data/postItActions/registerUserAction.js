@@ -1,4 +1,5 @@
 import axios from 'axios';
+import request from 'superagent';
 import PostItActionTypes from '../PostItActionTypes';
 import PostItDispatcher from '../PostItDispatcher';
 
@@ -12,29 +13,20 @@ import PostItDispatcher from '../PostItDispatcher';
  */
 export default (newUserDetails) => {
   console.log('reaches register action');
-    axios.post('user/signup', {
-      body: newUserDetails
-    })
-    .then((res) => {
-      if (res.status === 200) {
-        // dispatch action to Login user on successful registration
-        PostItDispatcher.handleViewAction({
-          actionType: PostItActionTypes.LOGIN_USER,
-        });
-      } else {
-        PostItDispatcher.handleViewAction({
-          actionType: PostItActionTypes.FAILED_REGISTER,
-          error: res.message,
-          status: 'failed'
-        });
-      }
-    })
-    .catch((err) => {
-      PostItDispatcher.handleViewAction({
-        actionType: PostItActionTypes.FAILED_REGISTER,
-        error: err.message,
-        status: 'failed'
+  request
+  .post('user/signup')
+  .send(newUserDetails)
+  .end((error, result) => {
+    if (error) {
+      console.log(error);
+    } else {
+      const userData = result.body.userData;
+      console.log(userData);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.LOGIN_USER,
+        user: userData
       });
-    });
+    }
+  });
 };
 
