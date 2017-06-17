@@ -47,6 +47,7 @@ class App extends React.Component {
    */
   onChange() {
     this.setState({
+      // token: UserStore.getSignedInState()
       token: true
     });
   }
