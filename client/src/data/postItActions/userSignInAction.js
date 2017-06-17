@@ -16,10 +16,17 @@ export default (userDetails) => {
   request
   .post('user/signin')
   .send(userDetails)
-  .end((err, res) => {
+  .end((error, result) => {
     console.log('api call returned a result');
-    if (err) {
-      console.log(err);
+    if (error) {
+      console.log(error);
+    } else {
+      const userData = result.body.userData;
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.LOGIN_USER,
+        user: userData
+      });
     }
   });
 };
+
