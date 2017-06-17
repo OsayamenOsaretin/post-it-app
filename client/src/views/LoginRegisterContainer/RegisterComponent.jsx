@@ -42,11 +42,11 @@ export default class RegisterForm extends React.Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    if (this.password === this.confirmPassword) {
+    if (this.state.password === this.state.confirmPassword) {
       registerAction({
-        userName: this.userName,
-        password: this.password,
-        email: this.email
+        userName: this.state.userName,
+        password: this.state.password,
+        email: this.state.email
       });
     }
   }
