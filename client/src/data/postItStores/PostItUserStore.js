@@ -36,6 +36,7 @@ class PostItUserStore extends EventEmitter {
    * @memberof PostItUserStore
    */
   getSignedInState() {
+    console.log(signedInState);
     return signedInState;
   }
 }
@@ -51,6 +52,10 @@ PostItDispatcher.register((payload) => {
   switch (action.type) {
   case PostItActionTypes.LOGIN_USER: {
     if (source === 'SERVER_ACTION') {
+      const user = action.user;
+      const token = user.stsTokenManager.accessToken;
+      localStorage.setItem('token', token);
+      console.log(token);
       console.log('gets to the login server source action');
       userStore.emit(CHANGE_EVENT);
     }
