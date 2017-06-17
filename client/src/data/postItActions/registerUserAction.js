@@ -10,7 +10,8 @@ import PostItDispatcher from '../PostItDispatcher';
  * @returns {void}
  * @param {newUserDetails} newUserDetails
  */
-export default newUserDetails => (
+export default (newUserDetails) => {
+  console.log('reaches register action');
     axios.post('user/signup', {
       body: newUserDetails
     })
@@ -34,6 +35,6 @@ export default newUserDetails => (
         error: err.message,
         status: 'failed'
       });
-    })
-);
+    });
+};
 
