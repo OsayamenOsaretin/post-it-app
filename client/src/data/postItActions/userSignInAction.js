@@ -22,6 +22,7 @@ export default (userDetails) => {
       console.log(error);
     } else {
       const userData = result.body.userData;
+      console.log(userData);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
         user: userData
