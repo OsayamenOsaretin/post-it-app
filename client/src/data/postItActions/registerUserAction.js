@@ -1,4 +1,3 @@
-import axios from 'axios';
 import request from 'superagent';
 import PostItActionTypes from '../PostItActionTypes';
 import PostItDispatcher from '../PostItDispatcher';
