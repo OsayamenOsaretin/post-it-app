@@ -1,3 +1,4 @@
+import request from 'superagent';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
 
@@ -9,8 +10,8 @@ import PostItActionTypes from '../PostItActionTypes';
  */
 export function recieveGroups(res) {
   PostItDispatcher.handleServerAction({
-    actionType: PostItActionTypes.RECIEVE_GROUP_RESPONSE,
-    response: res
+    type: PostItActionTypes.RECIEVE_GROUP_RESPONSE,
+    userGroups: res
   });
 }
 /**
@@ -20,7 +21,50 @@ export function recieveGroups(res) {
  */
 export function addGroup(name) {
   PostItDispatcher.handleServerAction({
-    actionType: PostItActionTypes.ADD_GROUP,
+    type: PostItActionTypes.ADD_GROUP,
     groupName: name,
+  });
+}
+
+/**
+ * getGroups makes an api call for user's groups and dispatches(res) to registered listeners
+ * @return {void}
+ */
+export function getGroups() {
+  console.log('action reaches here');
+  request
+  .get('/groups')
+  .end((error, result) => {
+    if (error) {
+      // dispatch to hanlde the view case of failed group collection
+      PostItDispatcher.handleViewAction({
+        type: PostItActionTypes.FAILED_GROUPS,
+        error: error.message
+      });
+    } else {
+      const userGroups = result.body.userGroups;
+      // call action to handle recieved groups
+      recieveGroups(userGroups);
+    }
+  });
+}
+
+/**
+ * addGroupApi makes an api call to add a group to user's group.
+ * @param {*} groupName
+ * @return {void}
+ */
+export function addGroupApi(groupName) {
+  request
+  .post('/group')
+  .send(groupName)
+  .end((error, result) => {
+    if (error) {
+      console.log(error);
+    } else {
+      // make api call to get all the new groups
+      console.log(result);
+      getGroups();
+    }
   });
 }
