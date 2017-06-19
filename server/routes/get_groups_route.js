@@ -6,8 +6,8 @@ module.exports = (app, firebase) => {
         const userId = user.uid;
         const db = firebase.database();
 
-        // instantiate empty list to hold groups
-        const groups = [];
+        // instantiate empty Map to hold groups
+        const groups = new Map();
 
         // get user's groups
         const groupsReference = db.ref(`/users/${userId}/groups/`);
@@ -25,7 +25,7 @@ module.exports = (app, firebase) => {
               const groupReference = db.ref(`groups/${groupKey}`);
               groupReference.on('value', (snap) => {
                 // add group info to list of groups
-                groups.push(snap.val());
+                groups.set(groupKey, snap.val());
                 resolve();
               });
             })
