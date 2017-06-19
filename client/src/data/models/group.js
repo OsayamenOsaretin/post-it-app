@@ -36,4 +36,5 @@ class Group extends GroupRecord {
   }
 }
 
+
 export default Group;
