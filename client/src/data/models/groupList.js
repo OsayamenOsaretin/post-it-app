@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
 
-const groupMap = Immutable.OrderedMap;
+const groupMap = Immutable.Map;
 
 export default groupMap;
