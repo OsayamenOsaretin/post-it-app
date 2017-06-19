@@ -1,6 +1,7 @@
 import React from 'react';
 import DummyView from './DummyView';
 import LoginRegisterContainer from './LoginRegisterContainer/LandingPageContainer.jsx';
+import Dashboard from './GroupContainer/Dashboard.jsx';
 import UserStore from '../data/postItStores/PostItUserStore';
 
 
@@ -59,7 +60,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.token ? <LoginRegisterContainer /> : <DummyView />}
+        {!this.state.token ? <LoginRegisterContainer /> : <Dashboard />}
       </div>
     );
   }
