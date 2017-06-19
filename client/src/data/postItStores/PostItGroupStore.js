@@ -3,16 +3,17 @@ import Group from '../models/group';
 import GroupList from '../models/groupList';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
-import { getGroups, addGroupApi } from '../../serverUtils/API';
+import { getGroups, addGroupApi } from '../postItActions/groupActions';
 
 const CHANGE_EVENT = 'change';
 
 // create empty immutable map to hold group list
-const groups = new GroupList();
+let groups = new GroupList();
 
 // add new groups to list of groups
-const addNewGroups = (state, newGroupList) => {
-  state.merge(newGroupList.map(group => new Group(group)));
+const addNewGroups = (newGroupList) => {
+  console.log(newGroupList);
+  groups = groups.merge(newGroupList);
 };
 
 /**
@@ -45,9 +46,12 @@ class PostItGroupStore extends EventEmitter {
 /**
  * getGroups
  * @memberof PostItGroupStore
- * @return {map} groups
+ * @return {Map} groups
  */
   getGroups() {
+    console.log('asks for groups');
+    console.log('and gets...');
+    console.log(groups);
     return groups;
   }
 
@@ -84,7 +88,11 @@ PostItDispatcher.register((payload) => {
   }
   case PostItActionTypes.RECIEVE_GROUP_RESPONSE: {
     // add new groups to immutable map of groups
-    addNewGroups(groups, action.response.userGroups);
+    console.log('recieves groups in group store');
+    console.log(action.userGroups);
+    const groupMap = new Map(action.userGroups);
+    console.log(groupMap);
+    addNewGroups(groupMap);
     groupStore.emit(CHANGE_EVENT);
     break;
   }
