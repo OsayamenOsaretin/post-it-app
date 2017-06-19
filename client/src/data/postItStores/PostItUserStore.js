@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
+import { getGroups } from '../postItActions/groupActions';
 
 const CHANGE_EVENT = 'change';
 
@@ -55,8 +56,9 @@ PostItDispatcher.register((payload) => {
       const user = action.user;
       const token = user.stsTokenManager.accessToken;
       localStorage.setItem('token', token);
-      console.log(token);
+      console.log(user.displayName);
       console.log('gets to the login server source action');
+      getGroups();
       userStore.emit(CHANGE_EVENT);
     }
     break;
