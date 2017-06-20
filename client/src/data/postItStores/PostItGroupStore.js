@@ -1,5 +1,4 @@
 import { EventEmitter } from 'events';
-import Group from '../models/group';
 import GroupList from '../models/groupList';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
