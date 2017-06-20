@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import GroupItem from './GroupItem.jsx';
+import AddGroupView from './AddGroup.jsx';
 
 /**
  * GroupContainer holds the navigation links for each group
@@ -11,6 +12,7 @@ function GroupList(props) {
   return (
       <ul className="group-list">
         <li>
+          <AddGroupView />
         </li>
       {props.groups.map((group, key) => (
         <li>
