@@ -15,9 +15,9 @@ module.exports = (app, firebase) => {
           const groupKeys = [];
 
           // get the keys for each user's group
-          snapshot.forEach(groupSnapshot => (
-            groupKeys.push(groupSnapshot.key)
-          ));
+          snapshot.forEach(groupSnapshot => {
+            groupKeys.push(groupSnapshot.key);
+          });
 
           // map to promises to asynchronously collect group info
           const promises = groupKeys.map(groupKey => (
