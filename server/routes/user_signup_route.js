@@ -7,7 +7,7 @@ module.exports = (app, firebase) => {
     const userName = req.body.userName;
     const email = req.body.email;
     const password = req.body.password;
-    console.log(email);
+    const db = firebase.database();
 
     if (!validateEmail(email)) {
       res.status(400).send({
@@ -21,6 +21,13 @@ module.exports = (app, firebase) => {
          user.updateProfile({
            displayName: userName,
          });
+
+         // save the user details to the database
+         db.ref().child(`users/${user.uid}`).set({
+           username: userName,
+         });
+
+         // send verification email to user
          user.sendEmailVerification().then(() => {
            res.send({
              message: 'Welcome to the Post It, An email has been sent to you',
