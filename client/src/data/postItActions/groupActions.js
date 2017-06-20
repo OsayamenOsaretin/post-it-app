@@ -55,6 +55,7 @@ export function getGroups() {
  * @return {void}
  */
 export function addGroupApi(groupName) {
+  console.log('gets to group api action');
   request
   .post('/group')
   .send(groupName)
@@ -64,7 +65,9 @@ export function addGroupApi(groupName) {
     } else {
       // make api call to get all the new groups
       console.log(result);
-      getGroups();
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.GET_GROUPS
+      });
     }
   });
 }
