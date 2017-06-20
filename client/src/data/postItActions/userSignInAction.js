@@ -8,7 +8,7 @@ import PostItActionTypes from '../PostItActionTypes';
  * @export
  * @function
  * @returns {void}
- * @param {userDetails} userDetails
+ * @param {*} userDetails
  */
 
 export default (userDetails) => {
