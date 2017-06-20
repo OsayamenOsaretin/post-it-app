@@ -56,6 +56,7 @@ PostItDispatcher.register((payload) => {
       const user = action.user;
       const token = user.stsTokenManager.accessToken;
       localStorage.setItem('token', token);
+      localStorage.setItem('username', user.displayName);
       console.log(user.displayName);
       console.log('gets to the login server source action');
       getGroups();
