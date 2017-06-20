@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7118a167824bf1bd532e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "df03603735a8d474eb6f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -5190,7 +5190,9 @@ function addGroupApi(groupName) {
     } else {
       // make api call to get all the new groups
       console.log(result);
-      // getGroups();
+      _PostItDispatcher2.default.handleServerAction({
+        type: _PostItActionTypes2.default.GET_GROUPS
+      });
     }
   });
 }
