@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import SendMessageAction from '../../../data/postItActions/sendMessageAction';
 import SendIcon from '../../../resources/send.png';
 
 /**
@@ -44,6 +46,15 @@ class SendMessageView extends React.Component {
    */
   handleSubmit(event) {
     event.preventDefault();
+    const messageSender = localStorage.getItem('username');
+    const group = this.props.groupId;
+
+    const messageDetails = {
+      message: this.state.message,
+      sender: messageSender,
+      groupId: group
+    };
+    SendMessageAction(messageDetails);
     this.setState({
       message: ''
     });
@@ -68,7 +79,7 @@ class SendMessageView extends React.Component {
         <button
         className='add-group-button'
         type='submit'
-        disabled={!this.state.fieldInput}
+        disabled={!this.state.message}
         onClick={this.handleSubmit}>
           <img src={SendIcon} />
         </button>
@@ -77,5 +88,9 @@ class SendMessageView extends React.Component {
     );
   }
 }
+
+SendMessageView.PropTypes = {
+  groupId: PropTypes.string.isRequired,
+};
 
 module.exports = SendMessageView;
