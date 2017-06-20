@@ -61,7 +61,7 @@ class AddGroupView extends React.Component {
         <div className="add-group-inputField">
         <input
         id="newGroup"
-        placeholder="Group name"
+        placeholder="Enter a name for your new group"
         type="text"
         autoComplete="off"
         value={this.state.fieldInput}
