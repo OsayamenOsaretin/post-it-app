@@ -12,6 +12,7 @@ module.exports = (app, firebase) => {
       });
     } else if (password) {
       // sign in with user and email using firebase authentication
+      const db = firebase.database();
       const promise = firebase.auth().signInWithEmailAndPassword(email, password);
 
       promise.then((user) => {
