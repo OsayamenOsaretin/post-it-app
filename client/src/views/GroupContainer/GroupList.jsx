@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import GroupItem from './GroupItem.jsx';
 import AddGroupView from './AddGroup.jsx';
 
@@ -27,5 +28,9 @@ function GroupList(props) {
     </ul>
   );
 }
+
+GroupList.PropTypes = {
+  groups: ImmutablePropTypes.map
+};
 
 module.exports = GroupList;
