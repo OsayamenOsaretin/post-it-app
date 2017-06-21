@@ -11,7 +11,7 @@ module.exports = (app, firebase) => {
 
         // get user's groups
         const groupsReference = db.ref(`/users/${userId}/groups/`);
-        groupsReference.on('value', (snapshot) => {
+        groupsReference.once('value', (snapshot) => {
           const groupKeys = [];
 
           // get the keys for each user's group
@@ -23,7 +23,7 @@ module.exports = (app, firebase) => {
           const promises = groupKeys.map(groupKey => (
             new Promise((resolve) => {
               const groupReference = db.ref(`groups/${groupKey}`);
-              groupReference.on('value', (snap) => {
+              groupReference.once('value', (snap) => {
                 // add group info to list of groups
                 groups.set(groupKey, snap.val());
                 resolve();
