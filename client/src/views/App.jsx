@@ -2,7 +2,9 @@ import React from 'react';
 import DummyView from './DummyView';
 import LoginRegisterContainer from './LoginRegisterContainer/LandingPageContainer.jsx';
 import Dashboard from './GroupContainer/Dashboard.jsx';
+import SendMessage from './GroupContainer/GroupBodyContainer/SendMessageView.jsx';
 import UserStore from '../data/postItStores/PostItUserStore';
+import AddUser from './GroupContainer/GroupBodyContainer/AddUserView.jsx';
 
 
 /**
@@ -60,7 +62,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.token ? <LoginRegisterContainer /> : <Dashboard />}
+        {!this.state.token ? <LoginRegisterContainer /> : <AddUser groupId="-Kn0rncFpPMPqQVswvwr"/>}
       </div>
     );
   }
