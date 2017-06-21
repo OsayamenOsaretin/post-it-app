@@ -21,9 +21,7 @@ module.exports = (app, firebase) => {
         });
 
         // add group to user's list of groups
-        db.ref(`/users/${newUserId}/groups`).child(groupId).set({
-          id: groupId,
-        });
+        db.ref(`/users/${newUserId}/groups`).child(groupId).set(true);
 
         res.send({
           message: 'User added to group',
