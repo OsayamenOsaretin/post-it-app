@@ -1,13 +1,18 @@
 import { EventEmitter } from 'events';
-import { Immutable } from 'immutable';
+import GroupList from '../models/groupList';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
+import { getGroups, addGroupApi } from '../postItActions/groupActions';
 
 const CHANGE_EVENT = 'change';
 
-const groups = {
-  groupList: Immutable.List([]),
-  editing: false
+// create empty immutable map to hold group list
+let groups = new GroupList();
+
+// add new groups to list of groups
+const addNewGroups = (newGroupList) => {
+  console.log(newGroupList);
+  groups = groups.merge(newGroupList);
 };
 
 /**
@@ -40,10 +45,23 @@ class PostItGroupStore extends EventEmitter {
 /**
  * getGroups
  * @memberof PostItGroupStore
- * @return {Immutable.List} groups
+ * @return {Map} groups
  */
   getGroups() {
+    console.log('asks for groups');
+    console.log('and gets...');
+    console.log(groups);
     return groups;
+  }
+
+/**
+ * getGroupUser
+ * @memberof PostItGroupStore
+ * @return {List} groupUsers
+ * @param {*} groupId
+ */
+  getGroup(groupId) {
+    return groups.get(groupId);
   }
 
 }
@@ -52,15 +70,29 @@ const groupStore = new PostItGroupStore();
 
 PostItDispatcher.register((payload) => {
   const action = payload.action;
+  const source = payload.source;
 
   switch (action.type) {
   case PostItActionTypes.GET_GROUPS: {
+    if (source === 'SERVER_ACTION') {
+      // api utility to call for list of groups
+      getGroups();
+    }
     break;
   }
   case PostItActionTypes.ADD_GROUP: {
+    // make api call to add group name
+    addGroupApi(action.groupName);
     break;
   }
-  case PostItActionTypes.GET_GROUP_USERS: {
+  case PostItActionTypes.RECIEVE_GROUP_RESPONSE: {
+    // add new groups to immutable map of groups
+    console.log('recieves groups in group store');
+    console.log(action.userGroups);
+    const groupMap = new Map(action.userGroups);
+    console.log(groupMap);
+    addNewGroups(groupMap);
+    groupStore.emit(CHANGE_EVENT);
     break;
   }
   default: {

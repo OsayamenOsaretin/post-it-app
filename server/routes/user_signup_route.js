@@ -7,6 +7,7 @@ module.exports = (app, firebase) => {
     const userName = req.body.userName;
     const email = req.body.email;
     const password = req.body.password;
+    const db = firebase.database();
 
     if (!validateEmail(email)) {
       res.status(400).send({
@@ -20,16 +21,26 @@ module.exports = (app, firebase) => {
          user.updateProfile({
            displayName: userName,
          });
+
+         // save the user details to the database
+         db.ref().child(`users/${user.uid}`).set({
+           username: userName,
+         });
+
+         // send verification email to user
          user.sendEmailVerification().then(() => {
-           res.send({ message: 'Welcome to the Post It, An email has been sent to you' });
+           res.send({
+             message: 'Welcome to the Post It, An email has been sent to you',
+             userData: user
+           });
          });
        }).catch((error) => {
          const errorMessage = error.message;
-         res.status(400).send({ message: `Error signing up :( ${errorMessage}` });
+         res.status(500).send({ message: `Error signing up :( ${errorMessage}` });
        });
     } else {
       // if email or password or username strings are empty
-      res.status(400).send({
+      res.status(422).send({
         message: 'Please make sure you enter all data'
       });
     }

@@ -1,5 +1,6 @@
-import axios from 'axios';
+import request from 'superagent';
 import PostItActionTypes from '../PostItActionTypes';
+import PostItDispatcher from '../PostItDispatcher';
 
 
 /**
@@ -9,23 +10,22 @@ import PostItActionTypes from '../PostItActionTypes';
  * @returns {void}
  * @param {newUserDetails} newUserDetails
  */
-export default newUserDetails => (
-  (dispatch) => {
-    axios.post('user/signup', {
-      body: newUserDetails
-    })
-    .then(() => {
-      dispatch({
+export default (newUserDetails) => {
+  console.log('reaches register action');
+  request
+  .post('user/signup')
+  .send(newUserDetails)
+  .end((error, result) => {
+    if (error) {
+      console.log(error);
+    } else {
+      const userData = result.body.userData;
+      console.log(userData);
+      PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
+        user: userData
       });
-    })
-    .catch((err) => {
-      dispatch({
-        type: PostItActionTypes.FAILED_REGISTER,
-        err: err.message,
-        status: 'failed'
-      });
-    });
-  }
-);
+    }
+  });
+};
 
