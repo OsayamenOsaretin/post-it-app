@@ -1,1 +1,1 @@
-web: node client/src/main.js
+web: node index_bundle.js
