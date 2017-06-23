@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import GroupList from './GroupList.jsx';
+import GroupBody from './GroupBodyContainer/MessageBody.jsx';
 
 /**
  * GroupList is a container for the list of groups, also doubles as a navlink
@@ -15,8 +16,7 @@ function GroupListView(props) {
       <GroupList groups={props.groups}/>
       <Switch>
         <Route exact path='/' />
-        <Route exact path='/groupBody' />
-        <Route path='/groupBody/:groupId' />
+        <Route path='/groupBody/:groupId' component={GroupBody}/>
       </Switch>
     </div>
     </BrowserRouter>
