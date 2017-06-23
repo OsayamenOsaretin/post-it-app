@@ -8,6 +8,7 @@ import signOut from './sign_out_route';
 import getGroups from './get_groups_route';
 import sendMessage from './send_message_route';
 import getUsers from './get_all_users_route';
+import getMessages from './get_messages_route';
 
 module.exports = (app, firebase) => {
   // These are the endpoints for the post-it api
@@ -19,4 +20,5 @@ module.exports = (app, firebase) => {
   getGroups(app, firebase);
   sendMessage(app, firebase);
   getUsers(app, firebase);
+  getMessages(app, firebase);
 };
