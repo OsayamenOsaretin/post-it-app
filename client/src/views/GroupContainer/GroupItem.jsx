@@ -13,7 +13,7 @@ function GroupItem(props) {
       <ul className="group-item-top">
         <li>{props.groupName}</li>
         <li>
-          <img src ={notificationIcon} />
+          <img />
         </li>
       </ul>
     </div>
