@@ -62,7 +62,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.token ? <LoginRegisterContainer /> : <AddUser groupId="-Kn0rncFpPMPqQVswvwr"/>}
+        {!this.state.token ? <LoginRegisterContainer /> : <Dashboard />}
       </div>
     );
   }
