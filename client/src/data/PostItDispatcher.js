@@ -32,3 +32,6 @@ class DispatcherClass extends Dispatcher {
   }
 }
 
+const PostItDispatcher = new DispatcherClass();
+module.exports = PostItDispatcher;
+
