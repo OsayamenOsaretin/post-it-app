@@ -72,7 +72,7 @@ class AddGroupView extends React.Component {
         type='submit'
         disabled={!this.state.fieldInput}
         onClick={this.handleSubmit}>
-          <img src={AddGroupIcon} />
+          Add
         </button>
         </div>
      </form>
