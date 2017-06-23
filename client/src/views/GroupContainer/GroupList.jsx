@@ -10,6 +10,7 @@ import AddGroupView from './AddGroup.jsx';
  * @param {*} props
  */
 function GroupList(props) {
+  console.log(props.groups);
   return (
       <ul className="group-list">
         <li>
