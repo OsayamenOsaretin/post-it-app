@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "babel-watch server/server.js",
     "start": "node ./dist/server.js",
-    "build": "webpack",
+    "build": "babel server/ -d dist",
     "test": "mocha --timeout 10000 dist/tests/test.js"
   },
   "repository": {
