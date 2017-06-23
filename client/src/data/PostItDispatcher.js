@@ -6,6 +6,7 @@ import { Dispatcher } from 'flux';
  */
 class DispatcherClass extends Dispatcher {
 
+
 /**
  * handles view actions
  * @return {void}
@@ -29,7 +30,5 @@ class DispatcherClass extends Dispatcher {
       action: act
     });
   }
-
 }
-const PostItDispatcher = new DispatcherClass();
-module.exports = PostItDispatcher;
+
