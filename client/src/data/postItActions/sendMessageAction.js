@@ -1,6 +1,5 @@
 import request from 'superagent';
-import PostItActionTypes from '../PostItActionTypes';
-import PostItDispatcher from '../PostItDispatcher';
+import getMessageAction from './getMessagesAction';
 
 /**
  * sendMessageAction - sends a new message to a group
@@ -16,6 +15,9 @@ export default (messageDetails) => {
     if (error) {
       console.log(error);
     } else {
+      getMessageAction({
+        groupId: messageDetails.groupId
+      });
       console.log(result);
     }
   });
