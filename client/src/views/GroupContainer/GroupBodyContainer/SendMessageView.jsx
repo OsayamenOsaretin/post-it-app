@@ -73,6 +73,7 @@ class SendMessageView extends React.Component {
         id="newMessage"
         type="text"
         autoComplete="off"
+        placeholder="Send new message"
         value={this.state.message}
         onChange={this.handleChange}
         />
@@ -81,7 +82,7 @@ class SendMessageView extends React.Component {
         type='submit'
         disabled={!this.state.message}
         onClick={this.handleSubmit}>
-          <img src={SendIcon} />
+          Send
         </button>
         </div>
      </form>
