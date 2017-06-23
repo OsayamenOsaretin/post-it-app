@@ -76,6 +76,12 @@ PostItDispatcher.register((payload) => {
     messageStore.emit(CHANGE_EVENT);
     break;
   }
+
+  case PostItActionTypes.SENT_MESSAGE: {
+    messageStore.emit(CHANGE_EVENT);
+    break;
+  }
+
   default: {
     return true;
   }
