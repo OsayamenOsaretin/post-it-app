@@ -15,7 +15,7 @@ module.exports = (app, firebase) => {
           const groupKeys = [];
 
           // get the keys for each user's group
-          snapshot.forEach(groupSnapshot => {
+          snapshot.forEach((groupSnapshot) => {
             groupKeys.push(groupSnapshot.key);
           });
 
