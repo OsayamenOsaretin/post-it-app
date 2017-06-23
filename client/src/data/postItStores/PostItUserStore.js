@@ -37,7 +37,7 @@ class PostItUserStore extends EventEmitter {
    */
   getSignedInState() {
     console.log(signedInState);
-    return signedInState;
+    return localStorage.getItem('token');
   }
 }
 
