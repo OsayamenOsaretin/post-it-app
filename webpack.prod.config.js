@@ -4,10 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const config = {
-  devtool: 'eval',
+  devtool: 'source-map',
 
   entry: [
-    'webpack-hot-middleware/client',
     path.join(__dirname, './client/src/main.js')],
 
   output: {
@@ -17,7 +16,12 @@ const config = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false
+      }
+    }),
     new HtmlWebpackPlugin({
       template: './client/src/index.html'
     })

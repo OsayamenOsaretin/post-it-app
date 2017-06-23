@@ -13,20 +13,25 @@ import routes from './routes';
 
 const app = express();
 
-const compiler = webpack(config);
 // configure port
 const port = process.env.PORT || 6969;
 
-// body parser, used to grab information from POST requests
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+if (process.env.NODE_ENV !== 'production') {
+  const compiler = webpack(config);
 
-app.use(webpackMiddleWare(compiler, {
-  hot: true,
-  publicPath: config.output.publicPath,
-  noInfo: true,
-}));
-app.use(webpackHotMiddleWare(compiler));
+  // body parser, used to grab information from POST requests
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
+
+  app.use(webpackMiddleWare(compiler, {
+    hot: true,
+    publicPath: config.output.publicPath,
+    noInfo: true,
+  }));
+  app.use(webpackHotMiddleWare(compiler));
+}
+
+app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 
 // configure firebase

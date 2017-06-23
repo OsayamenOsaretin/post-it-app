@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "babel-watch server/server.js",
-    "start": "node dist/index_bundle.js",
-    "build": "webpack",
+    "start": "node client/src/main.js",
+    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
     "test": "mocha --timeout 10000 dist/tests/test.js"
   },
   "repository": {
