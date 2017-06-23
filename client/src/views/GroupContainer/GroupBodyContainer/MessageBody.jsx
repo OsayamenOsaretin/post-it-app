@@ -2,6 +2,8 @@ import React from 'react';
 import MessageStore from '../../../data/postItStores/PostItMessageStore';
 import getMessagesAction from '../../../data/postItActions/getMessagesAction';
 import MessageListView from './MessageListView.jsx';
+import SendMessage from './SendMessageView.jsx';
+import AddUser from './AddUserView.jsx';
 
 
 /**
@@ -66,7 +68,15 @@ class MessageBody extends React.Component {
   render() {
     console.log(this.state.messages);
     return (
-      <MessageListView messages={this.state.messages} />
+      <div>
+        <div className="message-body">
+          <MessageListView messages={this.state.messages} />
+          <SendMessage groupId={this.props.match.params.groupId}/>
+        </div>
+        <div className="add-user">
+            <AddUser groupId={this.props.match.params.groupId}/>
+          </div>
+        </div>
     );
   }
 }
