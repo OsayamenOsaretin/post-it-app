@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(webpackHotMiddleWare(compiler));
 }
 
-app.use('/dist', express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 
 // configure firebase
