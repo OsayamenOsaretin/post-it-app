@@ -8,11 +8,11 @@ import React from 'react';
 function MessageListView(props) {
   console.log(props.messages);
   return (
-    <div className="message-list-item">
+    <div className="message-list-items">
         {props.messages && props.messages.map(message => (
           <div className="message-view">
-            <h2 className="message-body-view">{message.message}</h2>
-            from: <h4 className="message-sender-view">{message.sender}</h4>
+            <h4 className="message-body-view">{message.message}</h4>
+            <h6 className="message-sender-view">from: {message.sender}</h6>
           </div>
         ))}
     </div>
