@@ -12,21 +12,23 @@ import AddGroupView from './AddGroup.jsx';
 function GroupList(props) {
   console.log(props.groups);
   return (
+    <div className="groups">
+      <div className="addGroup">
+        <AddGroupView />
+      </div>
       <ul className="group-list">
-        <li>
-          <AddGroupView />
-        </li>
       {props.groups.map((group, key) => (
         <li>
           <NavLink exact activeClassName='active' to={`/groupBody/${key}`} >
             <GroupItem
             groupName={group.get('groupname')}
-            notification={true}
+            groupId={key}
              />
           </NavLink>
         </li>
       ))}
     </ul>
+  </div>
   );
 }
 

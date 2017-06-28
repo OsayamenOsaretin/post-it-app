@@ -30,12 +30,9 @@ function UserList(props) {
 
   return (
     <form>
-        <img
-        src ={AddUserIcon}/>
-
-        <select
+        <select multiple
         name='Add User'
-        size='20'
+        size='5'
         onChange={handleSelect}
         >
         {props.users.map((user, key) => (

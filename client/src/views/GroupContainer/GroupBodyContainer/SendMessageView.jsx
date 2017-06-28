@@ -67,25 +67,21 @@ class SendMessageView extends React.Component {
    */
   render() {
     return (
-     <form className="sendMessageForm">
-        <div className="send-message-inputField">
-        <input
-        id="newMessage"
-        type="text"
-        autoComplete="off"
-        placeholder="Send new message"
-        value={this.state.message}
-        onChange={this.handleChange}
-        />
-        <button
-        className='add-group-button'
-        type='submit'
-        disabled={!this.state.message}
-        onClick={this.handleSubmit}>
-          Send
-        </button>
-        </div>
-     </form>
+        <form>
+            <input
+            type="text"
+            autoComplete="off"
+            placeholder="Send new message"
+            value={this.state.message}
+            onChange={this.handleChange}
+            />
+            <button
+            type='submit'
+            disabled={!this.state.message}
+            onClick={this.handleSubmit}>
+              Send
+            </button>
+        </form>
     );
   }
 }
