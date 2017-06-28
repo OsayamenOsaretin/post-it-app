@@ -9,10 +9,15 @@ a{
 
 ul {
   padding: 0;
+  list-style: none;
+}
+
+h6 {
+  padding: 0;
+  margin: 0;
 }
 
 input {
-  display: block;
   width: 80%;
   height: 50px;
   border: 1px solid lavender;
@@ -21,6 +26,10 @@ input {
   margin-bottom: 4px;
   font-size: 15px;
   margin-left: 2px;
+}
+
+.inputform input {
+  display: block;
 }
 
 .nav {
@@ -111,13 +120,133 @@ input {
   width: 40%;
 }
 
+.addGroup {
+  margin: auto;
+  width: 70%;
+}
+
 .group-list {
-  width: 25%;
-  float: left;
+  width: 70%;
+  margin: auto;
+  padding: 0;
   text-decoration: none;
-  border: solid;
-  border-color: lavender;
-  background-color: snow;
+}
+
+.group-item {
+  height: 500px;
+  max-height: 500px;
+  border: 1px solid snow;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  position: relative;
+  background: red;
+  transition: width 1s;
+}
+
+.group-item:hover {
+  box-shadow: 3px 5px 3px black;
+  height: 600px;
+}
+
+.group-item:first-child{
+  margin-top: 50px;
+}
+
+.group-item-top {
+  position: relative;
+  height: 40px;
+  margin: 2px;
+  padding: 5px;
+  box-shadow: 3px black;
+}
+
+.group-item-top li {
+  padding: 3px;
+  color: white;
+}
+
+.add-user {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.user-list {
+  float: right;
+  margin-top: 25px;
+}
+
+.user-list select {
+  background: purple;
+  color: white;
+  z-index: 2;
+}
+
+.user-list select option {
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 15px;
+}
+
+.user-list select option:hover {
+  background: black;
+  color: white;
+}
+
+.user-list select option:checked{
+  display: none;
+}
+
+.group-item-top li {
+  display: inline;
+}
+
+.add-user-button {
+  background: red;
+  border-radius: 3px;
+}
+
+.message-body {
+  height: 395px;
+  overflow: auto;
+}
+
+.send-message {
+  position: absolute;
+  bottom: 0px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 54px;
+}
+
+.send-message input {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 85%;
+  height: 100%;
+  border: none;
+  border-radius: 0px 0px 0px 5px;
+  margin: 0;
+}
+
+.send-message form button {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 15%;
+  height: 100%;
+  margin: 0;
+  border: none;
+  border-radius: 0px 0px 5px 0px;
+}
+
+.send-message form button:enabled {
+  border: 1px solid snow;
+  box-shadow: 1px 1px 2px 1px #888888;
 }
 
 .addGroupForm {
@@ -136,12 +265,11 @@ input {
 }
 
 .add-group-button:enabled {
-  border: solid;
-  border-color: purple;
+  border: 2px solid snow;
 }
 
 #newGroup {
-  width: 80%;
+  width: 79%;
   height: 100%;
   border: solid;
   border-color: lavender;
@@ -150,21 +278,6 @@ input {
   font-size: 13px;
 }
 
-.group-item {
-  margin: 0;
-  border-top: 1px solid lavender;
-  border-bottom: 1px solid lavender;
-  color: purple;
-  padding-left: 4px;
-  padding-top: 4px;
-}
-
-.message-body {
-  width: 60%;
-  height: 100%;
-  float: left;
-  margin: 2px;
-}
 .message-list-items {
   border: 2px solid lavender;
   background-color: lavender;
@@ -176,20 +289,7 @@ input {
   border-collapse: collapse;
 }
 
-.sendMessageForm #newMessage {
-  width: 90%;
-  height: 40px;
-}
 
-.add-group-button {
-  width: 10%;
-  height: 40px;
-}
-
-.add-user {
-  width: 10%;
-  float: left;
-}
 
 
 

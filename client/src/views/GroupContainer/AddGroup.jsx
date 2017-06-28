@@ -60,7 +60,7 @@ class AddGroupView extends React.Component {
      <form className="addGroupForm">
         <div className="add-group-inputField">
         <input
-        id="newGroup"
+        class="newGroup"
         placeholder="Enter a name for your new group"
         type="text"
         autoComplete="off"

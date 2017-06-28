@@ -19,13 +19,13 @@ class MessageBody extends React.Component {
    */
   constructor(props) {
     super(props);
-    console.log(props.match.params.groupId);
+    console.log(props.groupId);
     this.state = {
-      messages: MessageStore.getMessage(props.match.params.groupId)
+      messages: MessageStore.getMessage(props.groupId)
     };
 
     getMessagesAction({
-      groupId: this.props.match.params.groupId
+      groupId: this.props.groupId
     });
 
     this.onChange = this.onChange.bind(this);
@@ -56,7 +56,7 @@ class MessageBody extends React.Component {
    */
   onChange() {
     this.setState({
-      messages: MessageStore.getMessage(this.props.match.params.groupId)
+      messages: MessageStore.getMessage(this.props.groupId)
     });
   }
 
@@ -71,11 +71,10 @@ class MessageBody extends React.Component {
       <div>
         <div className="message-body">
           <MessageListView messages={this.state.messages} />
-          <SendMessage groupId={this.props.match.params.groupId}/>
         </div>
-        <div className="add-user">
-            <AddUser groupId={this.props.match.params.groupId}/>
-          </div>
+        <div className="send-message">
+          <SendMessage groupId={this.props.groupId}/>
+        </div>
         </div>
     );
   }
