@@ -1,5 +1,4 @@
 import React from 'react';
-import AddGroupIcon from '../../resources/add-group.png';
 import { addGroupApi } from '../../data/postItActions/groupActions';
 
 /**
