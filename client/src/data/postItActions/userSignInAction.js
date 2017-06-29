@@ -10,8 +10,7 @@ import PostItActionTypes from '../PostItActionTypes';
  * @returns {void}
  * @param {*} userDetails
  */
-
-export default (userDetails) => {
+export default function SignInAction(userDetails) {
   console.log('superagent api call to login');
   request
   .post('user/signin')
@@ -29,5 +28,5 @@ export default (userDetails) => {
       });
     }
   });
-};
+}
 
