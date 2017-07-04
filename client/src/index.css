@@ -108,6 +108,14 @@ input {
   width: 40%;
 }
 
+.post-it-img {
+  background-image: url('./resources/postIt.png');
+}
+
+.mail-box-img {
+  background-image: url('./resources/mailbox.png');
+}
+
 .login-register-container {
   float: right;
   width: 60%;
