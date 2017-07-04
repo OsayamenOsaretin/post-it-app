@@ -21,7 +21,15 @@
   "homepage": "https://github.com/OsayamenOsaretin/post-it-app#readme",
   "jest": {
     "moduleNameMapper": {
-      "^SignInAction$": "<rootDir>/client/src/data/postItActions/userSignInAction.js"
+      "^SignInAction$": "<rootDir>/client/src/data/postItActions/userSignInAction.js",
+      "^RegisterAction$": "<rootDir>/client/src/data/postItActions/registerUserAction.js",
+      "^GroupAction$": "<rootDir>/client/src/data/postItActions/groupActions.js",
+      "^UserListAction$": "<rootDir>/client/src/data/postItActions/addUserGroup",
+      "^SendMessageAction$": "<rootDir>/client/src/data/postItActions/sendMessageAction",
+      "^GetAllUsersAction$": "<rootDir>/client/src/data/postItActions/getAllUsersAction",
+      "^PostItDispatcher$": "<rootDir>/client/src/data/PostItDispatcher",
+      "^GetMessagesAction$": "<rootDir>/client/src/data/postItActions/getMessagesAction",
+      "^GroupActions$": "<rootDir>/client/src/data/postItActions/groupActions"
     }
   },
   "dependencies": {
@@ -45,10 +53,10 @@
     "immutable": "^3.8.1",
     "morgan": "^1.8.1",
     "prop-types": "^15.5.10",
-    "react": "^15.5.4",
+    "react": "^15.6.1",
     "react-dom": "^15.5.4",
-    "react-icons": "^2.2.5",
     "react-hot-loader": "^1.3.1",
+    "react-icons": "^2.2.5",
     "react-immutable-proptypes": "^2.1.0",
     "react-router-dom": "^4.1.1",
     "react-tools": "^0.10.0",
@@ -72,8 +80,11 @@
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
     "jest": "^20.0.4",
+    "mockery": "^2.1.0",
     "react-test-renderer": "^15.6.1",
     "sinon": "^2.3.5",
+    "superagent-mocker": "^0.5.2",
+    "supertest": "^3.0.0",
     "webpack-dev-server": "^2.4.5"
   }
 }
