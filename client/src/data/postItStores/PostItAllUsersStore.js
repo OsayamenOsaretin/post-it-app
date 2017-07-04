@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import UserList from '../models/groupList';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
-import getAllUsersAction from '../postItActions/getAllUsersAction'; 
+import getAllUsersAction from '../postItActions/getAllUsersAction';
 
 const CHANGE_EVENT = 'change';
 
