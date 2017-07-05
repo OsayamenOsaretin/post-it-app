@@ -2,6 +2,7 @@ import { EventEmitter } from 'events';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
 
+/* global localStorage */
 const CHANGE_EVENT = 'change';
 
 const signedInState = localStorage.getItem('token');
