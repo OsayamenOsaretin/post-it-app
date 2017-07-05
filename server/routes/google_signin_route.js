@@ -2,16 +2,14 @@
 
 module.exports = (app, firebase) => {
   app.post('/user/google/signin', (req, res) => {
-    const provider = new firebase.auth().GoogleAuthProvider();
+    const idToken = req.body.idToken;
 
-    firebase.auth().signInWithPopup(provider)
-    .then((result) => {
-      const token = result.credential.accessToken;
-      const userObject = result.user;
+    const credential = firebase.auth.GoogleAuthProvider.credential(idToken);
 
+    firebase.auth().signInWithCredential(credential)
+    .then((user) => {
       res.send({
-        user: userObject,
-        accessToken: token
+        userObject: user
       });
     })
     .catch((error) => {
