@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d1c45a7d19da7cbdc756"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0ea3022e94ab4e752835"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -7834,7 +7834,7 @@ exports = module.exports = __webpack_require__(133)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: purple;\n  font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\na{\n  text-decoration: none;\n}\n\nul {\n  padding: 0;\n  list-style: none;\n}\n\nh6 {\n  padding: 0;\n  margin: 0;\n}\n\ninput {\n  width: 80%;\n  height: 50px;\n  border: 1px solid lavender;\n  border-radius: 5px;\n  padding: 5px;\n  margin-bottom: 4px;\n  font-size: 15px;\n  margin-left: 2px;\n}\n\n.inputform input {\n  display: block;\n}\n\n.nav {\n  display: flex;\n  margin-bottom: 10px;\n  margin-right:10px;\n  max-width: 30%;\n  margin-left: 2px;\n}\n\n.nav li {\n list-style-type: none;\n margin-right: 2px;\n font-size: 15px;\n background-color: snow;\n color: black;\n padding: 10px;\n font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\n\n.nav li .active {\n  color: #29a6dc;\n  z-index: -1;\n}\n\n.inputField {\n  margin-bottom: 10px;\n  margin-top: 0px;\n  width: 80%;\n}\n\n.inputField #formInput {\n  width: 100%;\n  height: 50px;\n  border: solid;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  text-transform: lowercase;\n  color: #29a6dc;\n}\n\n.inputField #formInput:active{\n  text-transform: lowercase;\n}\n\n.button {\n  width: 80%;\n  height: 50px;\n  box-shadow: 10px brown;\n  border: solid;\n  border-radius: 5px;\n  background-color: skyblue;\n}\n\n.button:enabled {\n  transform: translateZ(1px);\n  border: solid 0.5px;\n  border-color: lavender;\n  font-size: 15px;\n}\n\n.button:disabled {\n  transform: translateZ(-1);\n  border: none;\n}\n\n.landing-page-container {\n  margin: auto;\n  padding: 100px;\n}\n\n.landing-img-container {\n  float: left;\n  width: 40%;\n}\n\n.post-it-img {\n  background-image: url(" + __webpack_require__(304) + ");\n}\n\n.mail-box-img {\n  background-image: url(" + __webpack_require__(303) + ");\n}\n\n.login-register-container {\n  float: right;\n  width: 60%;\n  margin: auto;\n}\n\n.post-it-img {\n  z-index: 1;\n  height: 20%;\n  width: 40%;\n}\n\n.addGroup {\n  margin: auto;\n  width: 70%;\n}\n\n.group-list {\n  width: 70%;\n  margin: auto;\n  padding: 0;\n  text-decoration: none;\n}\n\n.group-item {\n  height: 500px;\n  max-height: 500px;\n  border: 1px solid snow;\n  border-radius: 10px;\n  margin-bottom: 50px;\n  position: relative;\n  background: red;\n  transition: width 1s;\n}\n\n.group-item:hover {\n  box-shadow: 3px 5px 3px black;\n  height: 600px;\n}\n\n.group-item:first-child{\n  margin-top: 50px;\n}\n\n.group-item-top {\n  position: relative;\n  height: 40px;\n  margin: 2px;\n  padding: 5px;\n  box-shadow: 3px black;\n}\n\n.group-item-top li {\n  padding: 3px;\n  color: white;\n}\n\n.add-user {\n  position: absolute;\n  top: 3px;\n  right: 3px;\n}\n\n.user-list {\n  float: right;\n  margin-top: 25px;\n}\n\n.user-list select {\n  background: purple;\n  color: white;\n  z-index: 2;\n}\n\n.user-list select option {\n  width: 200px;\n  height: 40px;\n  text-align: center;\n  padding-top: 20px;\n  font-size: 15px;\n}\n\n.user-list select option:hover {\n  background: black;\n  color: white;\n}\n\n.user-list select option:checked{\n  display: none;\n}\n\n.group-item-top li {\n  display: inline;\n}\n\n.add-user-button {\n  background: red;\n  border-radius: 3px;\n}\n\n.message-body {\n  height: 395px;\n  overflow: auto;\n}\n\n.send-message {\n  position: absolute;\n  bottom: 0px;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 54px;\n}\n\n.send-message input {\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  width: 85%;\n  height: 100%;\n  border: none;\n  border-radius: 0px 0px 0px 5px;\n  margin: 0;\n}\n\n.send-message form button {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  width: 15%;\n  height: 100%;\n  margin: 0;\n  border: none;\n  border-radius: 0px 0px 5px 0px;\n}\n\n.send-message form button:enabled {\n  border: 1px solid snow;\n  box-shadow: 1px 1px 2px 1px #888888;\n}\n\n.addGroupForm {\n  width: 100%;\n  height: 40px;\n}\n\n.addGroupForm .add-group-button {\n  float: right;\n  width: 15%;\n  height: 100%;\n  background-color: lavender;\n  text-align: center;\n  border: none;\n  border-radius: 4px;\n}\n\n.add-group-button:enabled {\n  border: 2px solid snow;\n}\n\n#newGroup {\n  width: 79%;\n  height: 100%;\n  border: solid;\n  border-color: lavender;\n  color: purple;\n  padding-left: 2px;\n  font-size: 13px;\n}\n\n.message-list-items {\n  border: 2px solid lavender;\n  background-color: lavender;\n}\n\n.message-view {\n  border-top: 1px solid snow;\n  border-bottom: 1px solid snow;\n  border-collapse: collapse;\n}\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "body {\n  background-color: purple;\n  font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\na{\n  text-decoration: none;\n}\n\nul {\n  padding: 0;\n  list-style: none;\n}\n\nh6 {\n  padding: 0;\n  margin: 0;\n}\n\ninput {\n  width: 80%;\n  height: 50px;\n  border: 1px solid lavender;\n  border-radius: 5px;\n  padding: 5px;\n  margin-bottom: 4px;\n  font-size: 15px;\n  margin-left: 2px;\n}\n\n.inputform input {\n  display: block;\n}\n\n.nav {\n  display: flex;\n  margin-bottom: 10px;\n  margin-right:10px;\n  max-width: 30%;\n  margin-left: 2px;\n}\n\n.nav li {\n list-style-type: none;\n margin-right: 2px;\n font-size: 15px;\n background-color: snow;\n color: black;\n padding: 10px;\n font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\n\n.nav li .active {\n  color: #29a6dc;\n  z-index: -1;\n}\n\n.inputField {\n  margin-bottom: 10px;\n  margin-top: 0px;\n  width: 80%;\n}\n\n.inputField #formInput {\n  width: 100%;\n  height: 50px;\n  border: solid;\n  border-radius: 5px;\n  font-size: 15px;\n  padding: 5px;\n  text-transform: lowercase;\n  color: #29a6dc;\n}\n\n.inputField #formInput:active{\n  text-transform: lowercase;\n}\n\n.button {\n  width: 80%;\n  height: 50px;\n  box-shadow: 10px brown;\n  border: solid;\n  border-radius: 5px;\n  background-color: skyblue;\n}\n\n.button:enabled {\n  transform: translateZ(1px);\n  border: solid 0.5px;\n  border-color: lavender;\n  font-size: 15px;\n}\n\n.button:disabled {\n  transform: translateZ(-1);\n  border: none;\n}\n\n.landing-page-container {\n  margin: auto;\n  padding: 100px;\n}\n\n.landing-img-container {\n  float: left;\n  width: 40%;\n}\n\n.post-it-img {\n  height: 20%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(304) + ");\n  background-repeat: no-repeat;\n}\n\n.mail-box-img {\n  height: 50%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(303) + ");\n  background-repeat: no-repeat;\n}\n\n.login-register-container {\n  float: right;\n  width: 60%;\n  margin: auto;\n}\n\n.addGroup {\n  margin: auto;\n  width: 70%;\n}\n\n.group-list {\n  width: 70%;\n  margin: auto;\n  padding: 0;\n  text-decoration: none;\n}\n\n.group-item {\n  height: 500px;\n  max-height: 500px;\n  border: 1px solid snow;\n  border-radius: 10px;\n  margin-bottom: 50px;\n  position: relative;\n  background: red;\n  transition: width 1s;\n}\n\n.group-item:hover {\n  box-shadow: 3px 5px 3px black;\n  height: 600px;\n}\n\n.group-item:first-child{\n  margin-top: 50px;\n}\n\n.group-item-top {\n  position: relative;\n  height: 40px;\n  margin: 2px;\n  padding: 5px;\n  box-shadow: 3px black;\n}\n\n.group-item-top li {\n  padding: 3px;\n  color: white;\n}\n\n.add-user {\n  position: absolute;\n  top: 3px;\n  right: 3px;\n}\n\n.user-list {\n  float: right;\n  margin-top: 25px;\n}\n\n.user-list select {\n  background: purple;\n  color: white;\n  z-index: 2;\n}\n\n.user-list select option {\n  width: 200px;\n  height: 40px;\n  text-align: center;\n  padding-top: 20px;\n  font-size: 15px;\n}\n\n.user-list select option:hover {\n  background: black;\n  color: white;\n}\n\n.user-list select option:checked{\n  display: none;\n}\n\n.group-item-top li {\n  display: inline;\n}\n\n.add-user-button {\n  background: red;\n  border-radius: 3px;\n}\n\n.message-body {\n  height: 395px;\n  overflow: auto;\n}\n\n.send-message {\n  position: absolute;\n  bottom: 0px;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 54px;\n}\n\n.send-message input {\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  width: 85%;\n  height: 100%;\n  border: none;\n  border-radius: 0px 0px 0px 5px;\n  margin: 0;\n}\n\n.send-message form button {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  width: 15%;\n  height: 100%;\n  margin: 0;\n  border: none;\n  border-radius: 0px 0px 5px 0px;\n}\n\n.send-message form button:enabled {\n  border: 1px solid snow;\n  box-shadow: 1px 1px 2px 1px #888888;\n}\n\n.addGroupForm {\n  width: 100%;\n  height: 40px;\n}\n\n.addGroupForm .add-group-button {\n  float: right;\n  width: 15%;\n  height: 100%;\n  background-color: lavender;\n  text-align: center;\n  border: none;\n  border-radius: 4px;\n}\n\n.add-group-button:enabled {\n  border: 2px solid snow;\n}\n\n#newGroup {\n  width: 79%;\n  height: 100%;\n  border: solid;\n  border-color: lavender;\n  color: purple;\n  padding-left: 2px;\n  font-size: 13px;\n}\n\n.message-list-items {\n  border: 2px solid lavender;\n  background-color: lavender;\n}\n\n.message-view {\n  border-top: 1px solid snow;\n  border-bottom: 1px solid snow;\n  border-collapse: collapse;\n}\n\n.google-signin {\n  width: 20%;\n  margin-left: 150px;\n}\n\n.or-text {\n  display: inline-block;\n  margin-left: 90px;\n  color: snow;\n}\n\n\n.forgot-password-button {\n  border: none;\n  background: none;\n  color: black;\n  font-size: 15px;\n  margin-left: 180px;\n  margin-top: 10px;\n}\n\n.forgot-password-button:hover {\n  color: snow;\n}\n\n.reset-form {\n  width: 60%;\n  margin: auto;\n}\n\n.reset-form p {\n  color: snow;\n  margin-right: 150px;\n  text-align: center;\n}\n\n.password-sent-message {\n  text-align: center;\n  margin-right: 150px;\n  font-size: 20px;\n}\n\n.login-button {\n  border: none;\n  background: none;\n  color: snow;\n  padding: 0;\n  font-size: 20px;\n}\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -10335,6 +10335,7 @@ _PostItDispatcher2.default.register(function (payload) {
     case _PostItActionTypes2.default.RESET_MESSAGE_SENT:
       {
         passwordResetMessageState = true;
+        userStore.emit(CHANGE_EVENT);
         break;
       }
 
@@ -33915,7 +33916,8 @@ var App = function (_React$Component) {
 
     _this.state = {
       token: _PostItUserStore2.default.getSignedInState(),
-      passwordReset: true
+      passwordReset: true,
+      messageSent: false
     };
 
     _this.onChange = _this.onChange.bind(_this);
@@ -33958,7 +33960,8 @@ var App = function (_React$Component) {
     key: 'onChange',
     value: function onChange() {
       this.setState({
-        token: _PostItUserStore2.default.getSignedInState()
+        token: _PostItUserStore2.default.getSignedInState(),
+        messageSent: _PostItUserStore2.default.getPasswordResetMessageState()
       });
     }
 
@@ -33985,19 +33988,40 @@ var App = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         null,
         !this.state.token ? this.state.passwordReset && _react2.default.createElement(_LandingPageContainer2.default, null) : _react2.default.createElement(_Dashboard2.default, null),
         !this.state.token && this.state.passwordReset && _react2.default.createElement(
-          'button',
-          {
-            className: 'forgot-password-button',
-            onClick: this.handleClick,
-            type: 'click' },
-          'forgot password ?'
+          'div',
+          { className: 'landing-page-container' },
+          _react2.default.createElement(
+            'button',
+            {
+              className: 'forgot-password-button',
+              onClick: this.handleClick,
+              type: 'click' },
+            'forgot password ?'
+          )
         ),
-        !this.state.passwordReset && _react2.default.createElement(_ResetPasswordView2.default, null)
+        !this.state.passwordReset && _react2.default.createElement(_ResetPasswordView2.default, null),
+        !this.state.passwordReset && this.state.messageSent && _react2.default.createElement(
+          'p',
+          { className: 'password-sent-message' },
+          'A password reset email has been sent, refresh or proceed to ',
+          _react2.default.createElement(
+            'button',
+            {
+              className: 'login-button',
+              onClick: function onClick() {
+                _this2.setState({ passwordReset: true });
+              },
+              type: 'click' },
+            'login'
+          )
+        )
       );
     }
   }]);
@@ -35046,7 +35070,16 @@ var GoogleLogin = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('div', { id: 'my-signin2' });
+      return _react2.default.createElement(
+        'div',
+        { className: 'google-signin' },
+        _react2.default.createElement(
+          'p',
+          { className: 'or-text' },
+          'OR'
+        ),
+        _react2.default.createElement('div', { id: 'my-signin2' })
+      );
     }
   }]);
 
@@ -35452,8 +35485,7 @@ var ResetPasswordForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (ResetPasswordForm.__proto__ || Object.getPrototypeOf(ResetPasswordForm)).call(this));
 
     _this.state = {
-      email: '',
-      messageSent: false
+      email: ''
     };
 
     _this.handleChange = _this.handleChange.bind(_this);
@@ -35490,9 +35522,6 @@ var ResetPasswordForm = function (_React$Component) {
       (0, _resetPasswordAction2.default)({
         email: this.state.email
       });
-      this.setState({
-        email: ''
-      });
     }
 
     /**
@@ -35527,7 +35556,7 @@ var ResetPasswordForm = function (_React$Component) {
     key: 'onChange',
     value: function onChange() {
       this.setState({
-        messageSent: _PostItUserStore2.default.getPasswordResetMessageState()
+        email: ''
       });
     }
 
@@ -35545,7 +35574,7 @@ var ResetPasswordForm = function (_React$Component) {
         _react2.default.createElement(
           'p',
           null,
-          ' Reset password '
+          ' Request password reset'
         ),
         _react2.default.createElement(
           'form',
@@ -35567,13 +35596,6 @@ var ResetPasswordForm = function (_React$Component) {
               disabled: !this.state.email },
             'Reset Password'
           )
-        ),
-        this.state.messageSent && _react2.default.createElement(
-          'p',
-          { className: 'password-sent-message' },
-          'A password reset mail has been sent to ',
-          this.state.email,
-          ', proceed to login'
         )
       );
     }
