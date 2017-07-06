@@ -36,7 +36,7 @@ export function getGroups() {
   .get('/groups')
   .end((error, result) => {
     if (error) {
-      // dispatch to hanlde the view case of failed group collection
+      // dispatch to handle the view case of failed group collection
       PostItDispatcher.handleViewAction({
         type: PostItActionTypes.FAILED_GROUPS,
         error: error.message

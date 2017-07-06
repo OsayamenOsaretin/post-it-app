@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SendMessageAction from '../../../data/postItActions/sendMessageAction';
-import SendIcon from '../../../resources/send.png';
 
 /**
  * Renders view for sending message to a group

@@ -108,16 +108,24 @@ input {
   width: 40%;
 }
 
+.post-it-img {
+  height: 20%;
+  width: 100%;
+  background-image: url('./resources/postIt.png');
+  background-repeat: no-repeat;
+}
+
+.mail-box-img {
+  height: 50%;
+  width: 100%;
+  background-image: url('./resources/mailbox.png');
+  background-repeat: no-repeat;
+}
+
 .login-register-container {
   float: right;
   width: 60%;
   margin: auto;
-}
-
-.post-it-img {
-  z-index: 1;
-  height: 20%;
-  width: 40%;
 }
 
 .addGroup {
@@ -289,6 +297,55 @@ input {
   border-collapse: collapse;
 }
 
+.google-signin {
+  width: 20%;
+  margin-left: 150px;
+}
+
+.or-text {
+  display: inline-block;
+  margin-left: 90px;
+  color: snow;
+}
+
+
+.forgot-password-button {
+  border: none;
+  background: none;
+  color: black;
+  font-size: 15px;
+  margin-left: 180px;
+  margin-top: 10px;
+}
+
+.forgot-password-button:hover {
+  color: snow;
+}
+
+.reset-form {
+  width: 60%;
+  margin: auto;
+}
+
+.reset-form p {
+  color: snow;
+  margin-right: 150px;
+  text-align: center;
+}
+
+.password-sent-message {
+  text-align: center;
+  margin-right: 150px;
+  font-size: 20px;
+}
+
+.login-button {
+  border: none;
+  background: none;
+  color: snow;
+  padding: 0;
+  font-size: 20px;
+}
 
 
 

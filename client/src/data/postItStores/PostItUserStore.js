@@ -2,9 +2,12 @@ import { EventEmitter } from 'events';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
 
+/* global localStorage */
 const CHANGE_EVENT = 'change';
 
 const signedInState = localStorage.getItem('token');
+
+let passwordResetMessageState = false;
 
 /**
  * PostItUserStore manages state for the signed in user
@@ -39,6 +42,10 @@ class PostItUserStore extends EventEmitter {
     console.log(signedInState);
     return localStorage.getItem('token');
   }
+
+  getPasswordResetMessageState() {
+    return passwordResetMessageState;
+  }
 }
 
 const userStore = new PostItUserStore();
@@ -60,6 +67,12 @@ PostItDispatcher.register((payload) => {
       console.log('gets to the login server source action');
       userStore.emit(CHANGE_EVENT);
     }
+    break;
+  }
+
+  case PostItActionTypes.RESET_MESSAGE_SENT: {
+    passwordResetMessageState = true;
+    userStore.emit(CHANGE_EVENT);
     break;
   }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import addUserAction from '../../../data/postItActions/addUserGroup';
-import AddUserIcon from '../../../resources/add-user.png';
 
 
 /**

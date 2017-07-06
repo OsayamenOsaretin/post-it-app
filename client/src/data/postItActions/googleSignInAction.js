@@ -8,19 +8,19 @@ import PostItActionTypes from '../PostItActionTypes';
  * @export
  * @function
  * @returns {void}
- * @param {*} userDetails
+ * @param {*} idToken
  */
-export default function SignInAction(userDetails) {
+export default function GoogleSignInAction(idToken) {
   console.log('superagent api call to login');
   request
-  .post('user/signin')
-  .send(userDetails)
+  .post('user/google/signin')
+  .send(idToken)
   .end((error, result) => {
-    console.log('api call returned a result');
+    console.log('google api call returned a result');
     if (error) {
       console.log(error);
     } else {
-      const userData = result.body.userData;
+      const userData = result.body.userObject;
       console.log(userData);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
@@ -29,4 +29,3 @@ export default function SignInAction(userDetails) {
     }
   });
 }
-
