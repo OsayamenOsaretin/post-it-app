@@ -7,7 +7,7 @@ import googleSignInAction from '../../data/postItActions/googleSignInAction';
  * Google login button
  */
 class GoogleLogin extends React.Component {
-  
+
   /**
    * @memberof GoogLogin
    * @return {void}
@@ -63,7 +63,12 @@ class GoogleLogin extends React.Component {
    */
   render() {
     return (
-      <div id="my-signin2">
+      <div className="google-signin">
+        <p className="or-text">
+          OR
+        </p>
+        <div id="my-signin2">
+        </div>
       </div>
     );
   }
