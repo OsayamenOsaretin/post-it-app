@@ -1,10 +1,8 @@
 import React from 'react';
-import DummyView from './DummyView';
 import LoginRegisterContainer from './LoginRegisterContainer/LandingPageContainer.jsx';
 import Dashboard from './GroupContainer/Dashboard.jsx';
-import SendMessage from './GroupContainer/GroupBodyContainer/SendMessageView.jsx';
+import ResetPasswordComponent from './LoginRegisterContainer/ResetPasswordView.jsx';
 import UserStore from '../data/postItStores/PostItUserStore';
-import AddUser from './GroupContainer/GroupBodyContainer/AddUserView.jsx';
 
 
 /**
@@ -19,10 +17,13 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      token: UserStore.getSignedInState()
+      token: UserStore.getSignedInState(),
+      passwordReset: true,
+      messageSent: false
     };
 
     this.onChange = this.onChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
 /**
@@ -50,7 +51,20 @@ class App extends React.Component {
    */
   onChange() {
     this.setState({
-      token: UserStore.getSignedInState()
+      token: UserStore.getSignedInState(),
+      messageSent: UserStore.getPasswordResetMessageState()
+    });
+  }
+
+  /**
+   * handle click event
+   * @return {void}
+   * @param {*} event
+   */
+  handleClick(event) {
+    event.preventDefault();
+    this.setState({
+      passwordReset: false
     });
   }
 
@@ -61,7 +75,27 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.token ? <LoginRegisterContainer /> : <Dashboard />}
+      {!this.state.token ? (this.state.passwordReset && <LoginRegisterContainer />) :
+        <Dashboard />}
+      {!this.state.token && this.state.passwordReset &&
+        <div className="landing-page-container">
+          <button
+            className="forgot-password-button"
+            onClick={this.handleClick}
+            type="click">
+            forgot password ?
+          </button>
+        </div>
+      }
+      {!this.state.passwordReset && <ResetPasswordComponent />}
+      {!this.state.passwordReset && this.state.messageSent && <p className="password-sent-message">
+          A password reset email has been sent, refresh or proceed to <button
+            className="login-button"
+            onClick={() => { this.setState({ passwordReset: true }); }}
+            type="click">
+            login
+          </button>
+        </p>}
       </div>
     );
   }
