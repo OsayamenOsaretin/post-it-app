@@ -21,6 +21,9 @@ export default function ResetPassword(email) {
       console.log(error);
     } else {
       console.log(result);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.RESET_MESSAGE_SENT
+      });
     }
   });
 }
