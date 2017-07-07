@@ -233,12 +233,17 @@ input {
 .send-message input {
   position: absolute;
   bottom: 0px;
-  left: 0px;
   width: 85%;
   height: 100%;
   border: none;
-  border-radius: 0px 0px 0px 5px;
+  border-radius: 0px 0px 0px 7px;
+  padding-left: 50px;
   margin: 0;
+}
+
+.send-message form input[type=text]:focus {
+  outline: none;
+  box-shadow: 0 0 2pt 1pt lavender;
 }
 
 .send-message form button {
@@ -249,12 +254,33 @@ input {
   height: 100%;
   margin: 0;
   border: none;
-  border-radius: 0px 0px 5px 0px;
+  border-radius: 0px 0px 7px 0px;
 }
+
 
 .send-message form button:enabled {
   border: 1px solid snow;
   box-shadow: 1px 1px 2px 1px #888888;
+}
+
+.send-message form .normal {
+  background: white;
+  width: 40px;
+  height: 90%;
+  border-right: 1px solid lavender;
+  border-radius: 0px 0px 0px 4px;
+  position: absolute;
+  left: 1px;
+  bottom: 3px;
+  z-index: 1;
+}
+
+.send-message form .normal:enabled {
+  box-shadow: none;
+}
+
+.send-message form .normal:focus {
+  outline: none;
 }
 
 .addGroupForm {
