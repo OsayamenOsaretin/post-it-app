@@ -14,13 +14,14 @@ module.exports = (app, firebase) => {
         const db = firebase.database();
 
         // add new message to group messages and return new message key
-        const newMessageKey = db.ref().child(`groups/${groupId}/messages/${priorityLevel}`)
+        const newMessageKey = db.ref().child(`groups/${groupId}/messages/`)
         .push(true).key;
 
         // store message details in message node
         db.ref().child(`messages/${newMessageKey}`).set({
           message: newMessage,
-          sender: messageSender
+          sender: messageSender,
+          priority: priorityLevel
         });
 
         res.send({
