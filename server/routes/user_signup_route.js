@@ -25,6 +25,7 @@ module.exports = (app, firebase) => {
          // save the user details to the database
          db.ref().child(`users/${user.uid}`).set({
            username: userName,
+           email: user.email
          });
 
          // send verification email to user
