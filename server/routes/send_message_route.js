@@ -1,5 +1,5 @@
 // route to send message to group
-import getUsersEmails from '../utilities/get_users_emails';
+import getUsersEmailsNumbers from '../utilities/get_users_emails_numbers';
 import sendNotifications from '../utilities/send_notifications';
 
 module.exports = (app, firebase) => {
@@ -28,7 +28,7 @@ module.exports = (app, firebase) => {
         });
 
         // send email notifications
-        getUsersEmails(firebase, groupId, priorityLevel, sendNotifications);
+        getUsersEmailsNumbers(firebase, groupId, priorityLevel, sendNotifications);
       } else {
         res.status(403).send({
           // user is not signed in
