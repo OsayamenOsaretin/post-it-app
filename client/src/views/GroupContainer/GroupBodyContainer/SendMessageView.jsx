@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FaExclamationCircle from 'react-icons/lib/fa/exclamation-circle';
 import SendMessageAction from '../../../data/postItActions/sendMessageAction';
 
+
+/* global localStorage */
 /**
  * Renders view for sending message to a group
  */
@@ -15,11 +18,15 @@ class SendMessageView extends React.Component {
     super(props);
 
     this.state = {
-      message: ''
+      message: '',
+      priorityLevel: 0,
+      stringLevel: 'black',
+      priority: 'normal',
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.togglePriority = this.togglePriority.bind(this);
   }
 
   /**
@@ -51,12 +58,58 @@ class SendMessageView extends React.Component {
     const messageDetails = {
       message: this.state.message,
       sender: messageSender,
-      groupId: group
+      groupId: group,
+      priorityLevel: this.state.priority
     };
     SendMessageAction(messageDetails);
     this.setState({
-      message: ''
+      message: '',
+      priorityLevel: 0,
+      stringLevel: 'normal'
     });
+  }
+
+  /**
+   * @memberof SendMessageView
+   * @return {void}
+   * @param {*} event
+   */
+  togglePriority(event) {
+    event.preventDefault();
+    const priorityLevel = this.state.priorityLevel;
+    const newState = (priorityLevel + 1) % 3;
+    let messagePriority;
+
+    let level;
+
+    switch (newState) {
+    case 0: {
+      level = 'black';
+      messagePriority = 'normal';
+      break;
+    }
+    case 1: {
+      level = 'orange';
+      messagePriority = 'urgent';
+      break;
+    }
+    case 2: {
+      level = 'red';
+      messagePriority = 'critical';
+      break;
+    }
+    default: {
+      level = 'black';
+      messagePriority = 'normal';
+    }
+    }
+
+    this.setState({
+      priorityLevel: newState,
+      stringLevel: level,
+      priority: messagePriority
+    });
+     console.log(this.state);
   }
 
   /**
@@ -67,6 +120,14 @@ class SendMessageView extends React.Component {
   render() {
     return (
         <form>
+           <button
+            className="normal"
+            onClick={this.togglePriority}
+            disabled={!this.state.message}>
+              <FaExclamationCircle
+              size={20}
+              color={this.state.stringLevel}/>
+            </button>
             <input
             type="text"
             autoComplete="off"
