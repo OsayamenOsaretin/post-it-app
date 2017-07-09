@@ -8,11 +8,10 @@ import GroupList from './GroupList.jsx';
  * @return {void}
  */
 function GroupListView(props) {
-  console.log(props);
   return (
       <BrowserRouter >
       <div>
-      <GroupList groups={props.groups}/>
+      <GroupList groups={props.groups} socket={props.socket}/>
       <Switch>
         <Route exact path='/' />
         <Route path='/groupBody/:groupId' />

@@ -64,7 +64,7 @@ class GroupItem extends React.Component {
       </ul>
       </div>
       <div className="group-item-bottom">
-        <MessageBody groupId={this.props.groupId}/>
+        <MessageBody groupId={this.props.groupId} socket={this.props.socket}/>
       </div>
     </div>
     );
