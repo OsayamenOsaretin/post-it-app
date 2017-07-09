@@ -1,6 +1,6 @@
 // gets messages for a specific group
 
-module.exports = (app, firebase) => {
+module.exports = (app, firebase, io) => {
   app.post('/group/messages', (req, res) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -14,7 +14,7 @@ module.exports = (app, firebase) => {
         const messagesReference = db.ref(`groups/${groupId}/messages`);
 
         // get message Id from groups and iterate through messages node
-        messagesReference.once('value', (snapshot) => {
+        messagesReference.on('value', (snapshot) => {
           // store message keys
           const messageKeys = [];
 
@@ -27,9 +27,8 @@ module.exports = (app, firebase) => {
           const promises = messageKeys.map(messageKey => (
             new Promise((resolve) => {
               const messageReference = db.ref(`messages/${messageKey}`);
-              messageReference.once('value', (snap) => {
+              messageReference.on('value', (snap) => {
                 messages.set(messageKey, snap.val());
-                console.log(messages);
                 resolve();
               });
             })
@@ -37,9 +36,9 @@ module.exports = (app, firebase) => {
           // collect resolved promises
           Promise.all(promises)
           .then(() => {
-            res.send({
-              message: 'Returned messages',
-              groupMessages: messages
+            io.emit('newMessage', {
+              groupMessages: messages,
+              Id: groupId
             });
           })
           .catch(() => {

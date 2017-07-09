@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import webpackMiddleWare from 'webpack-dev-middleware';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
+import socketio from 'socket.io';
 import config from '../webpack.config';
 
 import routes from './routes';
@@ -16,6 +17,20 @@ const app = express();
 const compiler = webpack(config);
 // configure port
 const port = process.env.PORT || 6969;
+
+const server = app.listen(port, () => {
+  console.log(`We are live on ${port}`);
+});
+
+const io = socketio(server);
+
+io.on('connection', (socket) => {
+  console.log('Connected');
+  socket.on('disconnect', () => {
+    console.log('Disconnected');
+  });
+});
+
 
 // body parser, used to grab information from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,13 +56,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // use routes imported
-routes(app, firebase);
+routes(app, firebase, io);
 
 // default route
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
-
-app.listen(port, () => {
-  console.log(`We are live on ${port}`);
 });
