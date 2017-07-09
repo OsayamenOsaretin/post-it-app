@@ -10,7 +10,6 @@ import AddGroupView from './AddGroup.jsx';
  * @param {*} props
  */
 function GroupList(props) {
-  console.log(props.groups);
   return (
     <div className="groups">
       <div className="addGroup">
@@ -23,6 +22,7 @@ function GroupList(props) {
             <GroupItem
             groupName={group.get('groupname')}
             groupId={key}
+            socket ={props.socket}
              />
           </NavLink>
         </li>
