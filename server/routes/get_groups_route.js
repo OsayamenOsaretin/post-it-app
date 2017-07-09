@@ -1,4 +1,6 @@
-module.exports = (app, firebase) => {
+// get a users groups
+
+module.exports = (app, firebase, io) => {
   app.get('/groups', (req, res) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -11,7 +13,7 @@ module.exports = (app, firebase) => {
 
         // get user's groups
         const groupsReference = db.ref(`/users/${userId}/groups/`);
-        groupsReference.once('value', (snapshot) => {
+        groupsReference.on('value', (snapshot) => {
           const groupKeys = [];
 
           // get the keys for each user's group
@@ -23,7 +25,7 @@ module.exports = (app, firebase) => {
           const promises = groupKeys.map(groupKey => (
             new Promise((resolve) => {
               const groupReference = db.ref(`groups/${groupKey}`);
-              groupReference.once('value', (snap) => {
+              groupReference.on('value', (snap) => {
                 // add group info to list of groups
                 groups.set(groupKey, snap.val());
                 resolve();
@@ -33,14 +35,17 @@ module.exports = (app, firebase) => {
           // collect resolved promises
           Promise.all(promises)
           .then(() => {
-            res.send({
-              message: 'Returned groups',
-              userGroups: groups
-            });
+            // res.send({
+            //   message: 'Returned groups'
+            // });
+            io.emit('newGroup', groups);
           })
           .catch((err) => {
-            res.status(401).send({
-              message: `Something went wrong ${err.message}`,
+            // res.status(401).send({
+            //   message: `Something went wrong ${err.message}`,
+            // });
+            io.emit('failedGroup', {
+              error: err
             });
           });
         });
