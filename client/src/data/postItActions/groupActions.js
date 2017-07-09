@@ -30,7 +30,7 @@ export function addGroup(name) {
  * getGroups makes an api call for user's groups and dispatches(res) to registered listeners
  * @return {void}
  */
-export function getGroups() {
+export function getGroups(socket) {
   console.log('action reaches here');
   request
   .get('/groups')
@@ -42,9 +42,10 @@ export function getGroups() {
         error: error.message
       });
     } else {
-      const userGroups = result.body.userGroups;
-      // call action to handle recieved groups
-      recieveGroups(userGroups);
+      console.log(result);
+      socket.on('newGroup', (groups) => {
+        recieveGroups(groups);
+      });
     }
   });
 }
@@ -65,9 +66,9 @@ export function addGroupApi(groupName) {
     } else {
       // make api call to get all the new groups
       console.log(result);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.GET_GROUPS
-      });
+      // PostItDispatcher.handleServerAction({
+      //   type: PostItActionTypes.GET_GROUPS
+      // });
     }
   });
 }

@@ -7,7 +7,7 @@ import PostItDispatcher from '../PostItDispatcher';
  * @returns {void}
  * @param {*} groupId
  */
-export default (groupId) => {
+export default (groupId, socket) => {
   console.log('gets to get message action');
   request
   .post('/group/messages')
@@ -17,10 +17,12 @@ export default (groupId) => {
       console.log(error);
     } else {
       console.log(result);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
-        Id: groupId.groupId,
-        messages: result.body.groupMessages
+      socket.on('newMessage', (newMessages) => {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
+          Id: newMessages.Id,
+          messages: newMessages.groupMessages
+        });
       });
     }
   });
