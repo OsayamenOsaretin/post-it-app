@@ -3,7 +3,9 @@ import MessageStore from '../../../data/postItStores/PostItMessageStore';
 import getMessagesAction from '../../../data/postItActions/getMessagesAction';
 import MessageListView from './MessageListView.jsx';
 import SendMessage from './SendMessageView.jsx';
-import AddUser from './AddUserView.jsx';
+import PostItActionTypes from '../../../data/PostItActionTypes';
+import PostItDispatcher from '../../../data/PostItDispatcher';
+// import AddUser from './AddUserView.jsx';
 
 
 /**
@@ -24,8 +26,18 @@ class MessageBody extends React.Component {
       messages: MessageStore.getMessage(props.groupId)
     };
 
+    const socket = this.props.socket;
+
     getMessagesAction({
       groupId: this.props.groupId
+    }, socket);
+
+    socket.on('newMessage', (newMessages) => {
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
+        Id: newMessages.Id,
+        messages: newMessages.groupMessages
+      });
     });
 
     this.onChange = this.onChange.bind(this);
