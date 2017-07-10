@@ -1,12 +1,11 @@
 import React from 'react';
 import MessageStore from '../../../data/postItStores/PostItMessageStore';
 import getMessagesAction from '../../../data/postItActions/getMessagesAction';
+import markMessagesRead from '../../../data/postItActions/readMessagesAction';
 import MessageListView from './MessageListView.jsx';
 import SendMessage from './SendMessageView.jsx';
 import PostItActionTypes from '../../../data/PostItActionTypes';
 import PostItDispatcher from '../../../data/PostItDispatcher';
-// import AddUser from './AddUserView.jsx';
-
 
 /**
  * MessageBody Component
@@ -28,10 +27,12 @@ class MessageBody extends React.Component {
 
     const socket = this.props.socket;
 
+    // call initial action for messages
     getMessagesAction({
       groupId: this.props.groupId
     }, socket);
 
+    // Attach socket.io event listener for changes in database
     socket.on('newMessage', (newMessages) => {
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
@@ -53,12 +54,17 @@ class MessageBody extends React.Component {
   }
 
   /**
-   * removes change listener from Message store
+   * removes change listener from Message store, mark messages as read
    * @memberof MessageBody
    * @return {void}
    */
   componentWillUnmount() {
     MessageStore.removeChangeListener(this.onChange);
+
+    // call action to mark all messages as read before unmount
+    markMessagesRead({
+      messages: this.state.messages
+    });
   }
 
   /**
@@ -78,7 +84,7 @@ class MessageBody extends React.Component {
    * @return {void}
    */
   render() {
-    console.log(this.state.messages);
+    console.log(JSON.stringify(this.state.messages));
     return (
       <div>
         <div className="message-body">
