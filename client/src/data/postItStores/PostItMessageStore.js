@@ -49,9 +49,6 @@ class PostItMessageStore extends EventEmitter {
    * @return {void}
    */
   getMessage(id) {
-    console.log('gets the message of the group');
-    console.log(id);
-    console.log(messages.get(id));
     return messages.get(id);
   }
 }
@@ -69,9 +66,7 @@ PostItDispatcher.register((payload) => {
 
     const messageMap = new Map();
     messageMap.set(groupId, new MessageList(messageResponse));
-    console.log(messageMap);
     addNewMessageGroup(messageMap);
-    console.log('these are the messages right now');
     console.log(messages);
     messageStore.emit(CHANGE_EVENT);
     break;

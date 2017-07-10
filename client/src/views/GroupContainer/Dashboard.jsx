@@ -8,6 +8,8 @@ import PostItActionTypes from '../../data/PostItActionTypes';
 
 const socket = io('https://postit-app-develop.herokuapp.com/');
 
+// https://postit-app-develop.herokuapp.com/
+
 /**
  * Dashboard Component
  */
@@ -28,7 +30,6 @@ class Dashboard extends React.Component {
     getGroups(socket);
 
     socket.on('newGroup', (groups) => {
-      console.log('suckit.io works in dashboard component');
       PostItDispacher.handleServerAction({
         type: PostItActionTypes.RECIEVE_GROUP_RESPONSE,
         userGroups: groups
@@ -74,7 +75,6 @@ class Dashboard extends React.Component {
    * @return {void}
    */
   render() {
-    // console.log(this.state.groups);
     return (
       <GroupListView groups={this.state.groups} socket={socket}/>
     );
