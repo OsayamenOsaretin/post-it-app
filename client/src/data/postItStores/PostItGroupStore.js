@@ -90,7 +90,6 @@ PostItDispatcher.register((payload) => {
     console.log('recieves groups in group store');
     console.log(action.userGroups);
     const groupMap = new Map(action.userGroups);
-    console.log(groupMap);
     addNewGroups(groupMap);
     groupStore.emit(CHANGE_EVENT);
     break;
