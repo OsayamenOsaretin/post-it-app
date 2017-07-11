@@ -77,7 +77,7 @@ export default class RegisterForm extends React.Component {
         <input
         name = 'password'
         placeholder = 'password'
-        type = 'text'
+        type = 'password'
         autoComplete ='off'
         value = {this.state.password}
         onChange = {this.handleChange}
@@ -85,7 +85,7 @@ export default class RegisterForm extends React.Component {
         <input
         name = 'confirmPassword'
         placeholder = 'confirmpassword'
-        type = 'text'
+        type = 'password'
         autoComplete ='off'
         value = {this.state.confirmPassword}
         onChange = {this.handleChange}
