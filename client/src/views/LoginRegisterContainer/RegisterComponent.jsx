@@ -1,4 +1,5 @@
 import React from 'react';
+import FaSpinner from 'react-icons/lib/fa/spinner';
 import registerAction from '../../data/postItActions/registerUserAction';
 
 /**
@@ -17,6 +18,7 @@ export default class RegisterForm extends React.Component {
       email: '',
       password: '',
       confirmPassword: '',
+      registering: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,6 +49,9 @@ export default class RegisterForm extends React.Component {
         userName: this.state.userName,
         password: this.state.password,
         email: this.state.email
+      });
+      this.setState({
+        registering: true
       });
     }
   }
@@ -97,7 +102,7 @@ export default class RegisterForm extends React.Component {
          !this.state.password || !this.state.confirmPassword }
          onClick = {this.handleSubmit}
          >
-        Register
+        Register {this.state.registering && <FaSpinner className="fa fa-spinner fa-spin"/>}
         </button>
       </form>
     );
