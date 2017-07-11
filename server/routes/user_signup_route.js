@@ -11,7 +11,7 @@ module.exports = (app, firebase) => {
 
     if (!validateEmail(email)) {
       res.status(400).send({
-        message: 'Please use a valid email address',
+        message: 'Something went wrong, Please use a valid email address',
       });
     } else if (userName && password) {
       // create user with email and password
@@ -37,7 +37,7 @@ module.exports = (app, firebase) => {
          });
        }).catch((error) => {
          const errorMessage = error.message;
-         res.status(500).send({ message: `Error signing up :( ${errorMessage}` });
+         res.status(500).send({ message: errorMessage });
        });
     } else {
       // if email or password or username strings are empty
