@@ -17,10 +17,12 @@ export default (newUserDetails) => {
   .send(newUserDetails)
   .end((error, result) => {
     if (error) {
-      console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.REGISTER_ERROR,
+        errorMessage: result.body.message
+      });
     } else {
       const userData = result.body.userData;
-      console.log(userData);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
         user: userData
