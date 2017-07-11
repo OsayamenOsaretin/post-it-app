@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
         id = 'formInput'
         name = 'email'
         placeholder = 'email'
-        type ='text'
+        type ='email'
         autoComplete = 'off'
         value = {this.state.email}
         onChange = {this.handleChange} />
@@ -65,7 +65,7 @@ class LoginForm extends React.Component {
         id = 'formInput'
         name = 'password'
         placeholder = 'password'
-        type ='text'
+        type ='password'
         autoComplete = 'off'
         value = {this.state.password}
         onChange = {this.handleChange} />
