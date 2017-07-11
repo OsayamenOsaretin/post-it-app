@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
   }
 
   /**
-   * removes change listener from GroupStore
+   * removes change listener from ErrorStore
    * @memberof LoginComponent
    * @return {void}
    */
@@ -125,7 +125,7 @@ class LoginForm extends React.Component {
         Log in {this.state.login && <FaSpinner className="fa fa-spinner fa-spin"/>}
         </button>
 
-        {this.state.errorMessage && 
+        {this.state.errorMessage &&
           <div className="error-login-register">
             {this.state.errorMessage}
           </div>
