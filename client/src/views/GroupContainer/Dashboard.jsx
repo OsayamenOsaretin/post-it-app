@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
 
   /**
    * add change listener from GroupStore
-   * @memberof GroupContainer
+   * @memberof Dashboard
    * @return {void}
    */
   componentDidMount() {
