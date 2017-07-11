@@ -7,8 +7,8 @@ module.exports = (app, firebase) => {
     const password = req.body.password;
 
     if (!validateEmail(email)) {
-      res.status(400).send({
-        message: 'Please use a valid email address',
+      res.status(500).send({
+        message: 'Something went wrong, Please use a valid email address',
       });
     } else if (password) {
       // sign in with user and email using firebase authentication
@@ -21,9 +21,9 @@ module.exports = (app, firebase) => {
           message: 'Welcome User, or Ranger.',
           userData: user
         });
-      }).catch((error) => {
-        const errorMessage = error.message;
-        res.status(401).send({ message: `Error signing in :( : ${errorMessage}` });
+      }).catch(() => {
+        res.status(401).send({
+          message: 'Ouch!, Your username or password is incorrect, please try again' });
       });
     } else {
       // send error message in case of empty email and password
