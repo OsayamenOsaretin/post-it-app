@@ -29,13 +29,14 @@ input {
 }
 
 .inputform input {
-  display: block;
+  display: inline-block;
 }
 
 .nav {
   display: flex;
   margin-bottom: 10px;
   margin-right:10px;
+  margin-top: 0px;
   max-width: 30%;
   margin-left: 2px;
 }
@@ -60,17 +61,6 @@ input {
   margin-bottom: 10px;
   margin-top: 0px;
   width: 80%;
-}
-
-.inputField #formInput {
-  width: 100%;
-  height: 50px;
-  border: solid;
-  border-radius: 5px;
-  font-size: 15px;
-  padding: 5px;
-  text-transform: lowercase;
-  color: #29a6dc;
 }
 
 .inputField #formInput:active{
@@ -111,7 +101,7 @@ input {
 
 .landing-page-container {
   margin: auto;
-  padding: 100px;
+  padding: 60px;
 }
 
 .landing-img-container {
@@ -336,23 +326,29 @@ input {
 
 .google-signin {
   width: 20%;
+  margin-top: 0;
   margin-left: 150px;
 }
 
 .or-text {
   display: inline-block;
-  margin-left: 90px;
+  height: 10px;
+  margin-left: 100px;
+  margin-top: 0;
   color: snow;
 }
 
 
 .forgot-password-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
   border: none;
   background: none;
   color: black;
   font-size: 15px;
   margin-left: 180px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .forgot-password-button:hover {
