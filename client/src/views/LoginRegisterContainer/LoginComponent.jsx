@@ -1,5 +1,6 @@
 import React from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
+import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
 import signInAction from '../../data/postItActions/userSignInAction';
 import ErrorStore from '../../data/postItStores/PostItErrorStore';
 
@@ -127,7 +128,7 @@ class LoginForm extends React.Component {
 
         {this.state.errorMessage &&
           <div className="error-login-register">
-            {this.state.errorMessage}
+            <FaExclamationTriangle /> {this.state.errorMessage}
           </div>
           }
       </form>
