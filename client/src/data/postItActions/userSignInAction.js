@@ -18,10 +18,12 @@ export default function SignInAction(userDetails) {
   .end((error, result) => {
     console.log('api call returned a result');
     if (error) {
-      console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.LOGIN_ERROR,
+        errorMessage: result.body.message
+      });
     } else {
       const userData = result.body.userData;
-      console.log(userData);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
         user: userData
