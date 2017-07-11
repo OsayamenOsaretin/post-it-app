@@ -1,4 +1,5 @@
 import React from 'react';
+import FaSpinner from 'react-icons/lib/fa/spinner';
 import signInAction from '../../data/postItActions/userSignInAction';
 
 
@@ -16,6 +17,7 @@ class LoginForm extends React.Component {
     this.state = {
       password: '',
       email: '',
+      login: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -43,6 +45,9 @@ class LoginForm extends React.Component {
     event.preventDefault();
     console.log('calls sign in action');
     signInAction(this.state);
+    this.setState({
+      login: true
+    });
   }
 
 /**
@@ -75,7 +80,7 @@ class LoginForm extends React.Component {
         onClick = {this.handleSubmit}
         type = 'submit'
         disabled = { !this.state.password || !this.state.email }>
-        Log in
+        Log in {this.state.login && <FaSpinner className="fa fa-spinner fa-spin"/>}
         </button>
       </form>
     );
