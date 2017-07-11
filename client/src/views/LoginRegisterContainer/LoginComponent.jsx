@@ -1,7 +1,7 @@
 import React from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
 import signInAction from '../../data/postItActions/userSignInAction';
-
+import ErrorStore from '../../data/postItStores/PostItErrorStore';
 
 /**
  *
@@ -17,11 +17,13 @@ class LoginForm extends React.Component {
     this.state = {
       password: '',
       email: '',
-      login: false
+      login: false,
+      errorMessage: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 /**
  * @memberof LoginComponent
@@ -43,11 +45,51 @@ class LoginForm extends React.Component {
    */
   handleSubmit(event) {
     event.preventDefault();
+
     console.log('calls sign in action');
-    signInAction(this.state);
-    this.setState({
-      login: true
+    signInAction({
+      email: this.state.email,
+      password: this.state.password
     });
+
+    // set state of login to start spinner
+    this.setState({
+      login: true,
+      errorMessage: ''
+    });
+  }
+
+  /**
+   * onChange method callback for error store
+   * @return {void}
+   */
+  onChange() {
+    const loginError = ErrorStore.getLoginError();
+    if (loginError) {
+      this.setState({
+        errorMessage: loginError,
+        password: '',
+        login: false
+      });
+    }
+  }
+
+  /**
+   * add change listener from ErrorStore
+   * @memberof LoginComponent
+   * @return {void}
+   */
+  componentDidMount() {
+    ErrorStore.addChangeListener(this.onChange);
+  }
+
+  /**
+   * removes change listener from GroupStore
+   * @memberof LoginComponent
+   * @return {void}
+   */
+  componentWillUnmount() {
+    ErrorStore.removeChangeListener(this.onChange);
   }
 
 /**
@@ -82,6 +124,12 @@ class LoginForm extends React.Component {
         disabled = { !this.state.password || !this.state.email }>
         Log in {this.state.login && <FaSpinner className="fa fa-spinner fa-spin"/>}
         </button>
+
+        {this.state.errorMessage && 
+          <div className="error-login-register">
+            {this.state.errorMessage}
+          </div>
+          }
       </form>
     );
   }
