@@ -4,7 +4,7 @@ import PostItActionTypes from '../PostItActionTypes';
 
 const CHANGE_EVENT = 'change';
 
-let loginError;
+let loginError, registerError;
 
 /**
  * PostItErrorStore handles error display for ui/ux
@@ -39,6 +39,14 @@ class PostItErrorStore extends EventEmitter {
   getLoginError() {
     return loginError;
   }
+
+  /** getRegistrationError
+   * @return {string} registerError
+   * @memberof PostItErrorStore
+   */
+  getRegisterError() {
+    return registerError;
+  }
 }
 
 const errorStore = new PostItErrorStore();
@@ -49,6 +57,14 @@ PostItDispatcher.register((payload) => {
   switch (action.type) {
   case PostItActionTypes.LOGIN_ERROR: {
     loginError = action.errorMessage;
+    registerError = undefined;
+    errorStore.emit(CHANGE_EVENT);
+    break;
+  }
+
+  case PostItActionTypes.REGISTER_ERROR: {
+    registerError = action.errorMessage;
+    loginError = undefined;
     errorStore.emit(CHANGE_EVENT);
     break;
   }
