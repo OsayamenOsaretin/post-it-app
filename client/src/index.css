@@ -129,41 +129,34 @@ input {
   margin: auto;
 }
 
-.addGroup {
-  margin: auto;
-  width: 70%;
-}
-
-.group-list {
-  width: 70%;
-  margin: auto;
+.groups  {
+  float: left;
+  width: 30%;
+  height: 100%;
   padding: 0;
+  margin: 0;
   text-decoration: none;
 }
 
-.group-item {
-  height: 500px;
-  max-height: 500px;
+.group-details {
+  width: 69.7%;
+  height: 100%;
   border: 1px solid snow;
   border-radius: 10px;
-  margin-bottom: 50px;
-  position: relative;
-  background: red;
+  float: right;
+  bottom: 10px;
+  background: snow;
   transition: width 1s;
 }
 
-.group-item:hover {
-  box-shadow: 3px 5px 3px black;
-  height: 600px;
+.group-item {
+  height: 100%;
 }
 
-.group-item:first-child{
-  margin-top: 50px;
-}
 
 .group-item-top {
   position: relative;
-  height: 40px;
+  height: 10%;
   margin: 2px;
   padding: 5px;
   box-shadow: 3px black;
@@ -171,7 +164,29 @@ input {
 
 .group-item-top li {
   padding: 3px;
-  color: white;
+  color: black;
+}
+
+.group-list-item {
+  height: 60px;
+  text-align: center;
+  padding-top: 30px;
+  font-size: 15px;
+  color: snow;
+  border-bottom: 1px solid snow;
+  border-left: 1px solid snow;
+  border-right: 1px solid snow;
+  border-collapse: collapse;
+}
+
+.groups a.active div {
+  background: violet;
+  border: none;
+  box-shadow: 2px 2px 2px 2px purple;
+}
+
+.group-list {
+  border-top: 1px solid snow;
 }
 
 .add-user {
@@ -213,12 +228,12 @@ input {
 }
 
 .add-user-button {
-  background: red;
-  border-radius: 3px;
+  background: none;
+  border: none;
 }
 
 .message-body {
-  height: 395px;
+  height: 100%;
   overflow: auto;
 }
 
@@ -227,8 +242,8 @@ input {
   bottom: 0px;
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 54px;
+  width: 69%;
+  height: 50px;
 }
 
 .send-message input {
@@ -286,13 +301,17 @@ input {
 
 .addGroupForm {
   width: 100%;
-  height: 40px;
+  height: 30px;
 }
 
+.newgroup {
+  width: 84.3%;
+  height: 40px;
+}
 .addGroupForm .add-group-button {
   float: right;
   width: 15%;
-  height: 100%;
+  height: 40px;
   background-color: lavender;
   text-align: center;
   border: none;
@@ -303,15 +322,7 @@ input {
   border: 2px solid snow;
 }
 
-#newGroup {
-  width: 79%;
-  height: 100%;
-  border: solid;
-  border-color: lavender;
-  color: purple;
-  padding-left: 2px;
-  font-size: 13px;
-}
+
 
 .message-list-items {
   border: 2px solid lavender;
