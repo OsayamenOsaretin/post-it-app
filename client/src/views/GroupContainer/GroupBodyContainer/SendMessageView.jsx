@@ -61,6 +61,7 @@ class SendMessageView extends React.Component {
       groupId: group,
       priorityLevel: this.state.priority
     };
+    console.log(messageDetails);
     SendMessageAction(messageDetails);
     this.setState({
       message: '',

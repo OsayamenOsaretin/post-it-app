@@ -46,7 +46,7 @@ class GroupItem extends React.Component {
     <div className="group-item">
       <div className="group-item-top">
         <ul>
-        <li>{this.props.groupName}</li>
+        <li>{this.props.match.params.groupName}</li>
         <li>
           <div className="add-user">
             <button
@@ -58,13 +58,15 @@ class GroupItem extends React.Component {
             </button>
           </div>
           <div className="user-list">
-            {this.state.addUser && <AddUser groupId={this.props.groupId} />}
+            {this.state.addUser && <AddUser groupId={this.props.match.params.groupId} />}
           </div>
         </li>
       </ul>
       </div>
       <div className="group-item-bottom">
-        <MessageBody groupId={this.props.groupId} socket={this.props.socket}/>
+        {console.log(this.props.match.params)}
+        {console.log(this.props.socket)}
+        <MessageBody groupId={this.props.match.params.groupId} socket={this.props.socket}/>
       </div>
     </div>
     );
