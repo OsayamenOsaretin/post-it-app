@@ -30,7 +30,7 @@ export function addGroup(name) {
  * getGroups makes an api call for user's groups and dispatches(res) to registered listeners
  * @return {void}
  */
-export function getGroups(socket) {
+export function getGroups() {
   console.log('action reaches here');
   request
   .get('/groups')
@@ -43,9 +43,6 @@ export function getGroups(socket) {
       });
     } else {
       console.log(result);
-      socket.on('newGroup', (groups) => {
-        recieveGroups(groups);
-      });
     }
   });
 }
@@ -66,6 +63,7 @@ export function addGroupApi(groupName) {
     } else {
       // make api call to get all the new groups
       console.log(result);
+      getGroups();
       // PostItDispatcher.handleServerAction({
       //   type: PostItActionTypes.GET_GROUPS
       // });

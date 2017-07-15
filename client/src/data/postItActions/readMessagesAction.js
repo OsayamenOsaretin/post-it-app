@@ -1,4 +1,6 @@
 import request from 'superagent';
+import PostItDispatcher from '../PostItDispatcher';
+import PostItActionTypes from '../PostItActionTypes';
 
 /**
  * readMessagesAction - marks messages as read by this user
@@ -7,7 +9,7 @@ import request from 'superagent';
  * @return {void}
  * @param {*} messages
  */
-export default (messages) => {
+export default (messages, groupId) => {
   console.log(
     'calls action to mark messages read'
   );
@@ -19,6 +21,11 @@ export default (messages) => {
       console.log(error);
     } else {
       console.log(result);
+      console.log(`read message: ${groupId}`);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.READ_MESSAGE,
+        Id: groupId
+      });
     }
   });
 };
