@@ -8,7 +8,9 @@ const CHANGE_EVENT = 'change';
 // create empty immutable map to hold message list
 let messages = new MessageList();
 
+const notificationMap = new Map();
 
+let groupWithNewMessageId;
 // add new messages to map of messages
 const addNewMessageGroup = (newMessageGroup) => {
   console.log(newMessageGroup);
@@ -46,10 +48,22 @@ class PostItMessageStore extends EventEmitter {
    * GetMessage
    * @memberof PostItMessageStore
    * @param {*} id
-   * @return {void}
+   * @return {*} messages.get(id)
    */
   getMessage(id) {
+    console.log(JSON.stringify(messages.get(id)));
     return messages.get(id);
+  }
+
+  /**
+   * Get the notification properties of the groups
+   * @return {*} groupNotificationDetatls
+   */
+  getGroupNotificationDetails() {
+    return {
+      Id: groupWithNewMessageId,
+      status: notificationMap
+    };
   }
 }
 
@@ -64,15 +78,36 @@ PostItDispatcher.register((payload) => {
     const groupId = action.Id;
     const messageResponse = action.messages;
 
-    const messageMap = new Map();
-    messageMap.set(groupId, new MessageList(messageResponse));
-    addNewMessageGroup(messageMap);
+    groupWithNewMessageId = groupId;
+    notificationMap.set(groupId, true);
+
+    let groupMessages = messages.get(groupId);
+
+    if (groupMessages) {
+      groupMessages = groupMessages.merge(new MessageList(messageResponse));
+      const newMessageMap = new Map();
+      newMessageMap.set(groupId, groupMessages);
+      addNewMessageGroup(newMessageMap);
+    } else {
+      const messageMap = new Map();
+      messageMap.set(groupId, new MessageList(messageResponse));
+      addNewMessageGroup(messageMap);
+    }
     console.log(messages);
     messageStore.emit(CHANGE_EVENT);
     break;
   }
 
   case PostItActionTypes.SENT_MESSAGE: {
+    messageStore.emit(CHANGE_EVENT);
+    break;
+  }
+
+  case PostItActionTypes.READ_MESSAGE: {
+    const Id = action.Id;
+
+    groupWithNewMessageId = Id;
+    notificationMap.set(Id, false);
     messageStore.emit(CHANGE_EVENT);
     break;
   }
