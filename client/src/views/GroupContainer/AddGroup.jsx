@@ -1,6 +1,6 @@
 import React from 'react';
+import FaPlus from 'react-icons/lib/fa/plus';
 import { addGroupApi } from '../../data/postItActions/groupActions';
-
 /**
  * Add group adds a new group to list of user's groups
  */
@@ -56,25 +56,23 @@ class AddGroupView extends React.Component {
    */
   render() {
     return (
-     <form className="addGroupForm">
-        <div className="add-group-inputField">
+      <form className="add-group-form">
         <input
-        className="newGroup"
-        placeholder="Enter a name for your new group"
-        type="text"
-        autoComplete="off"
-        value={this.state.fieldInput}
-        onChange={this.handleChange}
+          className="new-group-input"
+          placeholder="Enter a name for your new group"
+          type="text"
+          autoComplete="off"
+          value={this.state.fieldInput}
+          onChange={this.handleChange}
         />
         <button
-        className='add-group-button'
-        type='submit'
-        disabled={!this.state.fieldInput}
-        onClick={this.handleSubmit}>
-          Add
+          className='add-group-button'
+          type='submit'
+          disabled={!this.state.fieldInput}
+          onClick={this.handleSubmit}>
+          <FaPlus size={20}/>
         </button>
-        </div>
-     </form>
+      </form>
     );
   }
 }
