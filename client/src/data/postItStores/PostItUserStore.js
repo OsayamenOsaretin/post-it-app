@@ -74,6 +74,14 @@ PostItDispatcher.register((payload) => {
     break;
   }
 
+  case PostItActionTypes.SIGN_OUT: {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    userStore.emit(CHANGE_EVENT);
+
+    break;
+  }
+
   default: {
     return true;
   }
