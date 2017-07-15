@@ -6,6 +6,7 @@ module.exports = (app, firebase, io) => {
       if (user) {
         // user is signed in
         const messages = new Map();
+        const userName = user.displayName;
 
         const db = firebase.database();
 
@@ -16,22 +17,35 @@ module.exports = (app, firebase, io) => {
         // store message keys
         const messageKeys = [];
 
+        // keep an array of promises
+        const promises = [];
+
         // get message Id from groups and iterate through messages node
         messagesReference.on('child_added', (snapshot) => {
-          messageKeys.push(snapshot.key);
-          console.log(messageKeys);
-
-          const messageReference = db.ref(`messages/${snapshot.key}`);
-          messageReference.on('value', (snap) => {
-            const newMessage = new Map();
-            newMessage.set(snapshot.key, snap.val());
-            messages.set(snapshot.key, snap.val());
-            io.emit('newMessage', {
-              groupMessages: newMessage,
-              Id: groupId
+          promises.push(new Promise((resolve) => {
+            messageKeys.push(snapshot.key);
+            console.log(messageKeys);
+            const messageReference = db.ref(`messages/${snapshot.key}`);
+            messageReference.on('value', (snap) => {
+              const newMessage = snap.val();
+              if (newMessage.read) {
+                if (!newMessage.read[userName]) {
+                  messages.set(snapshot.key, snap.val());
+                }
+              } else {
+                messages.set(snapshot.key, snap.val());
+              }
+              resolve();
             });
-          });
+          }));
         });
+        Promise.all(promises)
+            .then(() => {
+              io.emit('newMessage', {
+                groupMessages: messages,
+                Id: groupId
+              });
+            });
       } else {
         res.status(403).send({
           // user is not signed in
