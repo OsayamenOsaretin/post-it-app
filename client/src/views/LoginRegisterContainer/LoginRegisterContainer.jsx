@@ -15,7 +15,7 @@ function LoginRegisterContainer() {
       <div className = 'loginRegisterContainer' >
         <Nav />
         <Switch>
-          <Route exact path = '/' component = {LoginForm} />
+          <Route path = '/' component = {LoginForm} />
           <Route exact path = '/login' component = {LoginForm} />
           <Route exact path = '/register' component = {RegisterForm} />
           <Route render = { () => (
