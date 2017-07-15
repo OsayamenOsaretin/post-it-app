@@ -5,7 +5,7 @@ import MessageListView from './MessageListView.jsx';
 import SendMessage from './SendMessageView.jsx';
 import PostItActionTypes from '../../../data/PostItActionTypes';
 import PostItDispatcher from '../../../data/PostItDispatcher';
-
+import getMessagesAction from '../../../data/postItActions/getMessagesAction';
 /**
  * MessageBody Component
  */
@@ -25,8 +25,10 @@ class MessageBody extends React.Component {
     };
 
     const socket = props.socket;
-
-    // Attach socket.io event listener for changes in database
+    console.log(`groupid: ${props.groupId}`);
+    getMessagesAction({
+      groupId: props.groupId
+    });
     socket.on('newMessage', (newMessages) => {
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
@@ -54,20 +56,20 @@ class MessageBody extends React.Component {
    */
   componentWillUnmount() {
     MessageStore.removeChangeListener(this.onChange);
-
-    // call action to mark all messages as read before unmount
-    markMessagesRead({
-      messages: this.state.messages
-    });
   }
 
   /**
    * updates state on component render
    * @memberof MessageBody
    * @return {void}
+   * @param {*} newProps
    */
   componentWillReceiveProps(newProps) {
     console.log(newProps);
+    // call action to mark all messages as read before unmount
+    markMessagesRead({
+      messages: this.state.messages
+    }, this.props.groupId);
     this.setState({
       messages: MessageStore.getMessage(newProps.groupId)
     });

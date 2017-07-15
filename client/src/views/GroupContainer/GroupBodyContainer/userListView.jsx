@@ -25,6 +25,7 @@ function UserList(props) {
       groupId: group
     };
     addUserAction(Details);
+    props.users.delete(value);
   };
 
   return (

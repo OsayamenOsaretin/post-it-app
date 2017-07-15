@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FaExclamationCircle from 'react-icons/lib/fa/exclamation-circle';
+import FaPaperPlane from 'react-icons/lib/fa/paper-plane';
 import SendMessageAction from '../../../data/postItActions/sendMessageAction';
 
 
@@ -20,7 +21,7 @@ class SendMessageView extends React.Component {
     this.state = {
       message: '',
       priorityLevel: 0,
-      stringLevel: 'black',
+      stringLevel: 'grey',
       priority: 'normal',
     };
 
@@ -44,12 +45,12 @@ class SendMessageView extends React.Component {
     );
   }
 
-/**
-   * handleSubmit handles calling the sendmessage action when button is clicked
-   * @memberof SendMessageView
-   * @return {void}
-   * @param {*} event
-   */
+  /**
+     * handleSubmit handles calling the sendmessage action when button is clicked
+     * @memberof SendMessageView
+     * @return {void}
+     * @param {*} event
+     */
   handleSubmit(event) {
     event.preventDefault();
     const messageSender = localStorage.getItem('username');
@@ -66,7 +67,8 @@ class SendMessageView extends React.Component {
     this.setState({
       message: '',
       priorityLevel: 0,
-      stringLevel: 'normal'
+      stringLevel: 'grey',
+      priority: 'normal'
     });
   }
 
@@ -85,7 +87,7 @@ class SendMessageView extends React.Component {
 
     switch (newState) {
     case 0: {
-      level = 'black';
+      level = 'grey';
       messagePriority = 'normal';
       break;
     }
@@ -100,7 +102,7 @@ class SendMessageView extends React.Component {
       break;
     }
     default: {
-      level = 'black';
+      level = 'grey';
       messagePriority = 'normal';
     }
     }
@@ -110,7 +112,7 @@ class SendMessageView extends React.Component {
       stringLevel: level,
       priority: messagePriority
     });
-     console.log(this.state);
+    console.log(this.state);
   }
 
   /**
@@ -120,29 +122,33 @@ class SendMessageView extends React.Component {
    */
   render() {
     return (
+      <div className="send-message-form">
         <form>
-           <button
+          <button
             className="normal"
+            title="Pick a priority level, red's a scream ;-)"
             onClick={this.togglePriority}
             disabled={!this.state.message}>
-              <FaExclamationCircle
+            <FaExclamationCircle
               size={20}
-              color={this.state.stringLevel}/>
-            </button>
-            <input
+              color={this.state.stringLevel} />
+          </button>
+          <input
             type="text"
             autoComplete="off"
             placeholder="Send new message"
             value={this.state.message}
             onChange={this.handleChange}
-            />
-            <button
+          />
+          <button
             type='submit'
             disabled={!this.state.message}
             onClick={this.handleSubmit}>
-              Send
+              <FaPaperPlane
+              size={25}/>
             </button>
         </form>
+      </div>
     );
   }
 }

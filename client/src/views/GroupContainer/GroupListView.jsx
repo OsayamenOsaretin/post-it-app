@@ -12,18 +12,20 @@ import GroupItem from './GroupItem.jsx';
 function GroupListView(props) {
   const socketProp = props.socket;
   return (
-      <BrowserRouter >
-      <div>
-      <GroupList groups={props.groups} socket={socketProp}/>
-      <div className="group-details">
-      <Switch>
-        <Route exact path='/' component={WelcomeView}/>
-        <Route path='/groupBody/:groupId/:groupName' component={groupProps => (
-          <GroupItem socket={socketProp} {...groupProps}/>
-        )}/>
-      </Switch>
+    <BrowserRouter >
+      <div className="main-view">
+        <div className="group-list-nav">
+          <GroupList groups={props.groups} socket={socketProp} />
+        </div>
+        <div className="group-details">
+          <Switch>
+            <Route exact path='/' component={WelcomeView} />
+            <Route path='/groupBody/:groupId/:groupName' component={groupProps => (
+              <GroupItem socket={socketProp} {...groupProps} />
+            )} />
+          </Switch>
+        </div>
       </div>
-    </div>
     </BrowserRouter>
   );
 }

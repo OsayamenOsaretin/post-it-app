@@ -13,37 +13,22 @@ module.exports = (app, firebase, io) => {
         const groupId = req.body.groupId;
         const messagesReference = db.ref(`groups/${groupId}/messages`);
 
-        // get message Id from groups and iterate through messages node
-        messagesReference.on('value', (snapshot) => {
-          // store message keys
-          const messageKeys = [];
+        // store message keys
+        const messageKeys = [];
 
-          snapshot.forEach((messageSnapshot) => {
-            messageKeys.push(messageSnapshot.key);
-          });
+        // get message Id from groups and iterate through messages node
+        messagesReference.on('child_added', (snapshot) => {
+          messageKeys.push(snapshot.key);
           console.log(messageKeys);
 
-          // map to promises to asynchronously collect messages
-          const promises = messageKeys.map(messageKey => (
-            new Promise((resolve) => {
-              const messageReference = db.ref(`messages/${messageKey}`);
-              messageReference.on('value', (snap) => {
-                messages.set(messageKey, snap.val());
-                resolve();
-              });
-            })
-          ));
-          // collect resolved promises
-          Promise.all(promises)
-          .then(() => {
+          const messageReference = db.ref(`messages/${snapshot.key}`);
+          messageReference.on('value', (snap) => {
+            const newMessage = new Map();
+            newMessage.set(snapshot.key, snap.val());
+            messages.set(snapshot.key, snap.val());
             io.emit('newMessage', {
-              groupMessages: messages,
+              groupMessages: newMessage,
               Id: groupId
-            });
-          })
-          .catch(() => {
-            res.status(401).send({
-              message: 'Something went wrong'
             });
           });
         });
