@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "13c4174a99e47919c1fc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0703500c65808a229e38"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12270,8 +12270,8 @@ var PostItMessageStore = function (_EventEmitter) {
      * @param {*} callback
      * @return {void}
      */
-    value: function addChangeListener(callback) {
-      this.on(CHANGE_EVENT, callback);
+    value: function addChangeListener(callback, CHANGE_EVENT_ID) {
+      this.on(CHANGE_EVENT_ID, callback);
     }
 
     /**
@@ -12283,8 +12283,8 @@ var PostItMessageStore = function (_EventEmitter) {
 
   }, {
     key: 'removeChangeListener',
-    value: function removeChangeListener(callback) {
-      this.removeListener(CHANGE_EVENT, callback);
+    value: function removeChangeListener(callback, CHANGE_EVENT_ID) {
+      this.removeListener(CHANGE_EVENT_ID, callback);
     }
 
     /**
@@ -12297,6 +12297,7 @@ var PostItMessageStore = function (_EventEmitter) {
   }, {
     key: 'getMessage',
     value: function getMessage(id) {
+      console.log(JSON.stringify(messages.get(id)));
       return messages.get(id);
     }
 
@@ -12336,15 +12337,17 @@ _PostItDispatcher2.default.register(function (payload) {
         var groupMessages = messages.get(groupId);
 
         if (groupMessages) {
-          groupMessages = groupMessages.merge(messageResponse);
-          addNewMessageGroup(groupMessages);
+          groupMessages = groupMessages.merge(new _groupList2.default(messageResponse));
+          var newMessageMap = new Map();
+          newMessageMap.set(groupId, groupMessages);
+          addNewMessageGroup(newMessageMap);
         } else {
           var messageMap = new Map();
           messageMap.set(groupId, new _groupList2.default(messageResponse));
           addNewMessageGroup(messageMap);
         }
         console.log(messages);
-        messageStore.emit(CHANGE_EVENT);
+        messageStore.emit(groupId);
         break;
       }
 
@@ -24063,9 +24066,9 @@ exports.default = function (messageDetails) {
     if (error) {
       console.log(error);
     } else {
-      (0, _getMessagesAction2.default)({
-        groupId: messageDetails.groupId
-      });
+      // getMessageAction({
+      //   groupId: messageDetails.groupId
+      // });
       console.log(result);
     }
   });
@@ -24335,11 +24338,13 @@ Object.defineProperty(exports, "__esModule", {
 // gets the initials of the message sender
 exports.default = function (sender) {
   var initials = '';
-  var names = sender.split(' ');
+  if (sender) {
+    var names = sender.split(' ');
 
-  names.forEach(function (name) {
-    initials += name.charAt(0);
-  });
+    names.forEach(function (name) {
+      initials += name.charAt(0);
+    });
+  }
 
   return initials;
 };
@@ -40774,14 +40779,6 @@ var _SendMessageView = __webpack_require__(290);
 
 var _SendMessageView2 = _interopRequireDefault(_SendMessageView);
 
-var _PostItActionTypes = __webpack_require__(13);
-
-var _PostItActionTypes2 = _interopRequireDefault(_PostItActionTypes);
-
-var _PostItDispatcher = __webpack_require__(14);
-
-var _PostItDispatcher2 = _interopRequireDefault(_PostItDispatcher);
-
 var _getMessagesAction = __webpack_require__(56);
 
 var _getMessagesAction2 = _interopRequireDefault(_getMessagesAction);
@@ -40793,6 +40790,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import PostItActionTypes from '../../../data/PostItActionTypes';
+// import PostItDispatcher from '../../../data/PostItDispatcher';
+
 
 /**
  * MessageBody Component
@@ -40816,17 +40816,10 @@ var MessageBody = function (_React$Component) {
       messages: _PostItMessageStore2.default.getMessage(props.groupId)
     };
 
-    var socket = props.socket;
+    // const socket = props.socket;
     console.log('groupid: ' + props.groupId);
     (0, _getMessagesAction2.default)({
       groupId: props.groupId
-    });
-    socket.on('newMessage', function (newMessages) {
-      _PostItDispatcher2.default.handleServerAction({
-        type: _PostItActionTypes2.default.RECIEVE_MESSAGE_RESPONSE,
-        Id: newMessages.Id,
-        messages: newMessages.groupMessages
-      });
     });
 
     _this.onChange = _this.onChange.bind(_this);
@@ -40843,7 +40836,7 @@ var MessageBody = function (_React$Component) {
   _createClass(MessageBody, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      _PostItMessageStore2.default.addChangeListener(this.onChange);
+      _PostItMessageStore2.default.addChangeListener(this.onChange, this.props.groupId);
     }
 
     /**
@@ -40855,7 +40848,7 @@ var MessageBody = function (_React$Component) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      _PostItMessageStore2.default.removeChangeListener(this.onChange);
+      _PostItMessageStore2.default.removeChangeListener(this.onChange, this.props.groupId);
     }
 
     /**
@@ -40869,6 +40862,11 @@ var MessageBody = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
       console.log(newProps);
+      _PostItMessageStore2.default.removeChangeListener(this.onChange, this.props.groupId);
+      _PostItMessageStore2.default.addChangeListener(this.onChange, newProps.groupId);
+      (0, _getMessagesAction2.default)({
+        groupId: newProps.groupId
+      });
       // call action to mark all messages as read before unmount
       (0, _readMessagesAction2.default)({
         messages: this.state.messages
@@ -41721,6 +41719,14 @@ var _GroupItem = __webpack_require__(292);
 
 var _GroupItem2 = _interopRequireDefault(_GroupItem);
 
+var _PostItActionTypes = __webpack_require__(13);
+
+var _PostItActionTypes2 = _interopRequireDefault(_PostItActionTypes);
+
+var _PostItDispatcher = __webpack_require__(14);
+
+var _PostItDispatcher2 = _interopRequireDefault(_PostItDispatcher);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -41730,6 +41736,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 function GroupListView(props) {
   var socketProp = props.socket;
+  socketProp.on('newMessage', function (newMessages) {
+    _PostItDispatcher2.default.handleServerAction({
+      type: _PostItActionTypes2.default.RECIEVE_MESSAGE_RESPONSE,
+      Id: newMessages.Id,
+      messages: newMessages.groupMessages
+    });
+  });
   return _react2.default.createElement(
     _reactRouterDom.BrowserRouter,
     null,
