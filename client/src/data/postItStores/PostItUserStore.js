@@ -60,9 +60,10 @@ PostItDispatcher.register((payload) => {
   case PostItActionTypes.LOGIN_USER: {
     if (source === 'SERVER_ACTION') {
       const user = action.user;
+      const displayName = user.displayName;
       const token = user.stsTokenManager.accessToken;
       localStorage.setItem('token', token);
-      localStorage.setItem('username', user.displayName);
+      localStorage.setItem('username', displayName);
       userStore.emit(CHANGE_EVENT);
     }
     break;
