@@ -3,6 +3,8 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import WelcomeView from './WelcomeView.jsx';
 import GroupList from './GroupList.jsx';
 import GroupItem from './GroupItem.jsx';
+import PostItActionTypes from '../../data/PostItActionTypes';
+import PostItDispatcher from '../../data/PostItDispatcher';
 
 /**
  * GroupList is a container for the list of groups, also doubles as a navlink
@@ -11,6 +13,13 @@ import GroupItem from './GroupItem.jsx';
  */
 function GroupListView(props) {
   const socketProp = props.socket;
+  socketProp.on('newMessage', (newMessages) => {
+    PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
+      Id: newMessages.Id,
+      messages: newMessages.groupMessages,
+    });
+  });
   return (
     <BrowserRouter >
       <div className="main-view">
