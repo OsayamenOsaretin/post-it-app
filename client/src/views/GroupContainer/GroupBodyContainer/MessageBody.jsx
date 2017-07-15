@@ -33,7 +33,7 @@ class MessageBody extends React.Component {
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
         Id: newMessages.Id,
-        messages: newMessages.groupMessages
+        messages: newMessages.groupMessages,
       });
     });
 
@@ -46,7 +46,7 @@ class MessageBody extends React.Component {
    * @return {void}
    */
   componentDidMount() {
-    MessageStore.addChangeListener(this.onChange);
+    MessageStore.addChangeListener(this.onChange, this.props.groupId);
   }
 
   /**
@@ -55,7 +55,7 @@ class MessageBody extends React.Component {
    * @return {void}
    */
   componentWillUnmount() {
-    MessageStore.removeChangeListener(this.onChange);
+    MessageStore.removeChangeListener(this.onChange, this.props.groupId);
   }
 
   /**
@@ -66,6 +66,7 @@ class MessageBody extends React.Component {
    */
   componentWillReceiveProps(newProps) {
     console.log(newProps);
+    MessageStore.removeChangeListener(this.onChange, this.props.groupId);
     // call action to mark all messages as read before unmount
     markMessagesRead({
       messages: this.state.messages
