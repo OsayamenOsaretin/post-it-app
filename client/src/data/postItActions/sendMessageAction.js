@@ -15,9 +15,9 @@ export default (messageDetails) => {
     if (error) {
       console.log(error);
     } else {
-      // getMessageAction({
-      //   groupId: messageDetails.groupId
-      // });
+      getMessageAction({
+        groupId: messageDetails.groupId
+      });
       console.log(result);
     }
   });
