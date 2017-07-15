@@ -3,7 +3,6 @@ import FaSignOut from 'react-icons/lib/fa/sign-out';
 import signOutAction from '../data/postItActions/signOutAction';
 
 /* global localStorage */
-const userName = localStorage.getItem('username');
 
 /**
  * calls sign out action
@@ -12,8 +11,9 @@ const userName = localStorage.getItem('username');
 function signOutHandler() {
   signOutAction();
 }
-export default () => (
-  (
+export default () => {
+  const userName = localStorage.getItem('username');
+  return (
     <div className="header">
       <div className="greeting">
         <h3>
@@ -32,4 +32,4 @@ export default () => (
       </div>
     </div>
   )
-);
+};
