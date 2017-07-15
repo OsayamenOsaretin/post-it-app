@@ -30,8 +30,8 @@ class PostItMessageStore extends EventEmitter {
    * @param {*} callback
    * @return {void}
    */
-  addChangeListener(callback) {
-    this.on(CHANGE_EVENT, callback);
+  addChangeListener(callback, CHANGE_EVENT_ID) {
+    this.on(CHANGE_EVENT_ID, callback);
   }
 
   /**
@@ -40,8 +40,8 @@ class PostItMessageStore extends EventEmitter {
   * @param {*} callback
   * @return {void}
   */
-  removeChangeListener(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
+  removeChangeListener(callback, CHANGE_EVENT_ID) {
+    this.removeListener(CHANGE_EVENT_ID, callback);
   }
 
   /**
@@ -94,7 +94,7 @@ PostItDispatcher.register((payload) => {
       addNewMessageGroup(messageMap);
     }
     console.log(messages);
-    messageStore.emit(CHANGE_EVENT);
+    messageStore.emit(groupId);
     break;
   }
 
