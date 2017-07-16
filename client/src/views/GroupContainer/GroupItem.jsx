@@ -41,6 +41,16 @@ class GroupItem extends React.Component {
     });
   }
 
+  /** close add user in new group
+   * @return {void}
+   * @param {*} newProp
+   */
+  componentWillReceiveProps() {
+    this.setState({
+      addUser: false
+    });
+  }
+
   /**
    * renders the component view
    * @return {void}
@@ -64,11 +74,12 @@ class GroupItem extends React.Component {
                   />
                 </button>
               </div>
+        </div>
+        <div className="group-item-bottom">
+
               <div className="user-list">
                 {this.state.addUser && <AddUser groupId={this.props.match.params.groupId} />}
               </div>
-        </div>
-        <div className="group-item-bottom">
           <MessageBody groupId={this.props.match.params.groupId} socket={this.props.socket} />
         </div>
       </div>
