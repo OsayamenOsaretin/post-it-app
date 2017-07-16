@@ -292,6 +292,9 @@ input {
 
 .user-list {
   float: right;
+  position: absolute;
+  right: 0;
+  z-index: 10;
 }
 
 .user-list select {
@@ -320,10 +323,13 @@ input {
 
 .group-item-bottom {
   height: 92%;
+  position: relative;
+  width: 100%;
 }
 
 .message-body {
-  position: relative;
+  position: absolute;
+  width: 100%;
   height: 100%;
   overflow: auto;
 }
