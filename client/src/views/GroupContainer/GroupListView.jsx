@@ -18,6 +18,7 @@ function GroupListView(props) {
       type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
       Id: newMessages.Id,
       messages: newMessages.groupMessages,
+      notify: newMessages.notify
     });
   });
   return (
