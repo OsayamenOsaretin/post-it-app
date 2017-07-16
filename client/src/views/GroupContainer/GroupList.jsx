@@ -21,7 +21,8 @@ class GroupList extends React.Component {
     console.log('grouplist component is rendered');
     console.log(props);
     this.state = {
-      groupWithNotificationChange: ''
+      groupWithNotificationChange: '',
+      groupList: props.groups
     };
 
     this.onChange = this.onChange.bind(this);
@@ -33,7 +34,7 @@ class GroupList extends React.Component {
    * @return {void}
    */
   componentDidMount() {
-    MessageStore.addChangeListener(this.onChange);
+    MessageStore.addNotificationChangeListener(this.onChange);
   }
 
   /**
@@ -41,7 +42,7 @@ class GroupList extends React.Component {
    * @return {void}
    */
   componentWillUnmount() {
-    MessageStore.removeChangeListener(this.onChange);
+    MessageStore.removeNotificationChangeListener(this.onChange);
   }
 
   // /**
@@ -68,10 +69,13 @@ class GroupList extends React.Component {
   onChange() {
     const notificationDetails = MessageStore.getGroupNotificationDetails();
     const groupId = notificationDetails.Id;
+    const status = notificationDetails.status.get(groupId);
 
-    this.setState({
-      groupWithNotificationChange: groupId
-    });
+    if (status) {
+      this.setState({
+        groupWithNotificationChange: groupId
+      });
+    }
   }
 
   /**
