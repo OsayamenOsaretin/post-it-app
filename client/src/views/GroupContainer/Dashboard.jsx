@@ -64,9 +64,12 @@ class Dashboard extends React.Component {
    * @return {void}
    */
   onChange() {
-    this.setState({
-      groups: GroupStore.getGroups()
-    });
+    const newGroups = GroupStore.getGroups();
+    if (this.state.groups.size !== newGroups.size) {
+      this.setState({
+        groups: GroupStore.getGroups()
+      });
+    }
   }
 
   /**
