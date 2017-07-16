@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0703500c65808a229e38"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "91cc900ffa110bd325f9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -8973,7 +8973,7 @@ exports = module.exports = __webpack_require__(166)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: #273443;\n  font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\na{\n  text-decoration: none;\n}\n\nul {\n  padding: 0;\n  list-style: none;\n}\n\nh6 {\n  padding: 0;\n  margin: 0;\n}\n\ninput {\n  width: 80%;\n  height: 50px;\n  border: 1px solid lavender;\n  border-radius: 5px;\n  padding: 5px;\n  margin-bottom: 4px;\n  font-size: 15px;\n  margin-left: 2px;\n}\n\n.inputform input {\n  display: inline-block;\n}\n\n.nav {\n  display: flex;\n  margin-bottom: 10px;\n  margin-right:10px;\n  margin-top: 0px;\n  max-width: 30%;\n  margin-left: 2px;\n}\n\n.nav li {\n list-style-type: none;\n margin-right: 2px;\n font-size: 15px;\n background-color: snow;\n color: black;\n padding: 10px;\n font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\n\n.nav li .active {\n  color: #29a6dc;\n  z-index: -1;\n}\n\n.inputField {\n  margin-bottom: 10px;\n  margin-top: 0px;\n  width: 80%;\n}\n\n.inputField #formInput:active{\n  text-transform: lowercase;\n}\n\n.error-login-register {\n  margin-top: 10px;\n  margin-left: 10px;\n  box-shadow: 0 0 1pt 1pt black;\n  display: inline-block;\n  font-size: 10px;\n  padding: 10px;\n  color: snow;\n  background: #FF9494;\n}\n\n.button {\n  width: 80%;\n  height: 50px;\n  box-shadow: 10px brown;\n  border: solid;\n  border-radius: 5px;\n  background-color: skyblue;\n}\n\n.button:enabled {\n  transform: translateZ(1px);\n  border: solid 0.5px;\n  border-color: lavender;\n  font-size: 15px;\n}\n\n.button:disabled {\n  transform: translateZ(-1);\n  border: none;\n}\n\n.landing-page-container {\n  margin: auto;\n  padding: 100px;\n}\n\n.landing-img-container {\n  float: left;\n  width: 40%;\n}\n\n.post-it-img {\n  height: 20%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(364) + ");\n  background-repeat: no-repeat;\n}\n\n.mail-box-img {\n  height: 50%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(363) + ");\n  background-repeat: no-repeat;\n}\n\n.login-register-container {\n  float: right;\n  width: 60%;\n  margin: auto;\n}\n\n.main-view {\n  margin-left: -2px;\n  padding: 0;\n}\n\n.header {\n  height: 6%;\n  margin: 0;\n}\n\n.greeting {\n  width: 20%;\n  position: absolute;\n  margin: 0;\n  padding: 5px;\n  left: 10px;\n  color: white;\n}\n\n.greeting h3 {\n  padding: 0;\n  margin: 0;\n}\n\n.sign-out {\n  position: absolute;\n  right: 10px;\n  color: white;\n}\n\n.sign-out-button {\n  border: none;\n  background: none;\n  outline: none;\n  color: white;\n}\n\n.group-list-nav {\n  float: left;\n  width: 30%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\n\n.add-group {\n  height: 8%;\n  width: 100%;\n  border-bottom: 1px solid #314050;\n}\n\n.add-group-form {\n  background: #273443;\n  margin: 0;\n  padding: 0;\n}\n\n.new-group-input {\n  background: #273443;\n  border: none;\n}\n\n.new-group-input[type=text]:focus {\n  color: whitesmoke;\n  border: none;\n  outline: none;\n}\n\n.add-group-button {\n  border: none;\n  background:  #273443;\n}\n\n.add-group-button:enabled {\n  color:  #578ec9;\n}\n\n.group-list-body {\n  height: 90%;\n  width: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: auto;\n  border-left: 1px solid #314050;\n}\n\n.group-list-item {\n  height: 66px;\n  text-decoration: none;\n  padding-left: 10px;\n  padding-top: 10px;\n  border-bottom: 1px solid #314050;\n  color: whitesmoke;\n}\n\n.group-list-item p {\n  width: 80%;\n  display: inline-block;\n  margin: 0;\n}\n\n.notification {\n  width: 10%;\n  display: inline-block;\n  padding: 7px;\n  border: none;\n}\n\n.groups-icon {\n  margin: 10px;\n}\n\n.group-list a.active div{\n  background: #314050;\n  box-shadow: 2px 1px 2px 2px #23313e;\n}\n\n.group-list a.active div .notification, \n.group-list div .notification:hover {\n  box-shadow: none;\n}\n.group-list div:hover {\n  background: #314050;\n  box-shadow: 1px 1px 2px 2px #23313e;\n}\n\n.group-details {\n  float: right;\n  width: 70%;\n  height: 95%;\n  background: ghostwhite;\n}\n\n.welcome-view {\n  text-align: center;\n  padding: 50px;\n  font-size: 50px;\n}\n\n.group-item-top {\n  height: 8%;\n}\n\n.group-body-groupname {\n  width: 30%;\n  margin: auto;\n  text-align: center;\n}\n\n.add-user {\n  position: absolute;\n  top: 9%;\n  right: 20px;\n}\n\n.add-user-button {\n  background: none;\n  border: none;\n  outline: none;\n}\n\n.user-list {\n  float: right;\n}\n\n.user-list select {\n  background: #578ec9;\n  color: white;\n  border-radius: 8px 0px 0px 8px;\n  z-index: 2;\n}\n\n.user-list select option {\n  width: 200px;\n  height: 40px;\n  text-align: center;\n  padding-top: 20px;\n  font-size: 15px;\n}\n\n.user-list select option:hover {\n  background: ghostwhite;\n  color: black;\n}\n\n.user-list select option:checked {\n  display: none;\n}\n\n.group-item-bottom {\n  height: 92%;\n}\n\n.message-body {\n  position: relative;\n  height: 100%;\n  overflow: auto;\n}\n\n.message {\n  padding: 15px;\n}\n\n.sender-initials {\n  display: inline-block;\n  height: 30px;\n  width: 30px;\n  background: white;\n  text-transform: uppercase;\n  padding-top: 7px;\n  padding-right: 5px;\n  padding-left: 5px;\n  text-align: center;\n  position: absolute;\n  border: 1px solid #578ec9;\n  border-radius: 50%;\n  box-shadow: 1px 1px 10px black;\n}\n\n.sender-initials-alternate {\n  display: inline-block;\n  height: 30px;\n  width: 30px;\n  background: #578ec9;\n  color: white;\n  text-transform: uppercase;\n  padding-top: 7px;\n  padding-right: 5px;\n  padding-left: 5px;\n  text-align: center;\n  position: absolute;\n  right: 2px;\n  border-radius: 50%;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-view {\n  background: #578ec9;\n  display: inline-block;\n  border-radius: 5px;\n  color: #e4f0f5;\n  padding: 15px;\n  margin-left: 50px;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-view-alternate {\n  background: white;\n  max-width: 50%;\n  display: block;\n  padding: 15px;\n  margin-left: 42%;\n  border-radius: 5px;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-reader ul {\n  display: flex;\n  font-size: x-small;\n  margin-top: 0;\n  margin-left: 50px;\n  color: #578ec9;\n}\n\n.message-reader li {\n  margin-left: 2px;\n}\n\n.message-reader li:after {\n  content: ',';\n}\n\n.message-reader li:last-child:after {\n  content: none;\n}\n\n.message-reader-alternate ul {\n  display: flex;\n  font-size: x-small;\n  margin-top: 0;\n  margin-left: 42%;\n  color: #578ec9;\n}\n\n.message-reader-alternate li {\n  margin-left: 2px;\n}\n\n.message-reader-alternate li:after {\n  content: ',';\n}\n\n.message-reader-alternate li:last-child:after {\n  content: none;\n}\n\n.send-message {\n  position: fixed;\n  bottom: 0px;\n  margin: 0;\n  padding: 0;\n  width: 69.5%;\n  height: 50px;\n}\n\n.send-message input {\n  position: absolute;\n  bottom: 0px;\n  width: 100%;\n  height: 100%;\n  border: none;\n  padding-left: 50px;\n  margin: 0;\n}\n\n.send-message form input[type=text]:focus {\n  outline: none;\n}\n\n.send-message form button {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  z-index: 1;\n  height: 100%;\n  margin-right: 20px;\n  border: none;\n  background: none;\n}\n\n\n.send-message form button:enabled {\n  color: #578ec9;\n}\n\n.send-message form .normal {\n  background: white;\n  width: 40px;\n  height: 90%;\n  border-right: 1px solid lavender;\n  border-radius: 0px 0px 0px 4px;\n  position: absolute;\n  left: 1px;\n  bottom: 3px;\n  z-index: 1;\n}\n\n.send-message form .normal:enabled {\n  box-shadow: none;\n}\n\n.send-message form .normal:focus {\n  outline: none;\n}\n\n.google-signin {\n  width: 20%;\n  margin-top: 0;\n  margin-left: 150px;\n}\n\n.or-text {\n  display: inline-block;\n  height: 10px;\n  margin-left: 100px;\n  margin-top: 0;\n  color: snow;\n}\n\n\n.forgot-password-button {\n  position: fixed;\n  top: 10px;\n  right: 10px;\n  border: none;\n  background: none;\n  color: black;\n  font-size: 15px;\n  margin-left: 180px;\n  margin-top: 5px;\n}\n\n.forgot-password-button:hover {\n  color: snow;\n}\n\n.reset-form {\n  width: 60%;\n  margin: auto;\n}\n\n.reset-form p {\n  color: snow;\n  margin-right: 150px;\n  text-align: center;\n}\n\n.password-sent-message {\n  text-align: center;\n  margin-right: 150px;\n  font-size: 20px;\n}\n\n.login-button {\n  border: none;\n  background: none;\n  color: snow;\n  padding: 0;\n  font-size: 20px;\n}\n\n\n\n\n\n", ""]);
+exports.push([module.i, "body {\n  background-color: #273443;\n  font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\na{\n  text-decoration: none;\n}\n\nul {\n  padding: 0;\n  list-style: none;\n}\n\nh6 {\n  padding: 0;\n  margin: 0;\n}\n\ninput {\n  width: 80%;\n  height: 50px;\n  border: 1px solid lavender;\n  border-radius: 5px;\n  padding: 5px;\n  margin-bottom: 4px;\n  font-size: 15px;\n  margin-left: 2px;\n}\n\n.inputform input {\n  display: inline-block;\n}\n\n.nav {\n  display: flex;\n  margin-bottom: 10px;\n  margin-right:10px;\n  margin-top: 0px;\n  max-width: 30%;\n  margin-left: 2px;\n}\n\n.nav li {\n list-style-type: none;\n margin-right: 2px;\n font-size: 15px;\n background-color: snow;\n color: black;\n padding: 10px;\n font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\n\n.nav li .active {\n  color: #29a6dc;\n  z-index: -1;\n}\n\n.inputField {\n  margin-bottom: 10px;\n  margin-top: 0px;\n  width: 80%;\n}\n\n.inputField #formInput:active{\n  text-transform: lowercase;\n}\n\n.error-login-register {\n  margin-top: 10px;\n  margin-left: 10px;\n  box-shadow: 0 0 1pt 1pt black;\n  display: inline-block;\n  font-size: 10px;\n  padding: 10px;\n  color: snow;\n  background: #FF9494;\n}\n\n.button {\n  width: 80%;\n  height: 50px;\n  box-shadow: 10px brown;\n  border: solid;\n  border-radius: 5px;\n  background-color: skyblue;\n}\n\n.button:enabled {\n  transform: translateZ(1px);\n  border: solid 0.5px;\n  border-color: lavender;\n  font-size: 15px;\n}\n\n.button:disabled {\n  transform: translateZ(-1);\n  border: none;\n}\n\n.landing-page-container {\n  margin: auto;\n  padding: 100px;\n}\n\n.landing-img-container {\n  float: left;\n  width: 40%;\n}\n\n.post-it-img {\n  height: 20%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(364) + ");\n  background-repeat: no-repeat;\n}\n\n.mail-box-img {\n  height: 50%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(363) + ");\n  background-repeat: no-repeat;\n}\n\n.login-register-container {\n  float: right;\n  width: 60%;\n  margin: auto;\n}\n\n.main-view {\n  margin-left: -2px;\n  padding: 0;\n}\n\n.header {\n  height: 6%;\n  margin: 0;\n}\n\n.greeting {\n  width: 20%;\n  position: absolute;\n  margin: 0;\n  padding: 5px;\n  left: 10px;\n  color: white;\n}\n\n.greeting h3 {\n  padding: 0;\n  margin: 0;\n}\n\n.sign-out {\n  position: absolute;\n  right: 10px;\n  color: white;\n}\n\n.sign-out-button {\n  border: none;\n  background: none;\n  outline: none;\n  color: white;\n}\n\n.group-list-nav {\n  float: left;\n  width: 30%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\n\n.add-group {\n  height: 8%;\n  width: 100%;\n  border-bottom: 1px solid #314050;\n}\n\n.add-group-form {\n  background: #273443;\n  margin: 0;\n  padding: 0;\n}\n\n.new-group-input {\n  background: #273443;\n  border: none;\n}\n\n.new-group-input[type=text]:focus {\n  color: whitesmoke;\n  border: none;\n  outline: none;\n}\n\n.add-group-button {\n  border: none;\n  background:  #273443;\n}\n\n.add-group-button:enabled {\n  color:  #578ec9;\n}\n\n.group-list-body {\n  height: 90%;\n  width: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: auto;\n  border-left: 1px solid #314050;\n}\n\n.group-list-item {\n  height: 66px;\n  text-decoration: none;\n  padding-left: 10px;\n  padding-top: 10px;\n  border-bottom: 1px solid #314050;\n  color: whitesmoke;\n}\n\n.group-list-item p {\n  width: 80%;\n  display: inline-block;\n  margin: 0;\n}\n\n.notification {\n  width: 10%;\n  display: inline-block;\n  padding: 7px;\n  border: none;\n}\n\n.groups-icon {\n  margin: 10px;\n}\n\n.group-list a.active div{\n  background: #314050;\n  box-shadow: 2px 1px 2px 2px #23313e;\n}\n\n.group-list a.active div .notification, \n.group-list div .notification:hover {\n  box-shadow: none;\n}\n.group-list div:hover {\n  background: #314050;\n  box-shadow: 1px 1px 2px 2px #23313e;\n}\n\n.group-details {\n  float: right;\n  width: 70%;\n  height: 93%;\n  background: white;\n}\n\n.welcome-view {\n  text-align: center;\n  padding: 50px;\n  font-size: 50px;\n}\n\n.group-item-top {\n  height: 8%;\n}\n\n.group-body-groupname {\n  width: 30%;\n  margin: auto;\n  text-align: center;\n}\n\n.add-user {\n  position: absolute;\n  top: 9%;\n  right: 20px;\n}\n\n.add-user-button {\n  background: none;\n  border: none;\n  outline: none;\n}\n\n.user-list {\n  float: right;\n}\n\n.user-list select {\n  background: #578ec9;\n  color: white;\n  border-radius: 8px 0px 0px 8px;\n  z-index: 2;\n}\n\n.user-list select option {\n  width: 200px;\n  height: 40px;\n  text-align: center;\n  padding-top: 20px;\n  font-size: 15px;\n}\n\n.user-list select option:hover {\n  background: ghostwhite;\n  color: black;\n}\n\n.user-list select option:checked {\n  display: none;\n}\n\n.group-item-bottom {\n  height: 92%;\n}\n\n.message-body {\n  position: relative;\n  height: 100%;\n  overflow: auto;\n}\n\n.message {\n  padding: 15px;\n}\n\n.sender-initials {\n  display: inline-block;\n  height: 30px;\n  width: 30px;\n  background: white;\n  text-transform: uppercase;\n  padding-top: 7px;\n  padding-right: 5px;\n  padding-left: 5px;\n  text-align: center;\n  position: absolute;\n  border: 1px solid #578ec9;\n  border-radius: 50%;\n  box-shadow: 1px 1px 10px black;\n}\n\n.sender-initials-alternate {\n  display: inline-block;\n  height: 30px;\n  width: 30px;\n  background: #578ec9;\n  color: white;\n  text-transform: uppercase;\n  padding-top: 7px;\n  padding-right: 5px;\n  padding-left: 5px;\n  text-align: center;\n  position: absolute;\n  right: 2px;\n  border-radius: 50%;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-view {\n  background: #578ec9;\n  display: inline-block;\n  border-radius: 5px;\n  color: #e4f0f5;\n  padding: 15px;\n  margin-left: 50px;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-view-alternate {\n  background: white;\n  max-width: 50%;\n  display: block;\n  padding: 15px;\n  margin-left: 42%;\n  border-radius: 5px;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-reader ul {\n  display: flex;\n  font-size: x-small;\n  margin-top: 0;\n  margin-left: 50px;\n  color: #578ec9;\n}\n\n.message-reader li {\n  margin-left: 2px;\n}\n\n.message-reader li:after {\n  content: ',';\n}\n\n.message-reader li:last-child:after {\n  content: none;\n}\n\n.message-reader-alternate ul {\n  display: flex;\n  font-size: x-small;\n  margin-top: 0;\n  margin-left: 42%;\n  color: #578ec9;\n}\n\n.message-reader-alternate li {\n  margin-left: 2px;\n}\n\n.message-reader-alternate li:after {\n  content: ',';\n}\n\n.message-reader-alternate li:last-child:after {\n  content: none;\n}\n\n.send-message {\n  position: fixed;\n  bottom: 0px;\n  margin: 0;\n  padding: 0;\n  width: 69.5%;\n  height: 50px;\n}\n\n.send-message input {\n  position: absolute;\n  bottom: 0px;\n  width: 100%;\n  height: 100%;\n  border: none;\n  padding-left: 50px;\n  margin: 0;\n}\n\n.send-message form input[type=text]:focus {\n  outline: none;\n}\n\n.send-message form button {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  z-index: 1;\n  height: 100%;\n  margin-right: 20px;\n  border: none;\n  background: none;\n}\n\n\n.send-message form button:enabled {\n  color: #578ec9;\n}\n\n.send-message form .normal {\n  background: white;\n  width: 40px;\n  height: 90%;\n  border-right: 1px solid lavender;\n  border-radius: 0px 0px 0px 4px;\n  position: absolute;\n  left: 1px;\n  bottom: 3px;\n  z-index: 1;\n}\n\n.send-message form .normal:enabled {\n  box-shadow: none;\n}\n\n.send-message form .normal:focus {\n  outline: none;\n}\n\n.google-signin {\n  width: 20%;\n  margin-top: 0;\n  margin-left: 150px;\n}\n\n.or-text {\n  display: inline-block;\n  height: 10px;\n  margin-left: 100px;\n  margin-top: 0;\n  color: snow;\n}\n\n\n.forgot-password-button {\n  position: fixed;\n  top: 10px;\n  right: 10px;\n  border: none;\n  background: none;\n  color: black;\n  font-size: 15px;\n  margin-left: 180px;\n  margin-top: 5px;\n}\n\n.forgot-password-button:hover {\n  color: snow;\n}\n\n.reset-form {\n  width: 60%;\n  margin: auto;\n}\n\n.reset-form p {\n  color: snow;\n  margin-right: 150px;\n  text-align: center;\n}\n\n.password-sent-message {\n  text-align: center;\n  margin-right: 150px;\n  font-size: 20px;\n}\n\n.login-button {\n  border: none;\n  background: none;\n  color: snow;\n  padding: 0;\n  font-size: 20px;\n}\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -12268,6 +12268,7 @@ var PostItMessageStore = function (_EventEmitter) {
      * addChangeListener
      * @memberof PostItMessageStore
      * @param {*} callback
+     * @param {*} CHANGE_EVENT_ID
      * @return {void}
      */
     value: function addChangeListener(callback, CHANGE_EVENT_ID) {
@@ -12278,6 +12279,7 @@ var PostItMessageStore = function (_EventEmitter) {
     * removeChangeListener
     * @memberof PostItMessageStore
     * @param {*} callback
+    * @param {*} CHANGE_EVENT_ID
     * @return {void}
     */
 
@@ -12287,6 +12289,27 @@ var PostItMessageStore = function (_EventEmitter) {
       this.removeListener(CHANGE_EVENT_ID, callback);
     }
 
+    /** add listener for notification changes
+     * @return {void}
+     * @param {*} callback
+     */
+
+  }, {
+    key: 'addNotificationChangeListener',
+    value: function addNotificationChangeListener(callback) {
+      this.on(CHANGE_EVENT, callback);
+    }
+
+    /** remove notification change event listener
+     * @return {void}
+     * @param {*} callback
+     */
+
+  }, {
+    key: 'removeNotificationChangeListener',
+    value: function removeNotificationChangeListener(callback) {
+      this.removeListener(CHANGE_EVENT, callback);
+    }
     /**
      * GetMessage
      * @memberof PostItMessageStore
@@ -12330,9 +12353,13 @@ _PostItDispatcher2.default.register(function (payload) {
         console.log('recieves message response');
         var groupId = action.Id;
         var messageResponse = action.messages;
+        var notify = action.notify;
 
         groupWithNewMessageId = groupId;
-        notificationMap.set(groupId, true);
+        if (notify) {
+          notificationMap.set(groupId, true);
+          messageStore.emit(CHANGE_EVENT);
+        }
 
         var groupMessages = messages.get(groupId);
 
@@ -12484,9 +12511,10 @@ _PostItDispatcher2.default.register(function (payload) {
       {
         if (source === 'SERVER_ACTION') {
           var user = action.user;
+          var displayName = user.displayName;
           var token = user.stsTokenManager.accessToken;
           localStorage.setItem('token', token);
-          localStorage.setItem('username', user.displayName);
+          localStorage.setItem('username', displayName);
           userStore.emit(CHANGE_EVENT);
         }
         break;
@@ -24066,9 +24094,9 @@ exports.default = function (messageDetails) {
     if (error) {
       console.log(error);
     } else {
-      // getMessageAction({
-      //   groupId: messageDetails.groupId
-      // });
+      (0, _getMessagesAction2.default)({
+        groupId: messageDetails.groupId
+      });
       console.log(result);
     }
   });
@@ -40596,9 +40624,12 @@ var Dashboard = function (_React$Component) {
   }, {
     key: 'onChange',
     value: function onChange() {
-      this.setState({
-        groups: _PostItGroupStore2.default.getGroups()
-      });
+      var newGroups = _PostItGroupStore2.default.getGroups();
+      if (this.state.groups.size !== newGroups.size) {
+        this.setState({
+          groups: _PostItGroupStore2.default.getGroups()
+        });
+      }
     }
 
     /**
@@ -41529,7 +41560,8 @@ var GroupList = function (_React$Component) {
     console.log('grouplist component is rendered');
     console.log(props);
     _this.state = {
-      groupWithNotificationChange: ''
+      groupWithNotificationChange: '',
+      groupList: props.groups
     };
 
     _this.onChange = _this.onChange.bind(_this);
@@ -41546,7 +41578,7 @@ var GroupList = function (_React$Component) {
   _createClass(GroupList, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      _PostItMessageStore2.default.addChangeListener(this.onChange);
+      _PostItMessageStore2.default.addNotificationChangeListener(this.onChange);
     }
 
     /**
@@ -41557,7 +41589,7 @@ var GroupList = function (_React$Component) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      _PostItMessageStore2.default.removeChangeListener(this.onChange);
+      _PostItMessageStore2.default.removeNotificationChangeListener(this.onChange);
     }
 
     // /**
@@ -41587,10 +41619,13 @@ var GroupList = function (_React$Component) {
     value: function onChange() {
       var notificationDetails = _PostItMessageStore2.default.getGroupNotificationDetails();
       var groupId = notificationDetails.Id;
+      var status = notificationDetails.status.get(groupId);
 
-      this.setState({
-        groupWithNotificationChange: groupId
-      });
+      if (status) {
+        this.setState({
+          groupWithNotificationChange: groupId
+        });
+      }
     }
 
     /**
@@ -41740,7 +41775,8 @@ function GroupListView(props) {
     _PostItDispatcher2.default.handleServerAction({
       type: _PostItActionTypes2.default.RECIEVE_MESSAGE_RESPONSE,
       Id: newMessages.Id,
-      messages: newMessages.groupMessages
+      messages: newMessages.groupMessages,
+      notify: newMessages.notify
     });
   });
   return _react2.default.createElement(
@@ -41839,7 +41875,6 @@ var _signOutAction2 = _interopRequireDefault(_signOutAction);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* global localStorage */
-var userName = localStorage.getItem('username');
 
 /**
  * calls sign out action
@@ -41850,6 +41885,7 @@ function signOutHandler() {
 }
 
 exports.default = function () {
+  var userName = localStorage.getItem('username');
   return _react2.default.createElement(
     'div',
     { className: 'header' },
