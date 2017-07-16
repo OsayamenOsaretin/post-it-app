@@ -4,6 +4,7 @@ import FaUserPlus from 'react-icons/lib/fa/user-plus';
 
 import MessageBody from './GroupBodyContainer/MessageBody.jsx';
 import AddUser from './GroupBodyContainer/AddUserView.jsx';
+import getUserList from '../../data/postItActions/getAllUsersAction';
 
 /**
  * Group Item renders an individual group item
@@ -19,6 +20,9 @@ class GroupItem extends React.Component {
    */
   constructor(props) {
     super(props);
+
+    // git get user List
+    getUserList();
 
     this.state = {
       addUser: false
