@@ -45,7 +45,7 @@ class PostItAllUserStore extends EventEmitter {
  * @return {Map} users
  */
   getUsers() {
-    console.log('asks for groups');
+    console.log('asks for users');
     console.log('and gets...');
     console.log(users);
     return users;
@@ -67,6 +67,16 @@ PostItDispatcher.register((payload) => {
   case PostItActionTypes.RECIEVE_USERS: {
     const userMap = new Map(action.users);
     addNewUsers(userMap);
+    allUserStore.emit(CHANGE_EVENT);
+    break;
+  }
+
+  case PostItActionTypes.DELETE_USER: {
+    console.log('gets to delete user action');
+    const userId = action.id;
+    console.log(users);
+    users = users.delete(userId);
+    console.log(users);
     allUserStore.emit(CHANGE_EVENT);
     break;
   }
