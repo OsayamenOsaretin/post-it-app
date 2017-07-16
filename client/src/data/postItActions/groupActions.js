@@ -63,10 +63,8 @@ export function addGroupApi(groupName) {
     } else {
       // make api call to get all the new groups
       console.log(result);
-      getGroups();
-      // PostItDispatcher.handleServerAction({
-      //   type: PostItActionTypes.GET_GROUPS
-      // });
+      const newGroup = result.body.group;
+      recieveGroups(newGroup);
     }
   });
 }
