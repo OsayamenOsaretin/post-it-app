@@ -28,6 +28,7 @@ class PostItMessageStore extends EventEmitter {
    * addChangeListener
    * @memberof PostItMessageStore
    * @param {*} callback
+   * @param {*} CHANGE_EVENT_ID
    * @return {void}
    */
   addChangeListener(callback, CHANGE_EVENT_ID) {
@@ -38,12 +39,28 @@ class PostItMessageStore extends EventEmitter {
   * removeChangeListener
   * @memberof PostItMessageStore
   * @param {*} callback
+  * @param {*} CHANGE_EVENT_ID
   * @return {void}
   */
   removeChangeListener(callback, CHANGE_EVENT_ID) {
     this.removeListener(CHANGE_EVENT_ID, callback);
   }
 
+  /** add listener for notification changes
+   * @return {void}
+   * @param {*} callback
+   */
+  addNotificationChangeListener(callback) {
+    this.on(CHANGE_EVENT, callback);
+  }
+
+  /** remove notification change event listener
+   * @return {void}
+   * @param {*} callback
+   */
+  removeNotificationChangeListener(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  }
   /**
    * GetMessage
    * @memberof PostItMessageStore
@@ -77,9 +94,13 @@ PostItDispatcher.register((payload) => {
     console.log('recieves message response');
     const groupId = action.Id;
     const messageResponse = action.messages;
+    const notify = action.notify;
 
     groupWithNewMessageId = groupId;
-    notificationMap.set(groupId, true);
+    if (notify) {
+      notificationMap.set(groupId, true);
+      messageStore.emit(CHANGE_EVENT);
+    }
 
     let groupMessages = messages.get(groupId);
 
