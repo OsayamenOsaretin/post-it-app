@@ -20,6 +20,9 @@ module.exports = (app, firebase, io) => {
         // keep an array of promises
         const promises = [];
 
+        // notification value will be set if notification should happen on dashboard
+        let notificationValue;
+
         // get message Id from groups and iterate through messages node
         messagesReference.on('child_added', (snapshot) => {
           promises.push(new Promise((resolve) => {
@@ -27,10 +30,14 @@ module.exports = (app, firebase, io) => {
             console.log(messageKeys);
             const messageReference = db.ref(`messages/${snapshot.key}`);
             messageReference.on('value', (snap) => {
+              notificationValue = false;
               const newMessage = snap.val();
               if (newMessage.read) {
                 if (!newMessage.read[userName]) {
                   messages.set(snapshot.key, snap.val());
+                  if (newMessage.sender !== userName) {
+                    notificationValue = true;
+                  }
                 }
               } else {
                 messages.set(snapshot.key, snap.val());
@@ -43,7 +50,8 @@ module.exports = (app, firebase, io) => {
             .then(() => {
               io.emit('newMessage', {
                 groupMessages: messages,
-                Id: groupId
+                Id: groupId,
+                notify: notificationValue
               });
             });
       } else {
