@@ -34,13 +34,13 @@ module.exports = (app, firebase, io) => {
               const newMessage = snap.val();
               if (newMessage.read) {
                 if (!newMessage.read[userName]) {
-                  messages.set(snapshot.key, snap.val());
+                  messages.set(snap.key, snap.val());
                   if (newMessage.sender !== userName) {
                     notificationValue = true;
                   }
                 }
               } else {
-                messages.set(snapshot.key, snap.val());
+                messages.set(snap.key, snap.val());
               }
               resolve();
             });
