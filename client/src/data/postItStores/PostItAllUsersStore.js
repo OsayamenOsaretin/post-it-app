@@ -43,12 +43,13 @@ class PostItAllUserStore extends EventEmitter {
  * getUsers
  * @memberof PostItAllUserStore
  * @return {Map} users
+ * @param {string} groupId
  */
-  getUsers() {
+  getUsers(groupId) {
     console.log('asks for users');
     console.log('and gets...');
-    console.log(users);
-    return users;
+    console.log(users.get(groupId));
+    return users.get(groupId);
   }
 }
 
@@ -65,8 +66,21 @@ PostItDispatcher.register((payload) => {
   }
 
   case PostItActionTypes.RECIEVE_USERS: {
-    const userMap = new Map(action.users);
-    addNewUsers(userMap);
+    const groupId = action.id;
+    const userList = action.users;
+
+    let usersForGroup = users.get(groupId);
+    if (usersForGroup) {
+      usersForGroup = usersForGroup.merge(new Map(userList));
+      const newUserMap = new Map();
+      newUserMap.set(groupId, usersForGroup);
+      addNewUsers(newUserMap);
+    } else {
+      const newUserMap = new Map();
+      newUserMap.set(groupId, new UserList(userList));
+      addNewUsers(newUserMap);
+    }
+    console.log(users);
     allUserStore.emit(CHANGE_EVENT);
     break;
   }
@@ -74,10 +88,18 @@ PostItDispatcher.register((payload) => {
   case PostItActionTypes.DELETE_USER: {
     console.log('gets to delete user action');
     const userId = action.id;
+    const groupId = action.groupId;
+
+    console.log(users.get(groupId));
+    let usersForGroup = users.get(groupId);
+    if (usersForGroup) {
+      usersForGroup = usersForGroup.delete(userId);
+      const newUsersForGroupMap = new Map();
+      newUsersForGroupMap.set(groupId, usersForGroup);
+      addNewUsers(newUsersForGroupMap);
+      allUserStore.emit(CHANGE_EVENT);
+    }
     console.log(users);
-    users = users.delete(userId);
-    console.log(users);
-    allUserStore.emit(CHANGE_EVENT);
     break;
   }
 
