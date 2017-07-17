@@ -27,7 +27,8 @@ export default (Details) => {
       console.log(result);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.DELETE_USER,
-        id: user
+        id: user,
+        groupId: Details.groupId
       });
     }
   });
