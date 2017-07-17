@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+// import { Redirect } from 'react-router';
 import LoginRegisterContainer from './LoginRegisterContainer/LandingPageContainer.jsx';
 import Dashboard from './GroupContainer/Dashboard.jsx';
 import ResetPasswordComponent from './LoginRegisterContainer/ResetPasswordView.jsx';
@@ -19,7 +21,8 @@ class App extends React.Component {
     this.state = {
       token: UserStore.getSignedInState(),
       passwordReset: true,
-      messageSent: false
+      messageSent: false,
+      redirect: false
     };
 
     this.onChange = this.onChange.bind(this);
@@ -50,9 +53,14 @@ class App extends React.Component {
    * @return {void}
    */
   onChange() {
+    let redirectStatus = false;
+    if (!UserStore.getSignedInState()) {
+      redirectStatus = true;
+    }
     this.setState({
       token: UserStore.getSignedInState(),
-      messageSent: UserStore.getPasswordResetMessageState()
+      messageSent: UserStore.getPasswordResetMessageState(),
+      redirect: redirectStatus
     });
   }
 
@@ -75,7 +83,31 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      {!this.state.token ? (this.state.passwordReset && <LoginRegisterContainer />) :
+        {/*{this.state.redirect ? <Redirect to='/'/> : <Router>
+            <Route path='/' render={() => (
+              !this.state.token ? (<LoginRegisterContainer />) : (<Dashboard />)
+            )}/>
+          </Router>
+        }*/}
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path='/' component={() => {
+                if (this.state.redirect) {
+                  return <Redirect to='/login'/>;
+                }
+                return (!this.state.token ? (<LoginRegisterContainer />) : (<Dashboard />));
+              }}/>
+              <Route path='/login' component={() => {
+                if (!this.state.redirect) {
+                  return <Redirect to='/' />;
+                }
+                return <LoginRegisterContainer />;
+              }}/>
+            </Switch>
+          </div>
+        </Router>
+      {/*{!this.state.token ? (this.state.passwordReset && <LoginRegisterContainer />) :
         <Dashboard />}
       {!this.state.token && this.state.passwordReset &&
         <div className="landing-page-container">
@@ -95,7 +127,7 @@ class App extends React.Component {
             type="click">
             login
           </button>
-        </p>}
+        </p>}*/}
       </div>
     );
   }
