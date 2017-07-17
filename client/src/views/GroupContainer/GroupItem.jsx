@@ -21,8 +21,9 @@ class GroupItem extends React.Component {
   constructor(props) {
     super(props);
 
-    // git get user List
-    getUserList();
+    getUserList({
+      groupId: props.match.params.groupId
+    });
 
     this.state = {
       addUser: false
@@ -45,9 +46,13 @@ class GroupItem extends React.Component {
    * @return {void}
    * @param {*} newProp
    */
-  componentWillReceiveProps() {
+  componentWillReceiveProps(newProps) {
     this.setState({
       addUser: false
+    });
+    // get user List for this group
+    getUserList({
+      groupId: newProps.match.params.groupId
     });
   }
 
