@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0b17a5f90fe2bd987830"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ddae81c877a2c5907a42"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1418,14 +1418,14 @@ var ReactInstanceMap = __webpack_require__(41);
 var ReactInstrumentation = __webpack_require__(19);
 var ReactMarkupChecksum = __webpack_require__(243);
 var ReactReconciler = __webpack_require__(34);
-var ReactUpdateQueue = __webpack_require__(71);
+var ReactUpdateQueue = __webpack_require__(72);
 var ReactUpdates = __webpack_require__(23);
 
 var emptyObject = __webpack_require__(44);
 var instantiateReactComponent = __webpack_require__(121);
 var invariant = __webpack_require__(2);
 var setInnerHTML = __webpack_require__(52);
-var shouldUpdateReactComponent = __webpack_require__(77);
+var shouldUpdateReactComponent = __webpack_require__(78);
 var warning = __webpack_require__(3);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -2755,13 +2755,13 @@ module.exports = { debugTool: debugTool };
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__Redirect__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(133);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_3__Route__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(80);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__Router__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__StaticRouter__ = __webpack_require__(330);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_5__StaticRouter__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch__ = __webpack_require__(331);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_6__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__matchPath__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__matchPath__ = __webpack_require__(81);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_7__matchPath__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__withRouter__ = __webpack_require__(332);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_8__withRouter__["a"]; });
@@ -2868,7 +2868,7 @@ if (typeof window !== 'undefined') { // Browser window
 
 var Emitter = __webpack_require__(28);
 var RequestBase = __webpack_require__(358);
-var isObject = __webpack_require__(83);
+var isObject = __webpack_require__(84);
 var isFunction = __webpack_require__(357);
 var ResponseBase = __webpack_require__(359);
 var shouldRetry = __webpack_require__(360);
@@ -6089,10 +6089,10 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 
 
 
-var DOMNamespaces = __webpack_require__(65);
+var DOMNamespaces = __webpack_require__(66);
 var setInnerHTML = __webpack_require__(52);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(72);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
 var setTextContent = __webpack_require__(123);
 
 var ELEMENT_NODE_TYPE = 1;
@@ -6401,7 +6401,7 @@ var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var lowPriorityWarning = __webpack_require__(81);
+  var lowPriorityWarning = __webpack_require__(82);
   var canDefineProperty = __webpack_require__(54);
   var ReactElementValidator = __webpack_require__(136);
   var didWarnPropTypesDeprecated = false;
@@ -6942,8 +6942,8 @@ var createPath = exports.createPath = function createPath(location) {
 var _prodInvariant = __webpack_require__(4);
 
 var EventPluginRegistry = __webpack_require__(47);
-var EventPluginUtils = __webpack_require__(66);
-var ReactErrorUtils = __webpack_require__(70);
+var EventPluginUtils = __webpack_require__(67);
+var ReactErrorUtils = __webpack_require__(71);
 
 var accumulateInto = __webpack_require__(116);
 var forEachAccumulated = __webpack_require__(117);
@@ -7220,7 +7220,7 @@ module.exports = EventPluginHub;
 
 
 var EventPluginHub = __webpack_require__(39);
-var EventPluginUtils = __webpack_require__(66);
+var EventPluginUtils = __webpack_require__(67);
 
 var accumulateInto = __webpack_require__(116);
 var forEachAccumulated = __webpack_require__(117);
@@ -7412,7 +7412,7 @@ module.exports = ReactInstanceMap;
 
 var SyntheticEvent = __webpack_require__(26);
 
-var getEventTarget = __webpack_require__(75);
+var getEventTarget = __webpack_require__(76);
 
 /**
  * @interface UIEvent
@@ -7880,7 +7880,7 @@ var ReactEventEmitterMixin = __webpack_require__(238);
 var ViewportMetrics = __webpack_require__(115);
 
 var getVendorPrefixedEventName = __webpack_require__(273);
-var isEventSupported = __webpack_require__(76);
+var isEventSupported = __webpack_require__(77);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -8205,7 +8205,7 @@ module.exports = ReactBrowserEventEmitter;
 var SyntheticUIEvent = __webpack_require__(42);
 var ViewportMetrics = __webpack_require__(115);
 
-var getEventModifierState = __webpack_require__(74);
+var getEventModifierState = __webpack_require__(75);
 
 /**
  * @interface MouseEvent
@@ -8641,12 +8641,12 @@ module.exports = escapeTextContentForBrowser;
 
 
 var ExecutionEnvironment = __webpack_require__(14);
-var DOMNamespaces = __webpack_require__(65);
+var DOMNamespaces = __webpack_require__(66);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(72);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -8848,6 +8848,51 @@ exports.default = groupMap;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _superagent = __webpack_require__(22);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+var _PostItActionTypes = __webpack_require__(12);
+
+var _PostItActionTypes2 = _interopRequireDefault(_PostItActionTypes);
+
+var _PostItDispatcher = __webpack_require__(13);
+
+var _PostItDispatcher2 = _interopRequireDefault(_PostItDispatcher);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * getAllUsersAction - get all the PostIt registered users
+ * @returns {void}
+ */
+exports.default = function (groupId) {
+  _superagent2.default.post('/users').send(groupId).end(function (error, result) {
+    if (error) {
+      console.log(error);
+    } else {
+      var userList = result.body.userList;
+      console.log(userList);
+      _PostItDispatcher2.default.handleServerAction({
+        type: _PostItActionTypes2.default.RECIEVE_USERS,
+        users: userList,
+        id: groupId
+      });
+    }
+  });
+};
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.recieveGroups = recieveGroups;
 exports.addGroup = addGroup;
 exports.getGroups = getGroups;
@@ -8922,16 +8967,14 @@ function addGroupApi(groupName) {
     } else {
       // make api call to get all the new groups
       console.log(result);
-      getGroups();
-      // PostItDispatcher.handleServerAction({
-      //   type: PostItActionTypes.GET_GROUPS
-      // });
+      var newGroup = result.body.group;
+      recieveGroups(newGroup);
     }
   });
 }
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(166)(undefined);
@@ -8939,13 +8982,13 @@ exports = module.exports = __webpack_require__(166)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: #273443;\n  font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\na{\n  text-decoration: none;\n}\n\nul {\n  padding: 0;\n  list-style: none;\n}\n\nh6 {\n  padding: 0;\n  margin: 0;\n}\n\ninput {\n  width: 80%;\n  height: 50px;\n  border: 1px solid lavender;\n  border-radius: 5px;\n  padding: 5px;\n  margin-bottom: 4px;\n  font-size: 15px;\n  margin-left: 2px;\n}\n\n.inputform input {\n  display: inline-block;\n}\n\n.nav {\n  display: flex;\n  margin-bottom: 10px;\n  margin-right:10px;\n  margin-top: 0px;\n  max-width: 30%;\n  margin-left: 2px;\n}\n\n.nav li {\n list-style-type: none;\n margin-right: 2px;\n font-size: 15px;\n background-color: snow;\n color: black;\n padding: 10px;\n font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\n\n.nav li .active {\n  color: #29a6dc;\n  z-index: -1;\n}\n\n.inputField {\n  margin-bottom: 10px;\n  margin-top: 0px;\n  width: 80%;\n}\n\n.inputField #formInput:active{\n  text-transform: lowercase;\n}\n\n.error-login-register {\n  margin-top: 10px;\n  margin-left: 10px;\n  box-shadow: 0 0 1pt 1pt black;\n  display: inline-block;\n  font-size: 10px;\n  padding: 10px;\n  color: snow;\n  background: #FF9494;\n}\n\n.button {\n  width: 80%;\n  height: 50px;\n  box-shadow: 10px brown;\n  border: solid;\n  border-radius: 5px;\n  background-color: skyblue;\n}\n\n.button:enabled {\n  transform: translateZ(1px);\n  border: solid 0.5px;\n  border-color: lavender;\n  font-size: 15px;\n}\n\n.button:disabled {\n  transform: translateZ(-1);\n  border: none;\n}\n\n.landing-page-container {\n  margin: auto;\n  padding: 100px;\n}\n\n.landing-img-container {\n  float: left;\n  width: 40%;\n}\n\n.post-it-img {\n  height: 20%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(364) + ");\n  background-repeat: no-repeat;\n}\n\n.mail-box-img {\n  height: 50%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(363) + ");\n  background-repeat: no-repeat;\n}\n\n.login-register-container {\n  float: right;\n  width: 60%;\n  margin: auto;\n}\n\n.main-view {\n  margin-left: -2px;\n  padding: 0;\n}\n\n.header {\n  height: 6%;\n  margin: 0;\n}\n\n.greeting {\n  width: 20%;\n  position: absolute;\n  margin: 0;\n  padding: 5px;\n  left: 10px;\n  color: white;\n}\n\n.greeting h3 {\n  padding: 0;\n  margin: 0;\n}\n\n.sign-out {\n  position: absolute;\n  right: 10px;\n  color: white;\n}\n\n.sign-out-button {\n  border: none;\n  background: none;\n  outline: none;\n  color: white;\n}\n\n.group-list-nav {\n  float: left;\n  width: 30%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\n\n.add-group {\n  height: 8%;\n  width: 100%;\n  border-bottom: 1px solid #314050;\n}\n\n.add-group-form {\n  background: #273443;\n  margin: 0;\n  padding: 0;\n}\n\n.new-group-input {\n  background: #273443;\n  border: none;\n}\n\n.new-group-input[type=text]:focus {\n  color: whitesmoke;\n  border: none;\n  outline: none;\n}\n\n.add-group-button {\n  border: none;\n  background:  #273443;\n}\n\n.add-group-button:enabled {\n  color:  #578ec9;\n}\n\n.group-list-body {\n  height: 90%;\n  width: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: auto;\n  border-left: 1px solid #314050;\n}\n\n.group-list-item {\n  height: 66px;\n  text-decoration: none;\n  padding-left: 10px;\n  padding-top: 10px;\n  border-bottom: 1px solid #314050;\n  color: whitesmoke;\n}\n\n.group-list-item p {\n  width: 80%;\n  display: inline-block;\n  margin: 0;\n}\n\n.notification {\n  width: 10%;\n  display: inline-block;\n  padding: 7px;\n  border: none;\n}\n\n.groups-icon {\n  margin: 10px;\n}\n\n.group-list a.active div{\n  background: #314050;\n  box-shadow: 2px 1px 2px 2px #23313e;\n}\n\n.group-list a.active div .notification, \n.group-list div .notification:hover {\n  box-shadow: none;\n}\n.group-list div:hover {\n  background: #314050;\n  box-shadow: 1px 1px 2px 2px #23313e;\n}\n\n.group-details {\n  float: right;\n  width: 70%;\n  height: 93%;\n  background: white;\n}\n\n.welcome-view {\n  text-align: center;\n  padding: 50px;\n  font-size: 50px;\n}\n\n.group-item-top {\n  height: 8%;\n}\n\n.group-body-groupname {\n  width: 30%;\n  margin: auto;\n  text-align: center;\n}\n\n.add-user {\n  position: absolute;\n  top: 9%;\n  right: 20px;\n}\n\n.add-user-button {\n  background: none;\n  border: none;\n  outline: none;\n}\n\n.user-list {\n  float: right;\n}\n\n.user-list select {\n  background: #578ec9;\n  color: white;\n  border-radius: 8px 0px 0px 8px;\n  z-index: 2;\n}\n\n.user-list select option {\n  width: 200px;\n  height: 40px;\n  text-align: center;\n  padding-top: 20px;\n  font-size: 15px;\n}\n\n.user-list select option:hover {\n  background: ghostwhite;\n  color: black;\n}\n\n.user-list select option:checked {\n  display: none;\n}\n\n.group-item-bottom {\n  height: 92%;\n}\n\n.message-body {\n  position: relative;\n  height: 100%;\n  overflow: auto;\n}\n\n.message {\n  padding: 15px;\n}\n\n.sender-initials {\n  display: inline-block;\n  height: 30px;\n  width: 30px;\n  background: white;\n  text-transform: uppercase;\n  padding-top: 7px;\n  padding-right: 5px;\n  padding-left: 5px;\n  text-align: center;\n  position: absolute;\n  border: 1px solid #578ec9;\n  border-radius: 50%;\n  box-shadow: 1px 1px 10px black;\n}\n\n.sender-initials-alternate {\n  display: inline-block;\n  height: 30px;\n  width: 30px;\n  background: #578ec9;\n  color: white;\n  text-transform: uppercase;\n  padding-top: 7px;\n  padding-right: 5px;\n  padding-left: 5px;\n  text-align: center;\n  position: absolute;\n  right: 2px;\n  border-radius: 50%;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-view {\n  background: #578ec9;\n  display: inline-block;\n  border-radius: 5px;\n  color: #e4f0f5;\n  padding: 15px;\n  margin-left: 50px;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-view-alternate {\n  background: white;\n  max-width: 50%;\n  display: block;\n  padding: 15px;\n  margin-left: 42%;\n  border-radius: 5px;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-reader ul {\n  display: flex;\n  font-size: x-small;\n  margin-top: 0;\n  margin-left: 50px;\n  color: #578ec9;\n}\n\n.message-reader li {\n  margin-left: 2px;\n}\n\n.message-reader li:after {\n  content: ',';\n}\n\n.message-reader li:last-child:after {\n  content: none;\n}\n\n.message-reader-alternate ul {\n  display: flex;\n  font-size: x-small;\n  margin-top: 0;\n  margin-left: 42%;\n  color: #578ec9;\n}\n\n.message-reader-alternate li {\n  margin-left: 2px;\n}\n\n.message-reader-alternate li:after {\n  content: ',';\n}\n\n.message-reader-alternate li:last-child:after {\n  content: none;\n}\n\n.send-message {\n  position: fixed;\n  bottom: 0px;\n  margin: 0;\n  padding: 0;\n  width: 69.5%;\n  height: 50px;\n}\n\n.send-message input {\n  position: absolute;\n  bottom: 0px;\n  width: 100%;\n  height: 100%;\n  border: none;\n  padding-left: 50px;\n  margin: 0;\n}\n\n.send-message form input[type=text]:focus {\n  outline: none;\n}\n\n.send-message form button {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  z-index: 1;\n  height: 100%;\n  margin-right: 20px;\n  border: none;\n  background: none;\n}\n\n\n.send-message form button:enabled {\n  color: #578ec9;\n}\n\n.send-message form .normal {\n  background: white;\n  width: 40px;\n  height: 90%;\n  border-right: 1px solid lavender;\n  border-radius: 0px 0px 0px 4px;\n  position: absolute;\n  left: 1px;\n  bottom: 3px;\n  z-index: 1;\n}\n\n.send-message form .normal:enabled {\n  box-shadow: none;\n}\n\n.send-message form .normal:focus {\n  outline: none;\n}\n\n.google-signin {\n  width: 20%;\n  margin-top: 0;\n  margin-left: 150px;\n}\n\n.or-text {\n  display: inline-block;\n  height: 10px;\n  margin-left: 100px;\n  margin-top: 0;\n  color: snow;\n}\n\n\n.forgot-password-button {\n  position: fixed;\n  top: 10px;\n  right: 10px;\n  border: none;\n  background: none;\n  color: black;\n  font-size: 15px;\n  margin-left: 180px;\n  margin-top: 5px;\n}\n\n.forgot-password-button:hover {\n  color: snow;\n}\n\n.reset-form {\n  width: 60%;\n  margin: auto;\n}\n\n.reset-form p {\n  color: snow;\n  margin-right: 150px;\n  text-align: center;\n}\n\n.password-sent-message {\n  text-align: center;\n  margin-right: 150px;\n  font-size: 20px;\n}\n\n.login-button {\n  border: none;\n  background: none;\n  color: snow;\n  padding: 0;\n  font-size: 20px;\n}\n\n\n\n\n\n", ""]);
+exports.push([module.i, "body {\n  background-color: #273443;\n  font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\na{\n  text-decoration: none;\n}\n\nul {\n  padding: 0;\n  list-style: none;\n}\n\nh6 {\n  padding: 0;\n  margin: 0;\n}\n\ninput {\n  width: 80%;\n  height: 50px;\n  border: 1px solid lavender;\n  border-radius: 5px;\n  padding: 5px;\n  margin-bottom: 4px;\n  font-size: 15px;\n  margin-left: 2px;\n}\n\n.inputform input {\n  display: inline-block;\n}\n\n.nav {\n  display: flex;\n  margin-bottom: 10px;\n  margin-right:10px;\n  margin-top: 0px;\n  max-width: 30%;\n  margin-left: 2px;\n}\n\n.nav li {\n list-style-type: none;\n margin-right: 2px;\n font-size: 15px;\n background-color: snow;\n color: black;\n padding: 10px;\n font-family: \"Open Sans\",\"Helvetica Neue\",Arial,Helvetica,Verdana,sans-serif;\n}\n\n\n.nav li .active {\n  color: #29a6dc;\n  z-index: -1;\n}\n\n.inputField {\n  margin-bottom: 10px;\n  margin-top: 0px;\n  width: 80%;\n}\n\n.inputField #formInput:active{\n  text-transform: lowercase;\n}\n\n.error-login-register {\n  margin-top: 10px;\n  margin-left: 10px;\n  box-shadow: 0 0 1pt 1pt black;\n  display: inline-block;\n  font-size: 10px;\n  padding: 10px;\n  color: snow;\n  background: #FF9494;\n}\n\n.button {\n  width: 80%;\n  height: 50px;\n  box-shadow: 10px brown;\n  border: solid;\n  border-radius: 5px;\n  background-color: skyblue;\n}\n\n.button:enabled {\n  transform: translateZ(1px);\n  border: solid 0.5px;\n  border-color: lavender;\n  font-size: 15px;\n}\n\n.button:disabled {\n  transform: translateZ(-1);\n  border: none;\n}\n\n.landing-page-container {\n  margin: auto;\n  padding: 100px;\n}\n\n.landing-img-container {\n  float: left;\n  width: 40%;\n}\n\n.post-it-img {\n  height: 20%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(364) + ");\n  background-repeat: no-repeat;\n}\n\n.mail-box-img {\n  height: 50%;\n  width: 100%;\n  background-image: url(" + __webpack_require__(363) + ");\n  background-repeat: no-repeat;\n}\n\n.login-register-container {\n  float: right;\n  width: 60%;\n  margin: auto;\n}\n\n.main-view {\n  margin-left: -2px;\n  padding: 0;\n}\n\n.header {\n  height: 6%;\n  margin: 0;\n}\n\n.greeting {\n  width: 20%;\n  position: absolute;\n  margin: 0;\n  padding: 5px;\n  left: 10px;\n  color: white;\n}\n\n.greeting h3 {\n  padding: 0;\n  margin: 0;\n}\n\n.sign-out {\n  position: absolute;\n  right: 10px;\n  color: white;\n}\n\n.sign-out-button {\n  border: none;\n  background: none;\n  outline: none;\n  color: white;\n}\n\n.group-list-nav {\n  float: left;\n  width: 30%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\n\n.add-group {\n  height: 8%;\n  width: 100%;\n  border-bottom: 1px solid #314050;\n}\n\n.add-group-form {\n  background: #273443;\n  margin: 0;\n  padding: 0;\n}\n\n.new-group-input {\n  background: #273443;\n  border: none;\n}\n\n.new-group-input[type=text]:focus {\n  color: whitesmoke;\n  border: none;\n  outline: none;\n}\n\n.add-group-button {\n  border: none;\n  background:  #273443;\n}\n\n.add-group-button:enabled {\n  color:  #578ec9;\n}\n\n.group-list-body {\n  height: 90%;\n  width: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: auto;\n  border-left: 1px solid #314050;\n}\n\n.group-list-item {\n  height: 66px;\n  text-decoration: none;\n  padding-left: 10px;\n  padding-top: 10px;\n  border-bottom: 1px solid #314050;\n  color: whitesmoke;\n}\n\n.group-list-item p {\n  width: 80%;\n  display: inline-block;\n  margin: 0;\n}\n\n.notification {\n  width: 10%;\n  display: inline-block;\n  padding: 7px;\n  border: none;\n}\n\n.groups-icon {\n  margin: 10px;\n}\n\n.group-list a.active div{\n  background: #314050;\n  box-shadow: 2px 1px 2px 2px #23313e;\n}\n\n.group-list a.active div .notification, \n.group-list div .notification:hover {\n  box-shadow: none;\n}\n.group-list div:hover {\n  background: #314050;\n  box-shadow: 1px 1px 2px 2px #23313e;\n}\n\n.group-details {\n  float: right;\n  width: 70%;\n  height: 93%;\n  background: white;\n}\n\n.welcome-view {\n  text-align: center;\n  padding: 50px;\n  font-size: 50px;\n}\n\n.group-item-top {\n  height: 8%;\n}\n\n.group-body-groupname {\n  width: 30%;\n  margin: auto;\n  text-align: center;\n}\n\n.add-user {\n  position: absolute;\n  top: 9%;\n  right: 20px;\n}\n\n.add-user-button {\n  background: none;\n  border: none;\n  outline: none;\n}\n\n.user-list {\n  float: right;\n  position: absolute;\n  right: 0;\n  z-index: 10;\n}\n\n.user-list select {\n  background: #578ec9;\n  color: white;\n  border-radius: 8px 0px 0px 8px;\n  z-index: 2;\n}\n\n.user-list select option {\n  width: 200px;\n  height: 40px;\n  text-align: center;\n  padding-top: 20px;\n  font-size: 15px;\n}\n\n.user-list select option:hover {\n  background: ghostwhite;\n  color: black;\n}\n\n.user-list select option:checked {\n  display: none;\n}\n\n.group-item-bottom {\n  height: 92%;\n  position: relative;\n  width: 100%;\n}\n\n.message-body {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n}\n\n.message {\n  padding: 15px;\n}\n\n.sender-initials {\n  display: inline-block;\n  height: 30px;\n  width: 30px;\n  background: white;\n  text-transform: uppercase;\n  padding-top: 7px;\n  padding-right: 5px;\n  padding-left: 5px;\n  text-align: center;\n  position: absolute;\n  border: 1px solid #578ec9;\n  border-radius: 50%;\n  box-shadow: 1px 1px 10px black;\n}\n\n.sender-initials-alternate {\n  display: inline-block;\n  height: 30px;\n  width: 30px;\n  background: #578ec9;\n  color: white;\n  text-transform: uppercase;\n  padding-top: 7px;\n  padding-right: 5px;\n  padding-left: 5px;\n  text-align: center;\n  position: absolute;\n  right: 2px;\n  border-radius: 50%;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-view {\n  background: #578ec9;\n  display: inline-block;\n  border-radius: 5px;\n  color: #e4f0f5;\n  padding: 15px;\n  margin-left: 50px;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-view-alternate {\n  background: white;\n  max-width: 50%;\n  display: block;\n  padding: 15px;\n  margin-left: 42%;\n  border-radius: 5px;\n  box-shadow: 1px 1px 5px black;\n}\n\n.message-reader ul {\n  display: flex;\n  font-size: x-small;\n  margin-top: 0;\n  margin-left: 50px;\n  color: #578ec9;\n}\n\n.message-reader li {\n  margin-left: 2px;\n}\n\n.message-reader li:after {\n  content: ',';\n}\n\n.message-reader li:last-child:after {\n  content: none;\n}\n\n.message-reader-alternate ul {\n  display: flex;\n  font-size: x-small;\n  margin-top: 0;\n  margin-left: 42%;\n  color: #578ec9;\n}\n\n.message-reader-alternate li {\n  margin-left: 2px;\n}\n\n.message-reader-alternate li:after {\n  content: ',';\n}\n\n.message-reader-alternate li:last-child:after {\n  content: none;\n}\n\n.send-message {\n  position: fixed;\n  bottom: 0px;\n  margin: 0;\n  padding: 0;\n  width: 69.5%;\n  height: 50px;\n}\n\n.send-message input {\n  position: absolute;\n  bottom: 0px;\n  width: 100%;\n  height: 100%;\n  border: none;\n  padding-left: 50px;\n  margin: 0;\n}\n\n.send-message form input[type=text]:focus {\n  outline: none;\n}\n\n.send-message form button {\n  position: absolute;\n  right: 0px;\n  bottom: 0px;\n  z-index: 1;\n  height: 100%;\n  margin-right: 20px;\n  border: none;\n  background: none;\n}\n\n\n.send-message form button:enabled {\n  color: #578ec9;\n}\n\n.send-message form .normal {\n  background: white;\n  width: 40px;\n  height: 90%;\n  border-right: 1px solid lavender;\n  border-radius: 0px 0px 0px 4px;\n  position: absolute;\n  left: 1px;\n  bottom: 3px;\n  z-index: 1;\n}\n\n.send-message form .normal:enabled {\n  box-shadow: none;\n}\n\n.send-message form .normal:focus {\n  outline: none;\n}\n\n.google-signin {\n  width: 20%;\n  margin-top: 0;\n  margin-left: 150px;\n}\n\n.or-text {\n  display: inline-block;\n  height: 10px;\n  margin-left: 100px;\n  margin-top: 0;\n  color: snow;\n}\n\n\n.forgot-password-button {\n  position: fixed;\n  top: 10px;\n  right: 10px;\n  border: none;\n  background: none;\n  color: black;\n  font-size: 15px;\n  margin-left: 180px;\n  margin-top: 5px;\n}\n\n.forgot-password-button:hover {\n  color: snow;\n}\n\n.reset-form {\n  width: 60%;\n  margin: auto;\n}\n\n.reset-form p {\n  color: snow;\n  margin-right: 150px;\n  text-align: center;\n}\n\n.password-sent-message {\n  text-align: center;\n  margin-right: 150px;\n  font-size: 20px;\n}\n\n.login-button {\n  border: none;\n  background: none;\n  color: snow;\n  padding: 0;\n  font-size: 20px;\n}\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -9108,7 +9151,7 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
@@ -9152,7 +9195,7 @@ module.exports = function (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9225,7 +9268,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9294,7 +9337,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9385,7 +9428,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9406,7 +9449,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9427,7 +9470,7 @@ var Danger = __webpack_require__(211);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(19);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(72);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(73);
 var setInnerHTML = __webpack_require__(52);
 var setTextContent = __webpack_require__(123);
 
@@ -9638,7 +9681,7 @@ module.exports = DOMChildrenOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9663,7 +9706,7 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9681,7 +9724,7 @@ module.exports = DOMNamespaces;
 
 var _prodInvariant = __webpack_require__(4);
 
-var ReactErrorUtils = __webpack_require__(70);
+var ReactErrorUtils = __webpack_require__(71);
 
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
@@ -9895,7 +9938,7 @@ module.exports = EventPluginUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9959,7 +10002,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10103,7 +10146,7 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10153,7 +10196,7 @@ module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10235,7 +10278,7 @@ module.exports = ReactErrorUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10475,7 +10518,7 @@ module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10512,7 +10555,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10567,7 +10610,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10615,7 +10658,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10655,7 +10698,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10720,7 +10763,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10767,7 +10810,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11144,7 +11187,7 @@ module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11263,7 +11306,7 @@ Router.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Router);
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11338,7 +11381,7 @@ var matchPath = function matchPath(pathname) {
 /* harmony default export */ __webpack_exports__["a"] = (matchPath);
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11409,7 +11452,7 @@ module.exports = lowPriorityWarning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -11815,7 +11858,7 @@ function error() {
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 /**
@@ -11832,50 +11875,6 @@ function isObject(obj) {
 
 module.exports = isObject;
 
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _superagent = __webpack_require__(22);
-
-var _superagent2 = _interopRequireDefault(_superagent);
-
-var _PostItActionTypes = __webpack_require__(12);
-
-var _PostItActionTypes2 = _interopRequireDefault(_PostItActionTypes);
-
-var _PostItDispatcher = __webpack_require__(13);
-
-var _PostItDispatcher2 = _interopRequireDefault(_PostItDispatcher);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * getAllUsersAction - get all the PostIt registered users
- * @returns {void}
- */
-exports.default = function () {
-  _superagent2.default.get('/users').end(function (error, result) {
-    if (error) {
-      console.log(error);
-    } else {
-      var userList = result.body.userList;
-      console.log(userList);
-      _PostItDispatcher2.default.handleServerAction({
-        type: _PostItActionTypes2.default.RECIEVE_USERS,
-        users: userList
-      });
-    }
-  });
-};
 
 /***/ }),
 /* 85 */
@@ -12064,7 +12063,7 @@ var _PostItActionTypes = __webpack_require__(12);
 
 var _PostItActionTypes2 = _interopRequireDefault(_PostItActionTypes);
 
-var _groupActions = __webpack_require__(56);
+var _groupActions = __webpack_require__(57);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12582,7 +12581,7 @@ module.exports = function(obj, fn){
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(59);
+var XMLHttpRequest = __webpack_require__(60);
 var XHR = __webpack_require__(172);
 var JSONP = __webpack_require__(171);
 var websocket = __webpack_require__(173);
@@ -12642,7 +12641,7 @@ function polling (opts) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(58);
+var Transport = __webpack_require__(59);
 var parseqs = __webpack_require__(46);
 var parser = __webpack_require__(32);
 var inherit = __webpack_require__(43);
@@ -12660,7 +12659,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(59);
+  var XMLHttpRequest = __webpack_require__(60);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -18469,7 +18468,7 @@ var emptyFunction = __webpack_require__(16);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
-var ReactPropTypesSecret = __webpack_require__(63);
+var ReactPropTypesSecret = __webpack_require__(64);
 var checkPropTypes = __webpack_require__(203);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
@@ -19536,7 +19535,7 @@ module.exports = ReactDOMComponentFlags;
 
 var _assign = __webpack_require__(5);
 
-var LinkedValueUtils = __webpack_require__(68);
+var LinkedValueUtils = __webpack_require__(69);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(23);
 
@@ -20658,7 +20657,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(237);
 
 var getIteratorFn = __webpack_require__(271);
 var invariant = __webpack_require__(2);
-var KeyEscapeUtils = __webpack_require__(67);
+var KeyEscapeUtils = __webpack_require__(68);
 var warning = __webpack_require__(3);
 
 var SEPARATOR = '.';
@@ -21421,7 +21420,7 @@ Link.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__matchPath__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__matchPath__ = __webpack_require__(81);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21579,7 +21578,7 @@ var ReactNoopUpdateQueue = __webpack_require__(137);
 var canDefineProperty = __webpack_require__(54);
 var emptyObject = __webpack_require__(44);
 var invariant = __webpack_require__(2);
-var lowPriorityWarning = __webpack_require__(81);
+var lowPriorityWarning = __webpack_require__(82);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -21761,7 +21760,7 @@ var checkReactTypeSpec = __webpack_require__(343);
 var canDefineProperty = __webpack_require__(54);
 var getIteratorFn = __webpack_require__(138);
 var warning = __webpack_require__(3);
-var lowPriorityWarning = __webpack_require__(81);
+var lowPriorityWarning = __webpack_require__(82);
 
 function getDeclarationErrorAddendum() {
   if (ReactCurrentOwner.current) {
@@ -22148,7 +22147,7 @@ module.exports = getIteratorFn;
 var eio = __webpack_require__(168);
 var Socket = __webpack_require__(141);
 var Emitter = __webpack_require__(28);
-var parser = __webpack_require__(82);
+var parser = __webpack_require__(83);
 var on = __webpack_require__(140);
 var bind = __webpack_require__(90);
 var debug = __webpack_require__(25)('socket.io-client:manager');
@@ -22754,7 +22753,7 @@ function on (obj, ev, fn) {
  * Module dependencies.
  */
 
-var parser = __webpack_require__(82);
+var parser = __webpack_require__(83);
 var Emitter = __webpack_require__(28);
 var toArray = __webpack_require__(362);
 var on = __webpack_require__(140);
@@ -23855,13 +23854,18 @@ exports.default = function (Details) {
   console.log(groupId);
 
   console.log('reaches add user action');
-  _superagent2.default.post('group/' + groupId + '/user').send({
+  _superagent2.default.post('/group/' + groupId + '/user').send({
     userId: user
   }).end(function (error, result) {
     if (error) {
       console.log(error);
     } else {
       console.log(result);
+      _PostItDispatcher2.default.handleServerAction({
+        type: _PostItActionTypes2.default.DELETE_USER,
+        id: user,
+        groupId: Details.groupId
+      });
     }
   });
 };
@@ -24226,7 +24230,7 @@ var _PostItActionTypes = __webpack_require__(12);
 
 var _PostItActionTypes2 = _interopRequireDefault(_PostItActionTypes);
 
-var _getAllUsersAction = __webpack_require__(84);
+var _getAllUsersAction = __webpack_require__(56);
 
 var _getAllUsersAction2 = _interopRequireDefault(_getAllUsersAction);
 
@@ -24297,7 +24301,7 @@ var PostItAllUserStore = function (_EventEmitter) {
   }, {
     key: 'getUsers',
     value: function getUsers() {
-      console.log('asks for groups');
+      console.log('asks for users');
       console.log('and gets...');
       console.log(users);
       return users;
@@ -24322,9 +24326,39 @@ _PostItDispatcher2.default.register(function (payload) {
 
     case _PostItActionTypes2.default.RECIEVE_USERS:
       {
-        var userMap = new Map(action.users);
-        addNewUsers(userMap);
+        var groupId = action.id;
+        var userList = action.users;
+
+        var usersForGroup = users.get(groupId);
+        if (usersForGroup) {
+          usersForGroup = usersForGroup.merge(new Map(userList));
+          var newUserMap = new Map();
+          newUserMap.set(groupId, usersForGroup);
+          addNewUsers(newUserMap);
+        } else {
+          var _newUserMap = new Map();
+          _newUserMap.set(groupId, new _groupList2.default(userList));
+          addNewUsers(_newUserMap);
+        }
+        console.log(users);
         allUserStore.emit(CHANGE_EVENT);
+        break;
+      }
+
+    case _PostItActionTypes2.default.DELETE_USER:
+      {
+        console.log('gets to delete user action');
+        var userId = action.id;
+        var _groupId = action.groupId;
+
+        console.log(users.get(_groupId));
+        var _usersForGroup = users.get(_groupId);
+        if (_usersForGroup) {
+          _usersForGroup = _usersForGroup.delete(userId);
+          addNewUsers(_usersForGroup);
+          allUserStore.emit(CHANGE_EVENT);
+        }
+        console.log(users);
         break;
       }
 
@@ -26044,7 +26078,7 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(58);
+Socket.Transport = __webpack_require__(59);
 Socket.transports = __webpack_require__(91);
 Socket.parser = __webpack_require__(32);
 
@@ -26893,7 +26927,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(59);
+var XMLHttpRequest = __webpack_require__(60);
 var Polling = __webpack_require__(92);
 var Emitter = __webpack_require__(28);
 var inherit = __webpack_require__(43);
@@ -27313,7 +27347,7 @@ function unloadHandler () {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(58);
+var Transport = __webpack_require__(59);
 var parser = __webpack_require__(32);
 var parseqs = __webpack_require__(46);
 var inherit = __webpack_require__(43);
@@ -28932,11 +28966,11 @@ var _invariant = __webpack_require__(45);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(61);
+var _LocationUtils = __webpack_require__(62);
 
 var _PathUtils = __webpack_require__(38);
 
-var _createTransitionManager = __webpack_require__(62);
+var _createTransitionManager = __webpack_require__(63);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -29244,11 +29278,11 @@ var _invariant = __webpack_require__(45);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(61);
+var _LocationUtils = __webpack_require__(62);
 
 var _PathUtils = __webpack_require__(38);
 
-var _createTransitionManager = __webpack_require__(62);
+var _createTransitionManager = __webpack_require__(63);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -29572,9 +29606,9 @@ var _warning2 = _interopRequireDefault(_warning);
 
 var _PathUtils = __webpack_require__(38);
 
-var _LocationUtils = __webpack_require__(61);
+var _LocationUtils = __webpack_require__(62);
 
-var _createTransitionManager = __webpack_require__(62);
+var _createTransitionManager = __webpack_require__(63);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
@@ -30327,7 +30361,7 @@ module.exports = function parsejson(data) {
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(2);
   var warning = __webpack_require__(3);
-  var ReactPropTypesSecret = __webpack_require__(63);
+  var ReactPropTypesSecret = __webpack_require__(64);
   var loggedTypeFailures = {};
 }
 
@@ -30395,7 +30429,7 @@ module.exports = checkPropTypes;
 
 var emptyFunction = __webpack_require__(16);
 var invariant = __webpack_require__(2);
-var ReactPropTypesSecret = __webpack_require__(63);
+var ReactPropTypesSecret = __webpack_require__(64);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -31196,8 +31230,8 @@ var ReactUpdates = __webpack_require__(23);
 var SyntheticEvent = __webpack_require__(26);
 
 var inputValueTracking = __webpack_require__(120);
-var getEventTarget = __webpack_require__(75);
-var isEventSupported = __webpack_require__(76);
+var getEventTarget = __webpack_require__(76);
+var isEventSupported = __webpack_require__(77);
 var isTextInputElement = __webpack_require__(122);
 
 var eventTypes = {
@@ -32035,8 +32069,8 @@ module.exports = HTMLDOMPropertyConfig;
 var ReactReconciler = __webpack_require__(34);
 
 var instantiateReactComponent = __webpack_require__(121);
-var KeyEscapeUtils = __webpack_require__(67);
-var shouldUpdateReactComponent = __webpack_require__(77);
+var KeyEscapeUtils = __webpack_require__(68);
+var shouldUpdateReactComponent = __webpack_require__(78);
 var traverseAllChildren = __webpack_require__(124);
 var warning = __webpack_require__(3);
 
@@ -32191,7 +32225,7 @@ module.exports = ReactChildReconciler;
 
 
 
-var DOMChildrenOperations = __webpack_require__(64);
+var DOMChildrenOperations = __webpack_require__(65);
 var ReactDOMIDOperations = __webpack_require__(224);
 
 /**
@@ -32228,9 +32262,9 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
 var React = __webpack_require__(35);
-var ReactComponentEnvironment = __webpack_require__(69);
+var ReactComponentEnvironment = __webpack_require__(70);
 var ReactCurrentOwner = __webpack_require__(24);
-var ReactErrorUtils = __webpack_require__(70);
+var ReactErrorUtils = __webpack_require__(71);
 var ReactInstanceMap = __webpack_require__(41);
 var ReactInstrumentation = __webpack_require__(19);
 var ReactNodeTypes = __webpack_require__(113);
@@ -32242,8 +32276,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 var emptyObject = __webpack_require__(44);
 var invariant = __webpack_require__(2);
-var shallowEqual = __webpack_require__(60);
-var shouldUpdateReactComponent = __webpack_require__(77);
+var shallowEqual = __webpack_require__(61);
+var shouldUpdateReactComponent = __webpack_require__(78);
 var warning = __webpack_require__(3);
 
 var CompositeTypes = {
@@ -33255,7 +33289,7 @@ var _prodInvariant = __webpack_require__(4),
 var AutoFocusUtils = __webpack_require__(207);
 var CSSPropertyOperations = __webpack_require__(209);
 var DOMLazyTree = __webpack_require__(33);
-var DOMNamespaces = __webpack_require__(65);
+var DOMNamespaces = __webpack_require__(66);
 var DOMProperty = __webpack_require__(27);
 var DOMPropertyOperations = __webpack_require__(106);
 var EventPluginHub = __webpack_require__(39);
@@ -33274,10 +33308,10 @@ var ReactServerRenderingTransaction = __webpack_require__(249);
 var emptyFunction = __webpack_require__(16);
 var escapeTextContentForBrowser = __webpack_require__(51);
 var invariant = __webpack_require__(2);
-var isEventSupported = __webpack_require__(76);
-var shallowEqual = __webpack_require__(60);
+var isEventSupported = __webpack_require__(77);
+var shallowEqual = __webpack_require__(61);
 var inputValueTracking = __webpack_require__(120);
-var validateDOMNesting = __webpack_require__(78);
+var validateDOMNesting = __webpack_require__(79);
 var warning = __webpack_require__(3);
 
 var Flags = ReactDOMComponentFlags;
@@ -34263,7 +34297,7 @@ module.exports = ReactDOMComponent;
 
 
 
-var validateDOMNesting = __webpack_require__(78);
+var validateDOMNesting = __webpack_require__(79);
 
 var DOC_NODE_TYPE = 9;
 
@@ -34391,7 +34425,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var DOMChildrenOperations = __webpack_require__(64);
+var DOMChildrenOperations = __webpack_require__(65);
 var ReactDOMComponentTree = __webpack_require__(6);
 
 /**
@@ -34433,7 +34467,7 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
 var DOMPropertyOperations = __webpack_require__(106);
-var LinkedValueUtils = __webpack_require__(68);
+var LinkedValueUtils = __webpack_require__(69);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(23);
 
@@ -35218,13 +35252,13 @@ module.exports = ReactDOMSelection;
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
-var DOMChildrenOperations = __webpack_require__(64);
+var DOMChildrenOperations = __webpack_require__(65);
 var DOMLazyTree = __webpack_require__(33);
 var ReactDOMComponentTree = __webpack_require__(6);
 
 var escapeTextContentForBrowser = __webpack_require__(51);
 var invariant = __webpack_require__(2);
-var validateDOMNesting = __webpack_require__(78);
+var validateDOMNesting = __webpack_require__(79);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -35386,7 +35420,7 @@ module.exports = ReactDOMTextComponent;
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
-var LinkedValueUtils = __webpack_require__(68);
+var LinkedValueUtils = __webpack_require__(69);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(23);
 
@@ -36410,7 +36444,7 @@ var PooledClass = __webpack_require__(29);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(23);
 
-var getEventTarget = __webpack_require__(75);
+var getEventTarget = __webpack_require__(76);
 var getUnboundedScrollPosition = __webpack_require__(182);
 
 /**
@@ -36603,8 +36637,8 @@ module.exports = ReactHostOperationHistoryHook;
 
 var DOMProperty = __webpack_require__(27);
 var EventPluginHub = __webpack_require__(39);
-var EventPluginUtils = __webpack_require__(66);
-var ReactComponentEnvironment = __webpack_require__(69);
+var EventPluginUtils = __webpack_require__(67);
+var ReactComponentEnvironment = __webpack_require__(70);
 var ReactEmptyComponent = __webpack_require__(109);
 var ReactBrowserEventEmitter = __webpack_require__(48);
 var ReactHostComponent = __webpack_require__(111);
@@ -36740,7 +36774,7 @@ module.exports = ReactMarkupChecksum;
 
 var _prodInvariant = __webpack_require__(4);
 
-var ReactComponentEnvironment = __webpack_require__(69);
+var ReactComponentEnvironment = __webpack_require__(70);
 var ReactInstanceMap = __webpack_require__(41);
 var ReactInstrumentation = __webpack_require__(19);
 
@@ -37328,7 +37362,7 @@ var ReactBrowserEventEmitter = __webpack_require__(48);
 var ReactInputSelection = __webpack_require__(112);
 var ReactInstrumentation = __webpack_require__(19);
 var Transaction = __webpack_require__(50);
-var ReactUpdateQueue = __webpack_require__(71);
+var ReactUpdateQueue = __webpack_require__(72);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -37697,7 +37731,7 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(71);
+var ReactUpdateQueue = __webpack_require__(72);
 
 var warning = __webpack_require__(3);
 
@@ -38173,7 +38207,7 @@ var SyntheticEvent = __webpack_require__(26);
 
 var getActiveElement = __webpack_require__(95);
 var isTextInputElement = __webpack_require__(122);
-var shallowEqual = __webpack_require__(60);
+var shallowEqual = __webpack_require__(61);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -38377,7 +38411,7 @@ var SyntheticUIEvent = __webpack_require__(42);
 var SyntheticWheelEvent = __webpack_require__(264);
 
 var emptyFunction = __webpack_require__(16);
-var getEventCharCode = __webpack_require__(73);
+var getEventCharCode = __webpack_require__(74);
 var invariant = __webpack_require__(2);
 
 /**
@@ -38844,9 +38878,9 @@ module.exports = SyntheticInputEvent;
 
 var SyntheticUIEvent = __webpack_require__(42);
 
-var getEventCharCode = __webpack_require__(73);
+var getEventCharCode = __webpack_require__(74);
 var getEventKey = __webpack_require__(270);
-var getEventModifierState = __webpack_require__(74);
+var getEventModifierState = __webpack_require__(75);
 
 /**
  * @interface KeyboardEvent
@@ -38933,7 +38967,7 @@ module.exports = SyntheticKeyboardEvent;
 
 var SyntheticUIEvent = __webpack_require__(42);
 
-var getEventModifierState = __webpack_require__(74);
+var getEventModifierState = __webpack_require__(75);
 
 /**
  * @interface TouchEvent
@@ -39375,7 +39409,7 @@ module.exports = findDOMNode;
 
 
 
-var KeyEscapeUtils = __webpack_require__(67);
+var KeyEscapeUtils = __webpack_require__(68);
 var traverseAllChildren = __webpack_require__(124);
 var warning = __webpack_require__(3);
 
@@ -39456,7 +39490,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(73);
+var getEventCharCode = __webpack_require__(74);
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -40397,7 +40431,7 @@ var _plus = __webpack_require__(311);
 
 var _plus2 = _interopRequireDefault(_plus);
 
-var _groupActions = __webpack_require__(56);
+var _groupActions = __webpack_require__(57);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40530,7 +40564,7 @@ var _GroupListView = __webpack_require__(294);
 
 var _GroupListView2 = _interopRequireDefault(_GroupListView);
 
-var _groupActions = __webpack_require__(56);
+var _groupActions = __webpack_require__(57);
 
 var _PostItGroupStore = __webpack_require__(87);
 
@@ -40544,7 +40578,7 @@ var _getMessagesAction = __webpack_require__(85);
 
 var _getMessagesAction2 = _interopRequireDefault(_getMessagesAction);
 
-var _getAllUsersAction = __webpack_require__(84);
+var _getAllUsersAction = __webpack_require__(56);
 
 var _getAllUsersAction2 = _interopRequireDefault(_getAllUsersAction);
 
@@ -41038,7 +41072,7 @@ function MessageListView(props) {
             Object.keys(message.read).map(function (keys) {
               return _react2.default.createElement(
                 'li',
-                null,
+                { key: keys },
                 keys
               );
             })
@@ -41324,7 +41358,7 @@ function UserList(props) {
       groupId: group
     };
     (0, _addUserGroup2.default)(Details);
-    props.users.delete(value);
+    // props.users.delete(value);
   };
 
   return _react2.default.createElement(
@@ -41332,7 +41366,7 @@ function UserList(props) {
     null,
     _react2.default.createElement(
       'select',
-      { multiple: true,
+      {
         name: 'Add User',
         size: '5',
         onChange: handleSelect
@@ -41389,6 +41423,10 @@ var _AddUserView = __webpack_require__(287);
 
 var _AddUserView2 = _interopRequireDefault(_AddUserView);
 
+var _getAllUsersAction = __webpack_require__(56);
+
+var _getAllUsersAction2 = _interopRequireDefault(_getAllUsersAction);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41413,7 +41451,12 @@ var GroupItem = function (_React$Component) {
   function GroupItem(props) {
     _classCallCheck(this, GroupItem);
 
+    // get user List for this group
     var _this = _possibleConstructorReturn(this, (GroupItem.__proto__ || Object.getPrototypeOf(GroupItem)).call(this, props));
+
+    (0, _getAllUsersAction2.default)({
+      groupId: props.match.params.groupId
+    });
 
     _this.state = {
       addUser: false
@@ -41434,6 +41477,19 @@ var GroupItem = function (_React$Component) {
     value: function handleClick() {
       this.setState({
         addUser: !this.state.addUser
+      });
+    }
+
+    /** close add user in new group
+     * @return {void}
+     * @param {*} newProp
+     */
+
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps() {
+      this.setState({
+        addUser: false
       });
     }
 
@@ -41473,16 +41529,16 @@ var GroupItem = function (_React$Component) {
                 color: '#578ec9'
               })
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'user-list' },
-            this.state.addUser && _react2.default.createElement(_AddUserView2.default, { groupId: this.props.match.params.groupId })
           )
         ),
         _react2.default.createElement(
           'div',
           { className: 'group-item-bottom' },
+          _react2.default.createElement(
+            'div',
+            { className: 'user-list' },
+            this.state.addUser && _react2.default.createElement(_AddUserView2.default, { groupId: this.props.match.params.groupId })
+          ),
           _react2.default.createElement(_MessageBody2.default, { groupId: this.props.match.params.groupId, socket: this.props.socket })
         )
       );
@@ -43990,7 +44046,7 @@ NavLink.defaultProps = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_history_createMemoryHistory__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_history_createMemoryHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_history_createMemoryHistory__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Router__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Router__ = __webpack_require__(80);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -44224,7 +44280,7 @@ Redirect.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_PathUtils__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_PathUtils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_history_PathUtils__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(80);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -44398,7 +44454,7 @@ StaticRouter.childContextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__matchPath__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__matchPath__ = __webpack_require__(81);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -46067,7 +46123,7 @@ module.exports = resolvePathname;
  */
 
 var url = __webpack_require__(350);
-var parser = __webpack_require__(82);
+var parser = __webpack_require__(83);
 var Manager = __webpack_require__(139);
 var debug = __webpack_require__(25)('socket.io-client');
 
@@ -46418,7 +46474,7 @@ module.exports = function (str) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(58);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -46432,8 +46488,8 @@ if(content.locals) module.exports = content.locals;
 if(true) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept(57, function() {
-			var newContent = __webpack_require__(57);
+		module.hot.accept(58, function() {
+			var newContent = __webpack_require__(58);
 			if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
 			update(newContent);
 		});
@@ -46907,7 +46963,7 @@ module.exports = function (css) {
  * @return {Boolean}
  * @api private
  */
-var isObject = __webpack_require__(83);
+var isObject = __webpack_require__(84);
 
 function isFunction(fn) {
   var tag = isObject(fn) ? Object.prototype.toString.call(fn) : '';
@@ -46924,7 +46980,7 @@ module.exports = isFunction;
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(83);
+var isObject = __webpack_require__(84);
 
 /**
  * Expose `RequestBase`.
