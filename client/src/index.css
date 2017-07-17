@@ -83,6 +83,7 @@ input {
   height: 50px;
   box-shadow: 10px brown;
   border: solid;
+  outline: none;
   border-radius: 5px;
   background-color: skyblue;
 }
@@ -293,12 +294,14 @@ input {
 .user-list {
   float: right;
   position: absolute;
+  outline: none;
   right: 0;
   z-index: 10;
 }
 
 .user-list select {
   background: #578ec9;
+  outline: none;
   color: white;
   border-radius: 8px 0px 0px 8px;
   z-index: 2;
@@ -310,15 +313,12 @@ input {
   text-align: center;
   padding-top: 20px;
   font-size: 15px;
+  outline: none;
 }
 
 .user-list select option:hover {
   background: ghostwhite;
   color: black;
-}
-
-.user-list select option:checked {
-  display: none;
 }
 
 .group-item-bottom {
