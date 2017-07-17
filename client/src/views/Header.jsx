@@ -8,7 +8,8 @@ import signOutAction from '../data/postItActions/signOutAction';
  * calls sign out action
  * @returns {void}
  */
-function signOutHandler() {
+function signOutHandler(event) {
+  event.preventDefault();
   signOutAction();
 }
 export default () => {
