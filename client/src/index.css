@@ -1,5 +1,5 @@
 body {
-  background-color: purple;
+  background-color: #273443;
   font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,Verdana,sans-serif;
 }
 
@@ -83,6 +83,7 @@ input {
   height: 50px;
   box-shadow: 10px brown;
   border: solid;
+  outline: none;
   border-radius: 5px;
   background-color: skyblue;
 }
@@ -129,65 +130,180 @@ input {
   margin: auto;
 }
 
-.addGroup {
-  margin: auto;
-  width: 70%;
-}
-
-.group-list {
-  width: 70%;
-  margin: auto;
+.main-view {
+  margin-left: -2px;
   padding: 0;
+}
+
+.header {
+  height: 6%;
+  margin: 0;
+}
+
+.greeting {
+  width: 20%;
+  position: absolute;
+  margin: 0;
+  padding: 5px;
+  left: 10px;
+  color: white;
+}
+
+.greeting h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.sign-out {
+  position: absolute;
+  right: 10px;
+  color: white;
+}
+
+.sign-out-button {
+  border: none;
+  background: none;
+  outline: none;
+  color: white;
+}
+
+.group-list-nav {
+  float: left;
+  width: 30%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.add-group {
+  height: 8%;
+  width: 100%;
+  border-bottom: 1px solid #314050;
+}
+
+.add-group-form {
+  background: #273443;
+  margin: 0;
+  padding: 0;
+}
+
+.new-group-input {
+  background: #273443;
+  border: none;
+}
+
+.new-group-input[type=text]:focus {
+  color: whitesmoke;
+  border: none;
+  outline: none;
+}
+
+.add-group-button {
+  border: none;
+  background:  #273443;
+}
+
+.add-group-button:enabled {
+  color:  #578ec9;
+}
+
+.group-list-body {
+  height: 90%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  border-left: 1px solid #314050;
+}
+
+.group-list-item {
+  height: 66px;
   text-decoration: none;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid #314050;
+  color: whitesmoke;
 }
 
-.group-item {
-  height: 500px;
-  max-height: 500px;
-  border: 1px solid snow;
-  border-radius: 10px;
-  margin-bottom: 50px;
-  position: relative;
-  background: red;
-  transition: width 1s;
+.group-list-item p {
+  width: 80%;
+  display: inline-block;
+  margin: 0;
 }
 
-.group-item:hover {
-  box-shadow: 3px 5px 3px black;
-  height: 600px;
+.notification {
+  width: 10%;
+  display: inline-block;
+  padding: 7px;
+  border: none;
 }
 
-.group-item:first-child{
-  margin-top: 50px;
+.groups-icon {
+  margin: 10px;
+}
+
+.group-list a.active div{
+  background: #314050;
+  box-shadow: 2px 1px 2px 2px #23313e;
+}
+
+.group-list a.active div .notification, 
+.group-list div .notification:hover {
+  box-shadow: none;
+}
+.group-list div:hover {
+  background: #314050;
+  box-shadow: 1px 1px 2px 2px #23313e;
+}
+
+.group-details {
+  float: right;
+  width: 70%;
+  height: 93%;
+  background: white;
+}
+
+.welcome-view {
+  text-align: center;
+  padding: 50px;
+  font-size: 50px;
 }
 
 .group-item-top {
-  position: relative;
-  height: 40px;
-  margin: 2px;
-  padding: 5px;
-  box-shadow: 3px black;
+  height: 8%;
 }
 
-.group-item-top li {
-  padding: 3px;
-  color: white;
+.group-body-groupname {
+  width: 30%;
+  margin: auto;
+  text-align: center;
 }
 
 .add-user {
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 9%;
+  right: 20px;
+}
+
+.add-user-button {
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .user-list {
   float: right;
-  margin-top: 25px;
+  position: absolute;
+  outline: none;
+  right: 0;
+  z-index: 10;
 }
 
 .user-list select {
-  background: purple;
+  background: #578ec9;
+  outline: none;
   color: white;
+  border-radius: 8px 0px 0px 8px;
   z-index: 2;
 }
 
@@ -197,71 +313,161 @@ input {
   text-align: center;
   padding-top: 20px;
   font-size: 15px;
+  outline: none;
 }
 
 .user-list select option:hover {
-  background: black;
-  color: white;
+  background: ghostwhite;
+  color: black;
 }
 
-.user-list select option:checked{
-  display: none;
-}
-
-.group-item-top li {
-  display: inline;
-}
-
-.add-user-button {
-  background: red;
-  border-radius: 3px;
+.group-item-bottom {
+  height: 92%;
+  position: relative;
+  width: 100%;
 }
 
 .message-body {
-  height: 395px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   overflow: auto;
 }
 
-.send-message {
+.message {
+  padding: 15px;
+}
+
+.sender-initials {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  background: white;
+  text-transform: uppercase;
+  padding-top: 7px;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-align: center;
   position: absolute;
+  border: 1px solid #578ec9;
+  border-radius: 50%;
+  box-shadow: 1px 1px 10px black;
+}
+
+.sender-initials-alternate {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  background: #578ec9;
+  color: white;
+  text-transform: uppercase;
+  padding-top: 7px;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-align: center;
+  position: absolute;
+  right: 2px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px black;
+}
+
+.message-view {
+  background: #578ec9;
+  display: inline-block;
+  border-radius: 5px;
+  color: #e4f0f5;
+  padding: 15px;
+  margin-left: 50px;
+  box-shadow: 1px 1px 5px black;
+}
+
+.message-view-alternate {
+  background: white;
+  max-width: 50%;
+  display: block;
+  padding: 15px;
+  margin-left: 42%;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px black;
+}
+
+.message-reader ul {
+  display: flex;
+  font-size: x-small;
+  margin-top: 0;
+  margin-left: 50px;
+  color: #578ec9;
+}
+
+.message-reader li {
+  margin-left: 2px;
+}
+
+.message-reader li:after {
+  content: ',';
+}
+
+.message-reader li:last-child:after {
+  content: none;
+}
+
+.message-reader-alternate ul {
+  display: flex;
+  font-size: x-small;
+  margin-top: 0;
+  margin-left: 42%;
+  color: #578ec9;
+}
+
+.message-reader-alternate li {
+  margin-left: 2px;
+}
+
+.message-reader-alternate li:after {
+  content: ',';
+}
+
+.message-reader-alternate li:last-child:after {
+  content: none;
+}
+
+.send-message {
+  position: fixed;
   bottom: 0px;
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 54px;
+  width: 69.5%;
+  height: 50px;
 }
 
 .send-message input {
   position: absolute;
   bottom: 0px;
-  width: 85%;
+  width: 100%;
   height: 100%;
   border: none;
-  border-radius: 0px 0px 0px 7px;
   padding-left: 50px;
   margin: 0;
 }
 
 .send-message form input[type=text]:focus {
   outline: none;
-  box-shadow: 0 0 2pt 1pt lavender;
 }
 
 .send-message form button {
   position: absolute;
   right: 0px;
   bottom: 0px;
-  width: 15%;
+  z-index: 1;
   height: 100%;
-  margin: 0;
+  margin-right: 20px;
   border: none;
-  border-radius: 0px 0px 7px 0px;
+  background: none;
 }
 
 
 .send-message form button:enabled {
-  border: 1px solid snow;
-  box-shadow: 1px 1px 2px 1px #888888;
+  color: #578ec9;
 }
 
 .send-message form .normal {
@@ -282,46 +488,6 @@ input {
 
 .send-message form .normal:focus {
   outline: none;
-}
-
-.addGroupForm {
-  width: 100%;
-  height: 40px;
-}
-
-.addGroupForm .add-group-button {
-  float: right;
-  width: 15%;
-  height: 100%;
-  background-color: lavender;
-  text-align: center;
-  border: none;
-  border-radius: 4px;
-}
-
-.add-group-button:enabled {
-  border: 2px solid snow;
-}
-
-#newGroup {
-  width: 79%;
-  height: 100%;
-  border: solid;
-  border-color: lavender;
-  color: purple;
-  padding-left: 2px;
-  font-size: 13px;
-}
-
-.message-list-items {
-  border: 2px solid lavender;
-  background-color: lavender;
-}
-
-.message-view {
-  border-top: 1px solid snow;
-  border-bottom: 1px solid snow;
-  border-collapse: collapse;
 }
 
 .google-signin {

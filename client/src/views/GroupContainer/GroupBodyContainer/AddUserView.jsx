@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AllUserStore from '../../../data/postItStores/PostItAllUsersStore';
 import UserListView from './userListView.jsx';
-import getAllUsersAction from '../../../data/postItActions/getAllUsersAction';
+
 
 /**
  * Add user view
@@ -18,7 +18,7 @@ class AddUserView extends React.Component {
     super(props);
 
     this.state = {
-      users: AllUserStore.getUsers()
+      users: AllUserStore.getUsers(props.groupId)
     };
 
     this.onChange = this.onChange.bind(this);
@@ -29,7 +29,6 @@ class AddUserView extends React.Component {
    * @return {void}
    */
   componentDidMount() {
-    getAllUsersAction();
     AllUserStore.addChangeListener(this.onChange);
   }
 
@@ -47,7 +46,7 @@ class AddUserView extends React.Component {
    */
   onChange() {
     this.setState({
-      users: AllUserStore.getUsers()
+      users: AllUserStore.getUsers(this.props.groupId)
     });
   }
 

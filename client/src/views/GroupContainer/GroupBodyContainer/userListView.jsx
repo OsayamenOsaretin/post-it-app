@@ -25,11 +25,12 @@ function UserList(props) {
       groupId: group
     };
     addUserAction(Details);
+    // props.users.delete(value);
   };
 
   return (
     <form>
-        <select multiple
+        <select
         name='Add User'
         size='5'
         onChange={handleSelect}
@@ -38,7 +39,7 @@ function UserList(props) {
         <option
         value={key}
         >
-          {user.get('username')}
+          {user.username}
         </option>
       ))}
     </select>

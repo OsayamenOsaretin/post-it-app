@@ -1,6 +1,10 @@
 import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import WelcomeView from './WelcomeView.jsx';
 import GroupList from './GroupList.jsx';
+import GroupItem from './GroupItem.jsx';
+import PostItActionTypes from '../../data/PostItActionTypes';
+import PostItDispatcher from '../../data/PostItDispatcher';
 
 /**
  * GroupList is a container for the list of groups, also doubles as a navlink
@@ -8,15 +12,30 @@ import GroupList from './GroupList.jsx';
  * @return {void}
  */
 function GroupListView(props) {
+  const socketProp = props.socket;
+  socketProp.on('newMessage', (newMessages) => {
+    PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
+      Id: newMessages.Id,
+      messages: newMessages.groupMessages,
+      notify: newMessages.notify
+    });
+  });
   return (
-      <BrowserRouter >
-      <div>
-      <GroupList groups={props.groups} socket={props.socket}/>
-      <Switch>
-        <Route exact path='/' />
-        <Route path='/groupBody/:groupId' />
-      </Switch>
-    </div>
+    <BrowserRouter >
+      <div className="main-view">
+        <div className="group-list-nav">
+          <GroupList groups={props.groups} socket={socketProp} />
+        </div>
+        <div className="group-details">
+          <Switch>
+            <Route exact path='/' component={WelcomeView} />
+            <Route path='/groupBody/:groupId/:groupName' component={groupProps => (
+              <GroupItem socket={socketProp} {...groupProps} />
+            )} />
+          </Switch>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }

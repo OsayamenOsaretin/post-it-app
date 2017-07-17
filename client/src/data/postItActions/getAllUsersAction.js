@@ -7,9 +7,10 @@ import PostItDispatcher from '../PostItDispatcher';
  * getAllUsersAction - get all the PostIt registered users
  * @returns {void}
  */
-export default () => {
+export default (groupId) => {
   request
-  .get('/users')
+  .post('/users')
+  .send(groupId)
   .end((error, result) => {
     if (error) {
       console.log(error);
@@ -18,7 +19,8 @@ export default () => {
       console.log(userList);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.RECIEVE_USERS,
-        users: userList
+        users: userList,
+        id: groupId.groupId
       });
     }
   });

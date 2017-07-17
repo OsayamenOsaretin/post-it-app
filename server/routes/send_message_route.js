@@ -24,8 +24,19 @@ module.exports = (app, firebase) => {
           priority: priorityLevel
         });
 
+        // immediately update the ui with the new message by sending the information back
+        const newMessageResponse = new Map();
+        newMessageResponse.set(newMessageKey, {
+          message: newMessage,
+          sender: messageSender,
+          priority: priorityLevel
+        });
+
+        // send back response containing already sent new message
         res.send({
-          message: 'Message Sent'
+          message: 'Message Sent',
+          newMessage: newMessageResponse,
+          Id: groupId
         });
 
         // send email notifications

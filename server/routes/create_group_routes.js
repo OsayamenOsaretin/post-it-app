@@ -29,8 +29,16 @@ module.exports = (app, firebase) => {
           { id: newGroupKey }
           );
 
+        // return the new group to the client to update UI
+        const newGroup = new Map();
+        newGroup.set(newGroupKey, {
+          groupname: groupName,
+          creator: userId
+        });
+
         res.send({
           message: 'Created Group',
+          group: newGroup
         });
       } else {
         res.status(403).send({

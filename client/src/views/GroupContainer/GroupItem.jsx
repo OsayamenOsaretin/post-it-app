@@ -4,6 +4,7 @@ import FaUserPlus from 'react-icons/lib/fa/user-plus';
 
 import MessageBody from './GroupBodyContainer/MessageBody.jsx';
 import AddUser from './GroupBodyContainer/AddUserView.jsx';
+import getUserList from '../../data/postItActions/getAllUsersAction';
 
 /**
  * Group Item renders an individual group item
@@ -19,6 +20,10 @@ class GroupItem extends React.Component {
    */
   constructor(props) {
     super(props);
+
+    getUserList({
+      groupId: props.match.params.groupId
+    });
 
     this.state = {
       addUser: false
@@ -37,36 +42,52 @@ class GroupItem extends React.Component {
     });
   }
 
+  /** close add user in new group
+   * @return {void}
+   * @param {*} newProp
+   */
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      addUser: false
+    });
+    // get user List for this group
+    getUserList({
+      groupId: newProps.match.params.groupId
+    });
+  }
+
   /**
    * renders the component view
    * @return {void}
    */
   render() {
     return (
-    <div className="group-item">
-      <div className="group-item-top">
-        <ul>
-        <li>{this.props.groupName}</li>
-        <li>
-          <div className="add-user">
-            <button
-            className="add-user-button"
-            onClick={this.handleClick}>
-              <FaUserPlus
-              size={20}
-              />
-            </button>
-          </div>
-          <div className="user-list">
-            {this.state.addUser && <AddUser groupId={this.props.groupId} />}
-          </div>
-        </li>
-      </ul>
+      <div className="group-item">
+        <div className="group-item-top">
+              <div className="group-body-groupname">
+                <h4>
+                  {this.props.match.params.groupName}
+                </h4>
+              </div>
+              <div className="add-user">
+                <button
+                  className="add-user-button"
+                  onClick={this.handleClick}>
+                  <FaUserPlus
+                    size={25}
+                    color={'#578ec9'}
+                  />
+                </button>
+              </div>
+        </div>
+        <div className="group-item-bottom">
+
+              <div className="user-list">
+                {this.state.addUser && <AddUser groupId={this.props.match.params.groupId} />}
+              </div>
+          <MessageBody groupId={this.props.match.params.groupId} socket={this.props.socket} />
+        </div>
       </div>
-      <div className="group-item-bottom">
-        <MessageBody groupId={this.props.groupId} socket={this.props.socket}/>
-      </div>
-    </div>
     );
   }
 }

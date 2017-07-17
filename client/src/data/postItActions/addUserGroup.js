@@ -16,7 +16,7 @@ export default (Details) => {
 
   console.log('reaches add user action');
   request
-  .post(`group/${groupId}/user`)
+  .post(`/group/${groupId}/user`)
   .send({
     userId: user
   })
@@ -25,6 +25,11 @@ export default (Details) => {
       console.log(error);
     } else {
       console.log(result);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.DELETE_USER,
+        id: user,
+        groupId: Details.groupId
+      });
     }
   });
 };

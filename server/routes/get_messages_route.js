@@ -6,6 +6,7 @@ module.exports = (app, firebase, io) => {
       if (user) {
         // user is signed in
         const messages = new Map();
+        const userName = user.displayName;
 
         const db = firebase.database();
 
@@ -13,40 +14,46 @@ module.exports = (app, firebase, io) => {
         const groupId = req.body.groupId;
         const messagesReference = db.ref(`groups/${groupId}/messages`);
 
+        // store message keys
+        const messageKeys = [];
+
+        // keep an array of promises
+        const promises = [];
+
+        // notification value will be set if notification should happen on dashboard
+        let notificationValue;
+
         // get message Id from groups and iterate through messages node
-        messagesReference.on('value', (snapshot) => {
-          // store message keys
-          const messageKeys = [];
-
-          snapshot.forEach((messageSnapshot) => {
-            messageKeys.push(messageSnapshot.key);
-          });
-          console.log(messageKeys);
-
-          // map to promises to asynchronously collect messages
-          const promises = messageKeys.map(messageKey => (
-            new Promise((resolve) => {
-              const messageReference = db.ref(`messages/${messageKey}`);
-              messageReference.on('value', (snap) => {
-                messages.set(messageKey, snap.val());
-                resolve();
-              });
-            })
-          ));
-          // collect resolved promises
-          Promise.all(promises)
-          .then(() => {
-            io.emit('newMessage', {
-              groupMessages: messages,
-              Id: groupId
+        messagesReference.on('child_added', (snapshot) => {
+          promises.push(new Promise((resolve) => {
+            messageKeys.push(snapshot.key);
+            console.log(messageKeys);
+            const messageReference = db.ref(`messages/${snapshot.key}`);
+            messageReference.on('value', (snap) => {
+              notificationValue = false;
+              const newMessage = snap.val();
+              if (newMessage.read) {
+                if (!newMessage.read[userName]) {
+                  messages.set(snap.key, snap.val());
+                  if (newMessage.sender !== userName) {
+                    notificationValue = true;
+                  }
+                }
+              } else {
+                messages.set(snap.key, snap.val());
+              }
+              resolve();
             });
-          })
-          .catch(() => {
-            res.status(401).send({
-              message: 'Something went wrong'
-            });
-          });
+          }));
         });
+        Promise.all(promises)
+            .then(() => {
+              io.emit('newMessage', {
+                groupMessages: messages,
+                Id: groupId,
+                notify: notificationValue
+              });
+            });
       } else {
         res.status(403).send({
           // user is not signed in

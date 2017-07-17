@@ -60,9 +60,10 @@ PostItDispatcher.register((payload) => {
   case PostItActionTypes.LOGIN_USER: {
     if (source === 'SERVER_ACTION') {
       const user = action.user;
+      const displayName = user.displayName;
       const token = user.stsTokenManager.accessToken;
       localStorage.setItem('token', token);
-      localStorage.setItem('username', user.displayName);
+      localStorage.setItem('username', displayName);
       userStore.emit(CHANGE_EVENT);
     }
     break;
@@ -71,6 +72,14 @@ PostItDispatcher.register((payload) => {
   case PostItActionTypes.RESET_MESSAGE_SENT: {
     passwordResetMessageState = true;
     userStore.emit(CHANGE_EVENT);
+    break;
+  }
+
+  case PostItActionTypes.SIGN_OUT: {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    userStore.emit(CHANGE_EVENT);
+
     break;
   }
 

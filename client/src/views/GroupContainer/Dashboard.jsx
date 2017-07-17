@@ -1,14 +1,17 @@
 import React from 'react';
 import io from 'socket.io-client';
 import GroupListView from './GroupListView.jsx';
-import { getGroups } from '../../data/postItActions/groupActions';
+import { getGroups, recieveGroups } from '../../data/postItActions/groupActions';
 import GroupStore from '../../data/postItStores/PostItGroupStore';
-import PostItDispacher from '../../data/PostItDispatcher';
+import HeaderView from '../Header.jsx';
+import getMessagesAction from '../../data/postItActions/getMessagesAction';
+import getAllUsersAction from '../../data/postItActions/getAllUsersAction';
+import PostItDispatcher from '../../data/PostItDispatcher';
 import PostItActionTypes from '../../data/PostItActionTypes';
 
 const socket = io('https://postit-app-develop.herokuapp.com/');
 
-// https://postit-app-develop.herokuapp.com/
+// http://localhost:6969
 
 /**
  * Dashboard Component
@@ -26,17 +29,6 @@ class Dashboard extends React.Component {
       groups: GroupStore.getGroups()
     };
 
-
-    getGroups(socket);
-
-    socket.on('newGroup', (groups) => {
-      PostItDispacher.handleServerAction({
-        type: PostItActionTypes.RECIEVE_GROUP_RESPONSE,
-        userGroups: groups
-      });
-    }
-    );
-
     this.onChange = this.onChange.bind(this);
   }
 
@@ -46,6 +38,14 @@ class Dashboard extends React.Component {
    * @return {void}
    */
   componentDidMount() {
+    // initial action to get groups
+    getGroups();
+
+    // listen for new groups with socket.io
+    socket.on('newGroup', (groups) => {
+      recieveGroups(groups);
+    });
+
     GroupStore.addChangeListener(this.onChange);
   }
 
@@ -64,9 +64,12 @@ class Dashboard extends React.Component {
    * @return {void}
    */
   onChange() {
-    this.setState({
-      groups: GroupStore.getGroups()
-    });
+    const newGroups = GroupStore.getGroups();
+    if (this.state.groups.size !== newGroups.size) {
+      this.setState({
+        groups: GroupStore.getGroups()
+      });
+    }
   }
 
   /**
@@ -76,7 +79,10 @@ class Dashboard extends React.Component {
    */
   render() {
     return (
-      <GroupListView groups={this.state.groups} socket={socket}/>
+      <div className="dashboard">
+        <HeaderView />
+        <GroupListView groups={this.state.groups} socket={socket} />
+      </div>
     );
   }
 

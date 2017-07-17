@@ -3,11 +3,23 @@
 module.exports = (app, firebase) => {
   app.post('/user/google/signin', (req, res) => {
     const idToken = req.body.idToken;
+    const db = firebase.database();
 
     const credential = firebase.auth.GoogleAuthProvider.credential(idToken);
 
     firebase.auth().signInWithCredential(credential)
     .then((user) => {
+      // save the user details to the database
+      db.ref().child(`users/${user.uid}`).set({
+        username: user.displayName,
+        email: user.email
+      })
+      .catch((error) => {
+        res.status(500).send({
+          message: error.message
+        });
+      });
+
       res.send({
         userObject: user
       });
