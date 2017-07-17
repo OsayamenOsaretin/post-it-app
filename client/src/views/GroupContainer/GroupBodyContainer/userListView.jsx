@@ -39,7 +39,7 @@ function UserList(props) {
         <option
         value={key}
         >
-          {user.get('username')}
+          {user.username}
         </option>
       ))}
     </select>
