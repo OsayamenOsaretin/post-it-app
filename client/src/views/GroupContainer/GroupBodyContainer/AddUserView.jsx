@@ -18,7 +18,7 @@ class AddUserView extends React.Component {
     super(props);
 
     this.state = {
-      users: AllUserStore.getUsers()
+      users: AllUserStore.getUsers(props.groupId)
     };
 
     this.onChange = this.onChange.bind(this);
@@ -46,7 +46,7 @@ class AddUserView extends React.Component {
    */
   onChange() {
     this.setState({
-      users: AllUserStore.getUsers()
+      users: AllUserStore.getUsers(this.props.groupId)
     });
   }
 
