@@ -9,9 +9,9 @@ import getAllUsersAction from '../../data/postItActions/getAllUsersAction';
 import PostItDispatcher from '../../data/PostItDispatcher';
 import PostItActionTypes from '../../data/PostItActionTypes';
 
-const socket = io('http://localhost:6969');
+const socket = io('https://postit-app-develop.herokuapp.com/');
 
-// https://postit-app-develop.herokuapp.com/
+// http://localhost:6969
 
 /**
  * Dashboard Component
