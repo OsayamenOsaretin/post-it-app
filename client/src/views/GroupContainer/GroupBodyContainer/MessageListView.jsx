@@ -39,7 +39,7 @@ function MessageListView(props) {
               }>
               {message.read && <ul> read:
                 {Object.keys(message.read).map(keys => (
-                  <li>
+                  <li key={keys}>
                     {keys}
                   </li>
                 ))}
