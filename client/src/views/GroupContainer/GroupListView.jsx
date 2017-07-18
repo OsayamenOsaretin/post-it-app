@@ -21,6 +21,13 @@ function GroupListView(props) {
       notify: newMessages.notify
     });
   });
+  socketProp.on('Users', (UserList) => {
+    PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.RECIEVE_USERS,
+      users: UserList.userList,
+      id: UserList.Id
+    });
+  });
   return (
     <BrowserRouter >
       <div className="main-view">
