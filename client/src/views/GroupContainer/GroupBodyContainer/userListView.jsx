@@ -20,7 +20,6 @@ function UserList(props) {
     console.log('handle selection action...');
     event.preventDefault();
     const value = event.target.value;
-    console.log(`Value to be deleted: ${value}`);
     const Details = {
       userId: value,
       groupId: group
@@ -36,13 +35,10 @@ function UserList(props) {
         size='5'
         onChange={handleSelect}
         >
-        {console.log(props.users)}
         {props.users.map((user, key) => (
         <option
         value={key}
         >
-        {console.log(user.username)}
-        {console.log(user.get('username'))}
           {user.get('username')}
         </option>
       ))}
