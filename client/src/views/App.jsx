@@ -83,12 +83,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/*{this.state.redirect ? <Redirect to='/'/> : <Router>
-            <Route path='/' render={() => (
-              !this.state.token ? (<LoginRegisterContainer />) : (<Dashboard />)
-            )}/>
-          </Router>
-        }*/}
         <Router>
           <div>
             <Switch>
@@ -96,19 +90,19 @@ class App extends React.Component {
                 if (this.state.redirect) {
                   return <Redirect to='/login'/>;
                 }
-                return (!this.state.token ? (<LoginRegisterContainer />) : (<Dashboard />));
+                return (!this.state.token ?
+                (this.state.passwordReset && <LoginRegisterContainer />) : (<Dashboard />));
               }}/>
               <Route path='/login' component={() => {
                 if (!this.state.redirect) {
                   return <Redirect to='/' />;
                 }
-                return <LoginRegisterContainer />;
+                return (this.state.passwordReset && <LoginRegisterContainer />);
               }}/>
             </Switch>
           </div>
         </Router>
-      {/*{!this.state.token ? (this.state.passwordReset && <LoginRegisterContainer />) :
-        <Dashboard />}
+
       {!this.state.token && this.state.passwordReset &&
         <div className="landing-page-container">
           <button
@@ -127,7 +121,7 @@ class App extends React.Component {
             type="click">
             login
           </button>
-        </p>}*/}
+        </p>}
       </div>
     );
   }
