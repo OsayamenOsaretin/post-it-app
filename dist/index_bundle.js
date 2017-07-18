@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7ae8032b6d138a1825b2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e55354042baddd2513f5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -8874,13 +8874,7 @@ exports.default = function (groupId) {
     if (error) {
       console.log(error);
     } else {
-      var userList = result.body.userList;
-      console.log(userList);
-      _PostItDispatcher2.default.handleServerAction({
-        type: _PostItActionTypes2.default.RECIEVE_USERS,
-        users: userList,
-        id: groupId.groupId
-      });
+      console.log(result);
     }
   });
 };
@@ -41398,13 +41392,16 @@ function UserList(props) {
         size: '5',
         onChange: handleSelect
       },
+      console.log(props.users),
       props.users.map(function (user, key) {
         return _react2.default.createElement(
           'option',
           {
             value: key
           },
-          user.username
+          console.log(user.username),
+          console.log(user.get('username')),
+          user.get('username')
         );
       })
     )
@@ -41874,6 +41871,13 @@ function GroupListView(props) {
       Id: newMessages.Id,
       messages: newMessages.groupMessages,
       notify: newMessages.notify
+    });
+  });
+  socketProp.on('Users', function (UserList) {
+    _PostItDispatcher2.default.handleServerAction({
+      type: _PostItActionTypes2.default.RECIEVE_USERS,
+      users: UserList.userList,
+      id: UserList.Id
     });
   });
   return _react2.default.createElement(
