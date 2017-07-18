@@ -19,24 +19,26 @@ const addNewUsers = (newUserList) => {
  * @return {void}
  */
 class PostItAllUserStore extends EventEmitter {
-  /**
+/**
  * addChangeListener
  * @memberof PostItAllUserStore
  * @param {*} callback
+ * @param {*} CHANGE_EVENT_GROUP
  * @return {void}
  */
-  addChangeListener(callback) {
-    this.on(CHANGE_EVENT, callback);
+  addChangeListener(callback, CHANGE_EVENT_GROUP) {
+    this.on(CHANGE_EVENT_GROUP, callback);
   }
 
-  /**
+/**
  * removeChangeListener
  * @memberof PostItAllUserStore
  * @param {*} callback
+ * @param {*} CHANGE_EVENT_GROUP
  * @return {void}
  */
-  removeChangeListener(callback) {
-    this.removeListener(CHANGE_EVENT, callback);
+  removeChangeListener(callback, CHANGE_EVENT_GROUP) {
+    this.removeListener(CHANGE_EVENT_GROUP, callback);
   }
 
 /**
@@ -81,7 +83,7 @@ PostItDispatcher.register((payload) => {
       addNewUsers(newUserMap);
     }
     console.log(users);
-    allUserStore.emit(CHANGE_EVENT);
+    allUserStore.emit(groupId);
     break;
   }
 
@@ -93,15 +95,15 @@ PostItDispatcher.register((payload) => {
     console.log(`Users Store get group map: ${users.get(groupId)}`);
     let usersForGroup = users.get(groupId);
     if (usersForGroup) {
-      console.log(`User Store Map before delete: ${JSON.stringify(usersForGroup)}`);
+      // console.log(`User Store Map before delete: ${JSON.stringify(usersForGroup)}`);
       usersForGroup = usersForGroup.delete(userId);
-      console.log(`Users Store map after delete: ${usersForGroup}`);
+      // console.log(`Users Store map after delete: ${usersForGroup}`);
       const newUsersForGroupMap = new Map();
       newUsersForGroupMap.set(groupId, usersForGroup);
       addNewUsers(newUsersForGroupMap);
-      allUserStore.emit(CHANGE_EVENT);
+      allUserStore.emit(groupId);
     }
-    console.log(users);
+    // console.log(users);
     break;
   }
 
