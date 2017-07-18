@@ -64,9 +64,6 @@ class GoogleLogin extends React.Component {
   render() {
     return (
       <div className="google-signin">
-        <p className="or-text">
-          OR
-        </p>
         <div id="my-signin2">
         </div>
       </div>
