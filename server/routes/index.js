@@ -22,7 +22,7 @@ module.exports = (app, firebase, io) => {
   signOut(app, firebase);
   getGroups(app, firebase, io);
   sendMessage(app, firebase);
-  getUsers(app, firebase);
+  getUsers(app, firebase, io);
   getMessages(app, firebase, io);
   googleSignInRoute(app, firebase);
   resetPassword(app, firebase);
