@@ -90,10 +90,12 @@ PostItDispatcher.register((payload) => {
     const userId = action.id;
     const groupId = action.groupId;
 
-    console.log(users.get(groupId));
+    console.log(`Users Store get group map: ${users.get(groupId)}`);
     let usersForGroup = users.get(groupId);
     if (usersForGroup) {
+      console.log(`User Store Map before delete: ${JSON.stringify(usersForGroup)}`);
       usersForGroup = usersForGroup.delete(userId);
+      console.log(`Users Store map after delete: ${usersForGroup}`);
       const newUsersForGroupMap = new Map();
       newUsersForGroupMap.set(groupId, usersForGroup);
       addNewUsers(newUsersForGroupMap);
