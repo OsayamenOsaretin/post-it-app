@@ -15,13 +15,7 @@ export default (groupId) => {
     if (error) {
       console.log(error);
     } else {
-      const userList = result.body.userList;
-      console.log(userList);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.RECIEVE_USERS,
-        users: userList,
-        id: groupId.groupId
-      });
+      console.log(result);
     }
   });
 };

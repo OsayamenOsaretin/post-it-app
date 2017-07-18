@@ -29,7 +29,7 @@ class AddUserView extends React.Component {
    * @return {void}
    */
   componentDidMount() {
-    AllUserStore.addChangeListener(this.onChange);
+    AllUserStore.addChangeListener(this.onChange, this.props.groupId);
   }
 
   /**
@@ -37,7 +37,22 @@ class AddUserView extends React.Component {
    * @return {void}
    */
   componentWillUnmount() {
-    AllUserStore.removeChangeListener(this.onChange);
+    AllUserStore.removeChangeListener(this.onChange, this.props.groupid);
+  }
+
+  /**
+   * lifecycle method for when component receives new props
+   * @return {void}
+   * @param {*} newProps
+   */
+  componentWillReceiveProps(newProps) {
+    // remove listener from previous component group, and add listener to next
+    AllUserStore.removeChangeListener(this.onChange, this.props.groupId);
+    AllUserStore.addChangeListener(this.onChange, newProps.groupId);
+
+    this.setState({
+      users: AllUserStore.getUsers(newProps.groupId)
+    });
   }
 
   /**

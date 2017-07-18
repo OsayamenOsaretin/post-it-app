@@ -12,6 +12,7 @@ import PostItActionTypes from '../../data/PostItActionTypes';
 const socket = io('https://postit-app-develop.herokuapp.com/');
 
 // http://localhost:6969
+// https://postit-app-develop.herokuapp.com/
 
 /**
  * Dashboard Component

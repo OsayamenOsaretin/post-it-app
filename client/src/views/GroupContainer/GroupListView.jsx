@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import WelcomeView from './WelcomeView.jsx';
 import GroupList from './GroupList.jsx';
 import GroupItem from './GroupItem.jsx';
@@ -21,6 +21,13 @@ function GroupListView(props) {
       notify: newMessages.notify
     });
   });
+  socketProp.on('Users', (UserList) => {
+    PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.RECIEVE_USERS,
+      users: UserList.userList,
+      id: UserList.Id
+    });
+  });
   return (
     <BrowserRouter >
       <div className="main-view">
@@ -30,7 +37,7 @@ function GroupListView(props) {
         <div className="group-details">
           <Switch>
             <Route exact path='/' component={WelcomeView} />
-            <Route path='/groupBody/:groupId/:groupName' component={groupProps => (
+            <Route exact path='/groupBody/:groupId/:groupName' component={groupProps => (
               <GroupItem socket={socketProp} {...groupProps} />
             )} />
           </Switch>

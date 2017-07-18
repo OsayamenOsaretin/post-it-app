@@ -44,7 +44,7 @@ class GroupItem extends React.Component {
 
   /** close add user in new group
    * @return {void}
-   * @param {*} newProp
+   * @param {*} newProps
    */
   componentWillReceiveProps(newProps) {
     this.setState({

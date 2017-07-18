@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 // route to get all the users
-module.exports = (app, firebase) => {
+module.exports = (app, firebase, io) => {
   app.post('/users', (req, res) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -26,12 +26,12 @@ module.exports = (app, firebase) => {
         const userReference = db.ref('/users/');
         const allUsers = [];
 
-        userReference.once('value', (snapshot) => {
+        userReference.on('value', (snapshot) => {
           snapshot.forEach((userSnapshot) => {
             users.set(userSnapshot.key, userSnapshot.val());
             allUsers.push(userSnapshot.key);
           });
-          usersInGroupRef.once('value', (groupSnapshot) => {
+          usersInGroupRef.on('value', (groupSnapshot) => {
             groupSnapshot.forEach((userInGroupSnapshot) => {
               usersInGroup.push(userInGroupSnapshot.key);
             });
@@ -40,9 +40,13 @@ module.exports = (app, firebase) => {
             usersNotInGroupKeys.forEach((userNotInGroupKey) => {
               usersNotInGroup.set(userNotInGroupKey, users.get(userNotInGroupKey));
             });
-            res.send({
-              message: 'Users returned',
-              userList: usersNotInGroup
+            // res.send({
+            //   message: 'Users returned',
+            //   userList: usersNotInGroup
+            // });
+            io.emit('Users', {
+              userList: usersNotInGroup,
+              Id: groupId
             });
           });
         });
