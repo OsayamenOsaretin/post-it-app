@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-// import { Redirect } from 'react-router';
 import LoginRegisterContainer from './LoginRegisterContainer/LandingPageContainer.jsx';
 import Dashboard from './GroupContainer/Dashboard.jsx';
 import ResetPasswordComponent from './LoginRegisterContainer/ResetPasswordView.jsx';
 import UserStore from '../data/postItStores/PostItUserStore';
 
+/* global window Event */
 
 /**
  * App view that holds the entire container view for the app
@@ -29,20 +29,20 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-/**
- * Attaches event listener to the UserStore
- * @return {void}
- * @memberof App
- */
+  /**
+   * Attaches event listener to the UserStore
+   * @return {void}
+   * @memberof App
+   */
   componentDidMount() {
     UserStore.addChangeListener(this.onChange);
   }
 
-/**
- * Removes event listener from the UserStore
- * @return {void}
- * @memberof App
- */
+  /**
+   * Removes event listener from the UserStore
+   * @return {void}
+   * @memberof App
+   */
   componentWillUnmount() {
     UserStore.removeChangeListener(this.onChange);
   }
@@ -76,10 +76,10 @@ class App extends React.Component {
     });
   }
 
-/**
- * renders the component view
- * @return {void}
- */
+  /**
+   * renders the component view
+   * @return {void}
+   */
   render() {
     return (
       <div>
@@ -88,33 +88,32 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/' component={() => {
                 if (this.state.redirect) {
-                  return <Redirect to='/login'/>;
+                  return <Redirect to='/login' />;
                 }
                 return (!this.state.token ?
-                (this.state.passwordReset && <LoginRegisterContainer />) : (<Dashboard />));
-              }}/>
+                  (this.state.passwordReset && <LoginRegisterContainer />) : (<Dashboard />));
+              }} />
               <Route path='/login' component={() => {
                 if (!this.state.redirect) {
                   return <Redirect to='/' />;
                 }
                 return (this.state.passwordReset && <LoginRegisterContainer />);
-              }}/>
+              }} />
             </Switch>
           </div>
         </Router>
-
-      {!this.state.token && this.state.passwordReset &&
-        <div className="landing-page-container">
-          <button
-            className="forgot-password-button"
-            onClick={this.handleClick}
-            type="click">
-            forgot password ?
+        {!this.state.token && this.state.passwordReset &&
+          <div className="landing-page-container">
+            <button
+              className="forgot-password-button"
+              onClick={this.handleClick}
+              type="click">
+              forgot password ?
           </button>
-        </div>
-      }
-      {!this.state.passwordReset && <ResetPasswordComponent />}
-      {!this.state.passwordReset && this.state.messageSent && <p className="password-sent-message">
+          </div>
+        }
+        {!this.state.passwordReset && <ResetPasswordComponent />}
+        {!this.state.passwordReset && this.state.messageSent && <p className="password-sent-message">
           A password reset email has been sent, refresh or proceed to <button
             className="login-button"
             onClick={() => { this.setState({ passwordReset: true }); }}
