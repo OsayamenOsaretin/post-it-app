@@ -32,15 +32,9 @@ module.exports = (app, firebase, io) => {
             messageReference.on('value', (snap) => {
               notificationValue = false;
               const newMessage = snap.val();
-              if (newMessage.read) {
-                if (!newMessage.read[userName]) {
-                  messages.set(snap.key, snap.val());
-                  if (newMessage.sender !== userName) {
-                    notificationValue = true;
-                  }
-                }
-              } else {
-                messages.set(snap.key, snap.val());
+              messages.set(snap.key, snap.val());
+              if (newMessage.sender !== userName) {
+                notificationValue = true;
               }
               resolve();
             });
