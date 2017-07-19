@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 const emailOptions = {
   subject: 'New Message from Post-It',
   text: 'You have an important message on Post-It, check it out',
-  from: 'superyamen@gmail.com'
+  from: 'postitbyyamen@gmail.com'
 };
 // send notification based on priority level
 
