@@ -1,10 +1,11 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import WelcomeView from './WelcomeView.jsx';
 import GroupList from './GroupList.jsx';
 import GroupItem from './GroupItem.jsx';
 import PostItActionTypes from '../../data/PostItActionTypes';
 import PostItDispatcher from '../../data/PostItDispatcher';
+import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /**
  * GroupList is a container for the list of groups, also doubles as a navlink
@@ -13,6 +14,8 @@ import PostItDispatcher from '../../data/PostItDispatcher';
  */
 function GroupListView(props) {
   const socketProp = props.socket;
+
+  // attach listener for new messages
   socketProp.on('newMessage', (newMessages) => {
     PostItDispatcher.handleServerAction({
       type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
@@ -21,6 +24,8 @@ function GroupListView(props) {
       notify: newMessages.notify
     });
   });
+
+  // attach listener for new users
   socketProp.on('Users', (UserList) => {
     PostItDispatcher.handleServerAction({
       type: PostItActionTypes.RECIEVE_USERS,
@@ -28,6 +33,10 @@ function GroupListView(props) {
       id: UserList.Id
     });
   });
+
+  // get messages for groups
+  bulkMessageRequest(props.groups);
+
   return (
     <BrowserRouter >
       <div className="main-view">

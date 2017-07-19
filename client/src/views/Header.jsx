@@ -7,9 +7,11 @@ import signOutAction from '../data/postItActions/signOutAction';
 /**
  * calls sign out action
  * @returns {void}
+ * @param {*} event
  */
 function signOutHandler(event) {
   event.preventDefault();
+  console.log('calls sign out action');
   signOutAction();
 }
 export default () => {
@@ -23,6 +25,7 @@ export default () => {
       </div>
       <div className="sign-out">
           <button
+          title="Log out"
           className="sign-out-button"
           onClick={signOutHandler}
           >
@@ -32,5 +35,5 @@ export default () => {
           </button>
       </div>
     </div>
-  )
+  );
 };

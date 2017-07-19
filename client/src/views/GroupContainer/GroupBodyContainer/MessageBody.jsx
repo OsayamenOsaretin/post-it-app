@@ -26,9 +26,9 @@ class MessageBody extends React.Component {
 
     // const socket = props.socket;
     console.log(`groupid: ${props.groupId}`);
-    getMessagesAction({
-      groupId: props.groupId
-    });
+    // getMessagesAction({
+    //   groupId: props.groupId
+    // });
 
     this.onChange = this.onChange.bind(this);
   }
@@ -61,9 +61,9 @@ class MessageBody extends React.Component {
     console.log(newProps);
     MessageStore.removeChangeListener(this.onChange, this.props.groupId);
     MessageStore.addChangeListener(this.onChange, newProps.groupId);
-    getMessagesAction({
-      groupId: newProps.groupId
-    });
+    // getMessagesAction({
+    //   groupId: newProps.groupId
+    // });
     // call action to mark all messages as read before unmount
     markMessagesRead({
       messages: this.state.messages
