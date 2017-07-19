@@ -7,8 +7,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: 'superyamen@gmail.com',
-    pass: '123gmail890'
+    user: 'postitbyyamen@gmail.com',
+    pass: '123postit890'
   }
 });
 
@@ -17,7 +17,7 @@ const emailOptions = {
   text: 'You have an important message on Post-It, check it out',
   from: 'superyamen@gmail.com'
 };
-// send notification based on priority levelnpm 
+// send notification based on priority level
 
 module.exports = (emails, numbers, priorityLevel) => {
   switch (priorityLevel) {
