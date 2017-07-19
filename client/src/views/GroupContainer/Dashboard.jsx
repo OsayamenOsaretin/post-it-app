@@ -4,10 +4,10 @@ import GroupListView from './GroupListView.jsx';
 import { getGroups, recieveGroups } from '../../data/postItActions/groupActions';
 import GroupStore from '../../data/postItStores/PostItGroupStore';
 import HeaderView from '../Header.jsx';
-import getMessagesAction from '../../data/postItActions/getMessagesAction';
-import getAllUsersAction from '../../data/postItActions/getAllUsersAction';
-import PostItDispatcher from '../../data/PostItDispatcher';
-import PostItActionTypes from '../../data/PostItActionTypes';
+// import getMessagesAction from '../../data/postItActions/getMessagesAction';
+// import getAllUsersAction from '../../data/postItActions/getAllUsersAction';
+// import PostItDispatcher from '../../data/PostItDispatcher';
+// import PostItActionTypes from '../../data/PostItActionTypes';
 
 const socket = io('https://postit-app-develop.herokuapp.com/');
 
