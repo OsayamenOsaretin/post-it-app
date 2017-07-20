@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/OsayamenOsaretin/post-it-app.svg?branch=develop)](https://travis-ci.org/OsayamenOsaretin/post-it-app) [![Coverage Status](https://coveralls.io/repos/github/OsayamenOsaretin/post-it-app/badge.svg?branch=develop)](https://coveralls.io/github/OsayamenOsaretin/post-it-app?branch=develop)
+[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
 # PostIt
 
 PostIt supports collaboration and helps build relationships by allowing users create groups of other users. Broadcast messages can be sent to all members of these groups at the same time.
