@@ -1,6 +1,8 @@
 import PostItActionTypes from '../data/PostItActionTypes';
 import GetAllUsersAction from 'GetAllUsersAction';
 
+/* global jest */
+
 jest.mock('../data/PostItDispatcher');
 jest.mock('GetAllUsersAction', () => jest.fn());
 
@@ -18,7 +20,8 @@ describe('PostItAllUsersStore ', () => {
     source: 'SERVER_ACTION',
     action: {
       type: PostItActionTypes.RECIEVE_USERS,
-      users: [['testUser', 'Tester']]
+      users: [['testUser', 'Tester']],
+      id: 'testGroupId'
     }
   };
 
@@ -40,12 +43,12 @@ describe('PostItAllUsersStore ', () => {
   });
 
   it('should initialize with empty users list', () => {
-    expect((PostItAllUsersStore.getUsers()).size).toBe(0);
+    expect((PostItAllUsersStore.getUsers('testGroupId'))).not.toBeDefined();
   });
 
   it('should update user list after getting new values', () => {
     callback(recieveUsers);
-    expect((PostItAllUsersStore.getUsers()).size).toBe(1);
+    expect((PostItAllUsersStore.getUsers('testGroupId')).size).toBe(1);
   });
 
   it('should call get all users action on recieving dispatch', () => {

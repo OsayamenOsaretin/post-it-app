@@ -1,5 +1,7 @@
 import PostItActionTypes from '../data/PostItActionTypes';
 
+/* global jest localStorage window */
+
 jest.mock('../data/PostItDispatcher');
 Object.defineProperty(window, 'localStorage', { value: jest.fn() });
 localStorage.getItem = jest.fn();

@@ -1,11 +1,12 @@
 import request from 'superagent';
-import PostItActionTypes from '../PostItActionTypes';
-import PostItDispatcher from '../PostItDispatcher';
+// import PostItActionTypes from '../PostItActionTypes';
+// import PostItDispatcher from '../PostItDispatcher';
 
 
 /**
  * getAllUsersAction - get all the PostIt registered users
  * @returns {void}
+ * @param {*} groupId
  */
 export default (groupId) => {
   request

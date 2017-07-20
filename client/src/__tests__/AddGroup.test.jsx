@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import GroupAction from 'GroupAction';
 import AddGroup from '../views/GroupContainer/AddGroup.jsx';
 
-
+/* global jest */
 // let addFunction = GroupAction.addGroupApi;
 
 jest.mock('GroupAction', () => jest.fn());

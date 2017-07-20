@@ -2,6 +2,12 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MessageListView from '../views/GroupContainer/GroupBodyContainer/MessageListView.jsx';
 
+/* global localStorage window jest */
+
+Object.defineProperty(window, 'localStorage', { value: jest.fn() });
+localStorage.getItem = jest.fn();
+localStorage.setItem = jest.fn();
+
 describe('MessageListView', () => {
   let mountedComponent;
   let props;

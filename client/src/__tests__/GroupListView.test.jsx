@@ -1,6 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import io from 'socket.io-client';
 import GroupListView from '../views/GroupContainer/GroupListView.jsx';
+
+/* global jest */
+
+jest.mock('socket.io-client');
+jest.mock('../utility/bulkMessageRequest', () => jest.fn());
 
 describe('GroupListView', () => {
   let mountedComponent;
@@ -16,7 +22,8 @@ describe('GroupListView', () => {
   beforeEach(() => {
     mountedComponent = undefined;
     props = {
-      groups: undefined
+      groups: undefined,
+      socket: io('http://balls.com')
     };
   });
 
@@ -37,4 +44,9 @@ describe('GroupListView', () => {
     expect(Object.keys(component.props()).length).toBeGreaterThan(0);
   });
 
+  it('should attach listeners with socket.io', () => {
+    const socketSpy = spyOn(props.socket, 'on');
+    groupListView();
+    expect(socketSpy).toHaveBeenCalled();
+  });
 });

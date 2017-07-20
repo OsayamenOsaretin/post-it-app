@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Immutable from 'immutable';
 import GroupList from '../views/GroupContainer/GroupList.jsx';
 
 describe('GroupList', () => {
@@ -16,12 +17,13 @@ describe('GroupList', () => {
 
   beforeEach(() => {
     props = {
-      groups: []
+      groups: new Immutable.Map()
     };
     mountedComponent = undefined;
   });
 
   it('should render', () => {
+    // const groupSequenceSpy = spyOn(props.groups, 'KeySeq');
     const component = groupList();
     expect(component).toBeDefined();
   });
@@ -33,9 +35,5 @@ describe('GroupList', () => {
 
   it('should render add group view', () => {
     expect(groupList().find('AddGroupView')).toBeDefined();
-  });
-
-  it('should render a group item', () => {
-    expect(groupList().find('GroupItem')).toBeDefined();
   });
 });
