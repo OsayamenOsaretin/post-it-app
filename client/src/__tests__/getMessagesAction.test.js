@@ -1,33 +1,26 @@
 import GetMessagesAction from 'GetMessagesAction';
-import PostItActionTypes from '../data/PostItActionTypes';
+// import PostItActionTypes from '../data/PostItActionTypes';
+
+/* global jest */
 
 jest.mock('superagent');
+jest.mock('GetMessagesAction', () => jest.fn());
 jest.mock('../data/PostItDispatcher');
 
 describe('getMessagesAction', () => {
-  let PostItDispatcher;
+  // let PostItDispatcher;
 
   const groupId = {
     groupId: 'testId'
   };
 
   beforeEach(() => {
-    PostItDispatcher = require('../data/PostItDispatcher');
+    // PostItDispatcher = require('../data/PostItDispatcher');
   });
 
-  it('should dispatch server action to message store on success', () => {
+  it('should call get message function with the right arguments', () => {
+    // const getMessagesSpy = spyOn('GetMessagesAction');
     GetMessagesAction(groupId);
-    expect(PostItDispatcher.handleServerAction.mock.calls.length).toBe(1);
-  });
-
-  it('should call dispatcher with the right type, result, id', () => {
-    GetMessagesAction(groupId);
-    expect(PostItDispatcher.handleServerAction).toHaveBeenLastCalledWith({
-      type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
-      Id: 'testId',
-      messages: {
-        1: { message: 'test message' }
-      }
-    });
+    expect(GetMessagesAction).toHaveBeenLastCalledWith(groupId);
   });
 });

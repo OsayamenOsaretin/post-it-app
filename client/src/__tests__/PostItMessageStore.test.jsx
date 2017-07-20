@@ -1,5 +1,7 @@
 import PostItActionTypes from '../data/PostItActionTypes';
 
+/* global jest */
+
 jest.mock('../data/PostItDispatcher');
 
 describe('PostItMessageStore', () => {

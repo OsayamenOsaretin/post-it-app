@@ -17,7 +17,11 @@ describe('GroupItem', () => {
   beforeEach(() => {
     props = {
       groupName: undefined,
-      groupId: undefined,
+      match: {
+        params: {
+          groupId: undefined,
+        }
+      }
     };
     mountedComponent = undefined;
   });

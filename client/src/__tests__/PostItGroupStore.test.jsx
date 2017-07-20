@@ -1,6 +1,8 @@
 import PostItActionTypes from '../data/PostItActionTypes';
 import GroupAction from 'GroupAction';
 
+/* global jest */
+
 jest.mock('../data/PostItDispatcher');
 jest.mock('GroupAction', () => jest.fn());
 
