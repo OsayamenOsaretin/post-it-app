@@ -1,4 +1,4 @@
-https://travis-ci.org/OsayamenOsaretin/post-it-app.svg?branch=master
+[![Build Status](https://travis-ci.org/OsayamenOsaretin/post-it-app.svg?branch=master)](https://travis-ci.org/OsayamenOsaretin/post-it-app)
 # PostIt
 
 PostIt supports collaboration and helps build relationships by allowing users create groups of other users. Broadcast messages can be sent to all members of these groups at the same time.
