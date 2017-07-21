@@ -1,5 +1,7 @@
 // mock for superagent - __mocks__/superagent.js
 
+/* global jest */
+
 let mockDelay;
 let mockError;
 let mockResponse = {
@@ -16,6 +18,9 @@ let mockResponse = {
     },
     groupMessages: {
       1: { message: 'test message' }
+    },
+    userObject: {
+      username: 'testUser'
     }
   },
   get: jest.genMockFunction(),
