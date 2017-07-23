@@ -119,11 +119,6 @@ PostItDispatcher.register((payload) => {
     break;
   }
 
-  case PostItActionTypes.SENT_MESSAGE: {
-    messageStore.emit(CHANGE_EVENT);
-    break;
-  }
-
   case PostItActionTypes.READ_MESSAGE: {
     const Id = action.Id;
 
