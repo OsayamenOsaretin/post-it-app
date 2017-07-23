@@ -33,7 +33,7 @@
       "^GroupActions$": "<rootDir>/client/src/data/postItActions/groupActions",
       "^AddUserGroup$": "<rootDir>/client/src/data/postItActions/addUserGroup",
       "^GoogleSignInAction$": "<rootDir>/client/src/data/postItActions/googleSignInAction",
-      "^ReadMessagesAction$": "<rootDir>/client/src/data/PostItActions/readMessagesAction",
+      "^ReadMessagesAction$": "<rootDir>/client/src/data/postItActions/readMessagesAction",
       "^AllUsersStore$": "<rootDir>/client/src/data/postItStores/PostItAllUsersStore",
       "^MessageStore$": "<rootDir>/client/src/data/postItStores/PostItMessageStore"
     }
