@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60.87% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>28/46</span>
+        <span class='fraction'>33/44</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.5% </span>
+        <span class="strong">57.14% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/8</span>
+        <span class='fraction'>4/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>4/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60.87% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>28/46</span>
+        <span class='fraction'>33/44</span>
       </div>
     </div>
   </div>
@@ -180,26 +180,21 @@
 135
 136
 137
-138
-139
-140
-141
-142
-143</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+138</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -271,12 +266,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -307,26 +302,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { EventEmitter } from 'events';
 import MessageList from '../models/groupList';
 import PostItDispatcher from '../PostItDispatcher';
@@ -448,21 +438,16 @@ PostItDispatcher.register((payload) =&gt; {
     break;
   }
 &nbsp;
-<span class="branch-1 cbranch-no" title="branch not covered" >  case PostItActionTypes.SENT_MESSAGE: {</span>
-<span class="cstat-no" title="statement not covered" >    messageStore.emit(CHANGE_EVENT);</span>
-<span class="cstat-no" title="statement not covered" >    break;</span>
+  case PostItActionTypes.READ_MESSAGE: {
+    const Id = action.Id;
+&nbsp;
+    groupWithNewMessageId = Id;
+    notificationMap.set(Id, false);
+    messageStore.emit(CHANGE_EVENT);
+    break;
   }
 &nbsp;
-<span class="branch-2 cbranch-no" title="branch not covered" >  case PostItActionTypes.READ_MESSAGE: {</span>
-    const Id = <span class="cstat-no" title="statement not covered" >action.Id;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    groupWithNewMessageId = Id;</span>
-<span class="cstat-no" title="statement not covered" >    notificationMap.set(Id, false);</span>
-<span class="cstat-no" title="statement not covered" >    messageStore.emit(CHANGE_EVENT);</span>
-<span class="cstat-no" title="statement not covered" >    break;</span>
-  }
-&nbsp;
-<span class="branch-3 cbranch-no" title="branch not covered" >  default: {</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >  default: {</span>
 <span class="cstat-no" title="statement not covered" >    return true;</span>
   }
   }
@@ -475,7 +460,7 @@ module.exports = messageStore;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 21 2017 08:28:00 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jul 23 2017 15:41:02 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../prettify.js"></script>
