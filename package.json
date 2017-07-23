@@ -30,7 +30,12 @@
       "^GetAllUsersAction$": "<rootDir>/client/src/data/postItActions/getAllUsersAction",
       "^PostItDispatcher$": "<rootDir>/client/src/data/PostItDispatcher",
       "^GetMessagesAction$": "<rootDir>/client/src/data/postItActions/getMessagesAction",
-      "^GroupActions$": "<rootDir>/client/src/data/postItActions/groupActions"
+      "^GroupActions$": "<rootDir>/client/src/data/postItActions/groupActions",
+      "^AddUserGroup$": "<rootDir>/client/src/data/postItActions/addUserGroup",
+      "^GoogleSignInAction$": "<rootDir>/client/src/data/postItActions/googleSignInAction",
+      "^ReadMessagesAction$": "<rootDir>/client/src/data/PostItActions/readMessagesAction",
+      "^AllUsersStore$": "<rootDir>/client/src/data/postItStores/PostItAllUsersStore",
+      "^MessageStore$": "<rootDir>/client/src/data/postItStores/PostItMessageStore"
     }
   },
   "dependencies": {

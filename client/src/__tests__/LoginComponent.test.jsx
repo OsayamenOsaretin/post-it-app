@@ -3,6 +3,8 @@ import { mount } from 'enzyme';
 import SignInAction from 'SignInAction';
 import LoginComponent from '../views/LoginRegisterContainer/LoginComponent.jsx';
 
+/* global jest */
+
 jest.mock('SignInAction', () => jest.fn());
 
 describe('LoginComponent', () => {

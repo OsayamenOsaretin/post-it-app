@@ -14,6 +14,13 @@ describe('PostItMessageStore', () => {
     }
   };
 
+  const readMessages = {
+    action: {
+      type: PostItActionTypes.READ_MESSAGE,
+      Id: 'testId'
+    }
+  };
+
   let callback;
   let PostItDispatcher;
   let PostItMessageStore;
@@ -32,5 +39,11 @@ describe('PostItMessageStore', () => {
   it('should update map of messages in on recieve callback', () => {
     callback(recieveMessages);
     expect((PostItMessageStore.getMessage('testId')).size).toBeGreaterThan(0);
+  });
+
+  it('should emit change on receive mark read dispatch', () => {
+    const spyEmit = spyOn(PostItMessageStore, 'emit');
+    callback(readMessages);
+    expect(spyEmit).toHaveBeenCalled();
   });
 });

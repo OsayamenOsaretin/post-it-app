@@ -21,7 +21,6 @@ export default function GoogleSignInAction(idToken) {
       console.log(error);
     } else {
       const userData = result.body.userObject;
-      console.log(userData);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
         user: userData

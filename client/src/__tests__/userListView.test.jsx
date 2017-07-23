@@ -3,6 +3,8 @@ import { mount } from 'enzyme';
 import UserListView from '../views/GroupContainer/GroupBodyContainer/userListView.jsx';
 import UserListAction from 'UserListAction';
 
+/* global jest */
+
 jest.mock('UserListAction', () => jest.fn());
 
 describe('UserListView ', () => {

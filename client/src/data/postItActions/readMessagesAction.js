@@ -8,6 +8,7 @@ import PostItActionTypes from '../PostItActionTypes';
  * @function
  * @return {void}
  * @param {*} messages
+ * @param {*} groupId
  */
 export default (messages, groupId) => {
   console.log(
