@@ -53,7 +53,7 @@ describe('LoginComponent', () => {
     const inputs = loginComponent().find('input');
     const passwordInput = inputs.at(1);
     passwordInput.simulate('change',
-    { target: { value: 'supersecretpassword', name: 'password' } });
+      { target: { value: 'supersecretpassword', name: 'password' } });
     expect(loginComponent().state().password).toBe('supersecretpassword');
   });
 
@@ -68,7 +68,7 @@ describe('LoginComponent', () => {
     const inputs = component.find('input');
     inputs.first().simulate('change', { target: { value: 'testing@email.com', name: 'email' } });
     inputs.at(1).simulate('change',
-    { target: { value: 'supersecretpassword', name: 'password' } });
+      { target: { value: 'supersecretpassword', name: 'password' } });
     button.simulate('click');
     expect(SignInAction.mock.calls.length).toBe(1);
   });

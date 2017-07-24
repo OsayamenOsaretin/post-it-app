@@ -2,11 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import io from 'socket.io-client';
 import GroupListView from '../views/GroupContainer/GroupListView.jsx';
+import BulkMessageRequest from 'BulkMessageRequest';
 
 /* global jest */
 
 jest.mock('socket.io-client');
 jest.mock('../utility/bulkMessageRequest', () => jest.fn());
+jest.mock('BulkMessageRequest');
 
 describe('GroupListView', () => {
   let mountedComponent;
@@ -48,5 +50,19 @@ describe('GroupListView', () => {
     const socketSpy = spyOn(props.socket, 'on');
     groupListView();
     expect(socketSpy).toHaveBeenCalled();
+  });
+
+  it('should call a bulk request for messages', () => {
+    groupListView();
+    expect(BulkMessageRequest).toHaveBeenCalled();
+  });
+
+  it('should render a switch and routes', () => {
+    const component = groupListView();
+    const switchView = component.find('Switch');
+    const routesView = component.find('Route');
+
+    expect(switchView).toBeDefined();
+    expect(routesView).toBeDefined();
   });
 });

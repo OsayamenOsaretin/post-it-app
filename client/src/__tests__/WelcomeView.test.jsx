@@ -26,6 +26,6 @@ describe('WelcomeView', () => {
     const div = component.find('div');
 
     expect(div.length).toBeGreaterThan(0);
-  })
-})
+  });
+});
 
