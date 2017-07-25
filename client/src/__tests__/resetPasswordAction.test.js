@@ -1,5 +1,4 @@
-import superagent from 'superagent';
-import PostItActionTypes from '../data/PostItActionTypes';
+// import PostItActionTypes from '../data/PostItActionTypes';
 import ResetPasswordAction from 'ResetPasswordAction';
 
 /* global jest */

@@ -21,13 +21,19 @@ describe('PostItUserStore', () => {
     }
   };
 
+  const resetMessage = {
+    action: {
+      type: PostItActionTypes.RESET_MESSAGE_SENT
+    }
+  };
+
   let callback;
   let PostItDispatcher;
-  let PostItMessageStore;
+  let PostItUserStore;
 
   beforeEach(() => {
     jest.resetModules();
-    PostItMessageStore = require('../data/postItStores/PostItUserStore');
+    PostItUserStore = require('../data/postItStores/PostItUserStore');
     PostItDispatcher = require('../data/PostItDispatcher');
     callback = PostItDispatcher.register.mock.calls[0][0];
   });
@@ -42,6 +48,25 @@ describe('PostItUserStore', () => {
   });
 
   it('should get token item from local storage when get signed in state called', () => {
-    expect(PostItMessageStore.getSignedInState()).toBe(localStorage.getItem('token'));
+    expect(PostItUserStore.getSignedInState()).toBe(localStorage.getItem('token'));
+  });
+
+  it('should set the reset password state', () => {
+    callback(resetMessage);
+    expect(PostItUserStore.getPasswordResetMessageState()).toBe(true);
+  });
+
+  it('should attach event emitter when add change listener is called', () => {
+    const spyOnAddEvent = spyOn(PostItUserStore, 'on');
+    const mockCallBack = jest.fn();
+    PostItUserStore.addChangeListener(mockCallBack);
+    expect(spyOnAddEvent).toHaveBeenCalledWith('change', mockCallBack);
+  });
+
+  it('should remove event emitter when remove change lister is called', () => {
+    const spyOnRemoveEvent = spyOn(PostItUserStore, 'removeListener');
+    const mockCallBack = jest.fn();
+    PostItUserStore.removeChangeListener(mockCallBack);
+    expect(spyOnRemoveEvent).toHaveBeenCalledWith('change', mockCallBack);
   });
 });

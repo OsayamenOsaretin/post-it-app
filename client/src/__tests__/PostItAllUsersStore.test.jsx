@@ -55,4 +55,18 @@ describe('PostItAllUsersStore ', () => {
     callback(getUsers);
     expect(Action.mock.calls.length).toBe(1);
   });
+
+  it('should have function to add event listener', () => {
+    const spyOnEventListener = spyOn(PostItAllUsersStore, 'on');
+    const mockCallBack = jest.fn();
+    PostItAllUsersStore.addChangeListener(mockCallBack, 'testChange');
+    expect(spyOnEventListener).toHaveBeenCalledWith('testChange', mockCallBack);
+  });
+
+  it('should have function to remove event listener', () => {
+    const spyOnEventListener = spyOn(PostItAllUsersStore, 'removeListener');
+    const mockCallBack = jest.fn();
+    PostItAllUsersStore.removeChangeListener(mockCallBack, 'testChange');
+    expect(spyOnEventListener).toHaveBeenCalledWith('testChange', mockCallBack);
+  });
 });
