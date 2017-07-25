@@ -24,4 +24,14 @@ describe('sendMessageAction', () => {
 
     expect(PostItDispatcher.handleServerAction.mock.calls.length).toBe(1);
   });
+
+  it('should dispatch error payload when send message unsuccessful', () => {
+    require('superagent').__setMockError({
+      message: 'Error!!!'
+    });
+    sendMessageAction();
+    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+      type: PostItActionTypes.FAILED_SEND_MESSAGE
+    });
+  });
 });

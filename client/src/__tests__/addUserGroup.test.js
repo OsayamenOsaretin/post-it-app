@@ -26,4 +26,14 @@ describe('addUserGroup', () => {
       groupId: Details.groupId
     });
   });
+
+  it('should dispatch with error payload when add user to group fails', () => {
+    require('superagent').__setMockError({
+      message: 'Error!!!'
+    });
+    AddUserGroup(Details);
+    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+      type: PostItActionTypes.FAILED_ADD_USER
+    });
+  });
 });

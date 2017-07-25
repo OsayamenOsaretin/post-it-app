@@ -25,4 +25,14 @@ describe('googleSignInAction', () => {
       }
     });
   });
+
+  it('should dispatch error payload when request fails', () => {
+    require('superagent').__setMockError({
+      message: 'Error!!!'
+    });
+    GoogleSignInAction();
+    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+      type: PostItActionTypes.FAILED_GOOGLE_LOGIN
+    });
+  });
 });
