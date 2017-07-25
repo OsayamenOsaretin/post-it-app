@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1500977814474" clover="3.2.0">
-  <project timestamp="1500977814476" name="All files">
-    <metrics statements="517" coveredstatements="392" conditionals="138" coveredconditionals="67" methods="155" coveredmethods="125" elements="810" coveredelements="584" complexity="0" loc="517" ncloc="517" packages="9" files="42" classes="42">
+<coverage generated="1500994115933" clover="3.2.0">
+  <project timestamp="1500994115935" name="All files">
+    <metrics statements="521" coveredstatements="404" conditionals="138" coveredconditionals="75" methods="155" coveredmethods="125" elements="814" coveredelements="604" complexity="0" loc="521" ncloc="521" packages="9" files="42" classes="42">
       <package name="data">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <file name="PostItActionTypes.js" path="/Users/mac/PostIt/post-it-app/client/src/data/PostItActionTypes.js">
@@ -24,19 +24,20 @@
         </file>
       </package>
       <package name="data.postItActions">
-        <metrics statements="80" coveredstatements="65" conditionals="24" coveredconditionals="12" methods="26" coveredmethods="24"/>
+        <metrics statements="84" coveredstatements="77" conditionals="24" coveredconditionals="20" methods="26" coveredmethods="24"/>
         <file name="addUserGroup.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/addUserGroup.js">
-          <metrics statements="10" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-          <line num="11" count="1" type="stmt"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="17" count="1" type="stmt"/>
-          <line num="18" count="1" type="stmt"/>
-          <line num="24" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="25" count="0" type="stmt"/>
-          <line num="27" count="1" type="stmt"/>
-          <line num="28" count="1" type="stmt"/>
+          <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="2" type="stmt"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="17" count="2" type="stmt"/>
+          <line num="18" count="2" type="stmt"/>
+          <line num="24" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
         </file>
         <file name="getAllUsersAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/getAllUsersAction.js">
           <metrics statements="4" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
@@ -47,21 +48,22 @@
         </file>
         <file name="getMessagesAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/getMessagesAction.js">
           <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="9" count="0" type="stmt"/>
           <line num="10" count="0" type="stmt"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="16" count="0" type="stmt"/>
-          <line num="18" count="0" type="stmt"/>
+          <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
         </file>
         <file name="googleSignInAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/googleSignInAction.js">
-          <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="19" count="1" type="stmt"/>
-          <line num="20" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="23" count="1" type="stmt"/>
-          <line num="24" count="1" type="stmt"/>
+          <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
+          <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
         </file>
         <file name="groupActions.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/groupActions.js">
           <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="3" methods="6" coveredmethods="6"/>
@@ -81,60 +83,62 @@
           <line num="67" count="1" type="stmt"/>
         </file>
         <file name="readMessagesAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/readMessagesAction.js">
-          <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="17" count="1" type="stmt"/>
-          <line num="21" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="24" count="1" type="stmt"/>
-          <line num="25" count="1" type="stmt"/>
-          <line num="26" count="1" type="stmt"/>
+          <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="17" count="2" type="stmt"/>
+          <line num="21" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="29" count="1" type="stmt"/>
         </file>
         <file name="registerUserAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/registerUserAction.js">
-          <metrics statements="6" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="19" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="20" count="0" type="stmt"/>
+          <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="20" count="1" type="stmt"/>
           <line num="25" count="1" type="stmt"/>
           <line num="26" count="1" type="stmt"/>
         </file>
         <file name="resetPasswordAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/resetPasswordAction.js">
-          <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="19" count="1" type="stmt"/>
-          <line num="20" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="21" count="0" type="stmt"/>
-          <line num="23" count="1" type="stmt"/>
-          <line num="24" count="1" type="stmt"/>
-        </file>
-        <file name="sendMessageAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/sendMessageAction.js">
-          <metrics statements="8" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-          <line num="12" count="1" type="stmt"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="17" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="18" count="0" type="stmt"/>
-          <line num="20" count="1" type="stmt"/>
+          <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
+          <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
           <line num="21" count="1" type="stmt"/>
           <line num="22" count="1" type="stmt"/>
-          <line num="28" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+        </file>
+        <file name="sendMessageAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/sendMessageAction.js">
+          <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="12" count="2" type="stmt"/>
+          <line num="13" count="2" type="stmt"/>
+          <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
         </file>
         <file name="signOutAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/signOutAction.js">
-          <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-          <line num="7" count="1" type="stmt"/>
-          <line num="10" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="14" count="1" type="stmt"/>
+          <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="10" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
         </file>
         <file name="userSignInAction.js" path="/Users/mac/PostIt/post-it-app/client/src/data/postItActions/userSignInAction.js">
-          <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-          <line num="14" count="1" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="19" count="1" type="stmt"/>
-          <line num="20" count="1" type="cond" truecount="1" falsecount="1"/>
-          <line num="21" count="0" type="stmt"/>
+          <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
+          <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="21" count="1" type="stmt"/>
           <line num="26" count="1" type="stmt"/>
           <line num="27" count="1" type="stmt"/>
         </file>
