@@ -8,9 +8,10 @@ export default () => {
   .get('/signout')
   .end((error, result) => {
     if (error) {
-      console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_SIGN_OUT
+      });
     } else {
-      console.log(result);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.SIGN_OUT
       });

@@ -23,6 +23,9 @@ export default (Details) => {
   .end((error, result) => {
     if (error) {
       console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_ADD_USER
+      });
     } else {
       console.log(result);
       PostItDispatcher.handleServerAction({

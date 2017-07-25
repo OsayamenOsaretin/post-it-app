@@ -20,6 +20,9 @@ export default (messages, groupId) => {
   .end((error, result) => {
     if (error) {
       console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_READ_MESSAGE
+      });
     } else {
       console.log(result);
       console.log(`read message: ${groupId}`);

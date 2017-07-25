@@ -19,6 +19,9 @@ export default function ResetPassword(email) {
     console.log('api call returned a result');
     if (error) {
       console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_RESET_PASSWORD
+      });
     } else {
       console.log(result);
       PostItDispatcher.handleServerAction({

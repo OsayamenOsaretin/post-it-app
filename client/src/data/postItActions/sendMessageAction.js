@@ -16,6 +16,9 @@ export default (messageDetails) => {
   .end((error, result) => {
     if (error) {
       console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_SEND_MESSAGE
+      });
     } else {
       const newMessage = result.body.newMessage;
       const groupId = result.body.Id;
