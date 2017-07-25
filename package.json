@@ -23,6 +23,7 @@
     "collectCoverage": true,
     "moduleNameMapper": {
       "^SignInAction$": "<rootDir>/client/src/data/postItActions/userSignInAction.js",
+      "^SignOutAction$": "<rootDir>/client/src/data/postItActions/signOutAction",
       "^RegisterAction$": "<rootDir>/client/src/data/postItActions/registerUserAction.js",
       "^GroupAction$": "<rootDir>/client/src/data/postItActions/groupActions.js",
       "^UserListAction$": "<rootDir>/client/src/data/postItActions/addUserGroup",
@@ -35,7 +36,11 @@
       "^GoogleSignInAction$": "<rootDir>/client/src/data/postItActions/googleSignInAction",
       "^ReadMessagesAction$": "<rootDir>/client/src/data/postItActions/readMessagesAction",
       "^AllUsersStore$": "<rootDir>/client/src/data/postItStores/PostItAllUsersStore",
-      "^MessageStore$": "<rootDir>/client/src/data/postItStores/PostItMessageStore"
+      "^MessageStore$": "<rootDir>/client/src/data/postItStores/PostItMessageStore",
+      "^GroupStore$": "<rootDir>/client/src/data/postItStores/PostItGroupStore",
+      "^UserStore$": "<rootDir>/client/src/data/postItStores/PostItUserStore",
+      "^ResetPasswordAction$": "<rootDir>/client/src/data/postItActions/resetPasswordAction",
+      "^BulkMessageRequest$": "<rootDir>/client/src/utility/bulkMessageRequest"
     }
   },
   "dependencies": {

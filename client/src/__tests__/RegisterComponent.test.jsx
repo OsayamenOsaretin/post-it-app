@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import RegisterAction from 'RegisterAction';
 
 import RegisterForm from '../views/LoginRegisterContainer/RegisterComponent.jsx';
-
+/* global jest */
 jest.mock('RegisterAction', () => jest.fn());
 
 describe('RegisterComponent', () => {

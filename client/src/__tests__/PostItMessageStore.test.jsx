@@ -46,4 +46,32 @@ describe('PostItMessageStore', () => {
     callback(readMessages);
     expect(spyEmit).toHaveBeenCalled();
   });
+
+  it('should attach event emitter when add change listener is called', () => {
+    const spyOnAddEvent = spyOn(PostItMessageStore, 'on');
+    const mockCallBack = jest.fn();
+    PostItMessageStore.addChangeListener(mockCallBack, 'change');
+    expect(spyOnAddEvent).toHaveBeenCalledWith('change', mockCallBack);
+  });
+
+  it('should remove event emitter when remove change lister is called', () => {
+    const spyOnRemoveEvent = spyOn(PostItMessageStore, 'removeListener');
+    const mockCallBack = jest.fn();
+    PostItMessageStore.removeChangeListener(mockCallBack, 'change');
+    expect(spyOnRemoveEvent).toHaveBeenCalledWith('change', mockCallBack);
+  });
+
+  it('should attach event emitter when add change listener is called', () => {
+    const spyOnAddEvent = spyOn(PostItMessageStore, 'on');
+    const mockCallBack = jest.fn();
+    PostItMessageStore.addNotificationChangeListener(mockCallBack);
+    expect(spyOnAddEvent).toHaveBeenCalledWith('change', mockCallBack);
+  });
+
+  it('should remove event emitter when remove change lister is called', () => {
+    const spyOnRemoveEvent = spyOn(PostItMessageStore, 'removeListener');
+    const mockCallBack = jest.fn();
+    PostItMessageStore.removeNotificationChangeListener(mockCallBack);
+    expect(spyOnRemoveEvent).toHaveBeenCalledWith('change', mockCallBack);
+  });
 });

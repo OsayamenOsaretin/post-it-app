@@ -5,8 +5,6 @@ import Dashboard from './GroupContainer/Dashboard.jsx';
 import ResetPasswordComponent from './LoginRegisterContainer/ResetPasswordView.jsx';
 import UserStore from '../data/postItStores/PostItUserStore';
 
-/* global window Event */
-
 /**
  * App view that holds the entire container view for the app
  */
@@ -113,7 +111,8 @@ class App extends React.Component {
           </div>
         }
         {!this.state.passwordReset && <ResetPasswordComponent />}
-        {!this.state.passwordReset && this.state.messageSent && <p className="password-sent-message">
+        {!this.state.passwordReset && this.state.messageSent &&
+        <p className="password-sent-message">
           A password reset email has been sent, refresh or proceed to <button
             className="login-button"
             onClick={() => { this.setState({ passwordReset: true }); }}

@@ -65,4 +65,18 @@ describe('PostItGroupStore', () => {
     callback(getGroups);
     expect(Action.getGroups.mock.calls.length).toBe(1);
   });
+
+  it('should attach event emitter when add change listener is called', () => {
+    const spyOnAddEvent = spyOn(PostItGroupStore, 'on');
+    const mockCallBack = jest.fn();
+    PostItGroupStore.addChangeListener(mockCallBack);
+    expect(spyOnAddEvent).toHaveBeenCalledWith('change', mockCallBack);
+  });
+
+  it('should remove event emitter when remove change lister is called', () => {
+    const spyOnRemoveEvent = spyOn(PostItGroupStore, 'removeListener');
+    const mockCallBack = jest.fn();
+    PostItGroupStore.removeChangeListener(mockCallBack);
+    expect(spyOnRemoveEvent).toHaveBeenCalledWith('change', mockCallBack);
+  });
 });
