@@ -43,6 +43,9 @@ export function getGroups() {
       });
     } else {
       console.log(result);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.GETTING_GROUPS
+      });
     }
   });
 }
@@ -60,6 +63,9 @@ export function addGroupApi(groupName) {
   .end((error, result) => {
     if (error) {
       console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_ADD_GROUP
+      });
     } else {
       // make api call to get all the new groups
       console.log(result);

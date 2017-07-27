@@ -1,4 +1,6 @@
 import request from 'superagent';
+import PostItDispatcher from '../PostItDispatcher';
+import PostItActionTypes from '../PostItActionTypes';
 
 /**
  * getMessagesAction - get all messages sent to a particular group
@@ -13,7 +15,13 @@ export default (groupId) => {
     .end((error, result) => {
       if (error) {
         console.log(error);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_GET_MESSAGES
+        });
       } else {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.SUCCEED_GET_MESSAGES
+        });
         console.log(result);
       }
     });
