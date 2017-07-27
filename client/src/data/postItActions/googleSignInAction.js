@@ -19,6 +19,9 @@ export default function GoogleSignInAction(idToken) {
     console.log('google api call returned a result');
     if (error) {
       console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_GOOGLE_LOGIN
+      });
     } else {
       const userData = result.body.userObject;
       PostItDispatcher.handleServerAction({

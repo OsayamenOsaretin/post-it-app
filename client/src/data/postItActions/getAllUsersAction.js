@@ -1,6 +1,6 @@
 import request from 'superagent';
-// import PostItActionTypes from '../PostItActionTypes';
-// import PostItDispatcher from '../PostItDispatcher';
+import PostItActionTypes from '../PostItActionTypes';
+import PostItDispatcher from '../PostItDispatcher';
 
 
 /**
@@ -15,8 +15,14 @@ export default (groupId) => {
   .end((error, result) => {
     if (error) {
       console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_GROUP_USERS
+      });
     } else {
       console.log(result);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.GOT_GROUP_USERS
+      });
     }
   });
 };

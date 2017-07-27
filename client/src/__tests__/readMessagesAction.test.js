@@ -24,4 +24,14 @@ describe('readMessagesAction', () => {
       Id: groupId
     });
   });
+
+  it('should dispatch error payload on request fail', () => {
+    require('superagent').__setMockError({
+      message: 'Error!!!'
+    });
+    ReadMessagesAction();
+    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+      type: PostItActionTypes.FAILED_READ_MESSAGE
+    });
+  });
 });

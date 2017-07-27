@@ -15,4 +15,14 @@ describe('userSignOutAction', () => {
       type: PostItActionTypes.SIGN_OUT
     });
   });
+
+  it('should dispatch error payload when sign out fails', () => {
+    require('superagent').__setMockError({
+      message: 'Error!!!'
+    });
+    SignOutAction();
+    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+      type: PostItActionTypes.FAILED_SIGN_OUT
+    });
+  });
 });

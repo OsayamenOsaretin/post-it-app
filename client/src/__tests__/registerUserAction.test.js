@@ -16,4 +16,14 @@ describe('registerUserAction', () => {
     RegisterAction();
     expect(PostItDispatcher.handleServerAction).toHaveBeenCalled();
   });
+
+  it('should dispatch error payload when register user fails', () => {
+    require('superagent').__setMockError({
+      message: 'Error!!!'
+    });
+    RegisterAction();
+    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+      type: PostItActionTypes.REGISTER_ERROR
+    });
+  });
 });
