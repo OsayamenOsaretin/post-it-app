@@ -112,7 +112,6 @@ class SendMessageView extends React.Component {
       stringLevel: level,
       priority: messagePriority
     });
-    console.log(this.state);
   }
 
   /**
