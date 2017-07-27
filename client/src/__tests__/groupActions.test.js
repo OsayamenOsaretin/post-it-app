@@ -40,6 +40,23 @@ describe('groupActions', () => {
     });
   });
 
+  it('should dispatch getting groups payload when get groups succeeds', () => {
+    getGroups();
+    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+      type: PostItActionTypes.GETTING_GROUPS
+    });
+  });
+
+  it('should dispatch failed to add group payload when add group fails', () => {
+    require('superagent').__setMockError({
+      message: 'Fetching groups threw error'
+    });
+    addGroupApi();
+    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+      type: PostItActionTypes.FAILED_ADD_GROUP
+    });
+  });
+
   it('should dispatch to store when get group query fails', () => {
     require('superagent').__setMockError({
       message: 'Fetching groups threw error'
