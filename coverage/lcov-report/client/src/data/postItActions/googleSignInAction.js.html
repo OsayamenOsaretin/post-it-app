@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>8/8</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -74,7 +74,9 @@
 29
 30
 31
-32</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+32
+33
+34</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -87,18 +89,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,19 +121,21 @@ import PostItActionTypes from '../PostItActionTypes';
  * @returns {void}
  * @param {*} idToken
  */
-export default function <span class="fstat-no" title="function not covered" >GoogleSignInAction(</span>idToken) {
-<span class="cstat-no" title="statement not covered" >  console.log('superagent api call to login');</span>
-<span class="cstat-no" title="statement not covered" >  request</span>
+export default function GoogleSignInAction(idToken) {
+  console.log('superagent api call to login');
+  request
   .post('user/google/signin')
   .send(idToken)
-  .end(<span class="fstat-no" title="function not covered" >(e</span>rror, result) =&gt; {
-<span class="cstat-no" title="statement not covered" >    console.log('google api call returned a result');</span>
-<span class="cstat-no" title="statement not covered" >    if (error) {</span>
-<span class="cstat-no" title="statement not covered" >      console.log(error);</span>
+  .end((error, result) =&gt; {
+    console.log('google api call returned a result');
+    if (error) {
+      console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_GOOGLE_LOGIN
+      });
     } else {
-      const userData = <span class="cstat-no" title="statement not covered" >result.body.userObject;</span>
-<span class="cstat-no" title="statement not covered" >      console.log(userData);</span>
-<span class="cstat-no" title="statement not covered" >      PostItDispatcher.handleServerAction({</span>
+      const userData = result.body.userObject;
+      PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
         user: userData
       });
@@ -142,7 +148,7 @@ export default function <span class="fstat-no" title="function not covered" >Goo
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 20 2017 15:57:02 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 31 2017 14:45:58 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>
