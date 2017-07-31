@@ -14,20 +14,20 @@ module.exports = (app, firebase) => {
         const db = firebase.database();
 
         // create a new group and return the unique key
-        const newGroupKey = db.ref().child('groups').push({
+        const newGroupKey = db.ref('groups').push({
           groupname: groupName,
           creator: userId,
         }).key;
 
         // add user id to list of group members
-        db.ref().child(`groups/${newGroupKey}/users/${userId}`).set({
+        db.ref(`groups/${newGroupKey}/users/${userId}`).set({
           Id: userId,
         });
 
         // add group key to list of a user's group
         db.ref(`/users/${userId}/groups/`).child(newGroupKey).set(
           { id: newGroupKey }
-          );
+        );
 
         // return the new group to the client to update UI
         const newGroup = new Map();

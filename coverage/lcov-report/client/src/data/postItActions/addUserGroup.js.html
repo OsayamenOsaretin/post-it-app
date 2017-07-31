@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>11/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>11/11</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -78,7 +78,10 @@
 33
 34
 35
-36</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+36
+37
+38
+39</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -88,24 +91,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,25 +128,28 @@ import PostItDispatcher from '../PostItDispatcher';
  * @param {*} Details
  * @return {void}
  */
-export default <span class="fstat-no" title="function not covered" >(D</span>etails) =&gt; {
-  const user = <span class="cstat-no" title="statement not covered" >Details.userId;</span>
-  const groupId = <span class="cstat-no" title="statement not covered" >Details.groupId;</span>
+export default (Details) =&gt; {
+  const user = Details.userId;
+  const groupId = Details.groupId;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  console.log(user);</span>
-<span class="cstat-no" title="statement not covered" >  console.log(groupId);</span>
+  console.log(user);
+  console.log(groupId);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  console.log('reaches add user action');</span>
-<span class="cstat-no" title="statement not covered" >  request</span>
+  console.log('reaches add user action');
+  request
   .post(`/group/${groupId}/user`)
   .send({
     userId: user
   })
-  .end(<span class="fstat-no" title="function not covered" >(e</span>rror, result) =&gt; {
-<span class="cstat-no" title="statement not covered" >    if (error) {</span>
-<span class="cstat-no" title="statement not covered" >      console.log(error);</span>
+  .end((error, result) =&gt; {
+    if (error) {
+      console.log(error);
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_ADD_USER
+      });
     } else {
-<span class="cstat-no" title="statement not covered" >      console.log(result);</span>
-<span class="cstat-no" title="statement not covered" >      PostItDispatcher.handleServerAction({</span>
+      console.log(result);
+      PostItDispatcher.handleServerAction({
         type: PostItActionTypes.DELETE_USER,
         id: user,
         groupId: Details.groupId
@@ -154,7 +163,7 @@ export default <span class="fstat-no" title="function not covered" >(D</span>eta
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 20 2017 15:57:02 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 31 2017 14:45:58 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

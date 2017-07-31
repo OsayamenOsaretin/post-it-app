@@ -16,11 +16,14 @@ module.exports = (app, firebase) => {
               messageRef.child(`${messageId}/read/${userName}`).set(true);
             }
           });
+          res.send({
+            message: 'messages well read'
+          });
+        } else {
+          res.send({
+            message: 'no messages read'
+          });
         }
-
-        res.send({
-          message: 'messages well read'
-        });
       } else {
         res.status(403).send({
           message: 'You are not signed in right now!'

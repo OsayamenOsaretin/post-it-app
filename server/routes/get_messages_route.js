@@ -27,7 +27,6 @@ module.exports = (app, firebase, io) => {
         messagesReference.on('child_added', (snapshot) => {
           promises.push(new Promise((resolve) => {
             messageKeys.push(snapshot.key);
-            console.log(messageKeys);
             const messageReference = db.ref(`messages/${snapshot.key}`);
             messageReference.on('value', (snap) => {
               notificationValue = false;
@@ -45,8 +44,7 @@ module.exports = (app, firebase, io) => {
               resolve();
             });
           }));
-        });
-        Promise.all(promises)
+          Promise.all(promises)
             .then(() => {
               io.emit('newMessage', {
                 groupMessages: messages,
@@ -54,6 +52,10 @@ module.exports = (app, firebase, io) => {
                 notify: notificationValue
               });
             });
+        });
+        res.send({
+          message: 'messages retrieved'
+        });
       } else {
         res.status(403).send({
           // user is not signed in

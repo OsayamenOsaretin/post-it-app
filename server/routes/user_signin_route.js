@@ -7,12 +7,11 @@ module.exports = (app, firebase) => {
     const password = req.body.password;
 
     if (!validateEmail(email)) {
-      res.status(500).send({
+      res.status(400).send({
         message: 'Something went wrong, Please use a valid email address',
       });
     } else if (password) {
       // sign in with user and email using firebase authentication
-      const db = firebase.database();
       const promise = firebase.auth().signInWithEmailAndPassword(email, password);
 
       promise.then((user) => {
