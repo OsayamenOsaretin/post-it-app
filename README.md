@@ -6,6 +6,17 @@ PostIt supports collaboration and helps build relationships by allowing users cr
 
 Different levels of priority can be set, so that users get notifications that betray the importance of the broadcast message.
 
+## Feature List
+PostIt allows you create an account(also available: sign in with Google!), create new broadcast groups, add your friends and colleagues to your groups. You can also send messages to everyone in a group, and messages have priorities too..
+  # critical (red)
+    - sends email, sms and in app notifications
+  # urgent (yellow)
+    - sends email and in app notifications
+  # normal (grey)
+    - sends in app notifications
+PostIt also allows you see who has read your message and archives messages you have read already. 
+
+
 
 ## Getting Started
  PostIt is hosted on heroku and can be accessed by following these links: 
@@ -17,7 +28,6 @@ To use backend API's alone, please use the following instructions.
   - Download and install [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
   - Make sure you have working internet
   - Use the Service Api's below with Postman (See how in: Using Postman, below)
-
 
 ### Service API's:
   - [Register](https://postit-app-develop.herokuapp.com/user/signup): Uses username, email and password
@@ -63,6 +73,8 @@ To use backend API's alone, please use the following instructions.
 - [babel](https://babeljs.io/) - Transpiler 
 - [firebase](firebase.google.com) - Persistent Storage and Authentication
 - [Heroku](www.heroku,com) - Hosting and Continuous Deployment
+- [chrome](https://www.google.com/chrome/browser/desktop/index.html) - Browser
+
 
 
 ## Authors
