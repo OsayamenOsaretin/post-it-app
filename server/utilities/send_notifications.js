@@ -53,7 +53,7 @@ module.exports = (emails, numbers, priorityLevel) => {
             // Optional: add socket.io -- will explain later
           }
         }
-    );
+      );
     });
 
     // send email also, because critical

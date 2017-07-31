@@ -32,8 +32,8 @@ module.exports = (firebase, groupId, priorityLevel, callback) => {
       })
     ));
     return Promise.all(promises)
-    .then(() => (
-      callback(emails, numbers, priorityLevel)
-    ));
+      .then(() => (
+        callback(emails, numbers, priorityLevel)
+      ));
   });
 };
