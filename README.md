@@ -8,11 +8,11 @@ Different levels of priority can be set, so that users get notifications that be
 
 ## Feature List
 PostIt allows you create an account(also available: sign in with Google!), create new broadcast groups, add your friends and colleagues to your groups. You can also send messages to everyone in a group, and messages have priorities too..
-  # critical (red)
+  ### critical (red)
     - sends email, sms and in app notifications
-  # urgent (yellow)
+  ### urgent (yellow)
     - sends email and in app notifications
-  # normal (grey)
+  ### normal (grey)
     - sends in app notifications
 PostIt also allows you see who has read your message and archives messages you have read already. 
 
@@ -60,8 +60,9 @@ To use backend API's alone, please use the following instructions.
  #### for devs:
  - [Git]((https://git-for-windows.github.io/))
  - [node.js]((https://nodejs.org/en/download/))
-        ``` npm install ``` will install all dependencies
-
+     ``` npm install ``` will install all dependencies
+     
+     ``` npm dev-test ``` will run tests
 
 
 ## Built With
