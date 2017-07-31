@@ -3,7 +3,7 @@ import mockfirebase from 'firebase-mock';
 import express from 'express';
 import io from 'socket.io';
 import bodyParser from 'body-parser';
-import GetAllUsers from '../routes/get_all_users_route';
+import GetGroups from '../routes/get_groups_route';
 
 /* global jest */
 
@@ -28,53 +28,42 @@ const mockSdk = mockfirebase.MockFirebaseSdk(path => (
   mockAuth
 ));
 
-// MockFirebase.override();
-GetAllUsers(app, mockSdk, io);
-describe('GetAllUsers', () => {
-  const groupId = {
-    groupId: 'testGroupId'
+GetGroups(app, mockSdk, io);
+
+describe('GetGroups', () => {
+  // const groupId = 'testGroupId';
+
+  const testGroup = {
+    groupName: 'testGroupName',
+    groupUsers: []
   };
 
-  const testUser1 = {
-    id: 'testUser1Id',
-    email: 'testUser1Email@email.com'
-  };
+  const groupsReference = mockDatabase
+    .child('users/testUserId/groups/');
 
-  const testUser2 = {
-    id: 'testUser2Id',
-    email: 'testUser2Email@email.com'
-  };
-
-  const usersRef = mockDatabase.child('/users/');
-  const usersIngroupRef = mockDatabase
-    .child('/groups/testGroupId/users');
-
-  // populate database
-  usersRef.set({
-    testUser1Id: testUser1
-  });
-  usersRef.set({
-    testUser2Id: testUser2
+  groupsReference.set({
+    testGroupId: true
   });
 
-  usersIngroupRef.set({
-    testUser2: true
+  const groupReference = mockDatabase
+    .child('groups/testGroupId');
+
+  groupReference.set({
+    testGroupId: testGroup
   });
 
   mockDatabase.flush();
 
   beforeEach(() => {
-    // mockDatabase = new mockfirebase.MockFirebase();
     mockAuth = new mockfirebase.MockFirebase();
   });
 
-  it('should send appropriate response when authentication fails', (done) => {
+  it('should send error message when authentication fails', (done) => {
     mockAuth.changeAuthState(undefined);
     mockAuth.autoFlush();
     mockDatabase.autoFlush();
     request(app)
-      .post('/users')
-      .send(groupId)
+      .get('/groups')
       .expect(403)
       .then((result) => {
         expect(result.body.message).toBe('You are not signed in right now!');
@@ -82,7 +71,7 @@ describe('GetAllUsers', () => {
       });
   });
 
-  it('should call socket.io emit when authentication passes', (done) => {
+  it('should send result when authentication passes', (done) => {
     mockAuth.changeAuthState({
       uid: 'testUid',
       provider: 'custom',
@@ -91,10 +80,9 @@ describe('GetAllUsers', () => {
     mockAuth.autoFlush();
     mockDatabase.autoFlush();
     request(app)
-      .post('/users')
-      .send(groupId)
+      .get('/groups')
       .then((result) => {
-        expect(result.body.message).toBe('Users returned');
+        expect(result.body.message).toBe('Groups Returned');
         done();
       });
   });
