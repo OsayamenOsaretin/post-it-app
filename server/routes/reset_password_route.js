@@ -5,15 +5,15 @@ module.exports = (app, firebase) => {
     const email = req.body.email;
 
     firebase.auth().sendPasswordResetEmail(email)
-    .then(() => {
-      res.send({
-        message: 'reset email sent!'
+      .then(() => {
+        res.send({
+          message: 'reset email sent!'
+        });
+      })
+      .catch((error) => {
+        res.status(401).send({
+          message: `Error resetting password: ${error.message}`
+        });
       });
-    })
-    .catch((error) => {
-      res.status(401).send({
-        message: `Error resetting password: ${error.message}`
-      });
-    });
   });
 };

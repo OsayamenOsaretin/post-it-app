@@ -2,7 +2,9 @@ import _ from 'lodash';
 
 // route to get all the users
 module.exports = (app, firebase, io) => {
+  console.log('we are here');
   app.post('/users', (req, res) => {
+    console.log('we get here');
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // group from request body
@@ -40,15 +42,14 @@ module.exports = (app, firebase, io) => {
             usersNotInGroupKeys.forEach((userNotInGroupKey) => {
               usersNotInGroup.set(userNotInGroupKey, users.get(userNotInGroupKey));
             });
-            // res.send({
-            //   message: 'Users returned',
-            //   userList: usersNotInGroup
-            // });
             io.emit('Users', {
               userList: usersNotInGroup,
               Id: groupId
             });
           });
+        });
+        res.send({
+          message: 'Users returned'
         });
       } else {
         res.status(403).send({

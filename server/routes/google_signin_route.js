@@ -8,26 +8,27 @@ module.exports = (app, firebase) => {
     const credential = firebase.auth.GoogleAuthProvider.credential(idToken);
 
     firebase.auth().signInWithCredential(credential)
-    .then((user) => {
-      // save the user details to the database
-      db.ref().child(`users/${user.uid}`).set({
-        username: user.displayName,
-        email: user.email
+      .then((user) => {
+        // save the user details to the database
+        db.ref(`users/${user.uid}`).set({
+          username: user.displayName,
+          email: user.email
+        })
+          .catch((error) => {
+            res.status(500).send({
+              message: error.message
+            });
+          });
+
+        res.send({
+          userObject: user,
+          message: 'user signed in'
+        });
       })
       .catch((error) => {
-        res.status(500).send({
-          message: error.message
+        res.status(401).send({
+          message: `Error signin in: ${error.message}`
         });
       });
-
-      res.send({
-        userObject: user
-      });
-    })
-    .catch((error) => {
-      res.status(401).send({
-        message: `Error signing in: ${error.message}`
-      });
-    });
   });
 };

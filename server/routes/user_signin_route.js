@@ -7,7 +7,7 @@ module.exports = (app, firebase) => {
     const password = req.body.password;
 
     if (!validateEmail(email)) {
-      res.status(500).send({
+      res.status(400).send({
         message: 'Something went wrong, Please use a valid email address',
       });
     } else if (password) {

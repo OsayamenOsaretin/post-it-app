@@ -34,14 +34,17 @@ module.exports = (app, firebase, io) => {
           ));
           // collect resolved promises
           Promise.all(promises)
-          .then(() => {
-            io.emit('newGroup', groups);
-          })
-          .catch((err) => {
-            io.emit('failedGroup', {
-              error: err
+            .then(() => {
+              io.emit('newGroup', groups);
+            })
+            .catch((err) => {
+              io.emit('failedGroup', {
+                error: err
+              });
             });
-          });
+        });
+        res.send({
+          message: 'Groups Returned'
         });
       } else {
         res.status(403).send({
