@@ -116,24 +116,24 @@ class GroupList extends React.Component {
           <ul className="group-list">
             {this.sortGroups(this.props.groups.keySeq().toArray()).map(groupKey => (
               <li key={groupKey}>
-                  <NavLink exact activeClassName='active'
-                    to={`/groupBody/${groupKey}/${
-                      this.props.groups.get(groupKey).get('groupname')
-                      }`} >
-                      <div className="group-list-item">
-                        <p>
-                          <FaGroup
-                          className="groups-icon"
-                          size={20}
-                          />
-                            {this.props.groups.get(groupKey).get('groupname')}
-                        </p>
-                        <div className="notification">
-                          {MessageStore.getGroupNotificationDetails().status.get(groupKey) &&
-                          <FaBell color={'#578ec9'}/>}
-                        </div>
-                      </div>
-                  </NavLink>
+                <NavLink exact activeClassName='active'
+                  to={`/groupBody/${groupKey}/${
+                    this.props.groups.get(groupKey).get('groupname')
+                  }`} >
+                  <div className="group-list-item">
+                    <p>
+                      <FaGroup
+                        className="groups-icon"
+                        size={20}
+                      />
+                      {this.props.groups.get(groupKey).get('groupname')}
+                    </p>
+                    <div className="notification">
+                      {MessageStore.getGroupNotificationDetails().status.get(groupKey) &&
+                        <FaBell color={'#578ec9'} />}
+                    </div>
+                  </div>
+                </NavLink>
               </li>
             ))}
           </ul>
