@@ -40,8 +40,10 @@
       "^MessageStore$": "<rootDir>/client/src/data/postItStores/PostItMessageStore",
       "^GroupStore$": "<rootDir>/client/src/data/postItStores/PostItGroupStore",
       "^UserStore$": "<rootDir>/client/src/data/postItStores/PostItUserStore",
+      "^RequestStore$": "<rootDir>/client/src/data/postItStores/PostItGroupRequestStore",
       "^ResetPasswordAction$": "<rootDir>/client/src/data/postItActions/resetPasswordAction",
-      "^BulkMessageRequest$": "<rootDir>/client/src/utility/bulkMessageRequest"
+      "^BulkMessageRequest$": "<rootDir>/client/src/utility/bulkMessageRequest",
+      "^AcceptRejectGroupAction": "<rootDir>/client/src/data/postItActions/acceptRejectGroupRequestAction"
     }
   },
   "dependencies": {
