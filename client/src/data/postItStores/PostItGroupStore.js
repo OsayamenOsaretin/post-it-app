@@ -21,32 +21,31 @@ const addNewGroups = (newGroupList) => {
  *
  */
 class PostItGroupStore extends EventEmitter {
-
-/**
- * addChangeListener
- * @memberof PostItGroupStore
- * @param {*} callback
- * @return {void}
- */
+  /**
+   * addChangeListener
+   * @memberof PostItGroupStore
+   * @param {*} callback
+   * @return {void}
+   */
   addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   }
 
-/**
- * removeChangeListener
- * @memberof PostItGroupStore
- * @param {*} callback
- * @return {void}
- */
+  /**
+   * removeChangeListener
+   * @memberof PostItGroupStore
+   * @param {*} callback
+   * @return {void}
+   */
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
 
-/**
- * getGroups
- * @memberof PostItGroupStore
- * @return {Map} groups
- */
+  /**
+   * getGroups
+   * @memberof PostItGroupStore
+   * @return {Map} groups
+   */
   getGroups() {
     console.log('asks for groups');
     console.log('and gets...');
@@ -54,16 +53,15 @@ class PostItGroupStore extends EventEmitter {
     return groups;
   }
 
-/**
- * getGroupUser
- * @memberof PostItGroupStore
- * @return {List} groupUsers
- * @param {*} groupId
- */
+  /**
+   * getGroupUser
+   * @memberof PostItGroupStore
+   * @return {List} groupUsers
+   * @param {*} groupId
+   */
   getGroup(groupId) {
     return groups.get(groupId);
   }
-
 }
 
 const groupStore = new PostItGroupStore();
@@ -97,7 +95,6 @@ PostItDispatcher.register((payload) => {
   default: {
     return true;
   }
-
   }
 });
 
