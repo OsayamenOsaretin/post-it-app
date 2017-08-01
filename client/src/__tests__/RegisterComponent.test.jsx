@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import RegisterAction from 'RegisterAction';
-
 import RegisterForm from '../views/LoginRegisterContainer/RegisterComponent.jsx';
+
 /* global jest */
 jest.mock('RegisterAction', () => jest.fn());
 
@@ -52,7 +52,7 @@ describe('RegisterComponent', () => {
     const inputs = registerComponent().find('input');
     const emailInput = inputs.at(1);
     emailInput.simulate('change',
-    { target: { value: 'testing@email.com', name: 'email' } });
+      { target: { value: 'testing@email.com', name: 'email' } });
     expect(registerComponent().state().email).toBe('testing@email.com');
   });
 
@@ -60,7 +60,7 @@ describe('RegisterComponent', () => {
     const inputs = registerComponent().find('input');
     const passwordInput = inputs.at(2);
     passwordInput.simulate('change',
-    { target: { value: 'supersecretpassword', name: 'password' } });
+      { target: { value: 'supersecretpassword', name: 'password' } });
     expect(registerComponent().state().password).toBe('supersecretpassword');
   });
 
@@ -68,7 +68,7 @@ describe('RegisterComponent', () => {
     const inputs = registerComponent().find('input');
     const confirmPasswordInput = inputs.at(3);
     confirmPasswordInput.simulate('change',
-    { target: { value: 'supersecretpassword', name: 'confirmPassword' } });
+      { target: { value: 'supersecretpassword', name: 'confirmPassword' } });
     expect(registerComponent().state().confirmPassword).toBe('supersecretpassword');
   });
 
