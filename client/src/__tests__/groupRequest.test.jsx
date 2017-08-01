@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import AcceptRejectAction from 'AcceptRejectGroupAction';
 import RequestItemView from '../views/GroupContainer/RequestItem.jsx';
 
@@ -8,15 +8,20 @@ jest.mock('AcceptRejectGroupAction', () => jest.fn());
 
 describe('AcceptRejectGroupView', () => {
   let mountedComponent;
+  let props;
   const acceptRejectView = () => {
     if (!mountedComponent) {
-      mountedComponent = shallow(
-        <RequestItemView />
+      mountedComponent = mount(
+        <RequestItemView {...props}/>
       );
     }
+    return mountedComponent;
   };
 
   beforeEach(() => {
+    props = {
+      groupId: 'testGroupId'
+    };
     mountedComponent = undefined;
   });
 
@@ -37,7 +42,8 @@ describe('AcceptRejectGroupView', () => {
     const acceptButton = component.find('.accept-button').first();
     acceptButton.simulate('click');
     expect(AcceptRejectAction).toHaveBeenCalledWith({
-      status: true
+      status: 'true',
+      groupId: 'testGroupId'
     });
   });
 
@@ -45,8 +51,9 @@ describe('AcceptRejectGroupView', () => {
     const component = acceptRejectView();
     const rejectButton = component.find('.reject-button').first();
     rejectButton.simulate('click');
-    expect(AcceptRejectAction.mock).toHaveBeenCalledWith({
-      status: false
+    expect(AcceptRejectAction).toHaveBeenCalledWith({
+      status: 'false',
+      groupId: 'testGroupId'
     });
   });
 });
