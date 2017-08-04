@@ -41,9 +41,9 @@ module.exports = (emails, numbers, priorityLevel) => {
     { debug: true });
 
     // send sms messages
-    numbers.forEach(() => {
+    numbers.forEach((number) => {
       nexmo.message.sendSms(
-        'Post-It', '2348128186810', 'You have a critical message on Post-It, login to check now!',
+        'Post-It', number, 'You have a critical message on Post-It, login to check now!',
         { type: 'unicode' },
         (err, responseData) => {
           if (err) {
