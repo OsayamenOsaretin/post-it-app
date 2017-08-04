@@ -4,11 +4,10 @@
 
 module.exports = (app, firebase) => {
   app.post('/group', (req, res) => {
-    const groupName = req.body.groupName;
-
     // check that a user is signed in before you try to add group
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        const groupName = req.body.groupName;
         // This means a user is signed in
         const userId = user.uid;
         const db = firebase.database();
