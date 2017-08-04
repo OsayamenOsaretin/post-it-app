@@ -7,6 +7,7 @@ module.exports = (app, firebase) => {
     const userName = req.body.userName;
     const email = req.body.email;
     const password = req.body.password;
+    const phoneNumber = req.body.phone;
     const db = firebase.database();
 
     if (!validateEmail(email)) {
@@ -25,7 +26,8 @@ module.exports = (app, firebase) => {
           // save the user details to the database
           db.ref(`users/${user.uid}`).set({
             username: userName,
-            email: user.email
+            email: user.email,
+            number: phoneNumber
           });
 
           // send verification email to user
