@@ -11,24 +11,24 @@ import PostItActionTypes from '../PostItActionTypes';
 export default (messageDetails) => {
   console.log('reaches send message action');
   request
-  .post('/message')
-  .send(messageDetails)
-  .end((error, result) => {
-    if (error) {
-      console.log(error);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_SEND_MESSAGE
-      });
-    } else {
-      const newMessage = result.body.newMessage;
-      const groupId = result.body.Id;
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
-        Id: groupId,
-        messages: newMessage,
-        notify: false
-      });
-      console.log(result);
-    }
-  });
+    .post('/message')
+    .send(messageDetails)
+    .end((error, result) => {
+      if (error) {
+        console.log(error);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_SEND_MESSAGE
+        });
+      } else {
+        const newMessage = result.body.newMessage;
+        const groupId = result.body.Id;
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
+          Id: groupId,
+          messages: newMessage,
+          notify: false
+        });
+        console.log(result);
+      }
+    });
 };

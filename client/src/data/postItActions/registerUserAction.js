@@ -13,7 +13,7 @@ import PostItDispatcher from '../PostItDispatcher';
 export default (newUserDetails) => {
   // console.log('reaches register action');
   request
-    .post('user/signup')
+    .post('/user/signup')
     .send(newUserDetails)
     .end((error, result) => {
       if (error) {
