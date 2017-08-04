@@ -9,7 +9,7 @@ import HeaderView from '../Header.jsx';
 // import PostItDispatcher from '../../data/PostItDispatcher';
 // import PostItActionTypes from '../../data/PostItActionTypes';
 
-const socket = io('https://postit-app-develop.herokuapp.com/');
+const socket = io('http://localhost:6969');
 
 // http://localhost:6969
 // https://postit-app-develop.herokuapp.com/

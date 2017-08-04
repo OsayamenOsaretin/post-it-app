@@ -23,7 +23,8 @@ export default class RegisterForm extends React.Component {
       password: '',
       confirmPassword: '',
       registering: false,
-      errorMessage: ''
+      errorMessage: '',
+      phone: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -54,7 +55,8 @@ export default class RegisterForm extends React.Component {
       registerAction({
         userName: this.state.userName,
         password: this.state.password,
-        email: this.state.email
+        email: this.state.email,
+        phone: this.state.phone
       });
       this.setState({
         registering: true,
@@ -101,55 +103,63 @@ export default class RegisterForm extends React.Component {
  */
   render() {
     return (
-       <form className = 'inputform'>
+      <form className='inputform'>
         <input
-        name = 'userName'
-        placeholder = 'username'
-        type = 'text'
-        autoComplete ='off'
-        value = {this.state.userName}
-        onChange = {this.handleChange}
+          name='userName'
+          placeholder='username'
+          type='text'
+          autoComplete='off'
+          value={this.state.userName}
+          onChange={this.handleChange}
         />
         <input
-        name = 'email'
-        placeholder = 'email'
-        type = 'text'
-        autoComplete ='off'
-        value = {this.state.email}
-        onChange = {this.handleChange}
+          name='email'
+          placeholder='email'
+          type='text'
+          autoComplete='off'
+          value={this.state.email}
+          onChange={this.handleChange}
         />
         <input
-        name = 'password'
-        placeholder = 'password'
-        type = 'password'
-        autoComplete ='off'
-        value = {this.state.password}
-        onChange = {this.handleChange}
+          name='phone'
+          placeholder='phone number eg. 2348128283839'
+          type='text'
+          autoComplete='off'
+          value={this.state.phone}
+          onChange={this.handleChange}
+        />
+        <input
+          name='password'
+          placeholder='password'
+          type='password'
+          autoComplete='off'
+          value={this.state.password}
+          onChange={this.handleChange}
         /> {this.state.password.length < 6 ? <FaSquareO /> : <FaCheckSquareO />}
         <input
-        name = 'confirmPassword'
-        placeholder = 'confirmpassword'
-        type = 'password'
-        autoComplete ='off'
-        value = {this.state.confirmPassword}
-        onChange = {this.handleChange}
+          name='confirmPassword'
+          placeholder='confirmpassword'
+          type='password'
+          autoComplete='off'
+          value={this.state.confirmPassword}
+          onChange={this.handleChange}
         /> {this.state.password !== this.state.confirmPassword || this.state.password.length
-        < 6 ? <FaSquareO /> : <FaCheckSquareO />}
+          < 6 ? <FaSquareO /> : <FaCheckSquareO />}
         <button
-        className = 'button'
-        type = 'submit'
-        disabled = { !this.state.userName || !this.state.email ||
-         !this.state.password || !this.state.confirmPassword }
-         onClick = {this.handleSubmit}
-         >
-        Register {this.state.registering && <FaSpinner className="fa fa-spinner fa-spin"/>}
+          className='button'
+          type='submit'
+          disabled={!this.state.userName || !this.state.email ||
+            !this.state.password || !this.state.confirmPassword}
+          onClick={this.handleSubmit}
+        >
+          Register {this.state.registering && <FaSpinner className="fa fa-spinner fa-spin" />}
         </button>
 
         {this.state.errorMessage &&
           <div className="error-login-register">
             <FaExclamationTriangle /> {this.state.errorMessage}
           </div>
-          }
+        }
       </form>
     );
   }
