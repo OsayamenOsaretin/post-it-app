@@ -11,23 +11,23 @@ import PostItDispatcher from '../PostItDispatcher';
  * @param {newUserDetails} newUserDetails
  */
 export default (newUserDetails) => {
-  console.log('reaches register action');
+  // console.log('reaches register action');
   request
-  .post('user/signup')
-  .send(newUserDetails)
-  .end((error, result) => {
-    if (error) {
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.REGISTER_ERROR,
-        errorMessage: result.body.message
-      });
-    } else {
-      const userData = result.body.userData;
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.LOGIN_USER,
-        user: userData
-      });
-    }
-  });
+    .post('user/signup')
+    .send(newUserDetails)
+    .end((error, result) => {
+      if (error) {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.REGISTER_ERROR,
+          errorMessage: result.body.message
+        });
+      } else {
+        const userData = result.body.userData;
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.LOGIN_USER,
+          user: userData
+        });
+      }
+    });
 };
 
