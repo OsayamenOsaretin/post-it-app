@@ -35,7 +35,7 @@ module.exports = (app, firebase, io) => {
           // collect resolved promises
           Promise.all(promises)
             .then(() => {
-              io.emit('newGroup', groups);
+              io.emit(`newGroup${userId}`, groups);
             })
             .catch((err) => {
               io.emit('failedGroup', {
