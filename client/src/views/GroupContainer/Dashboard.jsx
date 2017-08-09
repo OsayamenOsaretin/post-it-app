@@ -8,7 +8,7 @@ import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /* global localStorage */
 
-const socket = io('https://postit-app-develop.herokuapp.com/');
+const socket = io('http://localhost:6969');
 
 // http://localhost:6969
 // https://postit-app-develop.herokuapp.com/
@@ -43,6 +43,7 @@ class Dashboard extends React.Component {
 
     // listen for new groups with socket.io
     socket.on(`newGroup${userId}`, (groups) => {
+      console.log(JSON.stringify(groups));
       recieveGroups(groups);
       bulkMessageRequest(groups);
     });
