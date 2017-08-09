@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3f4ef07cfe0f080560a4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "68cf8a1171156881531f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -45830,6 +45830,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/* global localStorage */
+
 /**
  * Add group adds a new group to list of user's groups
  */
@@ -45884,7 +45886,11 @@ var AddGroupView = function (_React$Component) {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
       event.preventDefault();
-      (0, _groupActions.addGroupApi)({ groupName: this.state.fieldInput });
+      var userId = localStorage.getItem('userId');
+      (0, _groupActions.addGroupApi)({
+        groupName: this.state.fieldInput,
+        id: userId
+      });
       this.setState({
         fieldInput: ''
       });
