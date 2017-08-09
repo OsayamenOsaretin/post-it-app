@@ -9,7 +9,7 @@ module.exports = (app, firebase) => {
       if (user) {
         const groupName = req.body.groupName;
         // This means a user is signed in
-        const userId = user.uid;
+        const userId = req.body.id;
         const db = firebase.database();
 
         // create a new group and return the unique key

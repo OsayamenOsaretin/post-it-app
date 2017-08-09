@@ -5,7 +5,7 @@ import GroupList from './GroupList.jsx';
 import GroupItem from './GroupItem.jsx';
 import PostItActionTypes from '../../data/PostItActionTypes';
 import PostItDispatcher from '../../data/PostItDispatcher';
-import bulkMessageRequest from '../../utility/bulkMessageRequest';
+// import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /**
  * GroupList is a container for the list of groups, also doubles as a navlink
@@ -35,7 +35,7 @@ function GroupListView(props) {
   });
 
   // get messages for groups
-  bulkMessageRequest(props.groups);
+  // bulkMessageRequest(props.groups);
 
   return (
     <BrowserRouter >

@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9283baed15335b6694bb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3f4ef07cfe0f080560a4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -282,11 +282,19 @@
 /******/ 		hotDeferred = null;
 /******/ 		if(!deferred) return;
 /******/ 		if(hotApplyOnUpdate) {
-/******/ 			hotApply(hotApplyOnUpdate).then(function(result) {
-/******/ 				deferred.resolve(result);
-/******/ 			}, function(err) {
-/******/ 				deferred.reject(err);
-/******/ 			});
+/******/ 			// Wrap deferred object in Promise to mark it as a well-handled Promise to
+/******/ 			// avoid triggering uncaught exception warning in Chrome.
+/******/ 			// See https://bugs.chromium.org/p/chromium/issues/detail?id=465666
+/******/ 			Promise.resolve().then(function() {
+/******/ 				return hotApply(hotApplyOnUpdate);
+/******/ 			}).then(
+/******/ 				function(result) {
+/******/ 					deferred.resolve(result);
+/******/ 				},
+/******/ 				function(err) {
+/******/ 					deferred.reject(err);
+/******/ 				}
+/******/ 			);
 /******/ 		} else {
 /******/ 			var outdatedModules = [];
 /******/ 			for(var id in hotUpdate) {
@@ -999,45 +1007,43 @@ var emptyFunction = __webpack_require__(16);
 var warning = emptyFunction;
 
 if (process.env.NODE_ENV !== 'production') {
-  (function () {
-    var printWarning = function printWarning(format) {
-      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
+  var printWarning = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
       }
 
-      var argIndex = 0;
-      var message = 'Warning: ' + format.replace(/%s/g, function () {
-        return args[argIndex++];
-      });
-      if (typeof console !== 'undefined') {
-        console.error(message);
-      }
-      try {
-        // --- Welcome to debugging React ---
-        // This error was thrown as a convenience so that you can use this stack
-        // to find the callsite that caused this warning to fire.
-        throw new Error(message);
-      } catch (x) {}
-    };
-
-    warning = function warning(condition, format) {
-      if (format === undefined) {
-        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-      }
-
-      if (format.indexOf('Failed Composite propType: ') === 0) {
-        return; // Ignore CompositeComponent proptype check.
-      }
-
-      if (!condition) {
-        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-          args[_key2 - 2] = arguments[_key2];
-        }
-
-        printWarning.apply(undefined, [format].concat(args));
-      }
-    };
-  })();
+      printWarning.apply(undefined, [format].concat(args));
+    }
+  };
 }
 
 module.exports = warning;
@@ -14916,18 +14922,11 @@ module.exports = traverseAllChildren;
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
  *
  * @typechecks
  */
@@ -23271,8 +23270,10 @@ _PostItDispatcher2.default.register(function (payload) {
           var user = action.user;
           var displayName = user.displayName;
           var token = user.stsTokenManager.accessToken;
+          var userId = user.uid;
           localStorage.setItem('token', token);
           localStorage.setItem('username', displayName);
+          localStorage.setItem('userId', userId);
           userStore.emit(CHANGE_EVENT);
         }
         break;
@@ -40986,7 +40987,7 @@ module.exports = function shouldRetry(err, res) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * Copyright (c) 2014-2015, Facebook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -41003,7 +41004,7 @@ module.exports.Dispatcher = __webpack_require__(303);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2014-2015, Facebook, Inc.
+ * Copyright (c) 2014-present, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -41609,7 +41610,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 exports.default = function (newUserDetails) {
   // console.log('reaches register action');
-  _superagent2.default.post('user/signup').send(newUserDetails).end(function (error, result) {
+  _superagent2.default.post('/user/signup').send(newUserDetails).end(function (error, result) {
     if (error) {
       _PostItDispatcher2.default.handleServerAction({
         type: _PostItActionTypes2.default.REGISTER_ERROR,
@@ -42076,9 +42077,13 @@ var _PostItGroupStore = __webpack_require__(140);
 
 var _PostItGroupStore2 = _interopRequireDefault(_PostItGroupStore);
 
-var _Header = __webpack_require__(360);
+var _Header = __webpack_require__(359);
 
 var _Header2 = _interopRequireDefault(_Header);
+
+var _bulkMessageRequest = __webpack_require__(362);
+
+var _bulkMessageRequest2 = _interopRequireDefault(_bulkMessageRequest);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42088,10 +42093,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import getMessagesAction from '../../data/postItActions/getMessagesAction';
-// import getAllUsersAction from '../../data/postItActions/getAllUsersAction';
-// import PostItDispatcher from '../../data/PostItDispatcher';
-// import PostItActionTypes from '../../data/PostItActionTypes';
+/* global localStorage */
 
 var socket = (0, _socket2.default)('http://localhost:6969');
 
@@ -42135,10 +42137,12 @@ var Dashboard = function (_React$Component) {
     value: function componentDidMount() {
       // initial action to get groups
       (0, _groupActions.getGroups)();
+      var userId = localStorage.getItem('userId');
 
       // listen for new groups with socket.io
-      socket.on('newGroup', function (groups) {
+      socket.on('newGroup' + userId, function (groups) {
         (0, _groupActions.recieveGroups)(groups);
+        (0, _bulkMessageRequest2.default)(groups);
       });
 
       _PostItGroupStore2.default.addChangeListener(this.onChange);
@@ -45387,11 +45391,9 @@ var _PostItDispatcher = __webpack_require__(13);
 
 var _PostItDispatcher2 = _interopRequireDefault(_PostItDispatcher);
 
-var _bulkMessageRequest = __webpack_require__(359);
-
-var _bulkMessageRequest2 = _interopRequireDefault(_bulkMessageRequest);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /**
  * GroupList is a container for the list of groups, also doubles as a navlink
@@ -45421,7 +45423,7 @@ function GroupListView(props) {
   });
 
   // get messages for groups
-  (0, _bulkMessageRequest2.default)(props.groups);
+  // bulkMessageRequest(props.groups);
 
   return _react2.default.createElement(
     _reactRouterDom.BrowserRouter,
@@ -47310,32 +47312,6 @@ exports.default = function (Details) {
 /* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _getMessagesAction = __webpack_require__(141);
-
-var _getMessagesAction2 = _interopRequireDefault(_getMessagesAction);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (groups) {
-  console.log('call bulk request message action');
-  groups.keySeq().toArray().map(function (groupKey) {
-    return (0, _getMessagesAction2.default)({
-      groupId: groupKey
-    });
-  });
-}; // request for messages from all groups on app load
-
-/***/ }),
-/* 360 */
-/***/ (function(module, exports, __webpack_require__) {
-
 /* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(9), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(8), React = __webpack_require__(1); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
@@ -47348,11 +47324,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _signOut = __webpack_require__(361);
+var _signOut = __webpack_require__(360);
 
 var _signOut2 = _interopRequireDefault(_signOut);
 
-var _signOutAction = __webpack_require__(362);
+var _signOutAction = __webpack_require__(361);
 
 var _signOutAction2 = _interopRequireDefault(_signOutAction);
 
@@ -47408,7 +47384,7 @@ exports.default = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)(module)))
 
 /***/ }),
-/* 361 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47446,7 +47422,7 @@ exports.default = FaSignOut;
 module.exports = exports['default'];
 
 /***/ }),
-/* 362 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47483,6 +47459,37 @@ exports.default = function () {
     }
   });
 }; // action to sign out user
+
+/***/ }),
+/* 362 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getMessagesAction = __webpack_require__(141);
+
+var _getMessagesAction2 = _interopRequireDefault(_getMessagesAction);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (groups) {
+  console.log('call bulk request message action');
+  // groups.keySeq().toArray().map(groupKey => (
+  //   getMessageAction({
+  //     groupId: groupKey
+  //   })
+  // ));
+  Object.keys(groups).map(function (groupKey) {
+    return (0, _getMessagesAction2.default)({
+      groupId: groupKey
+    });
+  });
+}; // request for messages from all groups on app load
 
 /***/ }),
 /* 363 */

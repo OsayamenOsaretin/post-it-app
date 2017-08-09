@@ -16,6 +16,18 @@ module.exports = (app, firebase, io) => {
         // get user's groups
         const groupsReference = db.ref(`/users/${userId}/groups/`);
         groupsReference.on('value', (snapshot) => {
+          // console.log(`groups0: ${groups}`);
+          // console.log(`groupKeys0: ${groupKeys}`);
+
+          // // clear groups
+          // groups.clear();
+          // groupKeys = [];
+
+          // console.log(`groups: ${groups}`);
+          // console.log(`groupKeys: ${groupKeys}`);
+
+          const currentUser = firebase.auth().currentUser;
+          const currentUid = currentUser.uid;
           // get the keys for each user's group
           snapshot.forEach((groupSnapshot) => {
             groupKeys.push(groupSnapshot.key);
@@ -35,8 +47,8 @@ module.exports = (app, firebase, io) => {
           // collect resolved promises
           Promise.all(promises)
             .then(() => {
-              io.emit(`newGroup${userId}`, groups);
-              groups.clear();
+              console.log(groups);
+              io.emit(`newGroup${currentUid}`, groups);
             })
             .catch((err) => {
               io.emit('failedGroup', {

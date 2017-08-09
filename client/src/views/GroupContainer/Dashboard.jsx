@@ -4,12 +4,11 @@ import GroupListView from './GroupListView.jsx';
 import { getGroups, recieveGroups } from '../../data/postItActions/groupActions';
 import GroupStore from '../../data/postItStores/PostItGroupStore';
 import HeaderView from '../Header.jsx';
-// import getMessagesAction from '../../data/postItActions/getMessagesAction';
-// import getAllUsersAction from '../../data/postItActions/getAllUsersAction';
-// import PostItDispatcher from '../../data/PostItDispatcher';
-// import PostItActionTypes from '../../data/PostItActionTypes';
+import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
-const socket = io('https://postit-app-develop.herokuapp.com/');
+/* global localStorage */
+
+const socket = io('http://localhost:6969');
 
 // http://localhost:6969
 // https://postit-app-develop.herokuapp.com/
@@ -18,7 +17,6 @@ const socket = io('https://postit-app-develop.herokuapp.com/');
  * Dashboard Component
  */
 class Dashboard extends React.Component {
-
   /**
    * instantiates instance of react components
    * @memberof GroupContainer
@@ -41,10 +39,12 @@ class Dashboard extends React.Component {
   componentDidMount() {
     // initial action to get groups
     getGroups();
+    const userId = localStorage.getItem('userId');
 
     // listen for new groups with socket.io
-    socket.on('newGroup', (groups) => {
+    socket.on(`newGroup${userId}`, (groups) => {
       recieveGroups(groups);
+      bulkMessageRequest(groups);
     });
 
     GroupStore.addChangeListener(this.onChange);
@@ -86,7 +86,6 @@ class Dashboard extends React.Component {
       </div>
     );
   }
-
 }
 
 module.exports = Dashboard;

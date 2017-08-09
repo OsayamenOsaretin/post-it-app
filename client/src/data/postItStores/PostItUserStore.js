@@ -62,8 +62,10 @@ PostItDispatcher.register((payload) => {
       const user = action.user;
       const displayName = user.displayName;
       const token = user.stsTokenManager.accessToken;
+      const userId = user.uid;
       localStorage.setItem('token', token);
       localStorage.setItem('username', displayName);
+      localStorage.setItem('userId', userId);
       userStore.emit(CHANGE_EVENT);
     }
     break;
