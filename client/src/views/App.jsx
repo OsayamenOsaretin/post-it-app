@@ -9,7 +9,6 @@ import UserStore from '../data/postItStores/PostItUserStore';
  * App view that holds the entire container view for the app
  */
 class App extends React.Component {
-
   /**
    * instantiates an instance of the react component view
    * @memberof App
@@ -107,7 +106,7 @@ class App extends React.Component {
               onClick={this.handleClick}
               type="click">
               forgot password ?
-          </button>
+            </button>
           </div>
         }
         {!this.state.passwordReset && <ResetPasswordComponent />}
