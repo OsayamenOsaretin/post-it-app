@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "68cf8a1171156881531f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f8f59829676b45845a55"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -11798,7 +11798,9 @@ function addGroup(name) {
  */
 function getGroups() {
   console.log('action reaches here');
-  _superagent2.default.get('/groups').end(function (error, result) {
+  var userId = localStorage.getItem('userId');
+  console.log(userId);
+  _superagent2.default.get('/groups/' + userId).end(function (error, result) {
     if (error) {
       // dispatch to handle the view case of failed group collection
       _PostItDispatcher2.default.handleViewAction({
