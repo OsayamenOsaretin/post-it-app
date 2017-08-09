@@ -2,7 +2,6 @@ import request from 'superagent';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
 
-
 /**
  * recieveGroups dispatches to update registered stores with groups from API
  * @return {void}
@@ -32,8 +31,10 @@ export function addGroup(name) {
  */
 export function getGroups() {
   console.log('action reaches here');
+  const userId = localStorage.getItem('userId');
+  console.log(userId);
   request
-    .get('/groups')
+    .get(`/groups/${userId}`)
     .end((error, result) => {
       if (error) {
         // dispatch to handle the view case of failed group collection
