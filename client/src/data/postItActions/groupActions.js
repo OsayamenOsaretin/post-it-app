@@ -33,21 +33,21 @@ export function addGroup(name) {
 export function getGroups() {
   console.log('action reaches here');
   request
-  .get('/groups')
-  .end((error, result) => {
-    if (error) {
-      // dispatch to handle the view case of failed group collection
-      PostItDispatcher.handleViewAction({
-        type: PostItActionTypes.FAILED_GROUPS,
-        error: error.message
-      });
-    } else {
-      console.log(result);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.GETTING_GROUPS
-      });
-    }
-  });
+    .get('/groups')
+    .end((error, result) => {
+      if (error) {
+        // dispatch to handle the view case of failed group collection
+        PostItDispatcher.handleViewAction({
+          type: PostItActionTypes.FAILED_GROUPS,
+          error: error.message
+        });
+      } else {
+        console.log(result);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.GETTING_GROUPS
+        });
+      }
+    });
 }
 
 /**
@@ -58,19 +58,19 @@ export function getGroups() {
 export function addGroupApi(groupName) {
   console.log('gets to group api action');
   request
-  .post('/group')
-  .send(groupName)
-  .end((error, result) => {
-    if (error) {
-      console.log(error);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_ADD_GROUP
-      });
-    } else {
-      // make api call to get all the new groups
-      console.log(result);
-      const newGroup = result.body.group;
-      recieveGroups(newGroup);
-    }
-  });
+    .post('/group')
+    .send(groupName)
+    .end((error, result) => {
+      if (error) {
+        console.log(error);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_ADD_GROUP
+        });
+      } else {
+        // make api call to get all the new groups
+        console.log(result);
+        const newGroup = result.body.group;
+        recieveGroups(newGroup);
+      }
+    });
 }
