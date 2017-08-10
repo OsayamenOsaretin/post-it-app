@@ -105,7 +105,8 @@ PostItDispatcher.register((payload) => {
     let groupMessages = messages.get(groupId);
 
     if (groupMessages) {
-      groupMessages = groupMessages.merge(new MessageList(messageResponse));
+      console.log(groupMessages);
+      groupMessages = new MessageList(messageResponse);
       const newMessageMap = new Map();
       newMessageMap.set(groupId, groupMessages);
       addNewMessageGroup(newMessageMap);
