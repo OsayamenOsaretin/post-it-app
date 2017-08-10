@@ -1,14 +1,15 @@
 import React from 'react';
 import io from 'socket.io-client';
 import GroupListView from './GroupListView.jsx';
-import { getGroups, recieveGroups } from '../../data/postItActions/groupActions';
+import { getGroups,
+  recieveGroups } from '../../data/postItActions/groupActions';
 import GroupStore from '../../data/postItStores/PostItGroupStore';
 import HeaderView from '../Header.jsx';
 import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /* global localStorage */
 
-const socket = io('http://localhost:6969');
+const socket = io('https://postit-app-develop.herokuapp.com/');
 
 // http://localhost:6969
 // https://postit-app-develop.herokuapp.com/
