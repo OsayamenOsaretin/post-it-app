@@ -43,7 +43,6 @@ class Dashboard extends React.Component {
 
     // listen for new groups with socket.io
     socket.on(`newGroup${userId}`, (groups) => {
-      console.log(JSON.stringify(groups));
       recieveGroups(groups);
       bulkMessageRequest(groups);
     });
