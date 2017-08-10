@@ -5,7 +5,7 @@ import MessageListView from './MessageListView.jsx';
 import SendMessage from './SendMessageView.jsx';
 // import PostItActionTypes from '../../../data/PostItActionTypes';
 // import PostItDispatcher from '../../../data/PostItDispatcher';
-import getMessagesAction from '../../../data/postItActions/getMessagesAction';
+// import getMessagesAction from '../../../data/postItActions/getMessagesAction';
 /**
  * MessageBody Component
  */
