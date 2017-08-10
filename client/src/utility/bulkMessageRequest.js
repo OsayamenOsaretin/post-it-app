@@ -3,14 +3,14 @@ import getMessageAction from '../data/postItActions/getMessagesAction';
 
 export default (groups) => {
   console.log('call bulk request message action');
-  // groups.keySeq().toArray().map(groupKey => (
-  //   getMessageAction({
-  //     groupId: groupKey
-  //   })
-  // ));
-  Object.keys(groups).map(groupKey => (
+  Object.values(groups).map(group => (
     getMessageAction({
-      groupId: groupKey
+      groupId: group[0]
     })
   ));
+  // Object.values(groups).map((group) => {
+  //   console.log(group[0]);
+  //   // console.log(value);
+  //   return true;
+  // });
 };
