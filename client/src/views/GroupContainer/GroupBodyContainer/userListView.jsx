@@ -17,7 +17,6 @@ function UserList(props) {
    * @param {*} event
    */
   const handleSelect = (event) => {
-    console.log('handle selection action...');
     event.preventDefault();
     const value = event.target.value;
     const Details = {
@@ -25,25 +24,24 @@ function UserList(props) {
       groupId: group
     };
     addUserAction(Details);
-    // props.users.delete(value);
   };
 
   return (
     <form>
-        <select
+      <select
         name='Add User'
         size='5'
         onChange={handleSelect}
-        >
+      >
         {props.users.map((user, key) => (
-        <option
-        value={key}
-        >
-          {user.get('username')}
-        </option>
-      ))}
-    </select>
-  </form>
+          <option
+            value={key}
+          >
+            {user.get('username')}
+          </option>
+        ))}
+      </select>
+    </form>
   );
 }
 
