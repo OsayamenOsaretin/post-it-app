@@ -16,23 +16,23 @@ export default (Details) => {
 
   console.log('reaches add user action');
   request
-  .post(`/group/${groupId}/user`)
-  .send({
-    userId: user
-  })
-  .end((error, result) => {
-    if (error) {
-      console.log(error);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_ADD_USER
-      });
-    } else {
-      console.log(result);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.DELETE_USER,
-        id: user,
-        groupId: Details.groupId
-      });
-    }
-  });
+    .post(`/group/${groupId}/user`)
+    .send({
+      userId: user
+    })
+    .end((error, result) => {
+      if (error) {
+        console.log(error);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_ADD_USER
+        });
+      } else {
+        console.log(result);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.DELETE_USER,
+          id: user,
+          groupId: Details.groupId
+        });
+      }
+    });
 };
