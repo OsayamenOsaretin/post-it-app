@@ -17,6 +17,7 @@ module.exports = (app, firebase, io) => {
         // get user's groups
         const groupsReference = db.ref(`/users/${userId}/groups/`);
         groupsReference.orderByKey().on('value', (snapshot) => {
+          // clear groups map and keys to remove leaks between users
           groups.clear();
           groupKeys = [];
           // get the keys for each user's group
