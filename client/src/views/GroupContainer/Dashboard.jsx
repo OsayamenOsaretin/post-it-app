@@ -9,7 +9,7 @@ import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /* global localStorage */
 
-const socket = io('https://postit-app-develop.herokuapp.com/');
+const socket = io('http://localhost:6969');
 
 // http://localhost:6969
 // https://postit-app-develop.herokuapp.com/
