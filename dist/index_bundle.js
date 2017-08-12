@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "34b507c5d3e7ad751dc9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4094ace831659e88604c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -42051,7 +42051,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /* global localStorage */
 
-var socket = (0, _socket2.default)('http://localhost:6969');
+var socket = (0, _socket2.default)('https://postit-app-develop.herokuapp.com/');
 
 // http://localhost:6969
 // https://postit-app-develop.herokuapp.com/
@@ -46869,11 +46869,15 @@ var AddUserView = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AddUserView.__proto__ || Object.getPrototypeOf(AddUserView)).call(this, props));
 
+    var usersStatusMap = new Map();
+
     _this.state = {
-      users: _PostItAllUsersStore2.default.getUsers(props.groupId)
+      users: _PostItAllUsersStore2.default.getUsers(props.groupId),
+      userStatus: usersStatusMap
     };
 
     _this.onChange = _this.onChange.bind(_this);
+    _this.statusChange = _this.statusChange.bind(_this);
     return _this;
   }
 
@@ -46932,6 +46936,23 @@ var AddUserView = function (_React$Component) {
     }
 
     /**
+     * changes status of user when the user is clicked
+     * @return {void}
+     * @param {int} index
+     */
+
+  }, {
+    key: 'statusChange',
+    value: function statusChange(index) {
+      var statusMap = this.state.userStatus;
+      statusMap = statusMap.set(index, true);
+
+      this.setState({
+        userStatus: statusMap
+      });
+    }
+
+    /**
      * renders component view
      * @return {void}
      */
@@ -46942,7 +46963,10 @@ var AddUserView = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_userListView2.default, { users: this.state.users, groupId: this.props.groupId })
+        _react2.default.createElement(_userListView2.default, { users: this.state.users,
+          groupId: this.props.groupId,
+          userStatus: this.state.userStatus,
+          handleStatusChange: this.statusChange })
       );
     }
   }]);
@@ -47166,7 +47190,6 @@ function UserList(props) {
    * @param {*} event
    */
   var handleSelect = function handleSelect(event) {
-    console.log('handle selection action...');
     event.preventDefault();
     var value = event.target.value;
     var Details = {
@@ -47174,7 +47197,20 @@ function UserList(props) {
       groupId: group
     };
     (0, _addUserGroup2.default)(Details);
-    // props.users.delete(value);
+    props.handleStatusChange(value);
+  };
+
+  /**
+   * logic to show name or request sent message
+   * @param {*} key 
+   * @return {void}
+   */
+  var showRequestMessageOrName = function showRequestMessageOrName(key) {
+    var statusMap = props.userStatus;
+    if (statusMap.get(key)) {
+      return false;
+    }
+    return true;
   };
 
   return _react2.default.createElement(
@@ -47193,7 +47229,7 @@ function UserList(props) {
           {
             value: key
           },
-          user.get('username')
+          showRequestMessageOrName() ? user.get('username') : 'Request Sent!'
         );
       })
     )
