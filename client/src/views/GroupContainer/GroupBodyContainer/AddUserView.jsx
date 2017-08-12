@@ -17,11 +17,15 @@ class AddUserView extends React.Component {
   constructor(props) {
     super(props);
 
+    const usersStatusMap = new Map();
+
     this.state = {
-      users: AllUserStore.getUsers(props.groupId)
+      users: AllUserStore.getUsers(props.groupId),
+      userStatus: usersStatusMap
     };
 
     this.onChange = this.onChange.bind(this);
+    this.statusChange = this.statusChange.bind(this);
   }
 
   /**
@@ -66,13 +70,30 @@ class AddUserView extends React.Component {
   }
 
   /**
+   * changes status of user when the user is clicked
+   * @return {void}
+   * @param {int} index
+   */
+  statusChange(index) {
+    let statusMap = this.state.userStatus;
+    statusMap = statusMap.set(index, true);
+    console.log(statusMap.get(index));
+    this.setState({
+      userStatus: statusMap
+    });
+  }
+
+  /**
    * renders component view
    * @return {void}
    */
   render() {
     return (
       <div>
-        <UserListView users={this.state.users} groupId={this.props.groupId} />
+        <UserListView users={this.state.users}
+          groupId={this.props.groupId}
+          userStatus={this.state.userStatus}
+          handleStatusChange = {this.statusChange}/>
       </div>
     );
   }
