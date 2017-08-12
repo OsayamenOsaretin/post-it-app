@@ -24,6 +24,22 @@ function UserList(props) {
       groupId: group
     };
     addUserAction(Details);
+    props.handleStatusChange(value);
+  };
+
+  /**
+   * logic to show name or request sent message
+   * @param {*} key 
+   * @return {void}
+   */
+  const showRequestMessageOrName = (key) => {
+    console.log(props.userStatus);
+    const statusMap = props.userStatus;
+    if (statusMap.get(key)) {
+      console.log(statusMap);
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -37,7 +53,9 @@ function UserList(props) {
           <option
             value={key}
           >
-            {user.get('username')}
+            {showRequestMessageOrName(key) ?
+              user.get('username') :
+              'Request Sent!' }
           </option>
         ))}
       </select>
