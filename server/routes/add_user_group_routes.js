@@ -12,16 +12,16 @@ module.exports = (app, firebase) => {
     // check if this is a signed in user
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        // get a reference to the groups users
-        const groupRef = db.ref(`/groups/${groupId}/users`);
+        // // get a reference to the groups users
+        // const groupRef = db.ref(`/groups/${groupId}/users`);
 
-        // add new user to the group
-        groupRef.child(newUserId).set({
-          Id: newUserId,
-        });
+        // // add new user to the group
+        // groupRef.child(newUserId).set({
+        //   Id: newUserId,
+        // });
 
         // add group to user's list of groups
-        db.ref(`/users/${newUserId}/groups`).child(groupId).set(true);
+        db.ref(`/users/${newUserId}/requests`).child(groupId).set(true);
 
         res.send({
           message: 'User added to group',
