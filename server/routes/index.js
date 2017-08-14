@@ -12,6 +12,7 @@ import getMessages from './get_messages_route';
 import googleSignInRoute from './google_signin_route';
 import resetPassword from './reset_password_route';
 import markRead from './mark_messages_read_route';
+import resolveGroupRequest from './resolve_group_request';
 
 module.exports = (app, firebase, io) => {
   // These are the endpoints for the post-it api
@@ -27,4 +28,5 @@ module.exports = (app, firebase, io) => {
   googleSignInRoute(app, firebase);
   resetPassword(app, firebase);
   markRead(app, firebase);
+  resolveGroupRequest(app, firebase);
 };

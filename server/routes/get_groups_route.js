@@ -12,10 +12,15 @@ module.exports = (app, firebase, io) => {
         // instantiate empty Map to hold groups
         const groups = new Map();
 
+        // instantiate empty Map to hold requests
+        const requests = new Map();
+
+        let requestKeys = [];
         let groupKeys = [];
 
         // get user's groups
         const groupsReference = db.ref(`/users/${userId}/groups/`);
+
         groupsReference.orderByKey().on('value', (snapshot) => {
           // clear groups map and keys to remove leaks between users
           groups.clear();
@@ -43,6 +48,43 @@ module.exports = (app, firebase, io) => {
             })
             .catch((err) => {
               io.emit('failedGroup', {
+                error: err
+              });
+            });
+        });
+
+        const requestReference = db.ref(`/users/${userId}/requests`);
+
+        requestReference.orderByKey().on('value', (snapshot) => {
+          // clear groups map and keys to remove leaks between users
+          requests.clear();
+          requestKeys = [];
+          // get the keys for each user's group
+          snapshot.forEach((requestSnapshot) => {
+            requestKeys.push(requestSnapshot.key);
+          });
+          // console.log(`requestKeys: ${requestKeys}`);
+
+          // map to promises to asynchronously collect group request info
+          const promises = requestKeys.map(requestKey => (
+            new Promise((resolve) => {
+              const groupReference = db.ref(`/groups/${requestKey}`);
+              groupReference.on('value', (snap) => {
+                // add group info to list of groups
+                requests.set(requestKey, snap.val());
+                resolve();
+              });
+            })
+          ));
+          // collect resolved promises
+          Promise.all(promises)
+            .then(() => {
+              // console.log('emits new requests');
+              console.log(requests);
+              io.emit(`newRequest${userId}`, requests);
+            })
+            .catch((err) => {
+              io.emit('failedRequests', {
                 error: err
               });
             });
