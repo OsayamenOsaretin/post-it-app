@@ -46,9 +46,10 @@ function GroupListView(props) {
         <div className="group-details">
           <Switch>
             <Route exact path='/' component={WelcomeView} />
-            <Route exact path='/groupBody/:groupId/:groupName' component={groupProps => (
-              <GroupItem socket={socketProp} {...groupProps} />
-            )} />
+            <Route exact path='/groupBody/:groupId/:groupName'
+              component={groupProps => (
+                <GroupItem socket={socketProp} {...groupProps} />
+              )} />
           </Switch>
         </div>
       </div>

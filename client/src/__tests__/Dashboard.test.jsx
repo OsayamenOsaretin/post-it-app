@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import socket from 'socket.io-client';
+// import socket from 'socket.io-client';
 import GroupStore from 'GroupStore';
 import Dashboard from '../views/GroupContainer/Dashboard.jsx';
 

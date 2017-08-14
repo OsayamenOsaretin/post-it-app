@@ -4,8 +4,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import FaBell from 'react-icons/lib/fa/bell';
 import FaGroup from 'react-icons/lib/fa/group';
 import AddGroupView from './AddGroup.jsx';
+import RequestListView from './RequestList.jsx';
 import MessageStore from '../../data/postItStores/PostItMessageStore';
-import GroupStore from '../../data/postItStores/PostItGroupStore';
+// import GroupStore from '../../data/postItStores/PostItGroupStore';
 
 
 /**
@@ -22,7 +23,7 @@ class GroupList extends React.Component {
     console.log(props);
     this.state = {
       groupWithNotificationChange: '',
-      groupList: props.groups
+      groupList: props.groups,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -85,7 +86,8 @@ class GroupList extends React.Component {
    */
   sortGroups(groupSeq) {
     const newGroupWithNotification = this.state.groupWithNotificationChange;
-    const status = MessageStore.getGroupNotificationDetails().status.get(newGroupWithNotification);
+    const status = MessageStore.getGroupNotificationDetails()
+      .status.get(newGroupWithNotification);
 
     if (status) {
       if (newGroupWithNotification !== '') {
@@ -113,30 +115,34 @@ class GroupList extends React.Component {
           <AddGroupView />
         </div>
         <div className="group-list-body">
-          <ul className="group-list">
-            {this.sortGroups(this.props.groups.keySeq().toArray()).map(groupKey => (
-              <li key={groupKey}>
-                <NavLink exact activeClassName='active'
-                  to={`/groupBody/${groupKey}/${
-                    this.props.groups.get(groupKey).get('groupname')
-                  }`} >
-                  <div className="group-list-item">
-                    <p>
-                      <FaGroup
-                        className="groups-icon"
-                        size={20}
-                      />
-                      {this.props.groups.get(groupKey).get('groupname')}
-                    </p>
-                    <div className="notification">
-                      {MessageStore.getGroupNotificationDetails().status.get(groupKey) &&
-                        <FaBell color={'#578ec9'} />}
+          <RequestListView />
+          {/* <ul className="group-list">
+
+            {this.sortGroups(this.props.groups.keySeq().toArray())
+              .map(groupKey => (
+                <li key={groupKey}>
+                  <NavLink exact activeClassName='active'
+                    to={`/groupBody/${groupKey}/${
+                      this.props.groups.get(groupKey).get('groupname')
+                    }`} >
+                    <div className="group-list-item">
+                      <p>
+                        <FaGroup
+                          className="groups-icon"
+                          size={20}
+                        />
+                        {this.props.groups.get(groupKey).get('groupname')}
+                      </p>
+                      <div className="notification">
+                        {MessageStore.getGroupNotificationDetails().
+                          status.get(groupKey) &&
+                          <FaBell color={'#578ec9'} />}
+                      </div>
                     </div>
-                  </div>
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+                  </NavLink>
+                </li>
+              ))}
+          </ul> */}
         </div>
       </div>
     );

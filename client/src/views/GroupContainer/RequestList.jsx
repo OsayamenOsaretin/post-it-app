@@ -12,9 +12,9 @@ class RequestList extends React.Component {
    */
   constructor(props) {
     super(props);
-
+    console.log('mounted request list component');
     this.state = {
-      requests: []
+      requests: RequestStore.getRequests()
     };
 
     this.onChange = this.onChange.bind(this);
@@ -42,6 +42,7 @@ class RequestList extends React.Component {
    */
   onChange() {
     const theRequests = RequestStore.getRequests();
+    console.log(`theRequests: ${theRequests}`);
     this.setState({
       requests: theRequests
     });
@@ -53,16 +54,15 @@ class RequestList extends React.Component {
    */
   render() {
     return (
-      this.state.requests.length > 0 ?
+      this.state.requests.size > 0 ?
         <div> {this.state.requests.map(requestItem => (
           <div className="request-item">
             <RequestView
-              groupId = {this.props.groupId}
               request = {requestItem}
             />
           </div>
         ))}
-        </div> : <div></div>
+        </div> : <div> no request </div>
     );
   }
 }

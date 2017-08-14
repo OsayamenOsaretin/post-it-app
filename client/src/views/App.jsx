@@ -1,8 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import LoginRegisterContainer from './LoginRegisterContainer/LandingPageContainer.jsx';
+import { BrowserRouter as Router, Route, Redirect, Switch }
+  from 'react-router-dom';
+import LoginRegisterContainer from
+  './LoginRegisterContainer/LandingPageContainer.jsx';
 import Dashboard from './GroupContainer/Dashboard.jsx';
-import ResetPasswordComponent from './LoginRegisterContainer/ResetPasswordView.jsx';
+import ResetPasswordComponent from
+  './LoginRegisterContainer/ResetPasswordView.jsx';
 import UserStore from '../data/postItStores/PostItUserStore';
 
 /**
@@ -88,7 +91,8 @@ class App extends React.Component {
                   return <Redirect to='/login' />;
                 }
                 return (!this.state.token ?
-                  (this.state.passwordReset && <LoginRegisterContainer />) : (<Dashboard />));
+                  (this.state.passwordReset &&
+                    <LoginRegisterContainer />) : (<Dashboard />));
               }} />
               <Route path='/login' component={() => {
                 if (!this.state.redirect) {

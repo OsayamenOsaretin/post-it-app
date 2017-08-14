@@ -1,7 +1,8 @@
 import React from 'react';
 import FaClose from 'react-icons/lib/fa/close';
 import FaCheck from 'react-icons/lib/fa/check';
-import AcceptRejectAction from '../../data/postItActions/acceptRejectGroupRequestAction';
+import AcceptRejectAction from
+  '../../data/postItActions/acceptRejectGroupRequestAction';
 
 export default (props) => {
   const handleClick = (event) => {
@@ -19,7 +20,7 @@ export default (props) => {
   return (
     <div className="add-group-request">
       <div className="request-body">
-
+        {props.request.get('groupname')}
       </div>
       <div className="accept-reject-div">
         <button

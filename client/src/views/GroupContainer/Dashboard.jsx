@@ -3,7 +3,9 @@ import io from 'socket.io-client';
 import GroupListView from './GroupListView.jsx';
 import { getGroups,
   recieveGroups } from '../../data/postItActions/groupActions';
+import recieveRequests from '../../data/postItActions/receiveRequestAction';
 import GroupStore from '../../data/postItStores/PostItGroupStore';
+// import RequestStore from '../../data/postItStores/PostItGroupRequestStore';
 import HeaderView from '../Header.jsx';
 import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
@@ -48,7 +50,14 @@ class Dashboard extends React.Component {
       bulkMessageRequest(groups);
     });
 
+    socket.on(`newRequests${userId}`, (requests) => {
+      console.log('receives requests');
+      console.log(requests);
+      recieveRequests(requests);
+    });
+
     GroupStore.addChangeListener(this.onChange);
+    // RequestStore.addChangeListener(this.onRequestChange);
   }
 
   /**
@@ -58,6 +67,7 @@ class Dashboard extends React.Component {
    */
   componentWillUnmount() {
     GroupStore.removeChangeListener(this.onChange);
+    // RequestStore.removeChangeListener(this.onRequestChange);
   }
 
   /**
@@ -73,6 +83,18 @@ class Dashboard extends React.Component {
       });
     }
   }
+
+  // /**
+  //  * onRequestchange listener to listen to changes in requests
+  //  * @memberof Dashboard
+  //  * @return {void}
+  //  */
+  // onRequestChange() {
+  //   const newRequests = RequestStore.getRequests();
+  //   this.setState({
+  //     requests: newRequests
+  //   });
+  // }
 
   /**
    * renders component view
