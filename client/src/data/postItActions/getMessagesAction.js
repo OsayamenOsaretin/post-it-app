@@ -14,7 +14,7 @@ export default (groupId) => {
     .send(groupId)
     .end((error, result) => {
       if (error) {
-        console.log(error);
+        // console.log(error);
         PostItDispatcher.handleServerAction({
           type: PostItActionTypes.FAILED_GET_MESSAGES
         });
@@ -22,7 +22,7 @@ export default (groupId) => {
         PostItDispatcher.handleServerAction({
           type: PostItActionTypes.SUCCEED_GET_MESSAGES
         });
-        console.log(result);
+        // console.log(result);
       }
     });
 };

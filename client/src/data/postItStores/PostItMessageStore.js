@@ -13,7 +13,7 @@ const notificationMap = new Map();
 let groupWithNewMessageId;
 // add new messages to map of messages
 const addNewMessageGroup = (newMessageGroup) => {
-  console.log(newMessageGroup);
+  // console.log(newMessageGroup);
 
   messages = messages.merge(newMessageGroup);
 };
@@ -68,7 +68,7 @@ class PostItMessageStore extends EventEmitter {
    * @return {*} messages.get(id)
    */
   getMessage(id) {
-    console.log(JSON.stringify(messages.get(id)));
+    // console.log(JSON.stringify(messages.get(id)));
     return messages.get(id);
   }
 
@@ -91,7 +91,7 @@ PostItDispatcher.register((payload) => {
 
   switch (action.type) {
   case PostItActionTypes.RECIEVE_MESSAGE_RESPONSE: {
-    console.log('recieves message response');
+    // console.log('recieves message response');
     const groupId = action.Id;
     const messageResponse = action.messages;
     const notify = action.notify;
@@ -105,7 +105,7 @@ PostItDispatcher.register((payload) => {
     let groupMessages = messages.get(groupId);
 
     if (groupMessages) {
-      console.log(groupMessages);
+      // console.log(groupMessages);
       groupMessages = new MessageList(messageResponse);
       const newMessageMap = new Map();
       newMessageMap.set(groupId, groupMessages);
@@ -115,7 +115,7 @@ PostItDispatcher.register((payload) => {
       messageMap.set(groupId, new MessageList(messageResponse));
       addNewMessageGroup(messageMap);
     }
-    console.log(messages);
+    // console.log(messages);
     messageStore.emit(groupId);
     break;
   }

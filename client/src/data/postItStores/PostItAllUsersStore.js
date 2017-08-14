@@ -10,7 +10,7 @@ let users = new UserList();
 
 // add new user to list of users
 const addNewUsers = (newUserList) => {
-  console.log(newUserList);
+  // console.log(newUserList);
   users = users.merge(newUserList);
 };
 
@@ -41,7 +41,7 @@ class PostItAllUserStore extends EventEmitter {
     this.removeListener(CHANGE_EVENT_GROUP, callback);
   }
 
-/**
+  /**
  * getUsers
  * @memberof PostItAllUserStore
  * @return {Map} users
@@ -62,7 +62,7 @@ PostItDispatcher.register((payload) => {
 
   switch (action.type) {
   case PostItActionTypes.GET_USERS: {
-    console.log('gets to get all users store');
+    // console.log('gets to get all users store');
     getAllUsersAction();
     break;
   }
@@ -82,7 +82,7 @@ PostItDispatcher.register((payload) => {
       newUserMap.set(groupId, new UserList(userList));
       addNewUsers(newUserMap);
     }
-    console.log(users);
+    // console.log(users);
     allUserStore.emit(groupId);
     break;
   }
