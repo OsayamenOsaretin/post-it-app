@@ -5,10 +5,10 @@ import RequestList from '../models/groupList';
 
 const CHANGE_EVENT = 'requestChange';
 
-const requests = new RequestList();
+let requests = new RequestList();
 
 const addNewRequests = (newRequestList) => {
-  requests.merge(newRequestList);
+  requests = requests.merge(newRequestList);
 };
 
 /**
@@ -42,6 +42,7 @@ class PostItRequestStore extends EventEmitter {
    * @return {*} requests
    */
   getRequests() {
+    console.log(requests);
     return requests;
   }
 }
@@ -57,6 +58,17 @@ PostItDispatcher.register((payload) => {
     console.log(action.requests);
     const requestsMap = new Map(action.requests);
     addNewRequests(requestsMap);
+    console.log(requestsMap);
+    requestStore.emit(CHANGE_EVENT);
+    break;
+  }
+
+  case PostItActionTypes.DELETE_REQUEST: {
+    console.log('gets to delete action handler');
+    const groupId = action.id;
+    console.log('this is before delete', requests.size);
+    requests = requests.delete(groupId);
+    console.log('this is after delete', requests.size);
     requestStore.emit(CHANGE_EVENT);
     break;
   }
@@ -64,5 +76,5 @@ PostItDispatcher.register((payload) => {
     return true;
   }
   }
-})
+});
 module.exports = requestStore;

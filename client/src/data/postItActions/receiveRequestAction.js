@@ -4,7 +4,7 @@ import PostItActionTypes from '../PostItActionTypes';
 export default (newRequests) => {
   console.log('receive requests action called');
   PostItDispatcher.handleServerAction({
-    types: PostItActionTypes.RECEIVE_REQUESTS,
+    type: PostItActionTypes.RECEIVE_REQUESTS,
     requests: newRequests
   });
 };

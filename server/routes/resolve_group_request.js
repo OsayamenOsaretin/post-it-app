@@ -11,20 +11,21 @@ module.exports = (app, firebase) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // const userId = user.uid;
-        if (status) {
+        if (status === 'true') {
           // if user accepted the group request
-          const groupRef = db.ref(`/groups/${Id}/users`);
+          console.log('user accepted group request')
+          const groupRef = db.ref(`/groups/${Id}/users/${userId}`);
 
           // add user to the group
-          groupRef.child(userId).set({
+          groupRef.set({
             Id: userId
           });
 
           // add group to user's list of groups
-          db.ref(`/users/${userId}/groups`).child(Id).set(true);
+          db.ref(`/users/${userId}/groups/${Id}`).set(true);
         }
         // remove request
-        db.ref(`/users/${userId}/requests`).child(Id).remove();
+        db.ref(`/users/${userId}/requests/${Id}`).remove();
         res.send({
           message: 'group request resolved'
         });

@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4772d98dffa40e7a6381"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "963f8b671c2596bbfdc5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -2184,6 +2184,7 @@ var ActionTypes = {
   RECIEVE_GROUP_RESPONSE: 'RECIEVE_GROUPS',
   RECIEVE_MESSAGE_RESPONSE: 'RECIEVE_MESSAGES',
   RECEIVE_REQUESTS: 'RECEIVE_REQUESTS',
+  DELETE_REQUEST: 'DELETE_REQUEST',
   READ_MESSAGE: 'READ_MESSAGE',
   FAILED_READ_MESSAGE: 'FAILED_READ_MESSAGE',
   SENT_MESSAGE: 'SENT_MESSAGE',
@@ -45494,6 +45495,8 @@ var GroupList = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'groups' },
@@ -45505,7 +45508,40 @@ var GroupList = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'group-list-body' },
-          _react2.default.createElement(_RequestList2.default, null)
+          _react2.default.createElement(_RequestList2.default, null),
+          _react2.default.createElement(
+            'ul',
+            { className: 'group-list' },
+            this.sortGroups(this.props.groups.keySeq().toArray()).map(function (groupKey) {
+              return _react2.default.createElement(
+                'li',
+                { key: groupKey },
+                _react2.default.createElement(
+                  _reactRouterDom.NavLink,
+                  { exact: true, activeClassName: 'active',
+                    to: '/groupBody/' + groupKey + '/' + _this2.props.groups.get(groupKey).get('groupname') },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'group-list-item' },
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      _react2.default.createElement(_group2.default, {
+                        className: 'groups-icon',
+                        size: 20
+                      }),
+                      _this2.props.groups.get(groupKey).get('groupname')
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'notification' },
+                      _PostItMessageStore2.default.getGroupNotificationDetails().status.get(groupKey) && _react2.default.createElement(_bell2.default, { color: '#578ec9' })
+                    )
+                  )
+                )
+              );
+            })
+          )
         )
       );
     }
@@ -45876,20 +45912,17 @@ var RequestList = function (_React$Component) {
         'div',
         null,
         ' ',
-        this.state.requests.map(function (requestItem) {
+        this.state.requests.map(function (requestItem, key) {
           return _react2.default.createElement(
             'div',
             { className: 'request-item' },
             _react2.default.createElement(_RequestItem2.default, {
-              request: requestItem
+              request: requestItem,
+              groupId: key
             })
           );
         })
-      ) : _react2.default.createElement(
-        'div',
-        null,
-        ' no request '
-      );
+      ) : _react2.default.createElement('div', null);
     }
   }]);
 
@@ -45937,7 +45970,7 @@ var CHANGE_EVENT = 'requestChange';
 var requests = new _groupList2.default();
 
 var addNewRequests = function addNewRequests(newRequestList) {
-  requests.merge(newRequestList);
+  requests = requests.merge(newRequestList);
 };
 
 /**
@@ -45989,6 +46022,7 @@ var PostItRequestStore = function (_EventEmitter) {
   }, {
     key: 'getRequests',
     value: function getRequests() {
+      console.log(requests);
       return requests;
     }
   }]);
@@ -46008,6 +46042,17 @@ _PostItDispatcher2.default.register(function (payload) {
         console.log(action.requests);
         var requestsMap = new Map(action.requests);
         addNewRequests(requestsMap);
+        console.log(requestsMap);
+        requestStore.emit(CHANGE_EVENT);
+        break;
+      }
+
+    case _PostItActionTypes2.default.DELETE_REQUEST:
+      {
+        var groupId = action.id;
+        console.log('this is before delete', requests.size);
+        requests = requests.delete(groupId);
+        console.log('this is after delete', requests.size);
         requestStore.emit(CHANGE_EVENT);
         break;
       }
@@ -46049,16 +46094,21 @@ var _acceptRejectGroupRequestAction2 = _interopRequireDefault(_acceptRejectGroup
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* global localStorage */
+
 exports.default = function (props) {
-  var handleClick = function handleClick(event) {
-    event.preventDefault();
-    var selectedStatus = event.target.value;
+  var handleClick = function handleClick(selectedStatus) {
+    // event.preventDefault();
+    // const selectedStatus = event.target.value;
+    console.log('i;m here ===>', props.groupId);
     var id = props.groupId;
+    var user = localStorage.getItem('userId');
 
     // call accept reject action
     (0, _acceptRejectGroupRequestAction2.default)({
       status: selectedStatus,
-      groupId: id
+      groupId: id,
+      userId: user
     });
   };
 
@@ -46078,7 +46128,9 @@ exports.default = function (props) {
         {
           className: 'accept-button',
           value: 'true',
-          onClick: handleClick },
+          onClick: function onClick() {
+            return handleClick('true');
+          } },
         _react2.default.createElement(_check2.default, null)
       ),
       _react2.default.createElement(
@@ -46086,7 +46138,9 @@ exports.default = function (props) {
         {
           className: 'reject-button',
           value: 'false',
-          onClick: handleClick },
+          onClick: function onClick() {
+            return handleClick('false');
+          } },
         _react2.default.createElement(_close2.default, null)
       )
     )
@@ -46187,6 +46241,14 @@ var _superagent = __webpack_require__(22);
 
 var _superagent2 = _interopRequireDefault(_superagent);
 
+var _PostItActionTypes = __webpack_require__(13);
+
+var _PostItActionTypes2 = _interopRequireDefault(_PostItActionTypes);
+
+var _PostItDispatcher = __webpack_require__(12);
+
+var _PostItDispatcher2 = _interopRequireDefault(_PostItDispatcher);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (groupInviteDetails) {
@@ -46195,6 +46257,10 @@ exports.default = function (groupInviteDetails) {
       console.log(error);
     } else {
       console.log(result);
+      _PostItDispatcher2.default.handleServerAction({
+        type: _PostItActionTypes2.default.DELETE_REQUEST,
+        id: groupInviteDetails.groupId
+      });
     }
   });
 };
@@ -47596,7 +47662,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function (newRequests) {
   console.log('receive requests action called');
   _PostItDispatcher2.default.handleServerAction({
-    types: _PostItActionTypes2.default.RECEIVE_REQUESTS,
+    type: _PostItActionTypes2.default.RECEIVE_REQUESTS,
     requests: newRequests
   });
 };

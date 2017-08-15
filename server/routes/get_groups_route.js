@@ -6,7 +6,7 @@ module.exports = (app, firebase, io) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // user is signed in
-        const userId = user.uid;
+        const userId = req.params.userId;
         const db = firebase.database();
 
         // instantiate empty Map to hold groups
@@ -81,7 +81,7 @@ module.exports = (app, firebase, io) => {
             .then(() => {
               // console.log('emits new requests');
               console.log(requests);
-              io.emit(`newRequest${userId}`, requests);
+              io.emit(`newRequests${userId}`, requests);
             })
             .catch((err) => {
               io.emit('failedRequests', {

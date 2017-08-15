@@ -116,8 +116,7 @@ class GroupList extends React.Component {
         </div>
         <div className="group-list-body">
           <RequestListView />
-          {/* <ul className="group-list">
-
+          <ul className="group-list">
             {this.sortGroups(this.props.groups.keySeq().toArray())
               .map(groupKey => (
                 <li key={groupKey}>
@@ -134,15 +133,15 @@ class GroupList extends React.Component {
                         {this.props.groups.get(groupKey).get('groupname')}
                       </p>
                       <div className="notification">
-                        {MessageStore.getGroupNotificationDetails().
-                          status.get(groupKey) &&
+                        {MessageStore.getGroupNotificationDetails()
+                          .status.get(groupKey) &&
                           <FaBell color={'#578ec9'} />}
                       </div>
                     </div>
                   </NavLink>
                 </li>
               ))}
-          </ul> */}
+          </ul> 
         </div>
       </div>
     );

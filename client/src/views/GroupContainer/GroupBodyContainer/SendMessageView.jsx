@@ -143,9 +143,9 @@ class SendMessageView extends React.Component {
             type='submit'
             disabled={!this.state.message}
             onClick={this.handleSubmit}>
-              <FaPaperPlane
+            <FaPaperPlane
               size={25}/>
-            </button>
+          </button>
         </form>
       </div>
     );

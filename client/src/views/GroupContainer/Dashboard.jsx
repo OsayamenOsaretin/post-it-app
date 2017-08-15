@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import GroupListView from './GroupListView.jsx';
 import { getGroups,
   recieveGroups } from '../../data/postItActions/groupActions';
-import recieveRequests from '../../data/postItActions/receiveRequestAction';
+import receiveRequests from '../../data/postItActions/receiveRequestAction';
 import GroupStore from '../../data/postItStores/PostItGroupStore';
 // import RequestStore from '../../data/postItStores/PostItGroupRequestStore';
 import HeaderView from '../Header.jsx';
@@ -53,7 +53,7 @@ class Dashboard extends React.Component {
     socket.on(`newRequests${userId}`, (requests) => {
       console.log('receives requests');
       console.log(requests);
-      recieveRequests(requests);
+      receiveRequests(requests);
     });
 
     GroupStore.addChangeListener(this.onChange);
