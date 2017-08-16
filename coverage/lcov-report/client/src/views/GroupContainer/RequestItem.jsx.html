@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for client/src/views/GroupContainer/GroupListView.jsx</title>
+    <title>Code coverage report for client/src/views/GroupContainer/RequestItem.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../../index.html">All files</a> / <a href="index.html">client/src/views/GroupContainer</a> GroupListView.jsx
+      <a href="../../../../index.html">All files</a> / <a href="index.html">client/src/views/GroupContainer</a> RequestItem.jsx
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.5% </span>
+        <span class="strong">20% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/8</span>
+        <span class='fraction'>2/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>1/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.5% </span>
+        <span class="strong">20% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/8</span>
+        <span class='fraction'>2/10</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -100,9 +100,7 @@
 55
 56
 57
-58
-59
-60</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+58</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,14 +111,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,22 +131,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,66 +148,72 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import WelcomeView from './WelcomeView.jsx';
-import GroupList from './GroupList.jsx';
-import GroupItem from './GroupItem.jsx';
-import PostItActionTypes from '../../data/PostItActionTypes';
+import FaClose from 'react-icons/lib/fa/close';
+import FaCheck from 'react-icons/lib/fa/check';
+import AcceptRejectAction from
+  '../../data/postItActions/acceptRejectGroupRequestAction';
 import PostItDispatcher from '../../data/PostItDispatcher';
-// import bulkMessageRequest from '../../utility/bulkMessageRequest';
+import PostItActionTypes from '../../data/PostItActionTypes';
 &nbsp;
-/**
- * GroupList is a container for the list of groups, also doubles as a navlink
- * @param {*} props
- * @return {void}
- */
-function GroupListView(props) {
-  const socketProp = props.socket;
+/* global localStorage */
 &nbsp;
-  // attach listener for new messages
-  socketProp.on('newMessage', <span class="fstat-no" title="function not covered" >(n</span>ewMessages) =&gt; {
+export default (props) =&gt; {
+  const handleClick = <span class="fstat-no" title="function not covered" >(s</span>electedStatus, event) =&gt; {
+<span class="cstat-no" title="statement not covered" >    event.preventDefault();</span>
+    // const selectedStatus = event.target.value;
+<span class="cstat-no" title="statement not covered" >    console.log('i;m here ===&gt;', props.groupId);</span>
+    const id = <span class="cstat-no" title="statement not covered" >props.groupId;</span>
+    const user = <span class="cstat-no" title="statement not covered" >localStorage.getItem('userId');</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    PostItDispatcher.handleServerAction({</span>
-      type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
-      Id: newMessages.Id,
-      messages: newMessages.groupMessages,
-      notify: newMessages.notify
+      type: PostItActionTypes.DELETE_REQUEST,
+      id: props.groupId
     });
-  });
 &nbsp;
-  // attach listener for new users
-  socketProp.on('Users', <span class="fstat-no" title="function not covered" >(U</span>serList) =&gt; {
-<span class="cstat-no" title="statement not covered" >    PostItDispatcher.handleServerAction({</span>
-      type: PostItActionTypes.RECIEVE_USERS,
-      users: UserList.userList,
-      id: UserList.Id
+    // call accept reject action
+<span class="cstat-no" title="statement not covered" >    AcceptRejectAction({</span>
+      status: selectedStatus,
+      groupId: id,
+      userId: user
     });
-  });
-&nbsp;
-  // get messages for groups
-  // bulkMessageRequest(props.groups);
+  };
 &nbsp;
   return (
-    &lt;BrowserRouter &gt;
-      &lt;div className="main-view"&gt;
-        &lt;div className="group-list-nav"&gt;
-          &lt;GroupList groups={props.groups} socket={socketProp} /&gt;
-        &lt;/div&gt;
-        &lt;div className="group-details"&gt;
-          &lt;Switch&gt;
-            &lt;Route exact path='/' component={WelcomeView} /&gt;
-            &lt;Route exact path='/groupBody/:groupId/:groupName'
-              component={<span class="fstat-no" title="function not covered" >gr</span>oupProps =&gt; (
-<span class="cstat-no" title="statement not covered" >                &lt;GroupItem socket={socketProp} {...groupProps} /&gt;</span>
-              )} /&gt;
-          &lt;/Switch&gt;
-        &lt;/div&gt;
+    &lt;div className="add-group-request"&gt;
+      &lt;div className="request-body"&gt;
+        {props.request.get('groupname')}
       &lt;/div&gt;
-    &lt;/BrowserRouter&gt;
+      &lt;div className="accept-reject-div"&gt;
+        &lt;button
+          className="accept-button"
+          value="true"
+          onClick={<span class="fstat-no" title="function not covered" >ev</span>ent =&gt; <span class="cstat-no" title="statement not covered" >handleClick('true', event)}</span>&gt;
+          &lt;FaCheck
+            size={25}
+            color={'#578ec9'}/&gt;
+        &lt;/button&gt;
+        &lt;button
+          className="reject-button"
+          value="false"
+          onClick={<span class="fstat-no" title="function not covered" >ev</span>ent =&gt; <span class="cstat-no" title="statement not covered" >handleClick('false', event)}</span>&gt;
+          &lt;FaClose
+            size={25}
+            color={'red'}/&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   );
-}
-module.exports = GroupListView;
+};
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

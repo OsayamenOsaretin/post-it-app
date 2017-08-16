@@ -200,7 +200,17 @@
 155
 156
 157
-158</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -220,6 +230,7 @@
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -254,6 +265,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -357,6 +369,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaSquareO from 'react-icons/lib/fa/square-o';
@@ -382,7 +402,8 @@ export default class RegisterForm extends React.Component {
       password: '',
       confirmPassword: '',
       registering: false,
-      errorMessage: ''
+      errorMessage: '',
+      phone: ''
     };
 &nbsp;
     this.handleChange = this.handleChange.bind(this);
@@ -413,7 +434,8 @@ export default class RegisterForm extends React.Component {
       registerAction({
         userName: this.state.userName,
         password: this.state.password,
-        email: this.state.email
+        email: this.state.email,
+        phone: this.state.phone
       });
       this.setState({
         registering: true,
@@ -460,55 +482,63 @@ export default class RegisterForm extends React.Component {
  */
   render() {
     return (
-       &lt;form className = 'inputform'&gt;
+      &lt;form className='inputform'&gt;
         &lt;input
-        name = 'userName'
-        placeholder = 'username'
-        type = 'text'
-        autoComplete ='off'
-        value = {this.state.userName}
-        onChange = {this.handleChange}
+          name='userName'
+          placeholder='username'
+          type='text'
+          autoComplete='off'
+          value={this.state.userName}
+          onChange={this.handleChange}
         /&gt;
         &lt;input
-        name = 'email'
-        placeholder = 'email'
-        type = 'text'
-        autoComplete ='off'
-        value = {this.state.email}
-        onChange = {this.handleChange}
+          name='email'
+          placeholder='email'
+          type='text'
+          autoComplete='off'
+          value={this.state.email}
+          onChange={this.handleChange}
         /&gt;
         &lt;input
-        name = 'password'
-        placeholder = 'password'
-        type = 'password'
-        autoComplete ='off'
-        value = {this.state.password}
-        onChange = {this.handleChange}
+          name='phone'
+          placeholder='phone number eg. 2348128283839'
+          type='text'
+          autoComplete='off'
+          value={this.state.phone}
+          onChange={this.handleChange}
+        /&gt;
+        &lt;input
+          name='password'
+          placeholder='password'
+          type='password'
+          autoComplete='off'
+          value={this.state.password}
+          onChange={this.handleChange}
         /&gt; {this.state.password.length &lt; 6 ? &lt;FaSquareO /&gt; : &lt;FaCheckSquareO /&gt;}
         &lt;input
-        name = 'confirmPassword'
-        placeholder = 'confirmpassword'
-        type = 'password'
-        autoComplete ='off'
-        value = {this.state.confirmPassword}
-        onChange = {this.handleChange}
+          name='confirmPassword'
+          placeholder='confirmpassword'
+          type='password'
+          autoComplete='off'
+          value={this.state.confirmPassword}
+          onChange={this.handleChange}
         /&gt; {this.state.password !== this.state.confirmPassword || this.state.password.length
-        &lt; 6 ? &lt;FaSquareO /&gt; : &lt;FaCheckSquareO /&gt;}
+          &lt; 6 ? &lt;FaSquareO /&gt; : &lt;FaCheckSquareO /&gt;}
         &lt;button
-        className = 'button'
-        type = 'submit'
-        disabled = { !this.state.userName || !this.state.email ||
-         !this.state.password || !this.state.confirmPassword }
-         onClick = {this.handleSubmit}
-         &gt;
-        Register {this.state.registering &amp;&amp; &lt;FaSpinner className="fa fa-spinner fa-spin"/&gt;}
+          className='button'
+          type='submit'
+          disabled={!this.state.userName || !this.state.email ||
+            !this.state.password || !this.state.confirmPassword}
+          onClick={this.handleSubmit}
+        &gt;
+          Register {this.state.registering &amp;&amp; &lt;FaSpinner className="fa fa-spinner fa-spin" /&gt;}
         &lt;/button&gt;
 &nbsp;
         {this.state.errorMessage &amp;&amp;
 <span class="branch-1 cbranch-no" title="branch not covered" >          &lt;div className="error-login-register"&gt;</span>
             &lt;FaExclamationTriangle /&gt; {this.state.errorMessage}
           &lt;/div&gt;
-          }
+        }
       &lt;/form&gt;
     );
   }
@@ -520,7 +550,7 @@ export default class RegisterForm extends React.Component {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 31 2017 14:45:58 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 16 2017 09:39:14 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">55.56% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/12</span>
+        <span class='fraction'>10/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">57.14% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/6</span>
+        <span class='fraction'>4/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">55.56% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/12</span>
+        <span class='fraction'>10/18</span>
       </div>
     </div>
   </div>
@@ -128,7 +128,28 @@
 83
 84
 85
-86</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,8 +170,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,7 +225,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -232,11 +274,15 @@ class AddUserView extends React.Component {
   constructor(props) {
     super(props);
 &nbsp;
+    const usersStatusMap = new Map();
+&nbsp;
     this.state = {
-      users: AllUserStore.getUsers(props.groupId)
+      users: AllUserStore.getUsers(props.groupId),
+      userStatus: usersStatusMap
     };
 &nbsp;
     this.onChange = this.onChange.bind(this);
+    this.statusChange = this.statusChange.bind(this);
   }
 &nbsp;
   /**
@@ -281,13 +327,30 @@ class AddUserView extends React.Component {
   }
 &nbsp;
   /**
+   * changes status of user when the user is clicked
+   * @return {void}
+   * @param {int} index
+   */
+<span class="fstat-no" title="function not covered" >  st</span>atusChange(index) {
+    let statusMap = <span class="cstat-no" title="statement not covered" >this.state.userStatus;</span>
+<span class="cstat-no" title="statement not covered" >    statusMap = statusMap.set(index, true);</span>
+<span class="cstat-no" title="statement not covered" >    console.log(statusMap.get(index));</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({</span>
+      userStatus: statusMap
+    });
+  }
+&nbsp;
+  /**
    * renders component view
    * @return {void}
    */
   render() {
     return (
       &lt;div&gt;
-        &lt;UserListView users={this.state.users} groupId={this.props.groupId} /&gt;
+        &lt;UserListView users={this.state.users}
+          groupId={this.props.groupId}
+          userStatus={this.state.userStatus}
+          handleStatusChange = {this.statusChange}/&gt;
       &lt;/div&gt;
     );
   }
@@ -304,7 +367,7 @@ module.exports = AddUserView;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 31 2017 14:45:58 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 16 2017 09:39:14 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../../../../prettify.js"></script>

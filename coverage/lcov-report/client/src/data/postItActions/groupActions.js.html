@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">94.44% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/16</span>
+        <span class='fraction'>17/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">94.44% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>16/16</span>
+        <span class='fraction'>17/18</span>
       </div>
     </div>
   </div>
@@ -119,8 +119,8 @@
 74
 75
 76
-77</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+77
+78</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,17 +154,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -199,7 +201,6 @@
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
 &nbsp;
-&nbsp;
 /**
  * recieveGroups dispatches to update registered stores with groups from API
  * @return {void}
@@ -229,22 +230,24 @@ export function addGroup(name) {
  */
 export function getGroups() {
   console.log('action reaches here');
+  const userId = localStorage.getItem('userId');
+  console.log(userId);
   request
-  .get('/groups')
-  .end((error, result) =&gt; {
-    if (error) {
-      // dispatch to handle the view case of failed group collection
-      PostItDispatcher.handleViewAction({
-        type: PostItActionTypes.FAILED_GROUPS,
-        error: error.message
-      });
-    } else {
-      console.log(result);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.GETTING_GROUPS
-      });
-    }
-  });
+    .get(`/groups/${userId}`)
+    .end((error, result) =&gt; {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (error) {
+        // dispatch to handle the view case of failed group collection
+<span class="cstat-no" title="statement not covered" >        PostItDispatcher.handleViewAction({</span>
+          type: PostItActionTypes.FAILED_GROUPS,
+          error: error.message
+        });
+      } else {
+        console.log(result);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.GETTING_GROUPS
+        });
+      }
+    });
 }
 &nbsp;
 /**
@@ -255,21 +258,21 @@ export function getGroups() {
 export function addGroupApi(groupName) {
   console.log('gets to group api action');
   request
-  .post('/group')
-  .send(groupName)
-  .end((error, result) =&gt; {
-    if (error) {
-      console.log(error);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_ADD_GROUP
-      });
-    } else {
-      // make api call to get all the new groups
-      console.log(result);
-      const newGroup = result.body.group;
-      recieveGroups(newGroup);
-    }
-  });
+    .post('/group')
+    .send(groupName)
+    .end((error, result) =&gt; {
+      if (error) {
+        console.log(error);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_ADD_GROUP
+        });
+      } else {
+        // make api call to get all the new groups
+        console.log(result);
+        const newGroup = result.body.group;
+        recieveGroups(newGroup);
+      }
+    });
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -277,7 +280,7 @@ export function addGroupApi(groupName) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 31 2017 14:45:58 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 16 2017 09:39:14 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

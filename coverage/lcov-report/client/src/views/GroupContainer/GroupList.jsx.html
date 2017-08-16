@@ -193,7 +193,13 @@
 148
 149
 150
-151</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+151
+152
+153
+154
+155
+156</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -282,23 +288,16 @@
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -310,7 +309,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -349,8 +359,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import FaBell from 'react-icons/lib/fa/bell';
 import FaGroup from 'react-icons/lib/fa/group';
 import AddGroupView from './AddGroup.jsx';
+import RequestListView from './RequestList.jsx';
 import MessageStore from '../../data/postItStores/PostItMessageStore';
-import GroupStore from '../../data/postItStores/PostItGroupStore';
+// import GroupStore from '../../data/postItStores/PostItGroupStore';
 &nbsp;
 &nbsp;
 /**
@@ -367,7 +378,7 @@ class GroupList extends React.Component {
     console.log(props);
     this.state = {
       groupWithNotificationChange: '',
-      groupList: props.groups
+      groupList: props.groups,
     };
 &nbsp;
     this.onChange = this.onChange.bind(this);
@@ -430,7 +441,8 @@ class GroupList extends React.Component {
    */
   sortGroups(groupSeq) {
     const newGroupWithNotification = this.state.groupWithNotificationChange;
-    const status = MessageStore.getGroupNotificationDetails().status.get(newGroupWithNotification);
+    const status = MessageStore.getGroupNotificationDetails()
+      .status.get(newGroupWithNotification);
 &nbsp;
     <span class="missing-if-branch" title="if path not taken" >I</span>if (status) {
 <span class="cstat-no" title="statement not covered" >      if (newGroupWithNotification !== '') {</span>
@@ -458,30 +470,33 @@ class GroupList extends React.Component {
           &lt;AddGroupView /&gt;
         &lt;/div&gt;
         &lt;div className="group-list-body"&gt;
+          &lt;RequestListView /&gt;
           &lt;ul className="group-list"&gt;
-            {this.sortGroups(this.props.groups.keySeq().toArray()).map(<span class="fstat-no" title="function not covered" >gr</span>oupKey =&gt; (
-<span class="cstat-no" title="statement not covered" >              &lt;li key={groupKey}&gt;</span>
+            {this.sortGroups(this.props.groups.keySeq().toArray())
+              .map(<span class="fstat-no" title="function not covered" >gr</span>oupKey =&gt; (
+<span class="cstat-no" title="statement not covered" >                &lt;li key={groupKey}&gt;</span>
                   &lt;NavLink exact activeClassName='active'
                     to={`/groupBody/${groupKey}/${
                       this.props.groups.get(groupKey).get('groupname')
-                      }`} &gt;
-                      &lt;div className="group-list-item"&gt;
-                        &lt;p&gt;
-                          &lt;FaGroup
+                    }`} &gt;
+                    &lt;div className="group-list-item"&gt;
+                      &lt;p&gt;
+                        &lt;FaGroup
                           className="groups-icon"
                           size={20}
-                          /&gt;
-                            {this.props.groups.get(groupKey).get('groupname')}
-                        &lt;/p&gt;
-                        &lt;div className="notification"&gt;
-                          {MessageStore.getGroupNotificationDetails().status.get(groupKey) &amp;&amp;
-                          &lt;FaBell color={'#578ec9'}/&gt;}
-                        &lt;/div&gt;
+                        /&gt;
+                        {this.props.groups.get(groupKey).get('groupname')}
+                      &lt;/p&gt;
+                      &lt;div className="notification"&gt;
+                        {MessageStore.getGroupNotificationDetails()
+                          .status.get(groupKey) &amp;&amp;
+                          &lt;FaBell color={'#578ec9'} /&gt;}
                       &lt;/div&gt;
+                    &lt;/div&gt;
                   &lt;/NavLink&gt;
-              &lt;/li&gt;
-            ))}
-          &lt;/ul&gt;
+                &lt;/li&gt;
+              ))}
+          &lt;/ul&gt; 
         &lt;/div&gt;
       &lt;/div&gt;
     );
@@ -499,7 +514,7 @@ module.exports = GroupList;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 31 2017 14:45:58 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 16 2017 09:39:14 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>
