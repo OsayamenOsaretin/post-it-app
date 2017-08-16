@@ -2,6 +2,7 @@ import request from 'superagent';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
 
+/* global localStorage */
 /**
  * recieveGroups dispatches to update registered stores with groups from API
  * @return {void}
@@ -26,7 +27,8 @@ export function addGroup(name) {
 }
 
 /**
- * getGroups makes an api call for user's groups and dispatches(res) to registered listeners
+ * getGroups makes an api call for user's groups and dispatches(res)
+ * to registered listeners
  * @return {void}
  */
 export function getGroups() {

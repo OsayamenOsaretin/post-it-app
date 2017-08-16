@@ -15,21 +15,21 @@ export default (messages, groupId) => {
     'calls action to mark messages read'
   );
   request
-  .post('/read')
-  .send(messages)
-  .end((error, result) => {
-    if (error) {
-      console.log(error);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_READ_MESSAGE
-      });
-    } else {
-      console.log(result);
-      console.log(`read message: ${groupId}`);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.READ_MESSAGE,
-        Id: groupId
-      });
-    }
-  });
+    .post('/read')
+    .send(messages)
+    .end((error, result) => {
+      if (error) {
+        console.log(error);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_READ_MESSAGE
+        });
+      } else {
+        console.log(result);
+        console.log(`read message: ${groupId}`);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.READ_MESSAGE,
+          Id: groupId
+        });
+      }
+    });
 };

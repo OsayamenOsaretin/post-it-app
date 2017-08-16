@@ -10,19 +10,19 @@ import PostItDispatcher from '../PostItDispatcher';
  */
 export default (groupId) => {
   request
-  .post('/users')
-  .send(groupId)
-  .end((error, result) => {
-    if (error) {
-      console.log(error);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_GROUP_USERS
-      });
-    } else {
-      console.log(result);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.GOT_GROUP_USERS
-      });
-    }
-  });
+    .post('/users')
+    .send(groupId)
+    .end((error, result) => {
+      if (error) {
+        console.log(error);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_GROUP_USERS
+        });
+      } else {
+        console.log(result);
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.GOT_GROUP_USERS
+        });
+      }
+    });
 };

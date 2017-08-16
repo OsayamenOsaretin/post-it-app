@@ -13,22 +13,22 @@ import PostItActionTypes from '../PostItActionTypes';
 export default function SignInAction(userDetails) {
   console.log('superagent api call to login');
   request
-  .post('/user/signin')
-  .send(userDetails)
-  .end((error, result) => {
-    console.log('api call returned a result');
-    if (error) {
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.LOGIN_ERROR,
-        errorMessage: result.body.message
-      });
-    } else {
-      const userData = result.body.userData;
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.LOGIN_USER,
-        user: userData
-      });
-    }
-  });
+    .post('/user/signin')
+    .send(userDetails)
+    .end((error, result) => {
+      console.log('api call returned a result');
+      if (error) {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.LOGIN_ERROR,
+          errorMessage: result.body.message
+        });
+      } else {
+        const userData = result.body.userData;
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.LOGIN_USER,
+          user: userData
+        });
+      }
+    });
 }
 
