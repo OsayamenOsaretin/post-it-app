@@ -3,6 +3,8 @@ import FaClose from 'react-icons/lib/fa/close';
 import FaCheck from 'react-icons/lib/fa/check';
 import AcceptRejectAction from
   '../../data/postItActions/acceptRejectGroupRequestAction';
+import PostItDispatcher from '../../data/PostItDispatcher';
+import PostItActionTypes from '../../data/PostItActionTypes';
 
 /* global localStorage */
 
@@ -13,6 +15,11 @@ export default (props) => {
     console.log('i;m here ===>', props.groupId);
     const id = props.groupId;
     const user = localStorage.getItem('userId');
+
+    PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.DELETE_REQUEST,
+      id: props.groupId
+    });
 
     // call accept reject action
     AcceptRejectAction({
@@ -32,13 +39,17 @@ export default (props) => {
           className="accept-button"
           value="true"
           onClick={event => handleClick('true', event)}>
-          <FaCheck />
+          <FaCheck
+            size={25}
+            color={'#578ec9'}/>
         </button>
         <button
           className="reject-button"
           value="false"
           onClick={event => handleClick('false', event)}>
-          <FaClose />
+          <FaClose
+            size={25}
+            color={'red'}/>
         </button>
       </div>
     </div>

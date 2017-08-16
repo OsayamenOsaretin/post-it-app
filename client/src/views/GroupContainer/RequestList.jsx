@@ -55,14 +55,20 @@ class RequestList extends React.Component {
   render() {
     return (
       this.state.requests.size > 0 ?
-        <div> {this.state.requests.map((requestItem, key) => (
-          <div className="request-item">
-            <RequestView
-              request = {requestItem}
-              groupId={key}
-            />
-          </div>
-        ))}
+        <div>
+          {this.state.requests.map((requestItem, key) => (
+            <div className='group-list-item'>
+              <div className='invite'>
+                Invited to join
+              </div>
+              <p>
+                <RequestView
+                  request = {requestItem}
+                  groupId={key}
+                />
+              </p>
+            </div>
+          ))}
         </div> : <div></div>
     );
   }
