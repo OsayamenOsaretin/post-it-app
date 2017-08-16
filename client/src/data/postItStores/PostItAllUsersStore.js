@@ -4,7 +4,7 @@ import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
 import getAllUsersAction from '../postItActions/getAllUsersAction';
 
-const CHANGE_EVENT = 'change';
+// const CHANGE_EVENT = 'change';
 
 let users = new UserList();
 
@@ -95,7 +95,6 @@ PostItDispatcher.register((payload) => {
     console.log(`Users Store get group map: ${users.get(groupId)}`);
     let usersForGroup = users.get(groupId);
     if (usersForGroup) {
-      // console.log(`User Store Map before delete: ${JSON.stringify(usersForGroup)}`);
       usersForGroup = usersForGroup.delete(userId);
       // console.log(`Users Store map after delete: ${usersForGroup}`);
       const newUsersForGroupMap = new Map();
@@ -113,4 +112,4 @@ PostItDispatcher.register((payload) => {
   }
 });
 
-module.exports = allUserStore;
+export default allUserStore;

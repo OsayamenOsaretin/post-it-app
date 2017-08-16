@@ -97,6 +97,5 @@ PostItDispatcher.register((payload) => {
   }
   }
 });
-
-module.exports = groupStore;
+export default groupStore;
 

@@ -91,5 +91,5 @@ PostItDispatcher.register((payload) => {
   }
 });
 
-module.exports = userStore;
+export default userStore;
 

@@ -75,4 +75,4 @@ PostItDispatcher.register((payload) => {
   }
 });
 
-module.exports = errorStore;
+export default errorStore;

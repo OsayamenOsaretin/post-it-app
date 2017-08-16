@@ -135,4 +135,4 @@ PostItDispatcher.register((payload) => {
   }
 });
 
-module.exports = messageStore;
+export default messageStore;

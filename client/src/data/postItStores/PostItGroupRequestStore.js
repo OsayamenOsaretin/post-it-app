@@ -77,4 +77,4 @@ PostItDispatcher.register((payload) => {
   }
   }
 });
-module.exports = requestStore;
+export default requestStore;
