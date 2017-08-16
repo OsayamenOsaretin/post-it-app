@@ -207,6 +207,34 @@ input {
   color:  #578ec9;
 }
 
+.request-body {
+  margin-left: 30px;
+  width: 70%px;
+  margin: auto;
+}
+
+.accept-button {
+  border: none;
+  outline: none;
+  background: #273443;
+}
+
+.reject-button {
+  border: none;
+  outline: none;
+  background: #273443;
+}
+
+.accept-button:hover, .reject-button:hover {
+  font-size: 28px;
+}
+
+.invite {
+  font-family: cursive;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
 .group-list-body {
   height: 90%;
   width: 100%;
