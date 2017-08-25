@@ -19,7 +19,7 @@ const emailOptions = {
 };
 // send notification based on priority level
 
-module.exports = (emails, numbers, priorityLevel) => {
+export default (emails, numbers, priorityLevel) => {
   switch (priorityLevel) {
   case 'urgent': {
     emails.forEach((email) => {

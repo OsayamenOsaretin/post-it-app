@@ -1,6 +1,6 @@
 // get emails for users in a group
 
-module.exports = (firebase, groupId, priorityLevel, callback) => {
+export default (firebase, groupId, priorityLevel, callback) => {
   const db = firebase.database();
   const emails = [];
   const numbers = [];
