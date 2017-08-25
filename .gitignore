@@ -2,3 +2,4 @@
 /~
 .vscode/
 /server/routes/npm-debug.log
+/dist
