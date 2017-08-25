@@ -8,8 +8,8 @@ import webpackHotMiddleWare from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
 import socketio from 'socket.io';
 import config from '../webpack.config';
-
-import routes from './routes';
+import socketConfig from './utilities/socketConfig';
+import routes from './index';
 
 
 const app = express();
@@ -22,7 +22,9 @@ const server = app.listen(port, () => {
   console.log(`We are live on ${port}`);
 });
 
-const io = socketio(server);
+const io = socketio.listen(server, { log: false });
+socketConfig.socketInstance(io);
+
 
 io.on('connection', (socket) => {
   console.log('Connected');
