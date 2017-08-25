@@ -6,11 +6,11 @@ import ErrorStore from '../../data/postItStores/PostItErrorStore';
 
 
 /**
- *
+ * LoginForm 
  */
-class LoginForm extends React.Component {
+export default class LoginForm extends React.Component {
   /**
-  *
+  * constructor for login form component
   *
   */
   constructor() {
@@ -102,39 +102,39 @@ class LoginForm extends React.Component {
     return (
       <form className = 'inputform'>
         <input
-        id = 'formInput'
-        name = 'email'
-        placeholder = 'email'
-        type ='email'
-        autoComplete = 'off'
-        value = {this.state.email}
-        onChange = {this.handleChange} />
+          id = 'formInput'
+          name = 'email'
+          placeholder = 'email'
+          type ='email'
+          autoComplete = 'off'
+          value = {this.state.email}
+          onChange = {this.handleChange} />
 
-      <input
-        id = 'formInput'
-        name = 'password'
-        placeholder = 'password'
-        type ='password'
-        autoComplete = 'off'
-        value = {this.state.password}
-        onChange = {this.handleChange} />
+        <input
+          id = 'formInput'
+          name = 'password'
+          placeholder = 'password'
+          type ='password'
+          autoComplete = 'off'
+          value = {this.state.password}
+          onChange = {this.handleChange} />
 
         <button
-        className = 'button'
-        onClick = {this.handleSubmit}
-        type = 'submit'
-        disabled = { !this.state.password || !this.state.email }>
-        Log in {this.state.login && <FaSpinner className="fa fa-spinner fa-spin"/>}
+          className = 'button'
+          onClick = {this.handleSubmit}
+          type = 'submit'
+          disabled = { !this.state.password || !this.state.email }>
+          Log in {this.state.login &&
+          <FaSpinner className="fa fa-spinner fa-spin"/>}
         </button>
 
         {this.state.errorMessage &&
           <div className="error-login-register">
             <FaExclamationTriangle /> {this.state.errorMessage}
           </div>
-          }
+        }
       </form>
     );
   }
 }
 
-module.exports = LoginForm;

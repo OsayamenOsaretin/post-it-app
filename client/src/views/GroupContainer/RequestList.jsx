@@ -74,4 +74,4 @@ class RequestList extends React.Component {
   }
 }
 
-module.exports = RequestList;
+export default RequestList;

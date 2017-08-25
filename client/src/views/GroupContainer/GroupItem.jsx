@@ -64,28 +64,29 @@ class GroupItem extends React.Component {
     return (
       <div className="group-item">
         <div className="group-item-top">
-              <div className="group-body-groupname">
-                <h4>
-                  {this.props.match.params.groupName}
-                </h4>
-              </div>
-              <div className="add-user">
-                <button
-                  className="add-user-button"
-                  onClick={this.handleClick}>
-                  <FaUserPlus
-                    size={25}
-                    color={'#578ec9'}
-                  />
-                </button>
-              </div>
+          <div className="group-body-groupname">
+            <h4>
+              {this.props.match.params.groupName}
+            </h4>
+          </div>
+          <div className="add-user">
+            <button
+              className="add-user-button"
+              onClick={this.handleClick}>
+              <FaUserPlus
+                size={25}
+                color={'#578ec9'}
+              />
+            </button>
+          </div>
         </div>
         <div className="group-item-bottom">
-
-              <div className="user-list">
-                {this.state.addUser && <AddUser groupId={this.props.match.params.groupId} />}
-              </div>
-          <MessageBody groupId={this.props.match.params.groupId} socket={this.props.socket} />
+          <div className="user-list">
+            {this.state.addUser &&
+            <AddUser groupId={this.props.match.params.groupId} />}
+          </div>
+          <MessageBody groupId={this.props.match.params.groupId}
+            socket={this.props.socket} />
         </div>
       </div>
     );
@@ -98,4 +99,4 @@ GroupItem.PropTypes = {
   groupId: PropTypes.string.isRequired,
 };
 
-module.exports = GroupItem;
+export default GroupItem;

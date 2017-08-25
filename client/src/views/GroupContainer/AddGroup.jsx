@@ -84,4 +84,4 @@ class AddGroupView extends React.Component {
   }
 }
 
-module.exports = AddGroupView;
+export default AddGroupView;

@@ -67,4 +67,4 @@ UserList.PropTypes = {
   users: ImmutablePropTypes.map,
 };
 
-module.exports = UserList;
+export default UserList;

@@ -32,11 +32,11 @@ export default class RegisterForm extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-/**
- * @memberof RegisterComponent
- * @returns {void}
- * @param {*} event
- */
+  /**
+   * @memberof RegisterComponent
+   * @returns {void}
+   * @param {*} event
+   */
   handleChange(event) {
     const value = event.target.value;
     this.setState({
@@ -44,11 +44,11 @@ export default class RegisterForm extends React.Component {
     });
   }
 
-/**
-   * @memberof RegisterComponent
-   * @returns {void}
-   * @param {*} event
-   */
+  /**
+     * @memberof RegisterComponent
+     * @returns {void}
+     * @param {*} event
+     */
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.password === this.state.confirmPassword) {
@@ -97,10 +97,10 @@ export default class RegisterForm extends React.Component {
     ErrorStore.removeChangeListener(this.onChange);
   }
 
-/**
- * @memberof RegisterComponent
- * @returns {void}
- */
+  /**
+   * @memberof RegisterComponent
+   * @returns {void}
+   */
   render() {
     return (
       <form className='inputform'>
@@ -143,7 +143,8 @@ export default class RegisterForm extends React.Component {
           autoComplete='off'
           value={this.state.confirmPassword}
           onChange={this.handleChange}
-        /> {this.state.password !== this.state.confirmPassword || this.state.password.length
+        /> {this.state.password !== this.state.confirmPassword ||
+         this.state.password.length
           < 6 ? <FaSquareO /> : <FaCheckSquareO />}
         <button
           className='button'
@@ -152,7 +153,8 @@ export default class RegisterForm extends React.Component {
             !this.state.password || !this.state.confirmPassword}
           onClick={this.handleSubmit}
         >
-          Register {this.state.registering && <FaSpinner className="fa fa-spinner fa-spin" />}
+          Register {this.state.registering && 
+          <FaSpinner className="fa fa-spinner fa-spin" />}
         </button>
 
         {this.state.errorMessage &&

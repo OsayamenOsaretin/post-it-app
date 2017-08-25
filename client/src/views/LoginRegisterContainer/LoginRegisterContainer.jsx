@@ -9,7 +9,7 @@ import Nav from './Nav';
  * LoginRegisterContainer holds the login and register components
  * @returns {void}
  */
-function LoginRegisterContainer() {
+export default function LoginRegisterContainer() {
   return (
     <BrowserRouter>
       <div className = 'loginRegisterContainer' >
@@ -26,4 +26,4 @@ function LoginRegisterContainer() {
     </BrowserRouter>
   );
 }
-module.exports = LoginRegisterContainer;
+

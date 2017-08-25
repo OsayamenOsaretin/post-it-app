@@ -156,4 +156,4 @@ SendMessageView.PropTypes = {
   groupId: PropTypes.string.isRequired,
 };
 
-module.exports = SendMessageView;
+export default SendMessageView;

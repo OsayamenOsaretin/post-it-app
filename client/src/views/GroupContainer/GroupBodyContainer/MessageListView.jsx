@@ -9,7 +9,6 @@ import getSenderInitials from '../../../utility/getSenderInitials';
  * @return {void}
  */
 function MessageListView(props) {
-  console.log(props.messages);
   const newMessages = props.messages;
   const displayName = localStorage.getItem('username');
   return (
@@ -20,23 +19,26 @@ function MessageListView(props) {
         }
         return (
           <div
-          className="message"
-          key={key}>
+            className="message"
+            key={key}>
             <div
-            className={
-              message.sender !== displayName ? 'sender-initials' : 'sender-initials-alternate'
+              className={
+                message.sender !== displayName ? 'sender-initials' :
+                  'sender-initials-alternate'
               }
-            title={message.sender}>
+              title={message.sender}>
               {getSenderInitials(message.sender)}
             </div>
             <div className={
-              message.sender !== displayName ? 'message-view' : 'message-view-alternate'
-              }>
+              message.sender !== displayName ? 'message-view' :
+                'message-view-alternate'
+            }>
               <h4 className="message-body-view">{message.message}</h4>
             </div>
             <div className={
-              message.sender !== displayName ? 'message-reader' : 'message-reader-alternate'
-              }>
+              message.sender !== displayName ? 'message-reader' :
+                'message-reader-alternate'
+            }>
               {message.read && <ul> read:
                 {Object.keys(message.read).map(keys => (
                   <li key={keys}>
@@ -52,4 +54,4 @@ function MessageListView(props) {
   );
 }
 
-module.exports = MessageListView;
+export default MessageListView;

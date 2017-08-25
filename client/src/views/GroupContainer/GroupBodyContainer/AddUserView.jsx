@@ -103,4 +103,4 @@ AddUserView.PropTypes = {
   groupId: PropTypes.string.isRequired
 };
 
-module.exports = AddUserView;
+export default AddUserView;

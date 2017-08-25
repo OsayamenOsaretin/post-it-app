@@ -6,7 +6,6 @@ import FaGroup from 'react-icons/lib/fa/group';
 import AddGroupView from './AddGroup.jsx';
 import RequestListView from './RequestList.jsx';
 import MessageStore from '../../data/postItStores/PostItMessageStore';
-// import GroupStore from '../../data/postItStores/PostItGroupStore';
 
 
 /**
@@ -19,8 +18,8 @@ class GroupList extends React.Component {
    */
   constructor(props) {
     super(props);
-    console.log('grouplist component is rendered');
-    console.log(props);
+    // console.log('grouplist component is rendered');
+    // console.log(props);
     this.state = {
       groupWithNotificationChange: '',
       groupList: props.groups,
@@ -45,23 +44,6 @@ class GroupList extends React.Component {
   componentWillUnmount() {
     MessageStore.removeNotificationChangeListener(this.onChange);
   }
-
-  // /**
-  //  * lifecycle event for when component recieves props
-  //  * @return {void}
-  //  * @param {*} newProps
-  //  */
-  // componentWilReceiveProps(newProps) {
-  //   console.log(newProps);
-  //   this.setState({
-  //     groupKeys: newProps.groups.keySeq().toArray()
-  //   });
-  //   // if (this.state.groupKeys.size <= 0) {
-  //   //   this.setState({
-  //   //     groupKeys: newProps.groups.keySeq().toArray()
-  //   //   });
-  //   // }
-  // }
 
   /**
    * on change listener to update groupslist on new message
@@ -141,7 +123,7 @@ class GroupList extends React.Component {
                   </NavLink>
                 </li>
               ))}
-          </ul> 
+          </ul>
         </div>
       </div>
     );
@@ -152,4 +134,4 @@ GroupList.PropTypes = {
   groups: ImmutablePropTypes.map.isRequired
 };
 
-module.exports = GroupList;
+export default GroupList;

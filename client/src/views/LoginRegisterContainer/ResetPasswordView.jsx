@@ -5,7 +5,7 @@ import UserStore from '../../data/postItStores/PostItUserStore';
 /**
  * ResetPasswordForm is component for resetting password
  */
-class ResetPasswordForm extends React.Component {
+export default class ResetPasswordForm extends React.Component {
 
   /**
    * constructor for resetPasswordForm
@@ -83,20 +83,20 @@ class ResetPasswordForm extends React.Component {
         <p> Request password reset</p>
         <form className = 'inputform'>
           <input
-          id = 'formInput'
-          name = 'email'
-          placeholder = 'Please enter your registered email'
-          type ='text'
-          autoComplete = 'off'
-          value = {this.state.email}
-          onChange = {this.handleChange} />
+            id='formInput'
+            name='email'
+            placeholder='Please enter your registered email'
+            type='text'
+            autoComplete='off'
+            value={this.state.email}
+            onChange={this.handleChange} />
 
           <button
-          className = 'button'
-          onClick = {this.handleSubmit}
-          type = 'submit'
-          disabled = {!this.state.email }>
-          Reset Password
+            className='button'
+            onClick={this.handleSubmit}
+            type='submit'
+            disabled={!this.state.email}>
+            Reset Password
           </button>
         </form>
       </div>
@@ -104,4 +104,3 @@ class ResetPasswordForm extends React.Component {
   }
 }
 
-module.exports = ResetPasswordForm;
