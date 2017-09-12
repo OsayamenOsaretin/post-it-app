@@ -13,8 +13,6 @@ const notificationMap = new Map();
 let groupWithNewMessageId;
 // add new messages to map of messages
 const addNewMessageGroup = (newMessageGroup) => {
-  console.log(newMessageGroup);
-
   messages = messages.merge(newMessageGroup);
 };
 
@@ -61,6 +59,9 @@ class PostItMessageStore extends EventEmitter {
   removeNotificationChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
+
+  /* eslint class-methods-use-this: 0 */
+
   /**
    * GetMessage
    * @memberof PostItMessageStore
@@ -68,7 +69,6 @@ class PostItMessageStore extends EventEmitter {
    * @return {*} messages.get(id)
    */
   getMessage(id) {
-    console.log(JSON.stringify(messages.get(id)));
     return messages.get(id);
   }
 
@@ -88,13 +88,17 @@ const messageStore = new PostItMessageStore();
 
 PostItDispatcher.register((payload) => {
   const action = payload.action;
+  let groupId;
+  let messageResponse;
+  let notify;
+  let groupMessages;
+  let Id;
 
   switch (action.type) {
-  case PostItActionTypes.RECIEVE_MESSAGE_RESPONSE: {
-    console.log('recieves message response');
-    const groupId = action.Id;
-    const messageResponse = action.messages;
-    const notify = action.notify;
+  case PostItActionTypes.RECIEVE_MESSAGE_RESPONSE:
+    groupId = action.Id;
+    messageResponse = action.messages;
+    notify = action.notify;
 
     groupWithNewMessageId = groupId;
     if (notify) {
@@ -102,10 +106,10 @@ PostItDispatcher.register((payload) => {
       messageStore.emit(CHANGE_EVENT);
     }
 
-    let groupMessages = messages.get(groupId);
+    groupMessages = messages.get(groupId);
 
     if (groupMessages) {
-      groupMessages = groupMessages.merge(new MessageList(messageResponse));
+      groupMessages = new MessageList(messageResponse);
       const newMessageMap = new Map();
       newMessageMap.set(groupId, groupMessages);
       addNewMessageGroup(newMessageMap);
@@ -114,24 +118,27 @@ PostItDispatcher.register((payload) => {
       messageMap.set(groupId, new MessageList(messageResponse));
       addNewMessageGroup(messageMap);
     }
-    console.log(messages);
     messageStore.emit(groupId);
     break;
-  }
 
-  case PostItActionTypes.READ_MESSAGE: {
-    const Id = action.Id;
+
+  case PostItActionTypes.READ_MESSAGE:
+    Id = action.Id;
 
     groupWithNewMessageId = Id;
     notificationMap.set(Id, false);
     messageStore.emit(CHANGE_EVENT);
     break;
-  }
 
-  default: {
+
+  case PostItActionTypes.CLEAR_MESSAGES_STORE:
+    messages = new MessageList();
+    break;
+
+
+  default:
     return true;
-  }
   }
 });
 
-module.exports = messageStore;
+export default messageStore;

@@ -4,13 +4,11 @@ import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
 import getAllUsersAction from '../postItActions/getAllUsersAction';
 
-const CHANGE_EVENT = 'change';
 
 let users = new UserList();
 
 // add new user to list of users
 const addNewUsers = (newUserList) => {
-  console.log(newUserList);
   users = users.merge(newUserList);
 };
 
@@ -30,7 +28,7 @@ class PostItAllUserStore extends EventEmitter {
     this.on(CHANGE_EVENT_GROUP, callback);
   }
 
-/**
+  /**
  * removeChangeListener
  * @memberof PostItAllUserStore
  * @param {*} callback
@@ -41,16 +39,15 @@ class PostItAllUserStore extends EventEmitter {
     this.removeListener(CHANGE_EVENT_GROUP, callback);
   }
 
-/**
- * getUsers
- * @memberof PostItAllUserStore
- * @return {Map} users
- * @param {string} groupId
- */
+  /* eslint class-methods-use-this: 0 */
+
+  /**
+   * getUsers
+   * @memberof PostItAllUserStore
+   * @return {Map} users
+   * @param {string} groupId
+   */
   getUsers(groupId) {
-    console.log('asks for users');
-    console.log('and gets...');
-    console.log(users.get(groupId));
     return users.get(groupId);
   }
 }
@@ -59,19 +56,20 @@ const allUserStore = new PostItAllUserStore();
 
 PostItDispatcher.register((payload) => {
   const action = payload.action;
+  let groupId;
+  let userList;
+  let usersForGroup;
+  let userId;
 
   switch (action.type) {
-  case PostItActionTypes.GET_USERS: {
-    console.log('gets to get all users store');
+  case PostItActionTypes.GET_USERS:
     getAllUsersAction();
     break;
-  }
 
-  case PostItActionTypes.RECIEVE_USERS: {
-    const groupId = action.id;
-    const userList = action.users;
-
-    let usersForGroup = users.get(groupId);
+  case PostItActionTypes.RECIEVE_USERS:
+    groupId = action.id;
+    userList = action.users;
+    usersForGroup = users.get(groupId);
     if (usersForGroup) {
       usersForGroup = usersForGroup.merge(new Map(userList));
       const newUserMap = new Map();
@@ -82,35 +80,29 @@ PostItDispatcher.register((payload) => {
       newUserMap.set(groupId, new UserList(userList));
       addNewUsers(newUserMap);
     }
-    console.log(users);
     allUserStore.emit(groupId);
     break;
-  }
 
-  case PostItActionTypes.DELETE_USER: {
-    console.log('gets to delete user action');
-    const userId = action.id;
-    const groupId = action.groupId;
-
-    console.log(`Users Store get group map: ${users.get(groupId)}`);
-    let usersForGroup = users.get(groupId);
+  case PostItActionTypes.DELETE_USER:
+    userId = action.id;
+    groupId = action.groupId;
+    usersForGroup = users.get(groupId);
     if (usersForGroup) {
-      // console.log(`User Store Map before delete: ${JSON.stringify(usersForGroup)}`);
       usersForGroup = usersForGroup.delete(userId);
-      // console.log(`Users Store map after delete: ${usersForGroup}`);
       const newUsersForGroupMap = new Map();
-      newUsersForGroupMap.set(groupId, usersForGroup);
+      newUsersForGroupMap.set(groupId, new UserList(usersForGroup));
       addNewUsers(newUsersForGroupMap);
       allUserStore.emit(groupId);
     }
-    // console.log(users);
     break;
-  }
 
-  default: {
+  case PostItActionTypes.CLEAR_USERS_STORE:
+    users = new UserList();
+    break;
+
+  default:
     return true;
-  }
   }
 });
 
-module.exports = allUserStore;
+export default allUserStore;

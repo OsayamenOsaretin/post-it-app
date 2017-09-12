@@ -32,6 +32,8 @@ class PostItErrorStore extends EventEmitter {
     this.removeListener(CHANGE_EVENT, callback);
   }
 
+  /* eslint class-methods-use-this: 0 */
+
   /** getLoginError
    * @return {string} loginError
    * @memberof PostItErrorStore
@@ -55,24 +57,21 @@ PostItDispatcher.register((payload) => {
   const action = payload.action;
 
   switch (action.type) {
-  case PostItActionTypes.LOGIN_ERROR: {
+  case PostItActionTypes.LOGIN_ERROR:
     loginError = action.errorMessage;
     registerError = undefined;
     errorStore.emit(CHANGE_EVENT);
     break;
-  }
 
-  case PostItActionTypes.REGISTER_ERROR: {
+  case PostItActionTypes.REGISTER_ERROR:
     registerError = action.errorMessage;
     loginError = undefined;
     errorStore.emit(CHANGE_EVENT);
     break;
-  }
 
-  default: {
+  default:
     return true;
-  }
   }
 });
 
-module.exports = errorStore;
+export default errorStore;

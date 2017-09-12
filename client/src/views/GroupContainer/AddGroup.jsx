@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FaPlus from 'react-icons/lib/fa/plus';
 import { addGroupApi } from '../../data/postItActions/groupActions';
+
+/* global localStorage */
+
 /**
  * Add group adds a new group to list of user's groups
  */
-class AddGroupView extends React.Component {
-
+class AddGroupView extends Component {
   /**
    * constructor creates new react component, initializes state
    */
@@ -43,7 +45,11 @@ class AddGroupView extends React.Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    addGroupApi({ groupName: this.state.fieldInput });
+    const userId = localStorage.getItem('userId');
+    addGroupApi({
+      groupName: this.state.fieldInput,
+      id: userId
+    });
     this.setState({
       fieldInput: ''
     });
@@ -77,4 +83,4 @@ class AddGroupView extends React.Component {
   }
 }
 
-module.exports = AddGroupView;
+export default AddGroupView;

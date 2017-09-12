@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
 import signInAction from '../../data/postItActions/userSignInAction';
@@ -6,11 +6,13 @@ import ErrorStore from '../../data/postItStores/PostItErrorStore';
 
 
 /**
- *
+ * LoginForm 
+ * @class LoginForm
+ * @extends {Component}
  */
-class LoginForm extends React.Component {
+export default class LoginForm extends Component {
   /**
-  *
+  * constructor for login form component
   *
   */
   constructor() {
@@ -27,11 +29,11 @@ class LoginForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
-/**
- * @memberof LoginComponent
- * @returns {void}
- * @param {*} event
- */
+  /**
+   * @memberof LoginComponent
+   * @returns {void}
+   * @param {*} event
+   */
   handleChange(event) {
     const value = event.target.value;
 
@@ -48,13 +50,11 @@ class LoginForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log('calls sign in action');
     signInAction({
       email: this.state.email,
       password: this.state.password
     });
 
-    // set state of login to start spinner
     this.setState({
       login: true,
       errorMessage: ''
@@ -94,47 +94,47 @@ class LoginForm extends React.Component {
     ErrorStore.removeChangeListener(this.onChange);
   }
 
-/**
- * @memberof LoginComponent
- * @returns {void}
- */
+  /**
+   * @memberof LoginComponent
+   * @returns {void}
+   */
   render() {
     return (
       <form className = 'inputform'>
         <input
-        id = 'formInput'
-        name = 'email'
-        placeholder = 'email'
-        type ='email'
-        autoComplete = 'off'
-        value = {this.state.email}
-        onChange = {this.handleChange} />
+          id = 'formInput'
+          name = 'email'
+          placeholder = 'email'
+          type ='email'
+          autoComplete = 'off'
+          value = {this.state.email}
+          onChange = {this.handleChange} />
 
-      <input
-        id = 'formInput'
-        name = 'password'
-        placeholder = 'password'
-        type ='password'
-        autoComplete = 'off'
-        value = {this.state.password}
-        onChange = {this.handleChange} />
+        <input
+          id = 'formInput'
+          name = 'password'
+          placeholder = 'password'
+          type ='password'
+          autoComplete = 'off'
+          value = {this.state.password}
+          onChange = {this.handleChange} />
 
         <button
-        className = 'button'
-        onClick = {this.handleSubmit}
-        type = 'submit'
-        disabled = { !this.state.password || !this.state.email }>
-        Log in {this.state.login && <FaSpinner className="fa fa-spinner fa-spin"/>}
+          className = 'button'
+          onClick = {this.handleSubmit}
+          type = 'submit'
+          disabled = { !this.state.password || !this.state.email }>
+          Log in {this.state.login &&
+          <FaSpinner className="fa fa-spinner fa-spin"/>}
         </button>
 
         {this.state.errorMessage &&
           <div className="error-login-register">
             <FaExclamationTriangle /> {this.state.errorMessage}
           </div>
-          }
+        }
       </form>
     );
   }
 }
 
-module.exports = LoginForm;

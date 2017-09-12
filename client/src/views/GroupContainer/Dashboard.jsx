@@ -1,24 +1,13 @@
-import React from 'react';
-import io from 'socket.io-client';
+import React, { Component } from 'react';
 import GroupListView from './GroupListView.jsx';
-import { getGroups, recieveGroups } from '../../data/postItActions/groupActions';
+import { getGroups } from '../../data/postItActions/groupActions';
 import GroupStore from '../../data/postItStores/PostItGroupStore';
 import HeaderView from '../Header.jsx';
-// import getMessagesAction from '../../data/postItActions/getMessagesAction';
-// import getAllUsersAction from '../../data/postItActions/getAllUsersAction';
-// import PostItDispatcher from '../../data/PostItDispatcher';
-// import PostItActionTypes from '../../data/PostItActionTypes';
-
-const socket = io('https://postit-app-develop.herokuapp.com/');
-
-// http://localhost:6969
-// https://postit-app-develop.herokuapp.com/
 
 /**
  * Dashboard Component
  */
-class Dashboard extends React.Component {
-
+class Dashboard extends Component {
   /**
    * instantiates instance of react components
    * @memberof GroupContainer
@@ -41,12 +30,6 @@ class Dashboard extends React.Component {
   componentDidMount() {
     // initial action to get groups
     getGroups();
-
-    // listen for new groups with socket.io
-    socket.on('newGroup', (groups) => {
-      recieveGroups(groups);
-    });
-
     GroupStore.addChangeListener(this.onChange);
   }
 
@@ -82,12 +65,11 @@ class Dashboard extends React.Component {
     return (
       <div className="dashboard">
         <HeaderView />
-        <GroupListView groups={this.state.groups} socket={socket} />
+        <GroupListView groups={this.state.groups} />
       </div>
     );
   }
-
 }
 
-module.exports = Dashboard;
+export default Dashboard;
 

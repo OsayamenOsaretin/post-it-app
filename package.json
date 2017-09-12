@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "babel-watch server/server.js",
     "start": "npm run build && babel-node server/server.js",
+    "start-dev": "npm run build:dev && babel-node server/server.js",
     "dev-test": "jest",
+    "build:dev": "webpack --config=webpack.config.js",
     "build": "webpack",
-    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test": "jest --coverage && npm run coverage"
   },
   "repository": {
     "type": "git",
@@ -40,8 +43,10 @@
       "^MessageStore$": "<rootDir>/client/src/data/postItStores/PostItMessageStore",
       "^GroupStore$": "<rootDir>/client/src/data/postItStores/PostItGroupStore",
       "^UserStore$": "<rootDir>/client/src/data/postItStores/PostItUserStore",
+      "^RequestStore$": "<rootDir>/client/src/data/postItStores/PostItGroupRequestStore",
       "^ResetPasswordAction$": "<rootDir>/client/src/data/postItActions/resetPasswordAction",
-      "^BulkMessageRequest$": "<rootDir>/client/src/utility/bulkMessageRequest"
+      "^BulkMessageRequest$": "<rootDir>/client/src/utility/bulkMessageRequest",
+      "^AcceptRejectGroupAction": "<rootDir>/client/src/data/postItActions/acceptRejectGroupRequestAction"
     }
   },
   "dependencies": {
@@ -56,6 +61,7 @@
     "babel-watch": "^2.0.6",
     "body-parser": "^1.17.2",
     "css-loader": "^0.28.4",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "file-loader": "^0.11.2",
     "firebase": "^4.0.0",
@@ -83,6 +89,7 @@
     "style-loader": "^0.18.2",
     "superagent": "^3.5.2",
     "url-loader": "^0.5.8",
+    "validator": "^8.2.0",
     "webpack": "^3.3.0",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-hot-middleware": "^2.18.0"

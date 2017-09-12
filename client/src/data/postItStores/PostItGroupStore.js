@@ -11,7 +11,6 @@ let groups = new GroupList();
 
 // add new groups to list of groups
 const addNewGroups = (newGroupList) => {
-  console.log(newGroupList);
   groups = groups.merge(newGroupList);
 };
 
@@ -21,49 +20,45 @@ const addNewGroups = (newGroupList) => {
  *
  */
 class PostItGroupStore extends EventEmitter {
-
-/**
- * addChangeListener
- * @memberof PostItGroupStore
- * @param {*} callback
- * @return {void}
- */
+  /**
+   * addChangeListener
+   * @memberof PostItGroupStore
+   * @param {*} callback
+   * @return {void}
+   */
   addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   }
 
-/**
- * removeChangeListener
- * @memberof PostItGroupStore
- * @param {*} callback
- * @return {void}
- */
+  /**
+   * removeChangeListener
+   * @memberof PostItGroupStore
+   * @param {*} callback
+   * @return {void}
+   */
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
+  /* eslint class-methods-use-this: 0 */
 
-/**
- * getGroups
- * @memberof PostItGroupStore
- * @return {Map} groups
- */
+  /**
+   * getGroups
+   * @memberof PostItGroupStore
+   * @return {Map} groups
+   */
   getGroups() {
-    console.log('asks for groups');
-    console.log('and gets...');
-    console.log(groups);
     return groups;
   }
 
-/**
- * getGroupUser
- * @memberof PostItGroupStore
- * @return {List} groupUsers
- * @param {*} groupId
- */
+  /**
+   * getGroupUser
+   * @memberof PostItGroupStore
+   * @return {List} groupUsers
+   * @param {*} groupId
+   */
   getGroup(groupId) {
     return groups.get(groupId);
   }
-
 }
 
 const groupStore = new PostItGroupStore();
@@ -71,35 +66,34 @@ const groupStore = new PostItGroupStore();
 PostItDispatcher.register((payload) => {
   const action = payload.action;
   const source = payload.source;
+  let groupMap;
+
 
   switch (action.type) {
-  case PostItActionTypes.GET_GROUPS: {
+  case PostItActionTypes.GET_GROUPS:
     if (source === 'SERVER_ACTION') {
-      // api utility to call for list of groups
       getGroups();
     }
     break;
-  }
-  case PostItActionTypes.ADD_GROUP: {
+
+  case PostItActionTypes.ADD_GROUP:
     // make api call to add group name
     addGroupApi(action.groupName);
     break;
-  }
-  case PostItActionTypes.RECIEVE_GROUP_RESPONSE: {
-    // add new groups to immutable map of groups
-    console.log('recieves groups in group store');
-    console.log(action.userGroups);
-    const groupMap = new Map(action.userGroups);
+
+  case PostItActionTypes.RECIEVE_GROUP_RESPONSE:
+    groupMap = new Map(action.userGroups);
     addNewGroups(groupMap);
     groupStore.emit(CHANGE_EVENT);
     break;
-  }
-  default: {
+
+  case PostItActionTypes.CLEAR_GROUPS_STORE:
+    groups = new GroupList();
+    break;
+
+  default:
     return true;
   }
-
-  }
 });
-
-module.exports = groupStore;
+export default groupStore;
 

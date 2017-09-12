@@ -1,11 +1,14 @@
-// request for messages from all groups on app load
+
 import getMessageAction from '../data/postItActions/getMessagesAction';
+import getUsersList from '../data/postItActions/getAllUsersAction';
 
 export default (groups) => {
-  console.log('call bulk request message action');
-  groups.keySeq().toArray().map(groupKey => (
+  groups.forEach((value, key) => {
     getMessageAction({
-      groupId: groupKey
-    })
-  ));
+      groupId: key
+    });
+    getUsersList({
+      groupId: key
+    });
+  });
 };

@@ -5,15 +5,12 @@ import PostItActionTypes from '../PostItActionTypes';
 /* global localStorage */
 const CHANGE_EVENT = 'change';
 
-const signedInState = localStorage.getItem('token');
-
 let passwordResetMessageState = false;
 
 /**
  * PostItUserStore manages state for the signed in user
  */
 class PostItUserStore extends EventEmitter {
-
   /**
    * Adds changeListener
    * @return {void}
@@ -33,16 +30,23 @@ class PostItUserStore extends EventEmitter {
     this.removeListener(CHANGE_EVENT, callback);
   }
 
+  /* eslint class-methods-use-this: 0 */
+
   /**
    * returns sign in state of the user;
    * @return {boolean} signedInState
    * @memberof PostItUserStore
    */
   getSignedInState() {
-    console.log(signedInState);
     return localStorage.getItem('token');
   }
 
+  /**
+   * 
+   * returns password reset state
+   * @returns {bool} passwordResetMessageState
+   * @memberof PostItUserStore
+   */
   getPasswordResetMessageState() {
     return passwordResetMessageState;
   }
@@ -54,40 +58,41 @@ PostItDispatcher.register((payload) => {
   const action = payload.action;
   const source = payload.source;
 
-  console.log('gets to user store');
 
   switch (action.type) {
-  case PostItActionTypes.LOGIN_USER: {
+  case PostItActionTypes.LOGIN_USER:
     if (source === 'SERVER_ACTION') {
       const user = action.user;
       const displayName = user.displayName;
-      const token = user.stsTokenManager.accessToken;
+      const userId = user.uid;
+      let token;
+      user.getIdToken()
+        .then((accessToken) => {
+          token = accessToken;
+        });
       localStorage.setItem('token', token);
       localStorage.setItem('username', displayName);
+      localStorage.setItem('userId', userId);
       userStore.emit(CHANGE_EVENT);
     }
     break;
-  }
 
-  case PostItActionTypes.RESET_MESSAGE_SENT: {
+  case PostItActionTypes.RESET_MESSAGE_SENT:
     passwordResetMessageState = true;
     userStore.emit(CHANGE_EVENT);
     break;
-  }
 
-  case PostItActionTypes.SIGN_OUT: {
+
+  case PostItActionTypes.SIGN_OUT:
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     userStore.emit(CHANGE_EVENT);
-
     break;
-  }
 
-  default: {
+  default:
     return true;
-  }
   }
 });
 
-module.exports = userStore;
+export default userStore;
 

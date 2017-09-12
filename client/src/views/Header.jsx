@@ -9,11 +9,11 @@ import signOutAction from '../data/postItActions/signOutAction';
  * @returns {void}
  * @param {*} event
  */
-function signOutHandler(event) {
+const signOutHandler = (event) => {
   event.preventDefault();
-  console.log('calls sign out action');
   signOutAction();
-}
+};
+
 export default () => {
   const userName = localStorage.getItem('username');
   return (
@@ -24,15 +24,15 @@ export default () => {
         </h3>
       </div>
       <div className="sign-out">
-          <button
+        <button
           title="Log out"
           className="sign-out-button"
           onClick={signOutHandler}
-          >
-            <FaSignOut
+        >
+          <FaSignOut
             size={30}
-            />
-          </button>
+          />
+        </button>
       </div>
     </div>
   );

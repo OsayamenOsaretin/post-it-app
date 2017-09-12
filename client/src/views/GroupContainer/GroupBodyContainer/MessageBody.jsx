@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MessageStore from '../../../data/postItStores/PostItMessageStore';
 import markMessagesRead from '../../../data/postItActions/readMessagesAction';
 import MessageListView from './MessageListView.jsx';
 import SendMessage from './SendMessageView.jsx';
-// import PostItActionTypes from '../../../data/PostItActionTypes';
-// import PostItDispatcher from '../../../data/PostItDispatcher';
-import getMessagesAction from '../../../data/postItActions/getMessagesAction';
+
 /**
  * MessageBody Component
+ * @class MessageBody
+ * @extends Component
  */
-class MessageBody extends React.Component {
-
+class MessageBody extends Component {
   /**
    * instantiates an instance of a react component
    * @memberof MessageBody
@@ -19,16 +18,9 @@ class MessageBody extends React.Component {
    */
   constructor(props) {
     super(props);
-    console.log(props.groupId);
     this.state = {
       messages: MessageStore.getMessage(props.groupId)
     };
-
-    // const socket = props.socket;
-    console.log(`groupid: ${props.groupId}`);
-    // getMessagesAction({
-    //   groupId: props.groupId
-    // });
 
     this.onChange = this.onChange.bind(this);
   }
@@ -58,13 +50,8 @@ class MessageBody extends React.Component {
    * @param {*} newProps
    */
   componentWillReceiveProps(newProps) {
-    console.log(newProps);
     MessageStore.removeChangeListener(this.onChange, this.props.groupId);
     MessageStore.addChangeListener(this.onChange, newProps.groupId);
-    // getMessagesAction({
-    //   groupId: newProps.groupId
-    // });
-    // call action to mark all messages as read before unmount
     markMessagesRead({
       messages: this.state.messages
     }, this.props.groupId);
@@ -90,7 +77,6 @@ class MessageBody extends React.Component {
    * @return {void}
    */
   render() {
-    console.log(JSON.stringify(this.state.messages));
     return (
       <div>
         <div className="message-body">
@@ -99,9 +85,9 @@ class MessageBody extends React.Component {
         <div className="send-message">
           <SendMessage groupId={this.props.groupId}/>
         </div>
-        </div>
+      </div>
     );
   }
 }
 
-module.exports = MessageBody;
+export default MessageBody;

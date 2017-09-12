@@ -1,18 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FaUserPlus from 'react-icons/lib/fa/user-plus';
-
 import MessageBody from './GroupBodyContainer/MessageBody.jsx';
 import AddUser from './GroupBodyContainer/AddUserView.jsx';
-import getUserList from '../../data/postItActions/getAllUsersAction';
 
 /**
  * Group Item renders an individual group item
  * @return {void}
  * @param {props} props
  */
-class GroupItem extends React.Component {
-
+class GroupItem extends Component {
   /**
    * constructor for GroupItem component
    * @param {*} props
@@ -21,12 +18,9 @@ class GroupItem extends React.Component {
   constructor(props) {
     super(props);
 
-    getUserList({
-      groupId: props.match.params.groupId
-    });
-
     this.state = {
-      addUser: false
+      addUser: false,
+      groupId: props.match.params.groupId
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -48,10 +42,7 @@ class GroupItem extends React.Component {
    */
   componentWillReceiveProps(newProps) {
     this.setState({
-      addUser: false
-    });
-    // get user List for this group
-    getUserList({
+      addUser: false,
       groupId: newProps.match.params.groupId
     });
   }
@@ -64,28 +55,29 @@ class GroupItem extends React.Component {
     return (
       <div className="group-item">
         <div className="group-item-top">
-              <div className="group-body-groupname">
-                <h4>
-                  {this.props.match.params.groupName}
-                </h4>
-              </div>
-              <div className="add-user">
-                <button
-                  className="add-user-button"
-                  onClick={this.handleClick}>
-                  <FaUserPlus
-                    size={25}
-                    color={'#578ec9'}
-                  />
-                </button>
-              </div>
+          <div className="group-body-groupname">
+            <h4>
+              {this.props.match.params.groupName}
+            </h4>
+          </div>
+          <div className="add-user">
+            <button
+              className="add-user-button"
+              onClick={this.handleClick}>
+              <FaUserPlus
+                size={25}
+                color={'#578ec9'}
+              />
+            </button>
+          </div>
         </div>
         <div className="group-item-bottom">
-
-              <div className="user-list">
-                {this.state.addUser && <AddUser groupId={this.props.match.params.groupId} />}
-              </div>
-          <MessageBody groupId={this.props.match.params.groupId} socket={this.props.socket} />
+          <div className="user-list">
+            {this.state.addUser &&
+            <AddUser groupId={this.state.groupId} />}
+          </div>
+          <MessageBody groupId={this.state.groupId}
+            socket={this.props.socket} />
         </div>
       </div>
     );
@@ -98,4 +90,4 @@ GroupItem.PropTypes = {
   groupId: PropTypes.string.isRequired,
 };
 
-module.exports = GroupItem;
+export default GroupItem;

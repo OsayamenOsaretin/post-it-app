@@ -1,37 +1,29 @@
-import request from 'superagent';
 import PostItActionTypes from '../PostItActionTypes';
 import PostItDispatcher from '../PostItDispatcher';
+import { getDatabase, getAuth } from '../firebaseFunctions';
+
 
 /**
  * addUserToGroups - sends a new message to a group
  * @param {*} Details
  * @return {void}
  */
-export default (Details) => {
-  const user = Details.userId;
-  const groupId = Details.groupId;
+export default ({ groupId, userId }) => {
+  const database = getDatabase();
+  const auth = getAuth();
 
-  console.log(user);
-  console.log(groupId);
-
-  console.log('reaches add user action');
-  request
-  .post(`/group/${groupId}/user`)
-  .send({
-    userId: user
-  })
-  .end((error, result) => {
-    if (error) {
-      console.log(error);
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_ADD_USER
-      });
-    } else {
-      console.log(result);
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // add group to user's list of groups
+      database.ref(`/users/${userId}/requests`).child(groupId).set(true);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.DELETE_USER,
-        id: user,
-        groupId: Details.groupId
+        id: userId,
+        groupId: groupId    // eslint-disable-line
+      });
+    } else {
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.LOGIN_ERROR
       });
     }
   });

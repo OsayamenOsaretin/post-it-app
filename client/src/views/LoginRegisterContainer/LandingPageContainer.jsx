@@ -5,7 +5,7 @@ import GoogleSignIn from './GoogleSignInComponent.jsx';
  * LandingPageContainer holds the landing page including register and login
  * @returns {void}
  */
-function LandingPageContainer() {
+export default function LandingPageContainer() {
   return (
     <div className='landing-page-container'>
       <div className='landing-img-container'>
@@ -14,12 +14,11 @@ function LandingPageContainer() {
         <div className = "mail-box-img">
         </div>
       </div>
-    <div className = "login-register-container">
-      <LoginRegisterComponent />
-      <GoogleSignIn />
-    </div>
+      <div className="login-register-container">
+        <LoginRegisterComponent />
+        <GoogleSignIn />
+      </div>
     </div>
   );
 }
 
-module.exports = LandingPageContainer;

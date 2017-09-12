@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Switch, DefaultRoute } from 'react-router-dom';
 import LoginForm from './LoginComponent.jsx';
 import RegisterForm from './RegisterComponent.jsx';
 import Nav from './Nav';
@@ -9,7 +9,7 @@ import Nav from './Nav';
  * LoginRegisterContainer holds the login and register components
  * @returns {void}
  */
-function LoginRegisterContainer() {
+export default function LoginRegisterContainer() {
   return (
     <BrowserRouter>
       <div className = 'loginRegisterContainer' >
@@ -26,4 +26,4 @@ function LoginRegisterContainer() {
     </BrowserRouter>
   );
 }
-module.exports = LoginRegisterContainer;
+

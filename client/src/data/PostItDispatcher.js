@@ -2,11 +2,10 @@ import { Dispatcher } from 'flux';
 
 /**
  * DispatcherClass(singleton) extends flux Dispatcher module
- *
+ * @class DispatcherClass
+ * @extends Dispatcher
  */
 class DispatcherClass extends Dispatcher {
-
-
 /**
  * handles view actions
  * @return {void}
@@ -19,11 +18,11 @@ class DispatcherClass extends Dispatcher {
     });
   }
 
-/**
- * handles server actions
- * @return {void}
- * @param {*} act
- */
+  /**
+   * handles server actions
+   * @return {void}
+   * @param {*} act
+   */
   handleServerAction(act) {
     this.dispatch({
       source: 'SERVER_ACTION',
@@ -33,5 +32,5 @@ class DispatcherClass extends Dispatcher {
 }
 
 const PostItDispatcher = new DispatcherClass();
-module.exports = PostItDispatcher;
+export default PostItDispatcher;
 
