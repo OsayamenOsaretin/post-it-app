@@ -9,10 +9,10 @@ import signOutAction from '../data/postItActions/signOutAction';
  * @returns {void}
  * @param {*} event
  */
-function signOutHandler(event) {
+const signOutHandler = (event) => {
   event.preventDefault();
   signOutAction();
-}
+};
 
 export default () => {
   const userName = localStorage.getItem('username');

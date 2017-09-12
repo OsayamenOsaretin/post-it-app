@@ -11,7 +11,6 @@ let groups = new GroupList();
 
 // add new groups to list of groups
 const addNewGroups = (newGroupList) => {
-  console.log(newGroupList);
   groups = groups.merge(newGroupList);
 };
 
@@ -40,6 +39,7 @@ class PostItGroupStore extends EventEmitter {
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
+  /* eslint class-methods-use-this: 0 */
 
   /**
    * getGroups
@@ -47,9 +47,6 @@ class PostItGroupStore extends EventEmitter {
    * @return {Map} groups
    */
   getGroups() {
-    console.log('asks for groups');
-    console.log('and gets...');
-    console.log(groups);
     return groups;
   }
 
@@ -69,32 +66,33 @@ const groupStore = new PostItGroupStore();
 PostItDispatcher.register((payload) => {
   const action = payload.action;
   const source = payload.source;
+  let groupMap;
+
 
   switch (action.type) {
-  case PostItActionTypes.GET_GROUPS: {
+  case PostItActionTypes.GET_GROUPS:
     if (source === 'SERVER_ACTION') {
-      // api utility to call for list of groups
       getGroups();
     }
     break;
-  }
-  case PostItActionTypes.ADD_GROUP: {
+
+  case PostItActionTypes.ADD_GROUP:
     // make api call to add group name
     addGroupApi(action.groupName);
     break;
-  }
-  case PostItActionTypes.RECIEVE_GROUP_RESPONSE: {
-    // add new groups to immutable map of groups
-    console.log('recieves groups in group store');
-    console.log(action.userGroups);
-    const groupMap = new Map(action.userGroups);
+
+  case PostItActionTypes.RECIEVE_GROUP_RESPONSE:
+    groupMap = new Map(action.userGroups);
     addNewGroups(groupMap);
     groupStore.emit(CHANGE_EVENT);
     break;
-  }
-  default: {
+
+  case PostItActionTypes.CLEAR_GROUPS_STORE:
+    groups = new GroupList();
+    break;
+
+  default:
     return true;
-  }
   }
 });
 export default groupStore;

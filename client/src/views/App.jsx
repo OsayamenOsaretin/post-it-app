@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch }
   from 'react-router-dom';
 import LoginRegisterContainer from
@@ -7,17 +7,19 @@ import Dashboard from './GroupContainer/Dashboard.jsx';
 import ResetPasswordComponent from
   './LoginRegisterContainer/ResetPasswordView.jsx';
 import UserStore from '../data/postItStores/PostItUserStore';
+import { firebaseInit } from '../data/firebaseFunctions';
 
 /**
  * App view that holds the entire container view for the app
  */
-export default class App extends React.Component {
+export default class App extends Component {
   /**
    * instantiates an instance of the react component view
    * @memberof App
    */
   constructor() {
     super();
+    firebaseInit();
     this.state = {
       token: UserStore.getSignedInState(),
       passwordReset: true,
@@ -27,6 +29,7 @@ export default class App extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
   }
 
   /**
@@ -77,6 +80,18 @@ export default class App extends React.Component {
   }
 
   /**
+   * hanlde reset click event
+   * @return {void}
+   * @param {any} event 
+   * @memberof App
+   */
+  handleResetClick() {
+    this.setState({
+      passwordReset: true
+    });
+  }
+
+  /**
    * renders the component view
    * @return {void}
    */
@@ -86,7 +101,7 @@ export default class App extends React.Component {
         <Router>
           <div>
             <Switch>
-              <Route exact path='/' component={() => {
+              <Route path='/' component={() => {
                 if (this.state.redirect) {
                   return <Redirect to='/login' />;
                 }
@@ -118,7 +133,7 @@ export default class App extends React.Component {
         <p className="password-sent-message">
           A password reset email has been sent, refresh or proceed to <button
             className="login-button"
-            onClick={() => { this.setState({ passwordReset: true }); }}
+            onClick={this.handleResetClick}
             type="click">
             login
           </button>

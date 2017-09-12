@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import resetPasswordAction from '../../data/postItActions/resetPasswordAction';
 import UserStore from '../../data/postItStores/PostItUserStore';
 
 /**
  * ResetPasswordForm is component for resetting password
  */
-export default class ResetPasswordForm extends React.Component {
-
+export default class ResetPasswordForm extends Component {
   /**
    * constructor for resetPasswordForm
    * @return {void}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FaPlus from 'react-icons/lib/fa/plus';
 import { addGroupApi } from '../../data/postItActions/groupActions';
 
@@ -7,8 +7,7 @@ import { addGroupApi } from '../../data/postItActions/groupActions';
 /**
  * Add group adds a new group to list of user's groups
  */
-class AddGroupView extends React.Component {
-
+class AddGroupView extends Component {
   /**
    * constructor creates new react component, initializes state
    */

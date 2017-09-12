@@ -9,8 +9,6 @@ import addUserAction from '../../../data/postItActions/addUserGroup';
  * @param {*} props
  */
 function UserList(props) {
-  const group = props.groupId;
-
   /**
    * handleSelect handles selection and makes api call to add user to group
    * @returns {void}
@@ -18,6 +16,7 @@ function UserList(props) {
    */
   const handleSelect = (event) => {
     event.preventDefault();
+    const group = props.groupId;
     const value = event.target.value;
     const Details = {
       userId: value,
@@ -33,10 +32,8 @@ function UserList(props) {
    * @return {void}
    */
   const showRequestMessageOrName = (key) => {
-    console.log(props.userStatus);
     const statusMap = props.userStatus;
     if (statusMap.get(key)) {
-      console.log(statusMap);
       return false;
     }
     return true;
@@ -49,13 +46,13 @@ function UserList(props) {
         size='5'
         onChange={handleSelect}
       >
-        {props.users.map((user, key) => (
+        {props.users.entrySeq().map(([key, user]) => (
           <option
             value={key}
+            key={key}
           >
-            {showRequestMessageOrName(key) ?
-              user.get('username') :
-              'Request Sent!' }
+            { showRequestMessageOrName(key) ? user.username :
+              'Request Sent!'}
           </option>
         ))}
       </select>

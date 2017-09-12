@@ -1,6 +1,7 @@
-import request from 'superagent';
+import validator from 'validator';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
+import { getAuth } from '../firebaseFunctions';
 
 
 /**
@@ -10,25 +11,29 @@ import PostItActionTypes from '../PostItActionTypes';
  * @returns {void}
  * @param {*} userDetails
  */
-export default function SignInAction(userDetails) {
-  console.log('superagent api call to login');
-  request
-    .post('/user/signin')
-    .send(userDetails)
-    .end((error, result) => {
-      console.log('api call returned a result');
-      if (error) {
-        PostItDispatcher.handleServerAction({
-          type: PostItActionTypes.LOGIN_ERROR,
-          errorMessage: result.body.message
-        });
-      } else {
-        const userData = result.body.userData;
+export default function SignInAction({ email, password }) {
+  const auth = getAuth();
+
+  if (validator.isEmail(email)) {
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userData) => {
         PostItDispatcher.handleServerAction({
           type: PostItActionTypes.LOGIN_USER,
           user: userData
         });
-      }
+      })
+      .catch(() => {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.LOGIN_ERROR,
+          errorMessage:
+            'Ouch!, Your username or password is incorrect, please try again'
+        });
+      });
+  } else {
+    PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.LOGIN_ERROR,
+      errorMessage: 'Invalid email address'
     });
+  }
 }
 

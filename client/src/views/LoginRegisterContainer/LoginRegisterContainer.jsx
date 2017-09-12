@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Switch, DefaultRoute } from 'react-router-dom';
 import LoginForm from './LoginComponent.jsx';
 import RegisterForm from './RegisterComponent.jsx';
 import Nav from './Nav';

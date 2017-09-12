@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AllUserStore from '../../../data/postItStores/PostItAllUsersStore';
 import UserListView from './userListView.jsx';
@@ -7,8 +7,7 @@ import UserListView from './userListView.jsx';
 /**
  * Add user view
  */
-class AddUserView extends React.Component {
-
+class AddUserView extends Component {
   /**
    * renders an instace of a react component
    * @returns {void}
@@ -41,22 +40,7 @@ class AddUserView extends React.Component {
    * @return {void}
    */
   componentWillUnmount() {
-    AllUserStore.removeChangeListener(this.onChange, this.props.groupid);
-  }
-
-  /**
-   * lifecycle method for when component receives new props
-   * @return {void}
-   * @param {*} newProps
-   */
-  componentWillReceiveProps(newProps) {
-    // remove listener from previous component group, and add listener to next
     AllUserStore.removeChangeListener(this.onChange, this.props.groupId);
-    AllUserStore.addChangeListener(this.onChange, newProps.groupId);
-
-    this.setState({
-      users: AllUserStore.getUsers(newProps.groupId)
-    });
   }
 
   /**
@@ -77,7 +61,6 @@ class AddUserView extends React.Component {
   statusChange(index) {
     let statusMap = this.state.userStatus;
     statusMap = statusMap.set(index, true);
-    console.log(statusMap.get(index));
     this.setState({
       userStatus: statusMap
     });

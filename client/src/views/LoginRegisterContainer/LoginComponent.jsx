@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
 import signInAction from '../../data/postItActions/userSignInAction';
@@ -7,8 +7,10 @@ import ErrorStore from '../../data/postItStores/PostItErrorStore';
 
 /**
  * LoginForm 
+ * @class LoginForm
+ * @extends {Component}
  */
-export default class LoginForm extends React.Component {
+export default class LoginForm extends Component {
   /**
   * constructor for login form component
   *
@@ -27,11 +29,11 @@ export default class LoginForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
-/**
- * @memberof LoginComponent
- * @returns {void}
- * @param {*} event
- */
+  /**
+   * @memberof LoginComponent
+   * @returns {void}
+   * @param {*} event
+   */
   handleChange(event) {
     const value = event.target.value;
 
@@ -48,13 +50,11 @@ export default class LoginForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log('calls sign in action');
     signInAction({
       email: this.state.email,
       password: this.state.password
     });
 
-    // set state of login to start spinner
     this.setState({
       login: true,
       errorMessage: ''
@@ -94,10 +94,10 @@ export default class LoginForm extends React.Component {
     ErrorStore.removeChangeListener(this.onChange);
   }
 
-/**
- * @memberof LoginComponent
- * @returns {void}
- */
+  /**
+   * @memberof LoginComponent
+   * @returns {void}
+   */
   render() {
     return (
       <form className = 'inputform'>

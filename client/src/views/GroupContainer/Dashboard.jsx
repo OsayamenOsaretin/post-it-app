@@ -1,25 +1,13 @@
-import React from 'react';
-import io from 'socket.io-client';
+import React, { Component } from 'react';
 import GroupListView from './GroupListView.jsx';
-import { getGroups,
-  recieveGroups } from '../../data/postItActions/groupActions';
-import receiveRequests from '../../data/postItActions/receiveRequestAction';
+import { getGroups } from '../../data/postItActions/groupActions';
 import GroupStore from '../../data/postItStores/PostItGroupStore';
-// import RequestStore from '../../data/postItStores/PostItGroupRequestStore';
 import HeaderView from '../Header.jsx';
-import bulkMessageRequest from '../../utility/bulkMessageRequest';
-
-/* global localStorage */
-
-const socket = io('http://localhost:6969');
-
-// http://localhost:6969
-// https://postit-app-develop.herokuapp.com/
 
 /**
  * Dashboard Component
  */
-class Dashboard extends React.Component {
+class Dashboard extends Component {
   /**
    * instantiates instance of react components
    * @memberof GroupContainer
@@ -42,22 +30,7 @@ class Dashboard extends React.Component {
   componentDidMount() {
     // initial action to get groups
     getGroups();
-    const userId = localStorage.getItem('userId');
-
-    // listen for new groups with socket.io
-    socket.on(`newGroup${userId}`, (groups) => {
-      recieveGroups(groups);
-      bulkMessageRequest(groups);
-    });
-
-    socket.on(`newRequests${userId}`, (requests) => {
-      console.log('receives requests');
-      console.log(requests);
-      receiveRequests(requests);
-    });
-
     GroupStore.addChangeListener(this.onChange);
-    // RequestStore.addChangeListener(this.onRequestChange);
   }
 
   /**
@@ -67,7 +40,6 @@ class Dashboard extends React.Component {
    */
   componentWillUnmount() {
     GroupStore.removeChangeListener(this.onChange);
-    // RequestStore.removeChangeListener(this.onRequestChange);
   }
 
   /**
@@ -84,18 +56,6 @@ class Dashboard extends React.Component {
     }
   }
 
-  // /**
-  //  * onRequestchange listener to listen to changes in requests
-  //  * @memberof Dashboard
-  //  * @return {void}
-  //  */
-  // onRequestChange() {
-  //   const newRequests = RequestStore.getRequests();
-  //   this.setState({
-  //     requests: newRequests
-  //   });
-  // }
-
   /**
    * renders component view
    * @memberof Dashboard
@@ -105,7 +65,7 @@ class Dashboard extends React.Component {
     return (
       <div className="dashboard">
         <HeaderView />
-        <GroupListView groups={this.state.groups} socket={socket} />
+        <GroupListView groups={this.state.groups} />
       </div>
     );
   }

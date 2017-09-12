@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import FaBell from 'react-icons/lib/fa/bell';
@@ -11,15 +11,13 @@ import MessageStore from '../../data/postItStores/PostItMessageStore';
 /**
  * component for the list of groups and notifications
  */
-class GroupList extends React.Component {
+class GroupList extends Component {
   /**
    * react component constructor
    * @param {*} props
    */
   constructor(props) {
     super(props);
-    // console.log('grouplist component is rendered');
-    // console.log(props);
     this.state = {
       groupWithNotificationChange: '',
       groupList: props.groups,
@@ -73,10 +71,10 @@ class GroupList extends React.Component {
 
     if (status) {
       if (newGroupWithNotification !== '') {
-        groupSeq = groupSeq.sort((x, y) => {
-          if (x === newGroupWithNotification) {
+        groupSeq = groupSeq.sort((number1, number2) => {
+          if (number1 === newGroupWithNotification) {
             return -1;
-          } else if (y === newGroupWithNotification) {
+          } else if (number2 === newGroupWithNotification) {
             return 1;
           }
           return 0;

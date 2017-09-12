@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FaExclamationCircle from 'react-icons/lib/fa/exclamation-circle';
 import FaPaperPlane from 'react-icons/lib/fa/paper-plane';
 import SendMessageAction from '../../../data/postItActions/sendMessageAction';
 
-
 /* global localStorage */
+
 /**
  * Renders view for sending message to a group
  */
-class SendMessageView extends React.Component {
-
+class SendMessageView extends Component {
   /**
    * constructor creates new react component
    * @param {*} props
@@ -39,14 +38,14 @@ class SendMessageView extends React.Component {
   handleChange(event) {
     const value = event.target.value;
 
-    this.setState(() => ({
-      message: value,
-    })
-    );
+    this.setState({
+      message: value
+    });
   }
 
   /**
-     * handleSubmit handles calling the sendmessage action when button is clicked
+     * handleSubmit handles calling the sendmessage 
+     * action when button is clicked
      * @memberof SendMessageView
      * @return {void}
      * @param {*} event
@@ -62,7 +61,6 @@ class SendMessageView extends React.Component {
       groupId: group,
       priorityLevel: this.state.priority
     };
-    console.log(messageDetails);
     SendMessageAction(messageDetails);
     this.setState({
       message: '',
@@ -123,7 +121,7 @@ class SendMessageView extends React.Component {
     return (
       <div className="send-message-form">
         <form>
-          <button
+          <div
             className="normal"
             title="Pick a priority level, red's a scream ;-)"
             onClick={this.togglePriority}
@@ -131,7 +129,7 @@ class SendMessageView extends React.Component {
             <FaExclamationCircle
               size={20}
               color={this.state.stringLevel} />
-          </button>
+          </div>
           <input
             type="text"
             autoComplete="off"

@@ -1,6 +1,7 @@
 import React from 'react';
 import checkReadStatus from '../../../utility/getReadStatus';
 import getSenderInitials from '../../../utility/getSenderInitials';
+
 /* global localStorage */
 
 /**
@@ -13,7 +14,7 @@ function MessageListView(props) {
   const displayName = localStorage.getItem('username');
   return (
     <div className="message-list-items">
-      {newMessages && newMessages.map((message, key) => {
+      {newMessages && newMessages.valueSeq().map((message, key) => {
         if (checkReadStatus(message, displayName)) {
           return true;
         }

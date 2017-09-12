@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import googleSignInAction from '../../data/postItActions/googleSignInAction';
 
-/* global gapi  window */
+/* global gapi window */
 
 /**
  * Google login button
  */
-export default class GoogleLogin extends React.Component {
-
+export default class GoogleLogin extends Component {
   /**
    * @memberof GoogLogin
    * @return {void}
@@ -19,13 +18,14 @@ export default class GoogleLogin extends React.Component {
     this.renderGoogleLoginButton = this.renderGoogleLoginButton.bind(this);
   }
 
+  /* eslint class-methods-use-this: 0 */
+
   /**
    * callback for google sign in authentication
    * @return {void}
    * @param {*} googleUser
    */
   onSignIn(googleUser) {
-    console.log('calls sign in method');
     const token = googleUser.getAuthResponse().id_token;
     googleSignInAction({
       idToken: token

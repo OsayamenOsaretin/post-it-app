@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MessageStore from '../../../data/postItStores/PostItMessageStore';
 import markMessagesRead from '../../../data/postItActions/readMessagesAction';
 import MessageListView from './MessageListView.jsx';
@@ -6,8 +6,10 @@ import SendMessage from './SendMessageView.jsx';
 
 /**
  * MessageBody Component
+ * @class MessageBody
+ * @extends Component
  */
-class MessageBody extends React.Component {
+class MessageBody extends Component {
   /**
    * instantiates an instance of a react component
    * @memberof MessageBody
@@ -50,10 +52,6 @@ class MessageBody extends React.Component {
   componentWillReceiveProps(newProps) {
     MessageStore.removeChangeListener(this.onChange, this.props.groupId);
     MessageStore.addChangeListener(this.onChange, newProps.groupId);
-    // getMessagesAction({
-    //   groupId: newProps.groupId
-    // });
-    // call action to mark all messages as read before unmount
     markMessagesRead({
       messages: this.state.messages
     }, this.props.groupId);

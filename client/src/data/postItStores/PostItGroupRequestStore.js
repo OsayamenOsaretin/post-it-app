@@ -37,12 +37,13 @@ class PostItRequestStore extends EventEmitter {
     this.removeListener(CHANGE_EVENT, callback);
   }
 
+  /* eslint class-methods-use-this: 0 */
+
   /**
    * return requests
    * @return {*} requests
    */
   getRequests() {
-    console.log(requests);
     return requests;
   }
 }
@@ -51,30 +52,28 @@ const requestStore = new PostItRequestStore();
 
 PostItDispatcher.register((payload) => {
   const action = payload.action;
+  let groupId;
+  let requestsMap;
 
   switch (action.type) {
-  case PostItActionTypes.RECEIVE_REQUESTS: {
-    console.log('action reaches receive request store');
-    console.log(action.requests);
-    const requestsMap = new Map(action.requests);
+  case PostItActionTypes.RECEIVE_REQUESTS:
+    requestsMap = new Map(action.requests);
     addNewRequests(requestsMap);
-    console.log(requestsMap);
     requestStore.emit(CHANGE_EVENT);
     break;
-  }
 
-  case PostItActionTypes.DELETE_REQUEST: {
-    console.log('gets to delete action handler');
-    const groupId = action.id;
-    console.log('this is before delete', requests.size);
+  case PostItActionTypes.DELETE_REQUEST:
+    groupId = action.id;
     requests = requests.delete(groupId);
-    console.log('this is after delete', requests.size);
     requestStore.emit(CHANGE_EVENT);
     break;
-  }
-  default: {
+
+  case PostItActionTypes.CLEAR_GROUP_REQUEST_STORE:
+    requests = new RequestList();
+    break;
+
+  default:
     return true;
-  }
   }
 });
 export default requestStore;

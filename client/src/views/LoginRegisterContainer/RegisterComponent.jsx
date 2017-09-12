@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaSquareO from 'react-icons/lib/fa/square-o';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
@@ -9,7 +9,7 @@ import ErrorStore from '../../data/postItStores/PostItErrorStore';
 /**
  *
  */
-export default class RegisterForm extends React.Component {
+export default class RegisterForm extends Component {
   /**
   * Instantiates an instance of a React Component for Registration
   *

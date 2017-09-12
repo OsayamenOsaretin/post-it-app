@@ -1,6 +1,6 @@
-import request from 'superagent';
 import PostItDispatcher from '../PostItDispatcher';
 import PostItActionTypes from '../PostItActionTypes';
+import { getAuth, getDatabase } from '../firebaseFunctions';
 
 
 /**
@@ -8,26 +8,35 @@ import PostItActionTypes from '../PostItActionTypes';
  * @export
  * @function
  * @returns {void}
- * @param {*} idToken
+ * @param {*} theIdToken
  */
-export default function GoogleSignInAction(idToken) {
-  console.log('superagent api call to login');
-  request
-    .post('user/google/signin')
-    .send(idToken)
-    .end((error, result) => {
-      console.log('google api call returned a result');
-      if (error) {
-        console.log(error);
-        PostItDispatcher.handleServerAction({
-          type: PostItActionTypes.FAILED_GOOGLE_LOGIN
+export default function GoogleSignInAction({ idToken }) {
+  const auth = getAuth();
+  const database = getDatabase();
+
+  const credential = auth.GoogleAuthProvider.credential(idToken);
+
+  auth.signInWithCredential(credential)
+    .then((user) => {
+      // save the user details to the database
+      database.ref(`users/${user.uid}`).set({
+        username: user.displayName,
+        email: user.email
+      })
+        .catch(() => {
+          PostItDispatcher.handleServerAction({
+            type: PostItActionTypes.FAILED_GOOGLE_LOGIN
+          });
         });
-      } else {
-        const userData = result.body.userObject;
-        PostItDispatcher.handleServerAction({
-          type: PostItActionTypes.LOGIN_USER,
-          user: userData
-        });
-      }
+      const userData = user;
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.LOGIN_USER,
+        user: userData
+      });
+    })
+    .catch(() => {
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.FAILED_GOOGLE_LOGIN
+      });
     });
 }

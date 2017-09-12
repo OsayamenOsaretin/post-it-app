@@ -1,10 +1,14 @@
-// request for messages from all groups on app load
+
 import getMessageAction from '../data/postItActions/getMessagesAction';
+import getUsersList from '../data/postItActions/getAllUsersAction';
 
 export default (groups) => {
-  Object.values(groups).map(group => (
+  groups.forEach((value, key) => {
     getMessageAction({
-      groupId: group[0]
-    })
-  ));
+      groupId: key
+    });
+    getUsersList({
+      groupId: key
+    });
+  });
 };

@@ -7,20 +7,18 @@ import { NavLink } from 'react-router-dom';
  * @returns {void}
  * Nav holds routes to login and register components
  */
-export default function Nav() {
-  return (
-    <ul className = 'nav'>
-      <li>
-        <NavLink exact activeClassName='active' to='/login'>
+export default () => (
+  <ul className = 'nav'>
+    <li>
+      <NavLink exact activeClassName='active' to='/login'>
           Log in
-        </NavLink>
-      </li>
+      </NavLink>
+    </li>
 
-      <li>
-        <NavLink activeClassName='active' to='/register'>
+    <li>
+      <NavLink activeClassName='active' to='/register'>
           Register
-        </NavLink>
-      </li>
-    </ul>);
-}
+      </NavLink>
+    </li>
+  </ul>);
 

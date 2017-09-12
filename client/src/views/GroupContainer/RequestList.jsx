@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import RequestStore from '../../data/postItStores/PostItGroupRequestStore';
 import RequestView from '../../views/GroupContainer/RequestItem.jsx';
 
 /**
  * component for the list of group requests
  */
-class RequestList extends React.Component {
+class RequestList extends Component {
   /**
    * react component constructor
    * @param {*} props
    */
   constructor(props) {
     super(props);
-    console.log('mounted request list component');
     this.state = {
       requests: RequestStore.getRequests()
     };
@@ -42,7 +41,6 @@ class RequestList extends React.Component {
    */
   onChange() {
     const theRequests = RequestStore.getRequests();
-    console.log(`theRequests: ${theRequests}`);
     this.setState({
       requests: theRequests
     });

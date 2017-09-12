@@ -30,7 +30,7 @@ export default function userSignUp(req, res) {
         });
 
         // save the user details to the database
-        db.ref(`users/${user.uid}`).set({
+        db.ref(s).set({
           username: userName,
           email: user.email,
           number: phoneNumber

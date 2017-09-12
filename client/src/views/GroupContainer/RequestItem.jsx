@@ -11,8 +11,6 @@ import PostItActionTypes from '../../data/PostItActionTypes';
 export default (props) => {
   const handleClick = (selectedStatus, event) => {
     event.preventDefault();
-    // const selectedStatus = event.target.value;
-    console.log('i;m here ===>', props.groupId);
     const id = props.groupId;
     const user = localStorage.getItem('userId');
 

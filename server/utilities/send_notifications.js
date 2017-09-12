@@ -1,14 +1,16 @@
 import nodemailer from 'nodemailer';
 import Nexmo from 'nexmo';
 
+require('dotenv').config();
+
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+  service: process.env.TRANSPORTER_SERVICE,
+  host: process.env.TRASNPORTER_HOST,
+  port: process.env.TRASPORTER_PORT,
+  secure: process.env.TRANSPORTER_SECURE,
   auth: {
-    user: 'postitbyyamen@gmail.com',
-    pass: '123postit890'
+    user: process.env.AUTH_USER,
+    pass: process.env.AUTH_PASSWORD
   }
 });
 
@@ -25,33 +27,28 @@ export default (emails, numbers, priorityLevel) => {
     emails.forEach((email) => {
       emailOptions.to = email;
       transporter.sendMail(emailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log(info.response);
+        if (error) return error;
+        return info.response;
       });
     });
     break;
   }
   case 'critical': {
     const nexmo = new Nexmo({
-      apiKey: '0fd3e87e',
-      apiSecret: '8d3bd3eddbbb5d37',
+      apiKey: process.env.NEXMO_APIKEY,
+      apiSecret: process.env.NEXMO_APISECRET,
     },
     { debug: true });
 
     // send sms messages
     numbers.forEach((number) => {
       nexmo.message.sendSms(
-        'Post-It', number, 'You have a critical message on Post-It, login to check now!',
+        'Post-It', number,
+        'You have a critical message on Post-It, login to check now!',
         { type: 'unicode' },
         (err, responseData) => {
-          if (err) {
-            console.log(err);
-          } else {
-            console.dir(responseData);
-            // Optional: add socket.io -- will explain later
-          }
+          if (err) return err;
+          return responseData;
         }
       );
     });
@@ -60,10 +57,8 @@ export default (emails, numbers, priorityLevel) => {
     emails.forEach((email) => {
       emailOptions.to = email;
       transporter.sendMail(emailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log(info.response);
+        if (error) return error;
+        return info.response;
       });
     });
     break;
