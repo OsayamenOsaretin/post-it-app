@@ -17,16 +17,15 @@ const port = process.env.PORT || 6969;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV === 'development') {
-  const config= require('../webpack.config');   // eslint-disable-line
-  const compiler = webpack(config);
-  app.use(webpackMiddleWare(compiler, {
-    hot: true,
-    publicPath: config.output.publicPath,
-    noInfo: true,
-  }));
-  app.use(webpackHotMiddleWare(compiler));
-}
+
+const config= require('../webpack.config');   // eslint-disable-line
+const compiler = webpack(config);
+app.use(webpackMiddleWare(compiler, {
+  hot: true,
+  publicPath: config.output.publicPath,
+  noInfo: true,
+}));
+app.use(webpackHotMiddleWare(compiler));
 
 // use routes imported
 routes(app);
