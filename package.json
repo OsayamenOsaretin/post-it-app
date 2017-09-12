@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "babel-watch server/server.js",
-    "start": "npm run build:prod && babel-node server/server.js",
+    "start": "npm run build && babel-node server/server.js",
     "start-dev": "npm run build:dev && babel-node server/server.js",
     "dev-test": "jest",
     "build:dev": "webpack --config=webpack.config.js",
