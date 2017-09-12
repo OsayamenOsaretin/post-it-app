@@ -28,18 +28,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(webpackHotMiddleWare(compiler));
 }
 
-if (process.env.NODE_ENV === 'production') {
-  const config= require('../webpack.config.prod');   // eslint-disable-line
-  const compiler = webpack(config);
-  app.use(webpackMiddleWare(compiler, {
-    hot: true,
-    publicPath: config.output.publicPath,
-    noInfo: true,
-  }));
-  app.use(webpackHotMiddleWare(compiler));
-}
-
-
 // use routes imported
 routes(app);
 
