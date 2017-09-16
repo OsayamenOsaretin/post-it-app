@@ -54,17 +54,17 @@ class RequestList extends Component {
     return (
       this.state.requests.size > 0 ?
         <div>
-          {this.state.requests.map((requestItem, key) => (
-            <div className='group-list-item'>
+          {this.state.requests.entrySeq().map(([key, requestItem]) => (
+            <div key={key} className='group-list-item'>
               <div className='invite'>
                 Invited to join
               </div>
-              <p>
+              <div>
                 <RequestView
                   request = {requestItem}
                   groupId={key}
                 />
-              </p>
+              </div>
             </div>
           ))}
         </div> : <div></div>
