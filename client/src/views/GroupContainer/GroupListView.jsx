@@ -18,11 +18,11 @@ function GroupListView(props) {
         </div>
         <div className="group-details">
           <Switch>
-            <Route exact path='/' component={WelcomeView} />
             <Route exact path='/groupBody/:groupId/:groupName'
               component={groupProps => (
                 <GroupItem {...groupProps} />
               )} />
+            <Route path='/' component={WelcomeView} />
           </Switch>
         </div>
       </div>
