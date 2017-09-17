@@ -27,11 +27,12 @@ app.use(webpackMiddleWare(compiler, {
 }));
 app.use(webpackHotMiddleWare(compiler));
 
+
 // use routes imported
 routes(app);
 
 // default route
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
