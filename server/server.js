@@ -20,12 +20,14 @@ app.use(bodyParser.json());
 
 const config= require('../webpack.config');   // eslint-disable-line
 const compiler = webpack(config);
-app.use(webpackMiddleWare(compiler, {
-  hot: true,
-  publicPath: config.output.publicPath,
-  noInfo: true,
-}));
-app.use(webpackHotMiddleWare(compiler));
+if (process.env.development) {
+  app.use(webpackMiddleWare(compiler, {
+    hot: true,
+    publicPath: config.output.publicPath,
+    noInfo: true,
+  }));
+  app.use(webpackHotMiddleWare(compiler));
+}
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
