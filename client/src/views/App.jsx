@@ -101,7 +101,7 @@ export default class App extends Component {
         <Router>
           <div>
             <Switch>
-              <Route path='/' component={() => {
+              <Route exact path='/' component={() => {
                 if (this.state.redirect) {
                   return <Redirect to='/login' />;
                 }
