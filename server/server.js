@@ -27,6 +27,7 @@ app.use(webpackMiddleWare(compiler, {
 }));
 app.use(webpackHotMiddleWare(compiler));
 
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // use routes imported
 routes(app);
