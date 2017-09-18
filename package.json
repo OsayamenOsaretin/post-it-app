@@ -9,7 +9,7 @@
     "start-dev": "npm run build:dev && babel-node server/server.js",
     "dev-test": "jest",
     "build:dev": "webpack --config=webpack.config.js",
-    "build": "webpack -p",
+    "build": "webpack",
     "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test": "jest --coverage && npm run coverage"
   },
