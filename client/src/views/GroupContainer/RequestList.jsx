@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RequestStore from '../../data/postItStores/PostItGroupRequestStore';
+import RequestStore from '../../flux/stores/GroupRequestStore';
 import RequestView from '../../views/GroupContainer/RequestItem.jsx';
 
 /**

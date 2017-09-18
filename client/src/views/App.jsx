@@ -6,8 +6,8 @@ import LoginRegisterContainer from
 import Dashboard from './GroupContainer/Dashboard.jsx';
 import ResetPasswordComponent from
   './LoginRegisterContainer/ResetPasswordView.jsx';
-import UserStore from '../data/postItStores/PostItUserStore';
-import { firebaseInit } from '../data/firebaseFunctions';
+import UserStore from '../flux/stores/UserStore';
+import { firebaseInit } from '../flux/firebaseFunctions';
 
 /**
  * App view that holds the entire container view for the app
@@ -101,7 +101,7 @@ export default class App extends Component {
         <Router>
           <div>
             <Switch>
-              <Route exact path='/' component={() => {
+              <Route path='/' component={() => {
                 if (this.state.redirect) {
                   return <Redirect to='/login' />;
                 }

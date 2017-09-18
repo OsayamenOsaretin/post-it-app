@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AllUserStore from '../../../data/postItStores/PostItAllUsersStore';
+import AllUserStore from '../../../flux/stores/AllUsersStore';
 import UserListView from './userListView.jsx';
 
 

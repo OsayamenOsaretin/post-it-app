@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MessageStore from '../../../data/postItStores/PostItMessageStore';
-import markMessagesRead from '../../../data/postItActions/readMessagesAction';
+import MessageStore from '../../../flux/stores/MessageStore';
+import markMessagesRead from '../../../flux/actions/readMessagesAction';
 import MessageListView from './MessageListView.jsx';
 import SendMessage from './SendMessageView.jsx';
 

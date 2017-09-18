@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import resetPasswordAction from '../../data/postItActions/resetPasswordAction';
-import UserStore from '../../data/postItStores/PostItUserStore';
+import resetPasswordAction from '../../flux/actions/resetPasswordAction';
+import UserStore from '../../flux/stores/UserStore';
 
 /**
  * ResetPasswordForm is component for resetting password

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GroupListView from './GroupListView.jsx';
-import { getGroups } from '../../data/postItActions/groupActions';
-import GroupStore from '../../data/postItStores/PostItGroupStore';
+import { getGroups } from '../../flux/actions/groupActions';
+import GroupStore from '../../flux/stores/GroupStore';
 import HeaderView from '../Header.jsx';
 
 /**

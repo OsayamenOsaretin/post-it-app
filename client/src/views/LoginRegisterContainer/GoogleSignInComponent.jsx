@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import googleSignInAction from '../../data/postItActions/googleSignInAction';
+import googleSignInAction from '../../flux/actions/googleSignInAction';
 
 /* global gapi window */
 

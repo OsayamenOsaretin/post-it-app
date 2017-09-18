@@ -1,6 +1,6 @@
 import React from 'react';
 import FaSignOut from 'react-icons/lib/fa/sign-out';
-import signOutAction from '../data/postItActions/signOutAction';
+import signOutAction from '../flux/actions/signOutAction';
 
 /* global localStorage */
 

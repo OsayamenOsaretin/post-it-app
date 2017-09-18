@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FaPlus from 'react-icons/lib/fa/plus';
-import { addGroupApi } from '../../data/postItActions/groupActions';
+import { addGroupApi } from '../../flux/actions/groupActions';
 
 /* global localStorage */
 

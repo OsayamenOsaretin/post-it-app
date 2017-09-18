@@ -3,8 +3,8 @@ import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaSquareO from 'react-icons/lib/fa/square-o';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
-import registerAction from '../../data/postItActions/registerUserAction';
-import ErrorStore from '../../data/postItStores/PostItErrorStore';
+import registerAction from '../../flux/actions/registerUserAction';
+import ErrorStore from '../../flux/stores/ErrorStore';
 
 /**
  *
