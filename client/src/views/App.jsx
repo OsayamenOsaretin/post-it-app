@@ -101,6 +101,12 @@ export default class App extends Component {
         <Router>
           <div>
             <Switch>
+              <Route path='/login' component={() => {
+                if (!this.state.redirect) {
+                  return <Redirect to='/' />;
+                }
+                return (this.state.passwordReset && <LoginRegisterContainer />);
+              }} />
               <Route path='/' component={() => {
                 if (this.state.redirect) {
                   return <Redirect to='/login' />;
@@ -108,12 +114,6 @@ export default class App extends Component {
                 return (!this.state.token ?
                   (this.state.passwordReset &&
                     <LoginRegisterContainer />) : (<Dashboard />));
-              }} />
-              <Route path='/login' component={() => {
-                if (!this.state.redirect) {
-                  return <Redirect to='/' />;
-                }
-                return (this.state.passwordReset && <LoginRegisterContainer />);
               }} />
             </Switch>
           </div>
