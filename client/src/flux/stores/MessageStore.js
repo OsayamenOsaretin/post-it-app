@@ -1,27 +1,28 @@
 import { EventEmitter } from 'events';
-import MessageList from '../models/groupList';
+import ImmutableMap from '../models/groupList';
 import Dispatcher from '../Dispatcher';
 import ActionTypes from '../ActionTypes';
 
 const CHANGE_EVENT = 'change';
 
 // create empty immutable map to hold message list
-let messages = new MessageList();
+let messages = new ImmutableMap();
 
 const notificationMap = new Map();
 
 let groupWithNewMessageId;
+
 // add new messages to map of messages
 const addNewMessageGroup = (newMessageGroup) => {
   messages = messages.merge(newMessageGroup);
 };
+
 
 /**
  * MessageStore holds store logic for messages
  * @return {void}
  */
 class MessageStore extends EventEmitter {
-
   /**
    * addChangeListener
    * @memberof MessageStore
@@ -98,6 +99,7 @@ Dispatcher.register((payload) => {
   case ActionTypes.RECIEVE_MESSAGE_RESPONSE:
     groupId = action.Id;
     messageResponse = action.messages;
+    messageResponse = new Map([...messageResponse.entries()].sort());
     notify = action.notify;
 
     groupWithNewMessageId = groupId;
@@ -109,13 +111,14 @@ Dispatcher.register((payload) => {
     groupMessages = messages.get(groupId);
 
     if (groupMessages) {
-      groupMessages = new MessageList(messageResponse);
+      groupMessages = new ImmutableMap(messageResponse);
       const newMessageMap = new Map();
       newMessageMap.set(groupId, groupMessages);
       addNewMessageGroup(newMessageMap);
     } else {
       const messageMap = new Map();
-      messageMap.set(groupId, new MessageList(messageResponse));
+      messageMap.set(groupId,
+        new ImmutableMap(messageResponse));
       addNewMessageGroup(messageMap);
     }
     messageStore.emit(groupId);
@@ -132,7 +135,7 @@ Dispatcher.register((payload) => {
 
 
   case ActionTypes.CLEAR_MESSAGES_STORE:
-    messages = new MessageList();
+    messages = new ImmutableMap();
     break;
 
 

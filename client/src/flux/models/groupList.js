@@ -1,5 +1,5 @@
-import Immutable from 'immutable';
+import { SortedMap } from 'immutable-sorted';
 
-const groupMap = Immutable.Map;
+const groupList = SortedMap;
 
-export default groupMap;
+export default groupList;
