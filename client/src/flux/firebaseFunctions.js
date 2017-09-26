@@ -23,3 +23,5 @@ export const getAuth = () => {
   return auth;
 };
 
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+
