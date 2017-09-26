@@ -509,7 +509,15 @@ input {
 .google-signin {
   width: 20%;
   margin-top: 0;
-  margin-left: 150px;
+  margin-left: 200px;
+  button:enabled {
+    background-color: #dc4937;
+    color: white;
+    font-size: 30px;
+  }
+  label {
+    color: white;
+  }
 }
 
 .or-text {
