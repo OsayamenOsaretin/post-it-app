@@ -1,6 +1,6 @@
 import PostItDispatcher from '../Dispatcher';
 import PostItActionTypes from '../ActionTypes';
-import { getAuth, getDatabase } from '../firebaseFunctions';
+import { getAuth, getDatabase, googleProvider } from '../firebaseFunctions';
 
 
 /**
@@ -8,16 +8,14 @@ import { getAuth, getDatabase } from '../firebaseFunctions';
  * @export
  * @function
  * @returns {void}
- * @param {*} theIdToken
  */
-export default function GoogleSignInAction({ idToken }) {
+export default function GoogleSignInAction() {
   const auth = getAuth();
   const database = getDatabase();
 
-  const credential = auth.GoogleAuthProvider.credential(idToken);
-
-  auth.signInWithCredential(credential)
-    .then((user) => {
+  auth.signInWithPopup(googleProvider)
+    .then((result) => {
+      const user = result.user;
       // save the user details to the database
       database.ref(`users/${user.uid}`).set({
         username: user.displayName,
