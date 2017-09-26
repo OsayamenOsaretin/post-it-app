@@ -4,6 +4,8 @@ import RequestView from '../../views/GroupContainer/RequestItem.jsx';
 
 /**
  * component for the list of group requests
+ * @class RequestList
+ * @extends Component
  */
 class RequestList extends Component {
   /**

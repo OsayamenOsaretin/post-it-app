@@ -10,6 +10,8 @@ import MessageStore from '../../flux/stores/MessageStore';
 
 /**
  * component for the list of groups and notifications
+ * @class GroupList
+ * @extends Component
  */
 class GroupList extends Component {
   /**

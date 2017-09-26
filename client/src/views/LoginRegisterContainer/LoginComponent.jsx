@@ -13,7 +13,7 @@ import ErrorStore from '../../flux/stores/ErrorStore';
 export default class LoginForm extends Component {
   /**
   * constructor for login form component
-  *
+  * @memberof LoginForm
   */
   constructor() {
     super();
@@ -32,7 +32,7 @@ export default class LoginForm extends Component {
   /**
    * @memberof LoginComponent
    * @returns {void}
-   * @param {*} event
+   * @param {Object} event
    */
   handleChange(event) {
     const value = event.target.value;
@@ -45,7 +45,7 @@ export default class LoginForm extends Component {
   /**
    * @memberof LoginComponent
    * @returns {void}
-   * @param {*} event
+   * @param {Object} event
    */
   handleSubmit(event) {
     event.preventDefault();

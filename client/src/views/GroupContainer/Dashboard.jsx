@@ -6,6 +6,8 @@ import HeaderView from '../Header.jsx';
 
 /**
  * Dashboard Component
+ * @class Dashboard
+ * @extends Component
  */
 class Dashboard extends Component {
   /**

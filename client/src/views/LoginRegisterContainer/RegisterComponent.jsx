@@ -7,12 +7,12 @@ import registerAction from '../../flux/actions/registerUserAction';
 import ErrorStore from '../../flux/stores/ErrorStore';
 
 /**
- *
+ * @class RegisterForm
+ * @extends Component
  */
 export default class RegisterForm extends Component {
   /**
   * Instantiates an instance of a React Component for Registration
-  *
   */
   constructor() {
     super();
@@ -35,7 +35,7 @@ export default class RegisterForm extends Component {
   /**
    * @memberof RegisterComponent
    * @returns {void}
-   * @param {*} event
+   * @param {Object} event
    */
   handleChange(event) {
     const value = event.target.value;
@@ -47,7 +47,7 @@ export default class RegisterForm extends Component {
   /**
      * @memberof RegisterComponent
      * @returns {void}
-     * @param {*} event
+     * @param {Object} event
      */
   handleSubmit(event) {
     event.preventDefault();
@@ -153,7 +153,7 @@ export default class RegisterForm extends Component {
             !this.state.password || !this.state.confirmPassword}
           onClick={this.handleSubmit}
         >
-          Register {this.state.registering && 
+          Register {this.state.registering &&
           <FaSpinner className="fa fa-spinner fa-spin" />}
         </button>
 

@@ -7,8 +7,8 @@ import { getAuth, getDatabase } from '../firebaseFunctions';
  * @export
  * @function
  * @return {void}
- * @param {*} messages
- * @param {*} groupId
+ * @param {Map} messages
+ * @param {String} groupId
  */
 export default ({ messages }, groupId) => {
   const auth = getAuth();

@@ -11,6 +11,8 @@ import { firebaseInit } from '../flux/firebaseFunctions';
 
 /**
  * App view that holds the entire container view for the app
+ * @class App
+ * @extends Component
  */
 export default class App extends Component {
   /**
@@ -70,7 +72,7 @@ export default class App extends Component {
   /**
    * handle click event
    * @return {void}
-   * @param {*} event
+   * @param {Object} event
    */
   handleClick(event) {
     event.preventDefault();

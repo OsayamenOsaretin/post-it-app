@@ -7,7 +7,7 @@ import signOutAction from '../flux/actions/signOutAction';
 /**
  * calls sign out action
  * @returns {void}
- * @param {*} event
+ * @param {Object} event
  */
 const signOutHandler = (event) => {
   event.preventDefault();

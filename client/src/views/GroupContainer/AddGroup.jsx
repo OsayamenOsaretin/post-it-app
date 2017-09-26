@@ -6,10 +6,13 @@ import { addGroupApi } from '../../flux/actions/groupActions';
 
 /**
  * Add group adds a new group to list of user's groups
+ * @class AddGroupView
+ * @extends Component
  */
 class AddGroupView extends Component {
   /**
    * constructor creates new react component, initializes state
+   * @return {void}
    */
   constructor() {
     super();
@@ -26,7 +29,7 @@ class AddGroupView extends Component {
    * handleChange sets input field state when user types
    * @memberof AddGroup
    * @return {void}
-   * @param {*} event
+   * @param {Object} event
    */
   handleChange(event) {
     const value = event.target.value;
@@ -41,7 +44,7 @@ class AddGroupView extends Component {
    * handleSubmit handles calling the sendmessage action when button is clicked
    * @memberof AddGroup
    * @return {void}
-   * @param {*} event
+   * @param {Object} event
    */
   handleSubmit(event) {
     event.preventDefault();
