@@ -5,7 +5,7 @@ import { getAuth, getDatabase } from '../firebaseFunctions';
 /**
  * getMessagesAction - get all messages sent to a particular group
  * @returns {void}
- * @param {*} theGroupId
+ * @param {Object} theGroupId
  */
 export default ({ groupId }) => {
   const auth = getAuth();
@@ -19,9 +19,6 @@ export default ({ groupId }) => {
 
       const messagesReference = database.ref(`/groups/${groupId}/messages`);
 
-      // store message keys
-      const messageKeys = [];
-
       // keep an array of promises
       const promises = [];
 
@@ -30,6 +27,7 @@ export default ({ groupId }) => {
 
       // get message Id from groups and iterate through messages node
       messagesReference.orderByKey().on('child_added', (snapshot) => {
+        const messageKeys = [];
         promises.push(new Promise((resolve) => {
           messageKeys.push(snapshot.key);
           const messageReference = database.ref(`/messages/${snapshot.key}`);
