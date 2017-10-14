@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RequestStore from '../../flux/stores/GroupRequestStore';
-import RequestView from '../../views/GroupContainer/RequestItem.jsx';
+import RequestItem from '../../views/GroupContainer/RequestItem.jsx';
 
 /**
  * component for the list of group requests
@@ -62,14 +62,14 @@ class RequestList extends Component {
                 Invited to join
               </div>
               <div>
-                <RequestView
+                <RequestItem
                   request = {requestItem}
                   groupId={key}
                 />
               </div>
             </div>
           ))}
-        </div> : <div></div>
+        </div> : <div className='no-requests'></div>
     );
   }
 }
