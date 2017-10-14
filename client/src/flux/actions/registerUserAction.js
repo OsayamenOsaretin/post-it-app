@@ -18,7 +18,7 @@ export default ({ email, password, userName, phone }) => {
   if (validator.isEmail(email)) {
     if (validator.isLength(password, { max: 100, min: 6 })) {
       if (userName) {
-        auth.createUserWithEmailAndPassword(email, password)
+        return auth.createUserWithEmailAndPassword(email, password)
           .then((user) => {
             user.updateProfile({
               displayName: userName
@@ -30,19 +30,17 @@ export default ({ email, password, userName, phone }) => {
               number: phone });
 
             user.sendEmailVerification().then(() => {
-              const userData = user;
               PostItDispatcher.handleServerAction({
                 type: PostItActionTypes.LOGIN_USER,
-                user: userData
+                user
               });
             });
           });
-      } else {
-        PostItDispatcher.handleServerAction({
-          type: PostItActionTypes.REGISTER_ERROR,
-          errorMessage: 'Invalid Username, please enter a username'
-        });
       }
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.REGISTER_ERROR,
+        errorMessage: 'Invalid Username, please enter a username'
+      });
     } else {
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.REGISTER_ERROR,

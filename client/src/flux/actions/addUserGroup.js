@@ -19,11 +19,11 @@ export default ({ groupId, userId }) => {
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.DELETE_USER,
         id: userId,
-        groupId: groupId    // eslint-disable-line
+        groupId
       });
     } else {
       PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.LOGIN_ERROR
+        type: PostItActionTypes.FAILED_ADD_USER
       });
     }
   });

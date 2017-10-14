@@ -12,7 +12,6 @@ import { getAuth, getDatabase } from '../firebaseFunctions';
 export default ({ groupId }) => {
   const auth = getAuth();
   const database = getDatabase();
-
   auth.onAuthStateChanged((user) => {
     if (user) {
       // instantiate empty Map to hold users

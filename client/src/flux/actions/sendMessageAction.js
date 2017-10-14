@@ -20,24 +20,26 @@ export default ({ message, sender, groupId, priorityLevel }) => {
       const newMessageKey = database.ref(`groups/${groupId}/messages/`)
         .push(true).key;
 
-      database.ref(`messages/${newMessageKey}`).set({
-        message: message,
-        sender: sender,
-        priority: priorityLevel
-      }).then(() => {
-        const newMessageResponse = new Map();
-        newMessageResponse.set(newMessageKey, {
-          message: message,
-          sender: sender,
+      const promise = new Promise((resolve) => {
+        database.ref(`messages/${newMessageKey}`).set({
+          message,
+          sender,
           priority: priorityLevel
         });
-        getUsersEmailsNumbers({
-          database() {
-            return database;
-          }
-        }, groupId,
-        priorityLevel, sendNotifications);
+        resolve();
       });
+      promise
+        .then(() => {
+          PostItDispatcher.handleServerAction({
+            type: PostItActionTypes.SENT_MESSAGE
+          });
+          getUsersEmailsNumbers({
+            database() {
+              return database;
+            }
+          }, groupId,
+          priorityLevel, sendNotifications);
+        });
     } else {
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.FAILED_SEND_MESSAGE

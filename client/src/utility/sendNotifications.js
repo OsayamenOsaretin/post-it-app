@@ -1,4 +1,5 @@
 import request from 'superagent';
+import Dispatcher from '../flux/Dispatcher';
 
 export default (emails, numbers, priorityLevel) => {
   request
@@ -8,10 +9,14 @@ export default (emails, numbers, priorityLevel) => {
       phoneNumbers: numbers,
       priority: priorityLevel
     })
-    .then((error, result) => {
+    .end((error) => {
       if (error) {
-        return error;
+        return Dispatcher.handleServerAction({
+          type: 'NOTIFICATIONS_FAILED'
+        });
       }
-      return result;
+      return Dispatcher.handleServerAction({
+        type: 'NOTIFICATIONS_SENT'
+      });
     });
 };

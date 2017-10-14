@@ -5,7 +5,7 @@ import { getAuth } from '../firebaseFunctions';
 
 export default () => {
   const auth = getAuth();
-  auth.signOut()
+  return auth.signOut()
     .then(() => {
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.SIGN_OUT

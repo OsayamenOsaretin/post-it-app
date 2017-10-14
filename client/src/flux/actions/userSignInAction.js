@@ -15,7 +15,7 @@ export default function SignInAction({ email, password }) {
   const auth = getAuth();
 
   if (validator.isEmail(email)) {
-    auth.signInWithEmailAndPassword(email, password)
+    return auth.signInWithEmailAndPassword(email, password)
       .then((userData) => {
         PostItDispatcher.handleServerAction({
           type: PostItActionTypes.LOGIN_USER,
@@ -29,11 +29,10 @@ export default function SignInAction({ email, password }) {
             'Ouch!, Your username or password is incorrect, please try again'
         });
       });
-  } else {
-    PostItDispatcher.handleServerAction({
-      type: PostItActionTypes.LOGIN_ERROR,
-      errorMessage: 'Invalid email address'
-    });
   }
+  PostItDispatcher.handleServerAction({
+    type: PostItActionTypes.LOGIN_ERROR,
+    errorMessage: 'Invalid email address'
+  });
 }
 

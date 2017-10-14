@@ -12,8 +12,7 @@ import { getAuth, getDatabase, googleProvider } from '../firebaseFunctions';
 export default function GoogleSignInAction() {
   const auth = getAuth();
   const database = getDatabase();
-
-  auth.signInWithPopup(googleProvider)
+  return auth.signInWithPopup(googleProvider)
     .then((result) => {
       const user = result.user;
       // save the user details to the database
@@ -25,11 +24,11 @@ export default function GoogleSignInAction() {
           PostItDispatcher.handleServerAction({
             type: PostItActionTypes.FAILED_GOOGLE_LOGIN
           });
+          return false;
         });
-      const userData = user;
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
-        user: userData
+        user
       });
     })
     .catch(() => {

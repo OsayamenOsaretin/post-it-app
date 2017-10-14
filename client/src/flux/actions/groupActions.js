@@ -1,14 +1,13 @@
 import PostItDispatcher from '../Dispatcher';
 import PostItActionTypes from '../ActionTypes';
 import { getAuth, getDatabase } from '../firebaseFunctions';
-import bulkMessageRequest from '../../utility/bulkMessageRequest';
 import receiveRequests from '../../flux/actions/receiveRequestAction';
-
+import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /**
  * recieveGroups dispatches to update registered stores with groups from API
  * @return {void}
- * @param {res} response
+ * @param {Map} response
  */
 export function recieveGroups(response) {
   PostItDispatcher.handleServerAction({
@@ -19,7 +18,7 @@ export function recieveGroups(response) {
 /**
  * add Group dispatches to add group to the user's list of groups
  * @return {void}
- * @param {*} name
+ * @param {String} name
  */
 export function addGroup(name) {
   PostItDispatcher.handleServerAction({
@@ -37,80 +36,51 @@ export function getGroups() {
   const auth = getAuth();
   const database = getDatabase();
 
-  // instantiate empty Map to hold groups
-  const groups = new Map();
-
-  // instantiate empty Map to hold requests
-  const requests = new Map();
-
   let requestKeys = [];
   let groupKeys = [];
 
   auth.onAuthStateChanged((user) => {
     if (user) {
       const userId = user.uid;
-      // get user's groups
+
       const groupsReference = database.ref(`/users/${userId}/groups/`);
 
       groupsReference.orderByKey().on('value', (snapshot) => {
-        // clear groups map and keys to remove leaks between users
-        groups.clear();
         groupKeys = [];
-        // get the keys for each user's group
         snapshot.forEach((groupSnapshot) => {
           groupKeys.push(groupSnapshot.key);
         });
-
-        // map to promises to asynchronously collect group info
-        const promises = groupKeys.map(groupKey => (
-          new Promise((resolve) => {
-            const groupReference = database.ref(`/groups/${groupKey}`);
-            groupReference.on('value', (snap) => {
-              // add group info to list of groups
-              groups.set(groupKey, snap.val());
-              resolve();
-            });
-          })
-        ));
-        // collect resolved promises
-        Promise.all(promises)
-          .then(() => {
-            recieveGroups(groups);
-            bulkMessageRequest(groups);
-          })
-          .catch(() => {
+        groupKeys.map((groupKey) => {
+          const groupReference = database.ref(`/groups/${groupKey}`);
+          groupReference.on('value', (snap) => {
+            const group = new Map();
+            group.set(groupKey, snap.val());
+            recieveGroups(group);
+            bulkMessageRequest(group);
           });
+          return true;
+        });
       });
 
       const requestReference = database.ref(`/users/${userId}/requests`);
 
       requestReference.orderByKey().on('value', (snapshot) => {
-        // clear groups map and keys to remove leaks between users
-        requests.clear();
         requestKeys = [];
+
         // get the keys for each user's group
         snapshot.forEach((requestSnapshot) => {
           requestKeys.push(requestSnapshot.key);
         });
 
-        // map to promises to asynchronously collect group request info
-        const promises = requestKeys.map(requestKey => (
-          new Promise((resolve) => {
-            const groupReference = database.ref(`/groups/${requestKey}`);
-            groupReference.on('value', (snap) => {
-              // add group info to list of groups
-              requests.set(requestKey, snap.val());
-              resolve();
-            });
-          })
-        ));
-        // collect resolved promises
-        Promise.all(promises)
-          .then(() => {
-            receiveRequests(requests);
-          })
-          .catch(() => {
+        requestKeys.map((requestKey) => {
+          const groupReference = database.ref(`/groups/${requestKey}`);
+          groupReference.on('value', (snap) => {
+            const request = new Map();
+            request.set(requestKey, snap.val());
+            receiveRequests(request);
           });
+          return true;
+        });
       });
     }
   });
@@ -118,7 +88,7 @@ export function getGroups() {
 
 /**
  * addGroupApi makes an api call to add a group to user's group.
- * @param {*} theGroupName
+ * @param {Object} theGroupName
  * @return {void}
  */
 export function addGroupApi({ groupName }) {
@@ -142,12 +112,8 @@ export function addGroupApi({ groupName }) {
       database.ref(`/users/${newUserId}/groups/`).child(newGroupKey).set(
         { id: newGroupKey }
       );
-
-      // return the new group to the client to update UI
-      const newGroup = new Map();
-      newGroup.set(newGroupKey, {
-        groupname: groupName,
-        creator: newUserId
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.ADD_GROUP
       });
     } else {
       PostItDispatcher.handleServerAction({
