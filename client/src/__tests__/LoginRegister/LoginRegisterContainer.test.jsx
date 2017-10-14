@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LoginRegisterContainer from '../views/LoginRegisterContainer/LoginRegisterContainer.jsx';
+import LoginRegisterContainer from
+  '../../views/LoginRegisterContainer/LoginRegisterContainer.jsx';
 
 describe('LoginRegisterContainer', () => {
   let mountedComponent;

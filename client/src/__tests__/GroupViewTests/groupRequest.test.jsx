@@ -1,10 +1,18 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import AcceptRejectAction from 'AcceptRejectGroupAction';
-import RequestItemView from '../views/GroupContainer/RequestItem.jsx';
+import AcceptRejectAction from 'AcceptRejectGroupAction';   // eslint-disable-line  
+import RequestItemView from '../../views/GroupContainer/RequestItem.jsx';
+import RequestStore from 'RequestStore';  // eslint-disable-line
 
-/* global jest */
+/* global jest localStorage window */
+
+
 jest.mock('AcceptRejectGroupAction', () => jest.fn());
+Object.defineProperty(window, 'localStorage', { value: jest.fn() });
+localStorage.getItem = () => (
+  'testUser'
+);
+localStorage.setItem = jest.fn();
 
 describe('AcceptRejectGroupView', () => {
   let mountedComponent;
@@ -20,7 +28,10 @@ describe('AcceptRejectGroupView', () => {
 
   beforeEach(() => {
     props = {
-      groupId: 'testGroupId'
+      groupId: 'testGroupId',
+      request: {
+        get: () => ('testName')
+      }
     };
     mountedComponent = undefined;
   });
@@ -37,23 +48,25 @@ describe('AcceptRejectGroupView', () => {
     expect(buttons.length).toBeGreaterThan(0);
   });
 
-  it('should call accept reject action with right arguments when accept button is clicked', () => {
+  it('should call accept when accept button is clicked', () => {
     const component = acceptRejectView();
     const acceptButton = component.find('.accept-button').first();
     acceptButton.simulate('click');
     expect(AcceptRejectAction).toHaveBeenCalledWith({
       status: 'true',
-      groupId: 'testGroupId'
+      groupId: 'testGroupId',
+      userId: 'testUser'
     });
   });
 
-  it('should call accept reject action with right arguments when reject button clicked', () => {
+  it('should call reject when reject button clicked', () => {
     const component = acceptRejectView();
     const rejectButton = component.find('.reject-button').first();
     rejectButton.simulate('click');
     expect(AcceptRejectAction).toHaveBeenCalledWith({
       status: 'false',
-      groupId: 'testGroupId'
+      groupId: 'testGroupId',
+      userId: 'testUser'
     });
   });
 });

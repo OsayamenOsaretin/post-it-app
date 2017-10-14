@@ -1,36 +1,42 @@
-import GetMessagesAction from 'GetMessagesAction';
-import sendMessageAction from 'SendMessageAction';
-import PostItActionTypes from '../data/PostItActionTypes';
+import { mockAuth, mockDatabase } from 'firebase'; // eslint-disable-line
+import sendMessageAction from '../../flux/actions/sendMessageAction';
+import PostItActionTypes from '../../flux/ActionTypes';
+import PostItDispatcher from '../../flux/Dispatcher';
 
 /* global jest */
 
-jest.mock('superagent');
-jest.mock('../data/PostItDispatcher');
-jest.mock('GetMessagesAction', () => jest.fn());
+jest.mock('firebase');
+jest.mock('../../flux/Dispatcher');
+jest.mock('../../utility/getUsersEmailsNumbers.js', () => jest.fn());
 
 describe('sendMessageAction', () => {
   const messageDetails = {
-    groupId: 'testId'
+    groupId: 'testId',
+    sender: 'testSender',
+    priorityLevel: 'priority',
+    message: 'test message'
   };
 
-  let PostItDispatcher;
-
-  beforeEach(() => {
-    PostItDispatcher = require('../data/PostItDispatcher');
-  });
-
-  it('should get messages after successfully sending messages', () => {
-    sendMessageAction(messageDetails);
-
-    expect(PostItDispatcher.handleServerAction.mock.calls.length).toBe(1);
+  it('should get messages after successfully sending messages', async () => {   // eslint-disable-linew
+    const spyOnDispatcher = spyOn(PostItDispatcher, 'handleServerAction');
+    mockAuth.changeAuthState({
+      uid: 'testUid',
+      provider: 'custom',
+      token: 'authToken',
+    });
+    mockAuth.autoFlush();
+    mockDatabase.autoFlush();
+    await sendMessageAction(messageDetails);
+    expect(spyOnDispatcher).toHaveBeenCalledWith({
+      type: PostItActionTypes.SENT_MESSAGE
+    });
   });
 
   it('should dispatch error payload when send message unsuccessful', () => {
-    require('superagent').__setMockError({
-      message: 'Error!!!'
-    });
-    sendMessageAction();
-    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+    const spyOnDispatcher = spyOn(PostItDispatcher, 'handleServerAction');
+    mockAuth.changeAuthState(undefined);
+    sendMessageAction(messageDetails);
+    expect(spyOnDispatcher).toHaveBeenCalledWith({
       type: PostItActionTypes.FAILED_SEND_MESSAGE
     });
   });

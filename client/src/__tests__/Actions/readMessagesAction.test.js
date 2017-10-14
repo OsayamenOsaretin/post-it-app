@@ -1,35 +1,44 @@
-import ReadMessagesAction from 'ReadMessagesAction';
-import PostItActionTypes from '../data/PostItActionTypes';
+import { mockAuth, mockDatabase } from 'firebase';
+import readMessagesAction from '../../flux/actions/readMessagesAction';
+import PostItActionTypes from '../../flux/ActionTypes';
+import PostItDispatcher from '../../flux/Dispatcher';
 
 /* global jest */
 
-jest.mock('superagent');
-jest.mock('../data/PostItDispatcher');
+jest.mock('../../flux/Dispatcher');
+jest.mock('firebase');
+
+const testMessages = new Map();
+testMessages.set('testMessage1', 'testMessageBody');
+testMessages.set('testMessage2', {
+  message: 'body',
+  sender: 'testUser2'
+});
 
 describe('readMessagesAction', () => {
   const messages = {
-    message1: 'test message'
+    messages: testMessages
   };
   const groupId = 'testGroupId';
 
-  let PostItDispatcher;
-  beforeEach(() => {
-    PostItDispatcher = require('../data/PostItDispatcher');
-  });
-
   it('should dispatch payload to read messages in message store', () => {
-    ReadMessagesAction(messages, groupId);
-    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+    const dispatcherSpy = spyOn(PostItDispatcher, 'handleServerAction');
+    mockAuth.changeAuthState({
+      uid: 'testUid',
+      provider: 'custom',
+      token: 'authToken',
+    });
+    mockAuth.autoFlush();
+    readMessagesAction(messages, groupId);
+    expect(dispatcherSpy).toHaveBeenCalledWith({
       type: PostItActionTypes.READ_MESSAGE,
       Id: groupId
     });
   });
 
   it('should dispatch error payload on request fail', () => {
-    require('superagent').__setMockError({
-      message: 'Error!!!'
-    });
-    ReadMessagesAction();
+    mockAuth.changeAuthState(undefined);
+    readMessagesAction(messages, groupId);
     expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
       type: PostItActionTypes.FAILED_READ_MESSAGE
     });

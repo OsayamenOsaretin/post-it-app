@@ -1,4 +1,4 @@
-import getReadStatus from '../utility/getReadStatus';
+import getReadStatus from '../../utility/getReadStatus';
 
 describe('getReadStatus', () => {
   const message = {

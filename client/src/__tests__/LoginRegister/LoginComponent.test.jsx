@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import SignInAction from 'SignInAction';
-import LoginComponent from '../views/LoginRegisterContainer/LoginComponent.jsx';
+import SignInAction from 'SignInAction';    // eslint-disable-line
+import LoginComponent from
+  '../../views/LoginRegisterContainer/LoginComponent.jsx';
 
 /* global jest */
 
@@ -45,7 +46,8 @@ describe('LoginComponent', () => {
   it('first input field should update email state', () => {
     const inputs = loginComponent().find('input');
     const emailInput = inputs.first();
-    emailInput.simulate('change', { target: { value: 'testing@email.com', name: 'email' } });
+    emailInput.simulate('change',
+      { target: { value: 'testing@email.com', name: 'email' } });
     expect(loginComponent().state().email).toBe('testing@email.com');
   });
 
@@ -57,16 +59,18 @@ describe('LoginComponent', () => {
     expect(loginComponent().state().password).toBe('supersecretpassword');
   });
 
-  it('should have a disabled button when email and password are not entered', () => {
-    const button = loginComponent().find('button').first();
-    expect(button.prop('disabled')).toBeTruthy();
-  });
+  it('should have a disabled button when email and password are not entered',
+    () => {
+      const button = loginComponent().find('button').first();
+      expect(button.prop('disabled')).toBeTruthy();
+    });
 
   it('should call sign in action when button is clicked', () => {
     const component = loginComponent();
     const button = component.find('button').first();
     const inputs = component.find('input');
-    inputs.first().simulate('change', { target: { value: 'testing@email.com', name: 'email' } });
+    inputs.first().simulate('change',
+      { target: { value: 'testing@email.com', name: 'email' } });
     inputs.at(1).simulate('change',
       { target: { value: 'supersecretpassword', name: 'password' } });
     button.simulate('click');

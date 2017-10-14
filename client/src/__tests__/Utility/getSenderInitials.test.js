@@ -1,4 +1,4 @@
-import getSenderInitials from '../utility/getSenderInitials';
+import getSenderInitials from '../../utility/getSenderInitials';
 
 describe('getSenderInitialsUtility', () => {
   it('should return an empty string if no sender name is passed', () => {
@@ -11,8 +11,9 @@ describe('getSenderInitialsUtility', () => {
     expect(result).toBe('y');
   });
 
-  it('should return the initials in the case of both first and last name', () => {
-    const result = getSenderInitials('yamen osaretin');
-    expect(result).toBe('yo');
-  });
+  it('should return the initials in the case of both first and last name',
+    () => {
+      const result = getSenderInitials('yamen osaretin');
+      expect(result).toBe('yo');
+    });
 });

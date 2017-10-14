@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import RegisterAction from 'RegisterAction';
-import RegisterForm from '../views/LoginRegisterContainer/RegisterComponent.jsx';
+import RegisterAction from 'RegisterAction';  // eslint-disable-line
+import RegisterForm from
+  '../../views/LoginRegisterContainer/RegisterComponent.jsx';
 
 /* global jest */
 jest.mock('RegisterAction', () => jest.fn());
@@ -33,7 +34,7 @@ describe('RegisterComponent', () => {
 
   it('always renders 4 input fields', () => {
     const inputs = registerComponent().find('input');
-    expect(inputs.length).toBe(4);
+    expect(inputs.length).toBe(5);
   });
 
   it('always renders a button', () => {
@@ -44,7 +45,8 @@ describe('RegisterComponent', () => {
   it('first input field should update username state', () => {
     const inputs = registerComponent().find('input');
     const usernameInput = inputs.first();
-    usernameInput.simulate('change', { target: { value: 'username', name: 'userName' } });
+    usernameInput.simulate('change',
+      { target: { value: 'username', name: 'userName' } });
     expect(registerComponent().state().userName).toBe('username');
   });
 
@@ -69,7 +71,10 @@ describe('RegisterComponent', () => {
     const confirmPasswordInput = inputs.at(3);
     confirmPasswordInput.simulate('change',
       { target: { value: 'supersecretpassword', name: 'confirmPassword' } });
-    expect(registerComponent().state().confirmPassword).toBe('supersecretpassword');
+    expect(registerComponent()
+      .state()
+      .confirmPassword)
+      .toBe('supersecretpassword');
   });
 
   it('should have disabled button when any of the fields is not filled', () => {
@@ -77,33 +82,38 @@ describe('RegisterComponent', () => {
     expect(button.prop('disabled')).toBeTruthy();
   });
 
-  it('should call register action when password and confirm password are equal', () => {
-    const component = registerComponent();
-    const button = component.find('button').first();
-    const inputs = component.find('input');
-    inputs.first().simulate('change', { target: { value: 'tester', name: 'userName' } });
-    inputs.at(1).simulate('change',
-      { target: { value: 'testing@email.com', name: 'email' } });
-    inputs.at(2).simulate('change',
-      { target: { value: 'supersecretpassword', name: 'password' } });
-    inputs.at(3).simulate('change',
-      { target: { value: 'supersecretpassword', name: 'confirmPassword' } });
-    button.simulate('click');
-    expect(RegisterAction.mock.calls.length).toBe(1);
-  });
+  it('should call register action when password and confirm password are equal',
+    () => {
+      const component = registerComponent();
+      const button = component.find('button').first();
+      const inputs = component.find('input');
+      inputs.first().simulate('change',
+        { target: { value: 'tester', name: 'userName' } });
+      inputs.at(1).simulate('change',
+        { target: { value: 'testing@email.com', name: 'email' } });
+      inputs.at(2).simulate('change',
+        { target: { value: 'supersecretpassword', name: 'password' } });
+      inputs.at(3).simulate('change',
+        { target: { value: 'supersecretpassword', name: 'confirmPassword' } });
+      button.simulate('click');
+      expect(RegisterAction.mock.calls.length).toBe(1);
+    });
 
-  it('should not call register action when password and confirm password are not equal', () => {
-    const component = registerComponent();
-    const button = component.find('button').first();
-    const inputs = component.find('input');
-    inputs.first().simulate('change', { target: { value: 'tester', name: 'userName' } });
-    inputs.at(1).simulate('change',
-      { target: { value: 'testing@email.com', name: 'email' } });
-    inputs.at(2).simulate('change',
-      { target: { value: 'supersecretpassword', name: 'password' } });
-    inputs.at(3).simulate('change',
-      { target: { value: 'notsupersecretpassword', name: 'confirmPassword' } });
-    button.simulate('click');
-    expect(RegisterAction.mock.calls.length).toBe(0);
-  });
+  it('shouldnt call register action when password & confirm password not equal',
+    () => {
+      const component = registerComponent();
+      const button = component.find('button').first();
+      const inputs = component.find('input');
+      inputs.first().simulate('change',
+        { target: { value: 'tester', name: 'userName' } });
+      inputs.at(1).simulate('change',
+        { target: { value: 'testing@email.com', name: 'email' } });
+      inputs.at(2).simulate('change',
+        { target: { value: 'supersecretpassword', name: 'password' } });
+      inputs.at(3).simulate('change',
+        { target:
+          { value: 'notsupersecretpassword', name: 'confirmPassword' } });
+      button.simulate('click');
+      expect(RegisterAction.mock.calls.length).toBe(0);
+    });
 });

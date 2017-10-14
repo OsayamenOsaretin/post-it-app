@@ -1,29 +1,32 @@
-import PostItActionTypes from '../data/PostItActionTypes';
-import ResetPasswordAction from 'ResetPasswordAction';
+import { mockAuth } from 'firebase';
+import PostItActionTypes from '../../flux/ActionTypes';
+import ResetPasswordAction from '../../flux/actions/resetPasswordAction';
+import PostItDispatcher from '../../flux/Dispatcher';
 
 /* global jest */
-jest.mock('superagent');
-jest.mock('../data/PostItDispatcher');
+jest.mock('firebase');
+jest.mock('../../flux/Dispatcher');
 
 describe('resetPasswordAction', () => {
-  let PostItDispatcher;
-
-  beforeEach(() => {
-    PostItDispatcher = require('../data/PostItDispatcher');
-  });
-
   it('should dispatch payload for password reset', () => {
-    ResetPasswordAction();
-    expect(PostItDispatcher.handleServerAction).toHaveBeenCalled();
+    mockAuth.autoFlush();
+    const spyOnDispatcher = spyOn(PostItDispatcher, 'handleServerAction');
+    return ResetPasswordAction({ resetEmail: 'testEmail@email.com' })
+      .then(() => {
+        expect(spyOnDispatcher).toHaveBeenCalledWith({
+          type: PostItActionTypes.RESET_MESSAGE_SENT
+        });
+      });
   });
 
   it('should dispatch error payload', () => {
-    require('superagent').__setMockError({
-      message: 'Error!!!'
-    });
-    ResetPasswordAction();
-    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
-      type: PostItActionTypes.FAILED_RESET_PASSWORD
-    });
+    const error = new Error('error');
+    mockAuth.failNext('sendPasswordResetEmail', error);
+    return ResetPasswordAction({ resetEmail: 'testEmail@email.com' })
+      .then(() => {
+        expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+          type: PostItActionTypes.FAILED_RESET_PASSWORD
+        });
+      });
   });
 });

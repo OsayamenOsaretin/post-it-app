@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Immutable from 'immutable';
-import GroupList from '../views/GroupContainer/GroupList.jsx';
+import GroupList from '../../views/GroupContainer/GroupList.jsx';
 
 describe('GroupList', () => {
   let mountedComponent;

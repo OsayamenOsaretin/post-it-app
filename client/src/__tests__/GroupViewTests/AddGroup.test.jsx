@@ -1,12 +1,16 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import GroupAction from 'GroupAction';
-import AddGroup from '../views/GroupContainer/AddGroup.jsx';
+import GroupAction from 'GroupAction'; // eslint-disable-line
+import AddGroup from '../../views/GroupContainer/AddGroup.jsx';
 
-/* global jest */
-// let addFunction = GroupAction.addGroupApi;
+/* global jest window localStorage */
 
 jest.mock('GroupAction', () => jest.fn());
+Object.defineProperty(window, 'localStorage', { value: jest.fn() });
+localStorage.getItem = () => {
+  return 'testUser';
+};
+localStorage.setItem = jest.fn();
 
 describe('AddGroup', () => {
   let mountedComponent;
