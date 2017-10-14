@@ -9,12 +9,11 @@ import getSenderInitials from '../../../utility/getSenderInitials';
  * @param {*} props
  * @return {void}
  */
-function MessageListView(props) {
-  const newMessages = props.messages;
+function MessageListView({ messages }) {
   const displayName = localStorage.getItem('username');
   return (
     <div className="message-list-items">
-      {newMessages && newMessages.valueSeq().map((message, key) => {
+      {messages && messages.valueSeq().map((message, key) => {
         if (checkReadStatus(message, displayName)) {
           return true;
         }
