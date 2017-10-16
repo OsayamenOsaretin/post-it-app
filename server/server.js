@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 const config= require('../webpack.config');   // eslint-disable-line
 const compiler = webpack(config);
-if (process.env.development) {
+if (!process.env.development) {
   app.use(webpackMiddleWare(compiler, {
     hot: true,
     publicPath: config.output.publicPath,
