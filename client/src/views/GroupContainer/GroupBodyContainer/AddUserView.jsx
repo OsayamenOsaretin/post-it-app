@@ -10,8 +10,9 @@ import UserListView from './userListView.jsx';
 class AddUserView extends Component {
   /**
    * renders an instace of a react component
+   * @param {Object} props
+   * 
    * @returns {void}
-   * @param {*} props
    */
   constructor(props) {
     super(props);
@@ -55,8 +56,9 @@ class AddUserView extends Component {
 
   /**
    * changes status of user when the user is clicked
-   * @return {void}
    * @param {int} index
+   * 
+   * @return {void}
    */
   statusChange(index) {
     let statusMap = this.state.userStatus;

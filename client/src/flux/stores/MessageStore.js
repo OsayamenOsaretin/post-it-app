@@ -26,8 +26,10 @@ class MessageStore extends EventEmitter {
   /**
    * addChangeListener
    * @memberof MessageStore
-   * @param {*} callback
-   * @param {*} CHANGE_EVENT_ID
+   * @param {Function} callback
+   * 
+   * @param {String} CHANGE_EVENT_ID
+   * 
    * @return {void}
    */
   addChangeListener(callback, CHANGE_EVENT_ID) {
@@ -37,8 +39,10 @@ class MessageStore extends EventEmitter {
   /**
   * removeChangeListener
   * @memberof MessageStore
-  * @param {*} callback
-  * @param {*} CHANGE_EVENT_ID
+  *
+  * @param {Function} callback
+  * @param {String} CHANGE_EVENT_ID
+  *
   * @return {void}
   */
   removeChangeListener(callback, CHANGE_EVENT_ID) {
@@ -46,16 +50,18 @@ class MessageStore extends EventEmitter {
   }
 
   /** add listener for notification changes
+   * @param {Function} callback
+   * 
    * @return {void}
-   * @param {*} callback
    */
   addNotificationChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   }
 
   /** remove notification change event listener
+   * @param {Function} callback
+   * 
    * @return {void}
-   * @param {*} callback
    */
   removeNotificationChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
@@ -66,8 +72,10 @@ class MessageStore extends EventEmitter {
   /**
    * GetMessage
    * @memberof MessageStore
-   * @param {*} id
-   * @return {*} messages.get(id)
+   * 
+   * @param {String} id
+   * 
+   * @return {Map} messages.get(id)
    */
   getMessage(id) {
     return messages.get(id);
@@ -75,7 +83,7 @@ class MessageStore extends EventEmitter {
 
   /**
    * Get the notification properties of the groups
-   * @return {*} groupNotificationDetatls
+   * @return {Object} groupNotificationDetatls
    */
   getGroupNotificationDetails() {
     return {

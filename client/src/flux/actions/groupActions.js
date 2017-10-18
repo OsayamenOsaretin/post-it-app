@@ -6,7 +6,9 @@ import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /**
  * recieveGroups dispatches to update registered stores with groups from API
+ * 
  * @return {void}
+ * 
  * @param {Map} response
  */
 export function recieveGroups(response) {

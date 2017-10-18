@@ -20,8 +20,10 @@ export default class GoogleLogin extends Component {
   /* eslint class-methods-use-this: 0 */
 
   /**
-   * @param {any} event 
    * @memberof GoogleLogin
+   * 
+   * @param {Object} event 
+   * 
    * @return {void}
    */
   handleSubmit(event) {

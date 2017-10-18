@@ -6,7 +6,8 @@ import getSenderInitials from '../../../utility/getSenderInitials';
 
 /**
  * shows view of messages for each group
- * @param {*} props
+ * @param {Map} messages
+ * 
  * @return {void}
  */
 function MessageListView({ messages }) {

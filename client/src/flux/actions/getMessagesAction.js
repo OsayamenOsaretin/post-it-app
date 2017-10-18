@@ -7,8 +7,10 @@ import { getAuth, getDatabase } from '../firebaseFunctions';
 
 /**
  * getMessagesAction - get all messages sent to a particular group
+ * 
  * @returns {void}
- * @param {Object} theGroupId
+ * 
+ * @param {Object} groupId
  */
 export default ({ groupId }) => {
   const auth = getAuth();

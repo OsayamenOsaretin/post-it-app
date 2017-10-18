@@ -9,7 +9,7 @@ class DispatcherClass extends Dispatcher {
 /**
  * handles view actions
  * @return {void}
- * @param {*} act
+ * @param {Object} act
  */
   handleViewAction(act) {
     this.dispatch({
@@ -21,7 +21,7 @@ class DispatcherClass extends Dispatcher {
   /**
    * handles server actions
    * @return {void}
-   * @param {*} act
+   * @param {Object} act
    */
   handleServerAction(act) {
     this.dispatch({

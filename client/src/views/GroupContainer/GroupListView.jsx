@@ -6,7 +6,8 @@ import GroupItem from './GroupItem.jsx';
 
 /**
  * GroupList is a container for the list of groups, also doubles as a navlink
- * @param {*} props
+ * @param {Object} props
+ * 
  * @return {void}
  */
 function GroupListView(props) {

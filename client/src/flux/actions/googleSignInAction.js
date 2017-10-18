@@ -7,6 +7,7 @@ import { getAuth, getDatabase, googleProvider } from '../firebaseFunctions';
  *userSignInAction - signs in user & dispatches actions to get groups
  * @export
  * @function
+ * 
  * @returns {void}
  */
 export default function GoogleSignInAction() {

@@ -8,7 +8,9 @@ import { getAuth, getDatabase } from '../firebaseFunctions';
  *registerUserAction - registers a new user and dispatches to Log in user
  * @export
  * @function
+ * 
  * @returns {void}
+ * 
  * @param {newUserDetails} newUserDetails
  */
 export default ({ email, password, userName, phone }) => {

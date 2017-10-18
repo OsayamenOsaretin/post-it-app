@@ -15,7 +15,9 @@ class ErrorStore extends EventEmitter {
   /**
    * addChangeListener
    * @memberof ErrorStore
-   * @param {*} callback
+   * 
+   * @param {Function} callback
+   * 
    * @return {void}
    */
   addChangeListener(callback) {
@@ -25,7 +27,9 @@ class ErrorStore extends EventEmitter {
   /**
    * removeChangeListener
    * @memberof ErrorStore
-   * @param {*} callback
+   * 
+   * @param {Function} callback
+   * 
    * @return {void}
    */
   removeChangeListener(callback) {
@@ -36,6 +40,7 @@ class ErrorStore extends EventEmitter {
 
   /** getLoginError
    * @return {string} loginError
+   * 
    * @memberof ErrorStore
    */
   getLoginError() {
@@ -44,6 +49,7 @@ class ErrorStore extends EventEmitter {
 
   /** getRegistrationError
    * @return {string} registerError
+   * 
    * @memberof ErrorStore
    */
   getRegisterError() {

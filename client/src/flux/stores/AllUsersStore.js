@@ -20,8 +20,10 @@ class AllUserStore extends EventEmitter {
 /**
  * addChangeListener
  * @memberof AllUserStore
- * @param {*} callback
- * @param {*} CHANGE_EVENT_GROUP
+ * 
+ * @param {function} callback
+ * @param {String} CHANGE_EVENT_GROUP
+ * 
  * @return {void}
  */
   addChangeListener(callback, CHANGE_EVENT_GROUP) {
@@ -31,8 +33,10 @@ class AllUserStore extends EventEmitter {
   /**
  * removeChangeListener
  * @memberof AllUserStore
- * @param {*} callback
- * @param {*} CHANGE_EVENT_GROUP
+ * 
+ * @param {function} callback
+ * @param {String} CHANGE_EVENT_GROUP
+ * 
  * @return {void}
  */
   removeChangeListener(callback, CHANGE_EVENT_GROUP) {
@@ -44,8 +48,10 @@ class AllUserStore extends EventEmitter {
   /**
    * getUsers
    * @memberof AllUserStore
-   * @return {Map} users
+   * 
    * @param {string} groupId
+   * 
+   * @return {Map} users
    */
   getUsers(groupId) {
     return users.get(groupId);

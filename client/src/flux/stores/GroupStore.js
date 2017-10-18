@@ -23,7 +23,9 @@ class GroupStore extends EventEmitter {
   /**
    * addChangeListener
    * @memberof GroupStore
-   * @param {*} callback
+   * 
+   * @param {Function} callback
+   * 
    * @return {void}
    */
   addChangeListener(callback) {
@@ -33,7 +35,9 @@ class GroupStore extends EventEmitter {
   /**
    * removeChangeListener
    * @memberof GroupStore
-   * @param {*} callback
+   * 
+   * @param {Function} callback
+   * 
    * @return {void}
    */
   removeChangeListener(callback) {
@@ -44,6 +48,7 @@ class GroupStore extends EventEmitter {
   /**
    * getGroups
    * @memberof GroupStore
+   * 
    * @return {Map} groups
    */
   getGroups() {
@@ -53,8 +58,10 @@ class GroupStore extends EventEmitter {
   /**
    * getGroupUser
    * @memberof GroupStore
+   * 
    * @return {List} groupUsers
-   * @param {*} groupId
+   * 
+   * @param {String} groupId
    */
   getGroup(groupId) {
     return groups.get(groupId);

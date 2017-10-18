@@ -12,7 +12,7 @@ import SendMessageAction from '../../../flux/actions/sendMessageAction';
 class SendMessageView extends Component {
   /**
    * constructor creates new react component
-   * @param {*} props
+   * @param {Object} props
    */
   constructor(props) {
     super(props);
@@ -33,7 +33,7 @@ class SendMessageView extends Component {
    * handleChange sets input field state when user types
    * @memberof SendMessageView
    * @return {void}
-   * @param {*} event
+   * @param {Object} event
    */
   handleChange(event) {
     const value = event.target.value;
@@ -48,7 +48,7 @@ class SendMessageView extends Component {
      * action when button is clicked
      * @memberof SendMessageView
      * @return {void}
-     * @param {*} event
+     * @param {Object} event
      */
   handleSubmit(event) {
     event.preventDefault();

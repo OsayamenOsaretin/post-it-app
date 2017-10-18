@@ -12,7 +12,8 @@ import AddUser from './GroupBodyContainer/AddUserView.jsx';
 class GroupItem extends Component {
   /**
    * constructor for GroupItem component
-   * @param {*} props
+   * @param {Object} props
+   * 
    * @return {void}
    */
   constructor(props) {
@@ -37,8 +38,9 @@ class GroupItem extends Component {
   }
 
   /** close add user in new group
+   * @param {Object} newProps
+   * 
    * @return {void}
-   * @param {*} newProps
    */
   componentWillReceiveProps(newProps) {
     this.setState({
@@ -84,7 +86,6 @@ class GroupItem extends Component {
   }
 }
 
-// declare proptypes
 GroupItem.PropTypes = {
   groupName: PropTypes.string.isRequired,
   groupId: PropTypes.string.isRequired,

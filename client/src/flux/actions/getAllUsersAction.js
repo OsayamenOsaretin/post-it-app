@@ -6,8 +6,10 @@ import { getAuth, getDatabase } from '../firebaseFunctions';
 
 /**
  * getAllUsersAction - get all the PostIt registered users
+ * 
  * @returns {void}
- * @param {Object} theGroupId
+ * 
+ * @param {Object} groupId 
  */
 export default ({ groupId }) => {
   const auth = getAuth();

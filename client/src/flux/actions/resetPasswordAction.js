@@ -7,8 +7,10 @@ import { getAuth } from '../firebaseFunctions';
  * Reset password action
  * @export
  * @function
- * @returns {void}
+ * 
  * @param {*} email
+ * 
+ * @returns {void}
  */
 export default function ResetPassword({ resetEmail }) {
   const auth = getAuth();

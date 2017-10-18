@@ -13,7 +13,9 @@ class MessageBody extends Component {
   /**
    * instantiates an instance of a react component
    * @memberof MessageBody
-   * @param {*} props
+   * 
+   * @param {Object} props
+   * 
    * @return {void}
    */
   constructor(props) {
@@ -28,6 +30,7 @@ class MessageBody extends Component {
   /**
    * add change listener from Message store
    * @memberof MessageBody
+   * 
    * @return {void}
    */
   componentDidMount() {
@@ -37,6 +40,7 @@ class MessageBody extends Component {
   /**
    * removes change listener from Message store, mark messages as read
    * @memberof MessageBody
+   * 
    * @return {void}
    */
   componentWillUnmount() {
@@ -46,8 +50,10 @@ class MessageBody extends Component {
   /**
    * updates state on component render
    * @memberof MessageBody
+   * 
+   * @param {Object} newProps
+   * 
    * @return {void}
-   * @param {*} newProps
    */
   componentWillReceiveProps(newProps) {
     MessageStore.removeChangeListener(this.onChange, this.props.groupId);
@@ -63,6 +69,7 @@ class MessageBody extends Component {
   /**
    * onChange listener toolback to set state of messages
    * @memberof MessageBody
+   * 
    * @return {void}
    */
   onChange() {
@@ -74,6 +81,7 @@ class MessageBody extends Component {
   /**
    * renders component view
    * @memberof Dashboard
+   * 
    * @return {void}
    */
   render() {

@@ -36,8 +36,8 @@ export default class App extends Component {
 
   /**
    * Attaches event listener to the UserStore
-   * @return {void}
    * @memberof App
+   * @return {void}
    */
   componentDidMount() {
     UserStore.addChangeListener(this.onChange);
@@ -45,8 +45,8 @@ export default class App extends Component {
 
   /**
    * Removes event listener from the UserStore
-   * @return {void}
    * @memberof App
+   * @return {void}
    */
   componentWillUnmount() {
     UserStore.removeChangeListener(this.onChange);
@@ -72,6 +72,7 @@ export default class App extends Component {
   /**
    * handle click event
    * @return {void}
+   * 
    * @param {Object} event
    */
   handleClick(event) {
@@ -83,8 +84,10 @@ export default class App extends Component {
 
   /**
    * hanlde reset click event
+   * @param {Object} event 
+   * 
    * @return {void}
-   * @param {any} event 
+   * 
    * @memberof App
    */
   handleResetClick() {

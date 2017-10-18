@@ -13,8 +13,9 @@ let passwordResetMessageState = false;
 class UserStore extends EventEmitter {
   /**
    * Adds changeListener
+   * @param {Function} callback
+   * 
    * @return {void}
-   * @param {*} callback
    */
   addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
@@ -23,8 +24,10 @@ class UserStore extends EventEmitter {
   /**
    * Removes changeListener
    * @memberof UserStore
+   * 
+   * @param {Function} callback
+   * 
    * @return {void}
-   * @param {*} callback
    */
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
@@ -35,6 +38,7 @@ class UserStore extends EventEmitter {
   /**
    * returns sign in state of the user;
    * @return {boolean} signedInState
+   * 
    * @memberof UserStore
    */
   getSignedInState() {
@@ -42,9 +46,9 @@ class UserStore extends EventEmitter {
   }
 
   /**
-   * 
    * returns password reset state
    * @returns {bool} passwordResetMessageState
+   * 
    * @memberof UserStore
    */
   getPasswordResetMessageState() {

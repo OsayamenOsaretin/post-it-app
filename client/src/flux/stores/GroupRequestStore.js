@@ -20,7 +20,9 @@ class RequestStore extends EventEmitter {
   /**
    * addChangeListener
    * @memberof RequestStore
-   * @param {*} callback
+   * 
+   * @param {Function} callback
+   * 
    * @return {void}
    */
   addChangeListener(callback) {
@@ -30,7 +32,9 @@ class RequestStore extends EventEmitter {
   /**
    * removeChangeListener
    * @memberof RequestStore
-   * @param {*} callback
+   * 
+   * @param {Function} callback
+   * 
    * @return {void}
    */
   removeChangeListener(callback) {
@@ -41,7 +45,7 @@ class RequestStore extends EventEmitter {
 
   /**
    * return requests
-   * @return {*} requests
+   * @return {Map} requests
    */
   getRequests() {
     return requests;

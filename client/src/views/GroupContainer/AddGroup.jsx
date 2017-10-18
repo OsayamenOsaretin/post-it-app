@@ -28,8 +28,10 @@ class AddGroupView extends Component {
   /**
    * handleChange sets input field state when user types
    * @memberof AddGroup
-   * @return {void}
+   * 
    * @param {Object} event
+   * 
+   * @return {void}
    */
   handleChange(event) {
     const value = event.target.value;
@@ -43,8 +45,10 @@ class AddGroupView extends Component {
   /**
    * handleSubmit handles calling the sendmessage action when button is clicked
    * @memberof AddGroup
-   * @return {void}
+   * 
    * @param {Object} event
+   * 
+   * @return {void}
    */
   handleSubmit(event) {
     event.preventDefault();
@@ -61,6 +65,7 @@ class AddGroupView extends Component {
   /**
    * render renders the component
    * @return {void}
+   * 
    * @memberof AddGroup
    */
   render() {

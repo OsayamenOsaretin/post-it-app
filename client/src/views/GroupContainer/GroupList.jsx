@@ -16,7 +16,7 @@ import MessageStore from '../../flux/stores/MessageStore';
 class GroupList extends Component {
   /**
    * react component constructor
-   * @param {*} props
+   * @param {Object} props
    */
   constructor(props) {
     super(props);
@@ -63,8 +63,9 @@ class GroupList extends Component {
 
   /**
    * function to modify group list based on notification
-   * @param {*} groupSeq
-   * @return {*} groupSeqSorted
+   * @param {Array} groupSeq
+   * 
+   * @return {Array} groupSeqSorted
    */
   sortGroups(groupSeq) {
     const newGroupWithNotification = this.state.groupWithNotificationChange;
@@ -88,7 +89,7 @@ class GroupList extends Component {
 
   /**
    * render the view for the groupList
-   * @return {*} GroupListView
+   * @return {View} GroupListView
    */
   render() {
     return (

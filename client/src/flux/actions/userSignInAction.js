@@ -8,8 +8,11 @@ import { getAuth } from '../firebaseFunctions';
  *userSignInAction - signs in user & dispatches actions to get groups
  * @export
  * @function
+ * 
+ * @param {String} email
+ * @param {String} password
+ * 
  * @returns {void}
- * @param {*} userDetails
  */
 export default function SignInAction({ email, password }) {
   const auth = getAuth();

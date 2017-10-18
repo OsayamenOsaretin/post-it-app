@@ -32,6 +32,7 @@ export default class LoginForm extends Component {
   /**
    * @memberof LoginComponent
    * @returns {void}
+   * 
    * @param {Object} event
    */
   handleChange(event) {
@@ -44,7 +45,9 @@ export default class LoginForm extends Component {
 
   /**
    * @memberof LoginComponent
+   * 
    * @returns {void}
+   * 
    * @param {Object} event
    */
   handleSubmit(event) {
@@ -79,6 +82,7 @@ export default class LoginForm extends Component {
   /**
    * add change listener from ErrorStore
    * @memberof LoginComponent
+   * 
    * @return {void}
    */
   componentDidMount() {
@@ -88,6 +92,7 @@ export default class LoginForm extends Component {
   /**
    * removes change listener from ErrorStore
    * @memberof LoginComponent
+   * 
    * @return {void}
    */
   componentWillUnmount() {
@@ -96,6 +101,7 @@ export default class LoginForm extends Component {
 
   /**
    * @memberof LoginComponent
+   * 
    * @returns {void}
    */
   render() {

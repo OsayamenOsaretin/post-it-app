@@ -8,7 +8,12 @@ import getUsersEmailsNumbers from '../../utility/getUsersEmailsNumbers';
 
 /**
  * sendMessageAction - sends a new message to a group
- * @param {*} messageDetails
+ * 
+ * @param {String} message
+ * @param {String} sender 
+ * @param {String} groupId 
+ * @param {String} priorityLevel
+ * 
  * @return {void}
  */
 export default ({ message, sender, groupId, priorityLevel }) => {

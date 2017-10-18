@@ -6,9 +6,12 @@ import { getAuth, getDatabase } from '../firebaseFunctions';
  * messagesAction - marks messages as read by this user
  * @export
  * @function
- * @return {void}
+ * 
  * @param {Map} messages
  * @param {String} groupId
+ * 
+ * @return {void}
+ *
  */
 export default ({ messages }, groupId) => {
   const auth = getAuth();

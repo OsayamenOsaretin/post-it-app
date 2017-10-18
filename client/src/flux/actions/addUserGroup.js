@@ -5,7 +5,9 @@ import { getDatabase, getAuth } from '../firebaseFunctions';
 
 /**
  * addUserToGroups - sends a new message to a group
- * @param {*} Details
+ * 
+ * @param {Object} Details the user and group details
+ * 
  * @return {void}
  */
 export default ({ groupId, userId }) => {

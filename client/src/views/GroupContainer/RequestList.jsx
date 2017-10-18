@@ -10,7 +10,7 @@ import RequestItem from '../../views/GroupContainer/RequestItem.jsx';
 class RequestList extends Component {
   /**
    * react component constructor
-   * @param {*} props
+   * @param {Object} props
    */
   constructor(props) {
     super(props);

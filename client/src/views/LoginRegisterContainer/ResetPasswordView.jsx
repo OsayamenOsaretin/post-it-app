@@ -23,8 +23,9 @@ export default class ResetPasswordForm extends Component {
   }
 
   /**
+   * @param {Object} event
+   * 
    * @return {void}
-   * @param {*} event
    */
   handleChange(event) {
     const value = event.target.value;
@@ -35,8 +36,9 @@ export default class ResetPasswordForm extends Component {
   }
 
   /**
+   * @param {Object} event
+   * 
    * @return {void}
-   * @param {*} event
    */
   handleSubmit(event) {
     event.preventDefault();

@@ -34,8 +34,9 @@ export default class RegisterForm extends Component {
 
   /**
    * @memberof RegisterComponent
-   * @returns {void}
    * @param {Object} event
+   * 
+   * @returns {void}
    */
   handleChange(event) {
     const value = event.target.value;
@@ -46,8 +47,10 @@ export default class RegisterForm extends Component {
 
   /**
      * @memberof RegisterComponent
-     * @returns {void}
+     * 
      * @param {Object} event
+     * 
+     * @returns {void}
      */
   handleSubmit(event) {
     event.preventDefault();
