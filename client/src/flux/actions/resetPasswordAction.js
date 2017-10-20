@@ -21,9 +21,12 @@ export default function ResetPassword({ email }) {
         type: PostItActionTypes.RESET_MESSAGE_SENT
       });
     })
-    .catch(() => {
+    .catch((error) => {
+      const errorMessage =
+        error.code === 'auth/user-not-found' ? 'Oops! Incorrect email' : '';
       PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_RESET_PASSWORD
+        type: PostItActionTypes.FAILED_RESET_PASSWORD,
+        message: errorMessage
       });
     });
 }
