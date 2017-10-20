@@ -25,7 +25,8 @@ describe('resetPasswordAction', () => {
     return ResetPasswordAction({ resetEmail: 'testEmail@email.com' })
       .then(() => {
         expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
-          type: PostItActionTypes.FAILED_RESET_PASSWORD
+          type: PostItActionTypes.FAILED_RESET_PASSWORD,
+          message: expect.anything()
         });
       });
   });
