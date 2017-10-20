@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import resetPasswordAction from '../../flux/actions/resetPasswordAction';
 import UserStore from '../../flux/stores/UserStore';
+import ErrorStore from '../../flux/stores/ErrorStore';
 
 /**
  * ResetPasswordForm is component for resetting password
@@ -14,11 +15,13 @@ export default class ResetPasswordForm extends Component {
     super();
 
     this.state = {
-      email: ''
+      email: '',
+      errorMessage: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.errorChange = this.errorChange.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
@@ -54,6 +57,7 @@ export default class ResetPasswordForm extends Component {
    */
   componentDidMount() {
     UserStore.addChangeListener(this.onChange);
+    ErrorStore.addChangeListener(this.errorChange);
   }
 
   /**
@@ -63,6 +67,7 @@ export default class ResetPasswordForm extends Component {
    */
   componentWillUnmount() {
     UserStore.removeChangeListener(this.onChange);
+    ErrorStore.removeChangeListener(this.errorChange);
   }
 
   /**
@@ -71,6 +76,16 @@ export default class ResetPasswordForm extends Component {
   onChange() {
     this.setState({
       email: ''
+    });
+  }
+
+  /**
+   * @returns {void}
+   * @memberof ResetPasswordForm
+   */
+  errorChange() {
+    this.setState({
+      errorMessage: ErrorStore.getResetPasswordError()
     });
   }
 
@@ -100,6 +115,10 @@ export default class ResetPasswordForm extends Component {
             Reset Password
           </button>
         </form>
+
+        <div className="password-sent-message">
+          {this.state.errorMessage}
+        </div>
       </div>
     );
   }

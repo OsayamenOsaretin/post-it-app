@@ -4,7 +4,7 @@ import ActionTypes from '../ActionTypes';
 
 const CHANGE_EVENT = 'change';
 
-let loginError, registerError;
+let loginError, registerError, resetPasswordError;
 
 /**
  * ErrorStore handles error display for ui/ux
@@ -55,6 +55,15 @@ class ErrorStore extends EventEmitter {
   getRegisterError() {
     return registerError;
   }
+
+  /**
+   * @returns {String} resetPasswordError
+   * 
+   * @memberof ErrorStore
+   */
+  getResetPasswordError() {
+    return resetPasswordError;
+  }
 }
 
 const errorStore = new ErrorStore();
@@ -72,6 +81,16 @@ Dispatcher.register((payload) => {
   case ActionTypes.REGISTER_ERROR:
     registerError = action.errorMessage;
     loginError = undefined;
+    errorStore.emit(CHANGE_EVENT);
+    break;
+
+  case ActionTypes.FAILED_RESET_PASSWORD:
+    resetPasswordError = action.message;
+    errorStore.emit(CHANGE_EVENT);
+    break;
+
+  case ActionTypes.RESET_MESSAGE_SENT:
+    resetPasswordError = '';
     errorStore.emit(CHANGE_EVENT);
     break;
 
