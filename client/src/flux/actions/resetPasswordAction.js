@@ -12,10 +12,10 @@ import { getAuth } from '../firebaseFunctions';
  * 
  * @returns {void}
  */
-export default function ResetPassword({ resetEmail }) {
+export default function ResetPassword({ email }) {
   const auth = getAuth();
 
-  return auth.sendPasswordResetEmail(resetEmail)
+  return auth.sendPasswordResetEmail(email)
     .then(() => {
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.RESET_MESSAGE_SENT
