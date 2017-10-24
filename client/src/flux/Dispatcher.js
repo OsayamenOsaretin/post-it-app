@@ -31,6 +31,5 @@ class DispatcherClass extends Dispatcher {
   }
 }
 
-const PostItDispatcher = new DispatcherClass();
-export default PostItDispatcher;
+export default new DispatcherClass();
 
