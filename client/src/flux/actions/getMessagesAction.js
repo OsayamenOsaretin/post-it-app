@@ -27,8 +27,6 @@ export default ({ groupId }) => {
 
       // get message Id from groups and iterate through messages node
       messagesReference.orderByKey().on('child_added', (snapshot) => {
-        const messageKeys = [];
-        messageKeys.push(snapshot.key);
         const messageReference = database.ref(`/messages/${snapshot.key}`);
         messageReference.orderByKey().on('value', (snap) => {
           // notification value will be set if notification should happen
