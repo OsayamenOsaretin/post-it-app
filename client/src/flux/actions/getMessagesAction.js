@@ -24,8 +24,6 @@ export default ({ groupId }) => {
 
       const messagesReference = database.ref(`/groups/${groupId}/messages`);
 
-      // notification value will be set if notification should happen
-      let notificationValue;
 
       // get message Id from groups and iterate through messages node
       messagesReference.orderByKey().on('child_added', (snapshot) => {
@@ -33,7 +31,8 @@ export default ({ groupId }) => {
         messageKeys.push(snapshot.key);
         const messageReference = database.ref(`/messages/${snapshot.key}`);
         messageReference.orderByKey().on('value', (snap) => {
-          notificationValue = false;
+          // notification value will be set if notification should happen
+          let notificationValue = false;
           const newMessage = snap.val();
           newMessages.set(snap.key, snap.val());
           if (newMessage.read) {
