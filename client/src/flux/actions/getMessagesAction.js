@@ -32,16 +32,10 @@ export default ({ groupId }) => {
           // notification value will be set if notification should happen
           let notificationValue = false;
           const newMessage = snap.val();
-          newMessages.set(snap.key, snap.val());
-          if (newMessage.read) {
-            if (!newMessage.read[username]) {
-              if (newMessage.sender !== username) {
-                notificationValue = true;
-              }
-            }
-          } else if (newMessage.sender !== username) {
-            notificationValue = true;
-          }
+          newMessages.set(snap.key, newMessage);
+          notificationValue = (newMessage.read &&
+            !newMessage.read[username] && newMessage.sender !== username) ||
+            (!newMessage.read && newMessage.sender !== username);
           PostItDispatcher.handleServerAction({
             type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
             Id: groupId,
