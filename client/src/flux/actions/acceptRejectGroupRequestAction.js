@@ -1,6 +1,6 @@
 import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
-import { getAuth, getDatabase } from '../firebaseFunctions';
+import { getAuth, getDatabase } from '../firebaseHelpers';
 
 export default ({ groupId, status }) => {
   const auth = getAuth();

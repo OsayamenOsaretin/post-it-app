@@ -1,6 +1,6 @@
 import PostItDispatcher from '../Dispatcher';
 import PostItActionTypes from '../ActionTypes';
-import { getAuth, getDatabase } from '../firebaseFunctions';
+import { getAuth, getDatabase } from '../firebaseHelpers';
 import receiveRequests from '../../flux/actions/receiveRequestAction';
 import bulkMessageRequest from '../../utility/bulkMessageRequest';
 

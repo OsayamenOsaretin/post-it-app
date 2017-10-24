@@ -1,6 +1,6 @@
 import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
-import { getDatabase, getAuth } from '../firebaseFunctions';
+import { getDatabase, getAuth } from '../firebaseHelpers';
 
 
 /**

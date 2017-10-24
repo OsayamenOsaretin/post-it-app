@@ -1,7 +1,7 @@
 import lodash from 'lodash';
 import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
-import { getAuth, getDatabase } from '../firebaseFunctions';
+import { getAuth, getDatabase } from '../firebaseHelpers';
 
 
 /**

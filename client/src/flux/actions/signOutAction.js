@@ -1,7 +1,7 @@
 // action to sign out user
 import PostItDispatcher from '../Dispatcher';
 import PostItActionTypes from '../ActionTypes';
-import { getAuth } from '../firebaseFunctions';
+import { getAuth } from '../firebaseHelpers';
 
 export default () => {
   const auth = getAuth();

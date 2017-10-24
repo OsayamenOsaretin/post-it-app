@@ -1,7 +1,7 @@
 import validator from 'validator';
 import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
-import { getAuth, getDatabase } from '../firebaseFunctions';
+import { getAuth, getDatabase } from '../firebaseHelpers';
 
 
 /**
