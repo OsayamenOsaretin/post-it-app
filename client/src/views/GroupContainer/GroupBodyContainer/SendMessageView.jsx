@@ -13,6 +13,33 @@ const defaultState = {
   priority: 'normal',
 };
 
+const getLevelAndPriority = (newState) => {
+  let messagePriority;
+  let level;
+
+  switch (newState) {
+  case 0: {
+    level = 'grey';
+    messagePriority = 'normal';
+    break;
+  }
+  case 1: {
+    level = 'orange';
+    messagePriority = 'urgent';
+    break;
+  }
+  case 2: {
+    level = 'red';
+    messagePriority = 'critical';
+    break;
+  }
+  default: {
+    level = 'grey';
+    messagePriority = 'normal';
+  }
+  }
+  return { level, messagePriority };
+};
 /**
  * Renders view for sending message to a group
  */
@@ -76,31 +103,8 @@ class SendMessageView extends Component {
     event.preventDefault();
     const priorityLevel = this.state.priorityLevel;
     const newState = (priorityLevel + 1) % 3;
-    let messagePriority;
 
-    let level;
-
-    switch (newState) {
-    case 0: {
-      level = 'grey';
-      messagePriority = 'normal';
-      break;
-    }
-    case 1: {
-      level = 'orange';
-      messagePriority = 'urgent';
-      break;
-    }
-    case 2: {
-      level = 'red';
-      messagePriority = 'critical';
-      break;
-    }
-    default: {
-      level = 'grey';
-      messagePriority = 'normal';
-    }
-    }
+    const { level, messagePriority } = getLevelAndPriority(newState);
 
     this.setState({
       priorityLevel: newState,
