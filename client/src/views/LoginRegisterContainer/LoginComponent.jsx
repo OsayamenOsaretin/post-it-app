@@ -36,10 +36,9 @@ export default class LoginForm extends Component {
    * @param {Object} event
    */
   handleChange(event) {
-    const value = event.target.value;
-
+    const { name, value } = event.target;
     this.setState({
-      [event.target.name]: value
+      [name]: value
     });
   }
 
