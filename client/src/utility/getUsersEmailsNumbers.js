@@ -33,8 +33,11 @@ export default (firebase, groupId, priorityLevel, callback) => {
     });
     const promises = getEmailNumbers(userIds, db);
     return Promise.all(promises)
-      .then(({ emails, numbers }) => {
-        callback(emails, numbers, priorityLevel);
+      .then((result) => {
+        const { emails, numbers } = result[0];
+        if (priorityLevel !== 'normal') {
+          callback(emails, numbers, priorityLevel);
+        }
       });
   });
 };
