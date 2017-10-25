@@ -21,12 +21,11 @@ export default function GoogleSignInAction() {
         username: user.displayName,
         email: user.email
       })
-        .catch(() => {
+        .catch(() => (
           PostItDispatcher.handleServerAction({
             type: PostItActionTypes.FAILED_GOOGLE_LOGIN
-          });
-          return false;
-        });
+          })
+        ));
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.LOGIN_USER,
         user
