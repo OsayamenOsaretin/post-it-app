@@ -6,6 +6,13 @@ import SendMessageAction from '../../../flux/actions/sendMessageAction';
 
 /* global localStorage */
 
+const defaultState = {
+  message: '',
+  priorityLevel: 0,
+  stringLevel: 'grey',
+  priority: 'normal',
+};
+
 /**
  * Renders view for sending message to a group
  */
@@ -17,12 +24,7 @@ class SendMessageView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      message: '',
-      priorityLevel: 0,
-      stringLevel: 'grey',
-      priority: 'normal',
-    };
+    this.state = defaultState;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -62,12 +64,7 @@ class SendMessageView extends Component {
       priorityLevel: this.state.priority
     };
     SendMessageAction(messageDetails);
-    this.setState({
-      message: '',
-      priorityLevel: 0,
-      stringLevel: 'grey',
-      priority: 'normal'
-    });
+    this.setState(defaultState);
   }
 
   /**
