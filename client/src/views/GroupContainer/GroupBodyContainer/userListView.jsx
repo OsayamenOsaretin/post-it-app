@@ -36,10 +36,7 @@ function UserList(props) {
    */
   const showRequestMessageOrName = (key) => {
     const statusMap = props.userStatus;
-    if (statusMap.get(key)) {
-      return false;
-    }
-    return true;
+    return !statusMap.get(key);
   };
 
   return (
