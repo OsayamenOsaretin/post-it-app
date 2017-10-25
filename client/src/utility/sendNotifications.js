@@ -4,10 +4,7 @@ import Dispatcher from '../flux/Dispatcher';
 export default (emails, numbers, priorityLevel) => {
   request
     .post('/notifications')
-    .send({
-      emailList: emails,
-      phoneNumbers: numbers,
-      priority: priorityLevel
+    .send({ emails, numbers, priorityLevel
     })
     .end((error) => {
       if (error) {
