@@ -33,16 +33,19 @@ PostIt also allows you see who has read your message and archives messages you h
 ## Testing
   Testing can be done by cloning this [repo](https://www.google.com.ng/url?sa=t&rct=j&q=&esrc=s&source=web&cd=13&cad=rja&uact=8&ved=0ahUKEwjF5-G0x-3WAhVFCsAKHcuMC5kQFghcMAw&url=https%3A%2F%2Fwww.atlassian.com%2Fgit%2Ftutorials%2Fsetting-up-a-repository%2Fgit-clone&usg=AOvVaw2J2FfedigWA32-5jmLH7kR) 
 
-    ``` npm run dev-test ```
+        npm run dev-test
  #### for devs:
  - [Git]((https://git-for-windows.github.io/))
  - [node.js]((https://nodejs.org/en/download/))
-     ``` npm install ``` will install all dependencies
+                
+                npm install  
+                
+     will install all dependencies
      
      ### Testing
   Testing can be done by cloning this [repo](https://www.google.com.ng/url?sa=t&rct=j&q=&esrc=s&source=web&cd=13&cad=rja&uact=8&ved=0ahUKEwjF5-G0x-3WAhVFCsAKHcuMC5kQFghcMAw&url=https%3A%2F%2Fwww.atlassian.com%2Fgit%2Ftutorials%2Fsetting-up-a-repository%2Fgit-clone&usg=AOvVaw2J2FfedigWA32-5jmLH7kR) 
 
-    ``` npm run dev-test ```
+       npm run dev-test 
 
 
 ## Built With
