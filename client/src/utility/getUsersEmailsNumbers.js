@@ -1,6 +1,8 @@
 // get emails for users in a group
 
-const getEmailNumbers = (userIds, db, emails, numbers) => {
+const getEmailNumbers = (userIds, db) => {
+  const emails = [];
+  const numbers = [];
   return userIds.map(userId => (
     new Promise((resolve) => {
       // get user emails
@@ -12,7 +14,7 @@ const getEmailNumbers = (userIds, db, emails, numbers) => {
         const userNumberRef = db.ref(`users/${userId}/number`);
         userNumberRef.once('value', (userNumber) => {
           numbers.push(userNumber.val());
-          resolve();
+          resolve({ emails, numbers });
         });
       });
     })
@@ -22,8 +24,6 @@ const getEmailNumbers = (userIds, db, emails, numbers) => {
 export default (firebase, groupId, priorityLevel, callback) => {
   const db = firebase.database();
   const userIds = [];
-  const emails = [];
-  const numbers = [];
 
   const groupReference = db.ref(`groups/${groupId}/users`);
   return groupReference.once('value', (snapshot) => {
@@ -31,9 +31,9 @@ export default (firebase, groupId, priorityLevel, callback) => {
     snapshot.forEach((userSnapshot) => {
       userIds.push(userSnapshot.key);
     });
-    const promises = getEmailNumbers(userIds, db, emails, numbers);
+    const promises = getEmailNumbers(userIds, db);
     return Promise.all(promises)
-      .then(() => {
+      .then(({ emails, numbers }) => {
         callback(emails, numbers, priorityLevel);
       });
   });
