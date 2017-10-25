@@ -70,7 +70,8 @@ PostIt also allows you see who has read your message and archives messages you h
 
 * **Osayamen** - *Initial work* [OsayamenOsaretin](github.com/OsayamenOsaretin)
 
-
+## License
+This project is licensed under the MIT license.
 
 ## Acknowledgments
 * Andela Bootcamp Facilitators and BFAs
