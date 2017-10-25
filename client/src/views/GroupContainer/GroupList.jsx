@@ -72,17 +72,15 @@ class GroupList extends Component {
     const status = MessageStore.getGroupNotificationDetails()
       .status.get(newGroupWithNotification);
 
-    if (status) {
-      if (newGroupWithNotification !== '') {
-        groupSeq = groupSeq.sort((number1, number2) => {
-          if (number1 === newGroupWithNotification) {
-            return -1;
-          } else if (number2 === newGroupWithNotification) {
-            return 1;
-          }
-          return 0;
-        });
-      }
+    if (status && newGroupWithNotification) {
+      groupSeq = groupSeq.sort((number1, number2) => {
+        if (number1 === newGroupWithNotification) {
+          return -1;
+        } else if (number2 === newGroupWithNotification) {
+          return 1;
+        }
+        return 0;
+      });
     }
     return groupSeq;
   }
