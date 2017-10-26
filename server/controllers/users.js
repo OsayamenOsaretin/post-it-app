@@ -5,10 +5,6 @@ import userSignOut from '../controllerFunctions/signOut';
 import googleSignIn from '../controllerFunctions/googleSignIn';
 
 const users = {
-  // signIn: userSignIn,
-  // signUp: userSignUp,
-  // signOut: userSignOut,
-  // resetPassword: userResetPassword,
   userSignIn,
   userSignUp,
   userSignOut,
