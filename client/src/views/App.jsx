@@ -8,6 +8,7 @@ import ResetPasswordComponent from
   './LoginRegisterContainer/ResetPasswordView.jsx';
 import UserStore from '../flux/stores/UserStore';
 import { firebaseInit } from '../flux/firebaseHelpers';
+import signOutAction from '../flux/actions/signOutAction';
 
 /**
  * App view that holds the entire container view for the app
@@ -23,7 +24,7 @@ export default class App extends Component {
     super();
     firebaseInit();
     this.state = {
-      token: UserStore.getSignedInState(),
+      token: this.authenticateUser(),
       passwordReset: true,
       messageSent: false,
       redirect: false
@@ -32,6 +33,7 @@ export default class App extends Component {
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
+    this.authenticateUser = this.authenticateUser.bind(this);
   }
 
   /**
@@ -40,6 +42,7 @@ export default class App extends Component {
    * @return {void}
    */
   componentDidMount() {
+    this.authenticateUser();
     UserStore.addChangeListener(this.onChange);
   }
 
@@ -63,7 +66,7 @@ export default class App extends Component {
       redirectStatus = true;
     }
     this.setState({
-      token: UserStore.getSignedInState(),
+      token: this.authenticateUser(),
       messageSent: UserStore.getPasswordResetMessageState(),
       redirect: redirectStatus
     });
@@ -94,6 +97,18 @@ export default class App extends Component {
     this.setState({
       passwordReset: true
     });
+  }
+  /**
+ * @returns {void}
+ * @memberof App
+ */
+  authenticateUser() {
+    const tokenState = UserStore.getSignedInState();
+    if (tokenState === 'expired') {
+      signOutAction();
+      return undefined;
+    }
+    return tokenState;
   }
 
   /**

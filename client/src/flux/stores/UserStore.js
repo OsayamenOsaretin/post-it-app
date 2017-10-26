@@ -7,6 +7,12 @@ const CHANGE_EVENT = 'change';
 
 let passwordResetMessageState = false;
 
+const checkDateDiff = (firstDate, secondDate) => {
+  const timeDiff = Math.abs(secondDate.getTime() - firstDate.getTime());
+  const diffInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  return diffInDays;
+};
+
 /**
  * UserStore manages state for the signed in user
  */
@@ -42,7 +48,16 @@ class UserStore extends EventEmitter {
    * @memberof UserStore
    */
   getSignedInState() {
-    return localStorage.getItem('token');
+    const signinDate = new Date(localStorage.getItem('login_date'));
+    const token = localStorage.getItem('token');
+    const now = new Date();
+    if (signinDate && token) {
+      return checkDateDiff(signinDate, now) <= 3 ?
+        token : 'expired';
+    }
+    if (!signinDate) {
+      return 'expired';
+    }
   }
 
   /**
@@ -69,14 +84,11 @@ Dispatcher.register((payload) => {
       const user = action.user;
       const displayName = user.displayName;
       const userId = user.uid;
-      let token;
-      user.getIdToken()
-        .then((accessToken) => {
-          token = accessToken;
-        });
-      localStorage.setItem('token', token);
+      const date = new Date();
+      localStorage.setItem('token', displayName);
       localStorage.setItem('username', displayName);
       localStorage.setItem('userId', userId);
+      localStorage.setItem('login_date', date);
       userStore.emit(CHANGE_EVENT);
     }
     break;
@@ -90,6 +102,8 @@ Dispatcher.register((payload) => {
   case ActionTypes.SIGN_OUT:
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('login_date');
+    localStorage.removeItem('userId');
     userStore.emit(CHANGE_EVENT);
     break;
 
