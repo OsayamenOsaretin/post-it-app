@@ -2,12 +2,23 @@
 import express from 'express';
 import path from 'path';
 import webpack from 'webpack';
+import firebase from 'firebase';
 import webpackMiddleWare from 'webpack-dev-middleware';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
 import routes from './index';
 
 require('dotenv').config();
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyAOCl6QRw5NYGGENE8URKteNO1rV7f1yo8',
+  authDomain: 'post-it-69a9a.firebaseapp.com',
+  databaseURL: 'https://post-it-69a9a.firebaseio.com',
+  projectId: 'post-it-69a9a',
+  storageBucket: 'post-it-69a9a.appspot.com',
+  messagingSenderId: '383450311400',
+};
+firebase.initializeApp(firebaseConfig);
 
 const app = express();
 
