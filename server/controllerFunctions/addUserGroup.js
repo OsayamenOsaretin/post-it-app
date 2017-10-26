@@ -16,19 +16,11 @@ export default function addUserGroup(req, res) {
   const db = firebase.database();
 
   // check if this is a signed in user
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // add group to user's list of groups
-      db.ref(`/users/${newUserId}/requests`).child(groupId).set(true);
+  // add group to user's list of groups
+  db.ref(`/users/${newUserId}/requests`).child(groupId).set(true);
 
-      res.send({
-        message: 'User sent request',
-      });
-    } else {
-      res.send({
-        message: 'You are not signed in right now!'
-      });
-    }
+  res.send({
+    message: 'User sent request',
   });
 }
 

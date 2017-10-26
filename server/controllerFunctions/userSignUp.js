@@ -1,6 +1,9 @@
 // routes to user sign-up
 import firebase from 'firebase';
+import jwt from 'jsonwebtoken';
 import validateEmail from '../utilities/validate_email';
+
+require('dotenv').config();
 
 /**
  * sign up controller function
@@ -30,17 +33,23 @@ export default function userSignUp(req, res) {
         });
 
         // save the user details to the database
-        db.ref(s).set({
+        db.ref(`users/${user.uid}`).set({
           username: userName,
-          email: user.email,
-          number: phoneNumber
+          email,
+          number: phoneNumber || ''
         });
+
+        const { uid } = user;
+        const token = jwt.sign({
+          userName, email, uid
+        }, process.env.SECRET);
+
 
         // send verification email to user
         user.sendEmailVerification().then(() => {
           res.send({
             message: 'Welcome to the Post It, An email has been sent to you',
-            userData: user
+            token
           });
         });
       }).catch((error) => {

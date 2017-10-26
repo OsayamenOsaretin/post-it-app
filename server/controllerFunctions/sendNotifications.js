@@ -7,10 +7,8 @@ import notify from '../utilities/send_notifications';
  * @return {void}
  */
 export default function sendNotifications(req, res) {
-  const emails = req.body.emailList;
-  const phones = req.body.phoneNumbers;
-  const priority = req.body.priority;
+  const { emailList, phoneNumbers, priority } = req.body;
 
-  notify(emails, phones, priority);
+  notify(emailList, phoneNumbers, priority);
   res.status(200).send('notifications sent!');
 }

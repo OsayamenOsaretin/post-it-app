@@ -1,5 +1,8 @@
 // route to sign in user using google sign in
 import firebase from 'firebase';
+import jwt from 'jsonwebtoken';
+
+require('dotenv').config();
 
 /**
  * controller function for google sign in
@@ -25,10 +28,12 @@ export default function googleSignIn(req, res) {
             message: error.message
           });
         });
+      const token = jwt.sign(user, process.env.SECRET);
 
       res.send({
         userObject: user,
-        message: 'user signed in'
+        message: 'user signed in',
+        token
       });
     })
     .catch((error) => {
