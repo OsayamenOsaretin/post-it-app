@@ -42,7 +42,7 @@ describe('PostItUserStore', () => {
 
   it('should store display name and token in local storage on login', () => {
     callback(loginUser);
-    expect(localStorage.setItem.mock.calls.length).toBe(3);
+    expect(localStorage.setItem.mock.calls.length).toBe(4);
   });
 
   it('should get token item from local storage when get signed in state called',
