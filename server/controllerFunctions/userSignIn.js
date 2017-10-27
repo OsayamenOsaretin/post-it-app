@@ -22,16 +22,21 @@ export default function userSignIn(req, res) {
 
     firebase.auth()
       .signInWithEmailAndPassword(email, password).then((user) => {
-        const { displayName, email: userEmail, uid } = user;
+        const { displayName, uid } = user;
         const token = jwt.sign(
           {
-            displayName, userEmail, uid
+            displayName, email, uid
           },
           process.env.SECRET
         );
         res.status(200).send({
           message: 'Welcome User, or Ranger.',
-          token
+          token,
+          userData: {
+            email,
+            displayName,
+            uid
+          }
         });
       }).catch(() => {
         res.status(401).send({
