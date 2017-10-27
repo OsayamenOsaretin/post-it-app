@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 import GroupListView from './GroupListView.jsx';
-import { getGroups } from '../../flux/actions/groupActions';
+import {
+  getGroups, recieveGroups,
+  receiveRequests
+} from '../../flux/actions/groupActions';
+import bulkMessageRequest from '../../utility/bulkMessageRequest';
 import GroupStore from '../../flux/stores/GroupStore';
 import HeaderView from '../Header.jsx';
+
+/* global localStorage */
+
+const socket = io('http://localhost:6969');
 
 /**
  * Dashboard Component
@@ -28,8 +37,16 @@ class Dashboard extends Component {
    * @return {void}
    */
   componentDidMount() {
-    // initial action to get groups
     getGroups();
+    const userId = localStorage.getItem('userId');
+    socket.on(`newGroup${userId}`, (groups) => {
+      recieveGroups(groups);
+      bulkMessageRequest(groups);
+    });
+
+    socket.on(`newRequests${userId}`, (requests) => {
+      receiveRequests(requests);
+    });
     GroupStore.addChangeListener(this.onChange);
   }
 
@@ -65,7 +82,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <HeaderView />
-        <GroupListView groups={this.state.groups} />
+        <GroupListView groups={this.state.groups} socket={socket}/>
       </div>
     );
   }

@@ -7,7 +7,6 @@ import Dashboard from './GroupContainer/Dashboard.jsx';
 import ResetPasswordComponent from
   './LoginRegisterContainer/ResetPasswordView.jsx';
 import UserStore from '../flux/stores/UserStore';
-import { firebaseInit } from '../flux/firebaseFunctions';
 
 /**
  * App view that holds the entire container view for the app
@@ -19,7 +18,6 @@ export default class App extends Component {
    */
   constructor() {
     super();
-    firebaseInit();
     this.state = {
       token: UserStore.getSignedInState(),
       passwordReset: true,

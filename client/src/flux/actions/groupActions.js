@@ -34,8 +34,10 @@ export function addGroup(name) {
  */
 export function getGroups() {
   const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
   request
     .get(`/groups/${userId}`)
+    .set('authorization', token)
     .end((error) => {
       if (error) {
         // dispatch to handle the view case of failed group collection
@@ -57,8 +59,10 @@ export function getGroups() {
  * @return {void}
  */
 export function addGroupApi(groupName) {
+  const token = localStorage.getItem('token');
   request
     .post('/group')
+    .set('authorization', token)
     .send(groupName)
     .end((error, result) => {
       if (error) {

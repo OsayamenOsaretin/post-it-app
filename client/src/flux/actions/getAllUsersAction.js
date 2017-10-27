@@ -2,6 +2,7 @@ import request from 'superagent';
 import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
 
+/* global localStorage */
 
 /**
  * getAllUsersAction - get all the PostIt registered users
@@ -9,8 +10,10 @@ import PostItDispatcher from '../Dispatcher';
  * @param {*} groupId
  */
 export default (groupId) => {
+  const token = localStorage.getItem('token');
   request
     .post('/users')
+    .set('authorization', token)
     .send(groupId)
     .end((error) => {
       if (error) {

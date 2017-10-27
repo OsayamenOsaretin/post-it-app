@@ -2,9 +2,13 @@ import request from 'superagent';
 import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
 
+/* global localStorage */
+
 export default (groupInviteDetails) => {
+  const token = localStorage.getItem('token');
   request
     .post('/requests')
+    .set('authorization', token)
     .send(groupInviteDetails)
     .then((error) => {
       if (error) {

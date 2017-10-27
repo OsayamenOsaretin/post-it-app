@@ -3,10 +3,12 @@ import express from 'express';
 import path from 'path';
 import webpack from 'webpack';
 import firebase from 'firebase';
+import socketio from 'socket.io';
 import webpackMiddleWare from 'webpack-dev-middleware';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
 import routes from './index';
+import socketConfig from './utilities/socketConfig';
 
 require('dotenv').config();
 
@@ -24,6 +26,19 @@ const app = express();
 
 // configure port
 const port = process.env.PORT || 6969;
+
+const server = app.listen(port);
+
+const io = socketio(server);
+
+io.on('connection', (socket) => {
+  console.log('Connected');
+  socket.on('disconnect', () => {
+    console.log('Disconnected');
+  });
+});
+
+socketConfig.socketInstance(io);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -50,4 +65,3 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-app.listen(port);
