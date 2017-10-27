@@ -62,14 +62,9 @@ Dispatcher.register((payload) => {
   switch (action.type) {
   case ActionTypes.LOGIN_USER:
     if (source === 'SERVER_ACTION') {
-      const user = action.user;
+      const { user, token } = action;
       const displayName = user.displayName;
       const userId = user.uid;
-      let token;
-      user.getIdToken()
-        .then((accessToken) => {
-          token = accessToken;
-        });
       localStorage.setItem('token', token);
       localStorage.setItem('username', displayName);
       localStorage.setItem('userId', userId);

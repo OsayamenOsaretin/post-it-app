@@ -21,10 +21,11 @@ export default function SignInAction(userDetails) {
           errorMessage: result.body.message
         });
       } else {
-        const userData = result.body.userData;
+        const { token, userData } = result.body;
         PostItDispatcher.handleServerAction({
           type: PostItActionTypes.LOGIN_USER,
-          user: userData
+          user: userData,
+          token
         });
       }
     });
