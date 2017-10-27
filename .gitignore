@@ -4,3 +4,4 @@
 /server/routes/npm-debug.log
 /dist
 .env
+/coverage

@@ -1,19 +1,18 @@
+import request from 'superagent';
 import PostItDispatcher from '../Dispatcher';
 import PostItActionTypes from '../ActionTypes';
-import { getAuth, getDatabase } from '../firebaseFunctions';
-import bulkMessageRequest from '../../utility/bulkMessageRequest';
-import receiveRequests from '../../flux/actions/receiveRequestAction';
 
+/* global localStorage */
 
 /**
  * recieveGroups dispatches to update registered stores with groups from API
  * @return {void}
- * @param {res} response
+ * @param {res} res
  */
-export function recieveGroups(response) {
+export function recieveGroups(res) {
   PostItDispatcher.handleServerAction({
     type: PostItActionTypes.RECIEVE_GROUP_RESPONSE,
-    userGroups: response
+    userGroups: res
   });
 }
 /**
@@ -29,130 +28,47 @@ export function addGroup(name) {
 }
 
 /**
- * getGroups makes an api call for user's groups and dispatches(res)
- * to registered listeners
+ * getGroups makes an api call for user's groups 
+ * and dispatches(res) to registered listeners
  * @return {void}
  */
 export function getGroups() {
-  const auth = getAuth();
-  const database = getDatabase();
-
-  // instantiate empty Map to hold groups
-  const groups = new Map();
-
-  // instantiate empty Map to hold requests
-  const requests = new Map();
-
-  let requestKeys = [];
-  let groupKeys = [];
-
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      const userId = user.uid;
-      // get user's groups
-      const groupsReference = database.ref(`/users/${userId}/groups/`);
-
-      groupsReference.orderByKey().on('value', (snapshot) => {
-        // clear groups map and keys to remove leaks between users
-        groups.clear();
-        groupKeys = [];
-        // get the keys for each user's group
-        snapshot.forEach((groupSnapshot) => {
-          groupKeys.push(groupSnapshot.key);
+  const userId = localStorage.getItem('userId');
+  request
+    .get(`/groups/${userId}`)
+    .end((error) => {
+      if (error) {
+        // dispatch to handle the view case of failed group collection
+        PostItDispatcher.handleViewAction({
+          type: PostItActionTypes.FAILED_GROUPS,
+          error: error.message
         });
-
-        // map to promises to asynchronously collect group info
-        const promises = groupKeys.map(groupKey => (
-          new Promise((resolve) => {
-            const groupReference = database.ref(`/groups/${groupKey}`);
-            groupReference.on('value', (snap) => {
-              // add group info to list of groups
-              groups.set(groupKey, snap.val());
-              resolve();
-            });
-          })
-        ));
-        // collect resolved promises
-        Promise.all(promises)
-          .then(() => {
-            recieveGroups(groups);
-            bulkMessageRequest(groups);
-          })
-          .catch(() => {
-          });
-      });
-
-      const requestReference = database.ref(`/users/${userId}/requests`);
-
-      requestReference.orderByKey().on('value', (snapshot) => {
-        // clear groups map and keys to remove leaks between users
-        requests.clear();
-        requestKeys = [];
-        // get the keys for each user's group
-        snapshot.forEach((requestSnapshot) => {
-          requestKeys.push(requestSnapshot.key);
+      } else {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.GETTING_GROUPS
         });
-
-        // map to promises to asynchronously collect group request info
-        const promises = requestKeys.map(requestKey => (
-          new Promise((resolve) => {
-            const groupReference = database.ref(`/groups/${requestKey}`);
-            groupReference.on('value', (snap) => {
-              // add group info to list of groups
-              requests.set(requestKey, snap.val());
-              resolve();
-            });
-          })
-        ));
-        // collect resolved promises
-        Promise.all(promises)
-          .then(() => {
-            receiveRequests(requests);
-          })
-          .catch(() => {
-          });
-      });
-    }
-  });
+      }
+    });
 }
 
 /**
  * addGroupApi makes an api call to add a group to user's group.
- * @param {*} theGroupName
+ * @param {*} groupName
  * @return {void}
  */
-export function addGroupApi({ groupName }) {
-  const auth = getAuth();
-  const database = getDatabase();
-
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      const newUserId = user.uid;
-
-      const newGroupKey = database.ref('groups').push({
-        groupname: groupName,
-        creator: newUserId,
-      }).key;
-
-      database.ref(`groups/${newGroupKey}/users/${newUserId}`).set({
-        Id: newUserId,
-      });
-
-      // add group key to list of a user's group
-      database.ref(`/users/${newUserId}/groups/`).child(newGroupKey).set(
-        { id: newGroupKey }
-      );
-
-      // return the new group to the client to update UI
-      const newGroup = new Map();
-      newGroup.set(newGroupKey, {
-        groupname: groupName,
-        creator: newUserId
-      });
-    } else {
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_ADD_GROUP
-      });
-    }
-  });
+export function addGroupApi(groupName) {
+  request
+    .post('/group')
+    .send(groupName)
+    .end((error, result) => {
+      if (error) {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_ADD_GROUP
+        });
+      } else {
+        // make api call to get all the new groups
+        const newGroup = result.body.group;
+        recieveGroups(newGroup);
+      }
+    });
 }

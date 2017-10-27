@@ -1,6 +1,6 @@
+import request from 'superagent';
 import PostItDispatcher from '../Dispatcher';
 import PostItActionTypes from '../ActionTypes';
-import { getAuth } from '../firebaseFunctions';
 
 
 /**
@@ -10,18 +10,19 @@ import { getAuth } from '../firebaseFunctions';
  * @returns {void}
  * @param {*} email
  */
-export default function ResetPassword({ resetEmail }) {
-  const auth = getAuth();
-
-  auth.sendPasswordResetEmail(resetEmail)
-    .then(() => {
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.RESET_MESSAGE_SENT
-      });
-    })
-    .catch(() => {
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_RESET_PASSWORD
-      });
+export default function ResetPassword(email) {
+  request
+    .post('user/reset-password')
+    .send(email)
+    .end((error) => {
+      if (error) {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.FAILED_RESET_PASSWORD
+        });
+      } else {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.RESET_MESSAGE_SENT
+        });
+      }
     });
 }
