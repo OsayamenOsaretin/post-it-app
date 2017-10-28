@@ -15,7 +15,7 @@ function GroupListView(props) {
     <BrowserRouter >
       <div className="main-view">
         <div className="group-list-nav">
-          <GroupList groups={props.groups} />
+          <GroupList groups={props.groups} loading={props.loading}/>
         </div>
         <div className="group-details">
           <Switch>

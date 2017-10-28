@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import FaBell from 'react-icons/lib/fa/bell';
 import FaGroup from 'react-icons/lib/fa/group';
+import FaRefresh from 'react-icons/lib/fa/refresh';
 import AddGroupView from './AddGroup.jsx';
 import RequestListView from './RequestList.jsx';
 import MessageStore from '../../flux/stores/MessageStore';
@@ -53,12 +54,9 @@ class GroupList extends Component {
     const notificationDetails = MessageStore.getGroupNotificationDetails();
     const groupId = notificationDetails.Id;
     const status = notificationDetails.status.get(groupId);
-
-    if (status) {
-      this.setState({
-        groupWithNotificationChange: groupId
-      });
-    }
+    this.setState({
+      groupWithNotificationChange: status ? groupId : ''
+    });
   }
 
   /**
@@ -96,6 +94,12 @@ class GroupList extends Component {
           <AddGroupView />
         </div>
         <div className="group-list-body">
+          {this.props.loading &&
+          <div className="loading-groups">
+            <FaRefresh
+              className="fa fa-spinner fa-spin"
+            />
+          </div>}
           <RequestListView />
           <ul className="group-list">
             {this.sortGroups(this.props.groups.keySeq().toArray())

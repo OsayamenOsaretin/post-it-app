@@ -18,7 +18,8 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      groups: GroupStore.getGroups()
+      groups: GroupStore.getGroups(),
+      loading: true
     };
 
     this.onChange = this.onChange.bind(this);
@@ -53,7 +54,8 @@ class Dashboard extends Component {
     const newGroups = GroupStore.getGroups();
     if (this.state.groups.size !== newGroups.size) {
       this.setState({
-        groups: GroupStore.getGroups()
+        groups: GroupStore.getGroups(),
+        loading: false
       });
     }
   }
@@ -67,7 +69,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <HeaderView />
-        <GroupListView groups={this.state.groups} />
+        <GroupListView groups={this.state.groups} loading={this.state.loading}/>
       </div>
     );
   }
