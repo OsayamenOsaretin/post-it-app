@@ -8,8 +8,8 @@
     "start": "npm run build && babel-node server/server.js",
     "start-dev": "npm run build:dev && babel-node server/server.js",
     "dev-test": "jest",
-    "build:dev": "webpack --config=webpack.config.js",
-    "build": "webpack",
+    "build:dev": "webpack --config ./webpack.config.js",
+    "build": "webpack -p --config ./webpack.config.prod.js",
     "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test": "jest --coverage && npm run coverage"
   },
