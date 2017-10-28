@@ -23,7 +23,19 @@ PostIt also allows you see who has read your message and archives messages you h
    - [development](https://postit-app-develop.herokuapp.com/) 
    - [Production](https://postit-app-prod.herokuapp.com/)
         
+To run the app on your machine:
+- Clone this repo to your local machine by running:
+           
+      git clone https://github.com/OsayamenOsaretin/post-it-app.git
+- navigate to the cloned repo
 
+      cd post-it-app
+
+- start the app by running:
+
+      npm run start-dev
+  
+- open your browser, the app will be running at `http://localhost:6969/`
 
 ## Prerequisites
  This are what you need installed on your computer to use the application:
