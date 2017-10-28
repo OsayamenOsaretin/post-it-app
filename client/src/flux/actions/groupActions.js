@@ -19,8 +19,9 @@ export function recieveGroups(response) {
 }
 /**
  * add Group dispatches to add group to the user's list of groups
- * @return {void}
  * @param {String} name
+ * 
+ * @return {void}
  */
 export function addGroup(name) {
   PostItDispatcher.handleServerAction({
@@ -91,6 +92,7 @@ export function getGroups() {
 /**
  * addGroupApi makes an api call to add a group to user's group.
  * @param {Object} theGroupName
+ * 
  * @return {void}
  */
 export function addGroupApi({ groupName }) {
@@ -115,7 +117,8 @@ export function addGroupApi({ groupName }) {
         { id: newGroupKey }
       );
       PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.ADD_GROUP
+        type: PostItActionTypes.ADD_GROUP,
+        groupName
       });
     } else {
       PostItDispatcher.handleServerAction({
