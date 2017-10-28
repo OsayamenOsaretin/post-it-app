@@ -38,12 +38,19 @@ export default class GoogleLogin extends Component {
   render() {
     return (
       <div className="google-signin">
-        <button
-          className = 'button'
-          onClick = {this.handleSubmit}
-          type = 'submit'>
-          <GoogleFa />
-        </button>
+        <div className="google-text">
+          <span>
+            Sign in with
+          </span>
+        </div>
+        <div className="google-signin-button">
+          <button
+            className = 'button'
+            onClick = {this.handleSubmit}
+            type = 'submit'>
+            <GoogleFa />
+          </button>
+        </div>
       </div>
     );
   }

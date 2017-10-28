@@ -507,9 +507,9 @@ input {
 }
 
 .google-signin {
-  width: 20%;
-  margin-top: 0;
-  margin-left: 200px;
+  width: 30%;
+  margin-top: 35px;
+  margin-left: 180px;
   button:enabled {
     background-color: #dc4937;
     color: white;
@@ -518,6 +518,17 @@ input {
   label {
     color: white;
   }
+}
+
+.google-text {
+  float: left;
+  color: white;
+  margin-top: 15px;
+}
+
+.google-signin-button {
+  float: right;
+  width: 100px;
 }
 
 .or-text {
