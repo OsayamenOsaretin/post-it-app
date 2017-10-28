@@ -3,6 +3,21 @@ import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
 import { getAuth, getDatabase } from '../firebaseHelpers';
 
+/**
+ * helper function to promisify error handling
+ * @param {String} errorMessage 
+ * 
+ * @return {Promise} resolved Promise 
+ */
+const handleError = errorMessage => (
+  Promise.resolve()
+    .then(() => {
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.REGISTER_ERROR,
+        errorMessage
+      });
+    })
+);
 
 /**
  *registerUserAction - registers a new user and dispatches to Log in user
@@ -16,6 +31,7 @@ import { getAuth, getDatabase } from '../firebaseHelpers';
 export default ({ email, password, userName, phone }) => {
   const database = getDatabase();
   const auth = getAuth();
+  let errorMessage;
 
   if (validator.isEmail(email)) {
     if (validator.isLength(password, { max: 100, min: 6 })) {
@@ -39,22 +55,16 @@ export default ({ email, password, userName, phone }) => {
             });
           });
       }
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.REGISTER_ERROR,
-        errorMessage: 'Invalid Username, please enter a username'
-      });
+      errorMessage = 'Invalid Username, please enter a username';
+      handleError(errorMessage);
     } else {
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.REGISTER_ERROR,
-        errorMessage:
-          'Invalid password, please a password greater than 6 characters'
-      });
+      errorMessage =
+        'Invalid password, please a password greater than 6 characters';
+      handleError(errorMessage);
     }
   } else {
-    PostItDispatcher.handleServerAction({
-      type: PostItActionTypes.REGISTER_ERROR,
-      errorMessage: 'Invalid email, please enter your actual email'
-    });
+    errorMessage = 'Invalid email, please enter your actual email';
+    handleError(errorMessage);
   }
 };
 

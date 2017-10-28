@@ -33,9 +33,10 @@ export default function SignInAction({ email, password }) {
         });
       });
   }
-  PostItDispatcher.handleServerAction({
-    type: PostItActionTypes.LOGIN_ERROR,
-    errorMessage: 'Invalid email address'
-  });
+  Promise.resolve()
+    .then(() => PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.LOGIN_ERROR,
+      errorMessage: 'Invalid email address'
+    }));
 }
 
