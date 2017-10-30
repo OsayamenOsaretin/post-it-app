@@ -1,5 +1,5 @@
-import notificationController from './controllerFunctions/sendNotifications';
+import notifications from './notifications';
 
 export default (app) => {
-  app.post('/notifications', notificationController);
+  app.post('/notifications', notifications);
 };

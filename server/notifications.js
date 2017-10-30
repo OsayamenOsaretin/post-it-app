@@ -1,4 +1,4 @@
-import notify from '../utilities/sendNotifications';
+import notify from './utilities/notificationHelper';
 
 /**
  * @export
