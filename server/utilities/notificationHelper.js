@@ -19,8 +19,14 @@ const emailOptions = {
   text: 'You have an important message on Post-It, check it out',
   from: 'postitbyyamen@gmail.com'
 };
-// send notification based on priority level
 
+/**
+ * @param {Array} emails
+ * @param {Array} numbers
+ * @param {String} priorityLevel
+ * 
+ * @return {void}
+ */
 export default (emails, numbers, priorityLevel) => {
   switch (priorityLevel) {
   case 'urgent': {
