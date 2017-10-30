@@ -33,38 +33,43 @@ export default ({ email, password, userName, phone }) => {
   const auth = getAuth();
   let errorMessage;
 
-  if (validator.isEmail(email)) {
-    if (validator.isLength(password, { max: 100, min: 6 })) {
-      if (userName) {
-        return auth.createUserWithEmailAndPassword(email, password)
-          .then((user) => {
-            user.updateProfile({
-              displayName: userName
-            });
-
-            database.ref(`users/${user.uid}`).set({
-              username: userName,
-              email: user.email,
-              number: phone });
-
-            user.sendEmailVerification().then(() => {
-              PostItDispatcher.handleServerAction({
-                type: PostItActionTypes.LOGIN_USER,
-                user
-              });
-            });
-          });
-      }
-      errorMessage = 'Invalid Username, please enter a username';
-      handleError(errorMessage);
-    } else {
-      errorMessage =
-        'Invalid password, please a password greater than 6 characters';
-      handleError(errorMessage);
-    }
-  } else {
-    errorMessage = 'Invalid email, please enter your actual email';
-    handleError(errorMessage);
+  if (!validator.isAlphanumeric(userName)) {
+    errorMessage = 'Invalid Username, please enter a valid username';
+    return handleError(errorMessage);
   }
+
+  if (!validator.isEmail(email)) {
+    errorMessage = 'Invalid email, please enter your actual email';
+    return handleError(errorMessage);
+  }
+
+  if (!validator.isLength(password, { max: 100, min: 6 })) {
+    errorMessage =
+        'Invalid password, please use a password longer than 6 characters';
+    return handleError(errorMessage);
+  }
+
+
+  return auth.createUserWithEmailAndPassword(email, password)
+    .then((user) => {
+      user.updateProfile({
+        displayName: userName
+      });
+
+      database.ref(`users/${user.uid}`).set({
+        username: userName,
+        email: user.email,
+        number: phone });
+
+      user.sendEmailVerification().then(() => {
+        user.getIdToken().then((idToken) => {
+          PostItDispatcher.handleServerAction({
+            type: PostItActionTypes.LOGIN_USER,
+            user,
+            idToken
+          });
+        });
+      });
+    });
 };
 
