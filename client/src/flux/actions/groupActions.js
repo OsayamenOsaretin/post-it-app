@@ -30,6 +30,35 @@ export function addGroup(name) {
   });
 }
 
+/** 
+ * @param {String} userId 
+ * @param {Object} database
+ * 
+ * @return {void}
+ */
+function getRequests(userId, database) {
+  const requestReference = database.ref(`/users/${userId}/requests`);
+
+  requestReference.orderByKey().on('value', (snapshot) => {
+    const requestKeys = [];
+
+    // get the keys for each user's group
+    snapshot.forEach((requestSnapshot) => {
+      requestKeys.push(requestSnapshot.key);
+    });
+
+    requestKeys.map((requestKey) => {
+      const groupReference = database.ref(`/groups/${requestKey}`);
+      groupReference.on('value', (snap) => {
+        const request = new Map();
+        request.set(requestKey, snap.val());
+        receiveRequests(request);
+      });
+      return true;
+    });
+  });
+}
+
 /**
  * getGroups makes an api call for user's groups and dispatches(res)
  * to registered listeners
@@ -39,7 +68,6 @@ export function getGroups() {
   const auth = getAuth();
   const database = getDatabase();
 
-  let requestKeys = [];
   let groupKeys = [];
 
   auth.onAuthStateChanged((user) => {
@@ -65,26 +93,7 @@ export function getGroups() {
         });
       });
 
-      const requestReference = database.ref(`/users/${userId}/requests`);
-
-      requestReference.orderByKey().on('value', (snapshot) => {
-        requestKeys = [];
-
-        // get the keys for each user's group
-        snapshot.forEach((requestSnapshot) => {
-          requestKeys.push(requestSnapshot.key);
-        });
-
-        requestKeys.map((requestKey) => {
-          const groupReference = database.ref(`/groups/${requestKey}`);
-          groupReference.on('value', (snap) => {
-            const request = new Map();
-            request.set(requestKey, snap.val());
-            receiveRequests(request);
-          });
-          return true;
-        });
-      });
+      getRequests(userId, database);
     }
   });
 }
