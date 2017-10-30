@@ -1,0 +1,45 @@
+
+{
+  "name": "post-it-app",
+  "scripts": {
+  },
+  "env": {
+    "AUTH_PASSWORD": {
+      "required": true
+    },
+    "AUTH_USER": {
+      "required": true
+    },
+    "NEXMO_APIKEY": {
+      "required": true
+    },
+    "NEXMO_APISECRET": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "TRANSPORTER_HOST": {
+      "required": true
+    },
+    "TRANSPORTER_PORT": {
+      "required": true
+    },
+    "TRANSPORTER_SERVICE": {
+      "required": true
+    },
+    "TRASNPORTER_SECURE": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
