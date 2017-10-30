@@ -48,7 +48,7 @@ class UserStore extends EventEmitter {
    * @memberof UserStore
    */
   getSignedInState() {
-    const signinDate = new Date(localStorage.getItem('login_date'));
+    const signinDate = new Date(localStorage.getItem('loginDate'));
     const token = localStorage.getItem('token');
     const now = new Date();
     if (signinDate && token) {
@@ -81,14 +81,13 @@ Dispatcher.register((payload) => {
   switch (action.type) {
   case ActionTypes.LOGIN_USER:
     if (source === 'SERVER_ACTION') {
-      const user = action.user;
-      const displayName = user.displayName;
-      const userId = user.uid;
+      const { user, idToken } = action;
+      const { displayName, uid } = user;
       const date = new Date();
-      localStorage.setItem('token', displayName);
+      localStorage.setItem('token', idToken);
       localStorage.setItem('username', displayName);
-      localStorage.setItem('userId', userId);
-      localStorage.setItem('login_date', date);
+      localStorage.setItem('userId', uid);
+      localStorage.setItem('loginDate', date);
       userStore.emit(CHANGE_EVENT);
     }
     break;
@@ -102,7 +101,7 @@ Dispatcher.register((payload) => {
   case ActionTypes.SIGN_OUT:
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    localStorage.removeItem('login_date');
+    localStorage.removeItem('loginDate');
     localStorage.removeItem('userId');
     userStore.emit(CHANGE_EVENT);
     break;

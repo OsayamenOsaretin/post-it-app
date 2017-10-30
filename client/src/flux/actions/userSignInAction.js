@@ -19,10 +19,13 @@ export default function SignInAction({ email, password }) {
 
   if (validator.isEmail(email)) {
     return auth.signInWithEmailAndPassword(email, password)
-      .then((userData) => {
-        PostItDispatcher.handleServerAction({
-          type: PostItActionTypes.LOGIN_USER,
-          user: userData
+      .then((user) => {
+        user.getIdToken().then((idToken) => {
+          PostItDispatcher.handleServerAction({
+            type: PostItActionTypes.LOGIN_USER,
+            user,
+            idToken
+          });
         });
       })
       .catch(() => {
