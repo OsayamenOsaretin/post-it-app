@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import GroupListView from './GroupListView.jsx';
-import { getGroups } from '../../flux/actions/groupActions';
+import getGroups from '../../flux/actions/getGroups';
 import GroupStore from '../../flux/stores/GroupStore';
+import signOutAction from '../../flux/actions/signOutAction';
 import HeaderView from '../Header.jsx';
+
+/* global localStorage */
 
 /**
  * Dashboard Component
@@ -23,6 +26,7 @@ class Dashboard extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.signOutHandler = this.signOutHandler.bind(this);
   }
 
   /**
@@ -59,6 +63,16 @@ class Dashboard extends Component {
       });
     }
   }
+  /**
+   * @param {Object} event
+   * 
+   * @return {void} 
+   * @memberof Dashboard
+   */
+  signOutHandler(event) {
+    event.preventDefault();
+    signOutAction();
+  }
 
   /**
    * renders component view
@@ -68,7 +82,8 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
-        <HeaderView />
+        <HeaderView signOutHandler={this.signOutHandler}
+          username={localStorage.getItem('username')}/>
         <GroupListView groups={this.state.groups} loading={this.state.loading}/>
       </div>
     );
