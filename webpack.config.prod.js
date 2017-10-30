@@ -40,7 +40,7 @@ const config = {
 
       {
         test: /\.(scss|css)$/,
-        loader: ['style-loader', 'css-loader', 'sass-loader']
+        loader: ['style-loader', 'css-loader']
       },
       {
         test: /\.(jpe?g|png|gif|otf|eot|svg|ttf|woff)$/i,
