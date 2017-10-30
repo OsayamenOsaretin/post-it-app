@@ -20,18 +20,22 @@ app.use(bodyParser.json());
 
 const config= require('../webpack.config');   // eslint-disable-line
 const compiler = webpack(config);
-app.use(webpackMiddleWare(compiler, {
-  hot: true,
-  publicPath: config.output.publicPath,
-  noInfo: true,
-}));
-app.use(webpackHotMiddleWare(compiler));
+if (process.env.NODE_ENV === 'development') {
+  app.use(webpackMiddleWare(compiler, {
+    hot: true,
+    publicPath: config.output.publicPath,
+    noInfo: true,
+  }));
+  app.use(webpackHotMiddleWare(compiler));
+}
+
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // use routes imported
 routes(app);
 
 // default route
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
-import signInAction from '../../data/postItActions/userSignInAction';
-import ErrorStore from '../../data/postItStores/PostItErrorStore';
+import signInAction from '../../flux/actions/userSignInAction';
+import ErrorStore from '../../flux/stores/ErrorStore';
 
 
 /**
@@ -13,7 +13,7 @@ import ErrorStore from '../../data/postItStores/PostItErrorStore';
 export default class LoginForm extends Component {
   /**
   * constructor for login form component
-  *
+  * @memberof LoginForm
   */
   constructor() {
     super();
@@ -32,20 +32,22 @@ export default class LoginForm extends Component {
   /**
    * @memberof LoginComponent
    * @returns {void}
-   * @param {*} event
+   * 
+   * @param {Object} event
    */
   handleChange(event) {
-    const value = event.target.value;
-
+    const { name, value } = event.target;
     this.setState({
-      [event.target.name]: value
+      [name]: value
     });
   }
 
   /**
    * @memberof LoginComponent
+   * 
    * @returns {void}
-   * @param {*} event
+   * 
+   * @param {Object} event
    */
   handleSubmit(event) {
     event.preventDefault();
@@ -79,6 +81,7 @@ export default class LoginForm extends Component {
   /**
    * add change listener from ErrorStore
    * @memberof LoginComponent
+   * 
    * @return {void}
    */
   componentDidMount() {
@@ -88,6 +91,7 @@ export default class LoginForm extends Component {
   /**
    * removes change listener from ErrorStore
    * @memberof LoginComponent
+   * 
    * @return {void}
    */
   componentWillUnmount() {
@@ -96,6 +100,7 @@ export default class LoginForm extends Component {
 
   /**
    * @memberof LoginComponent
+   * 
    * @returns {void}
    */
   render() {

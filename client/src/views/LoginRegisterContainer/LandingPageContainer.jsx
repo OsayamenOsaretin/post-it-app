@@ -3,7 +3,7 @@ import LoginRegisterComponent from './LoginRegisterContainer.jsx';
 import GoogleSignIn from './GoogleSignInComponent.jsx';
 /**
  * LandingPageContainer holds the landing page including register and login
- * @returns {void}
+ * @returns {View} LandingPageView
  */
 export default function LandingPageContainer() {
   return (

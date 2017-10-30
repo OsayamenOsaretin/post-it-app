@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import GroupItem from '../views/GroupContainer/GroupItem.jsx';
+import GroupItem from '../../views/GroupContainer/GroupItem.jsx';
 
 describe('GroupItem', () => {
   let mountedComponent;

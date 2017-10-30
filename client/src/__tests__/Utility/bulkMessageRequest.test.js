@@ -1,6 +1,6 @@
-import GetMessagesAction from 'GetMessagesAction';
+import GetMessagesAction from 'GetMessagesAction';   // eslint-disable-line
 import Immutable from 'immutable';
-import bulkMessageRequest from '../utility/bulkMessageRequest';
+import bulkMessageRequest from '../../utility/bulkMessageRequest';
 
 /* global jest */
 jest.mock('GetMessagesAction', () => jest.fn());

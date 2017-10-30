@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import GroupListView from './GroupListView.jsx';
-import { getGroups } from '../../data/postItActions/groupActions';
-import GroupStore from '../../data/postItStores/PostItGroupStore';
+import { getGroups } from '../../flux/actions/groupActions';
+import GroupStore from '../../flux/stores/GroupStore';
 import HeaderView from '../Header.jsx';
 
 /**
  * Dashboard Component
+ * @class Dashboard
+ * @extends Component
  */
 class Dashboard extends Component {
   /**
@@ -16,7 +18,8 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      groups: GroupStore.getGroups()
+      groups: GroupStore.getGroups(),
+      loading: true
     };
 
     this.onChange = this.onChange.bind(this);
@@ -51,7 +54,8 @@ class Dashboard extends Component {
     const newGroups = GroupStore.getGroups();
     if (this.state.groups.size !== newGroups.size) {
       this.setState({
-        groups: GroupStore.getGroups()
+        groups: GroupStore.getGroups(),
+        loading: false
       });
     }
   }
@@ -65,7 +69,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <HeaderView />
-        <GroupListView groups={this.state.groups} />
+        <GroupListView groups={this.state.groups} loading={this.state.loading}/>
       </div>
     );
   }

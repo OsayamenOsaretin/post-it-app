@@ -3,18 +3,21 @@ import { NavLink } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import FaBell from 'react-icons/lib/fa/bell';
 import FaGroup from 'react-icons/lib/fa/group';
+import FaRefresh from 'react-icons/lib/fa/refresh';
 import AddGroupView from './AddGroup.jsx';
 import RequestListView from './RequestList.jsx';
-import MessageStore from '../../data/postItStores/PostItMessageStore';
+import MessageStore from '../../flux/stores/MessageStore';
 
 
 /**
  * component for the list of groups and notifications
+ * @class GroupList
+ * @extends Component
  */
 class GroupList extends Component {
   /**
    * react component constructor
-   * @param {*} props
+   * @param {Object} props
    */
   constructor(props) {
     super(props);
@@ -51,42 +54,38 @@ class GroupList extends Component {
     const notificationDetails = MessageStore.getGroupNotificationDetails();
     const groupId = notificationDetails.Id;
     const status = notificationDetails.status.get(groupId);
-
-    if (status) {
-      this.setState({
-        groupWithNotificationChange: groupId
-      });
-    }
+    this.setState({
+      groupWithNotificationChange: status ? groupId : ''
+    });
   }
 
   /**
    * function to modify group list based on notification
-   * @param {*} groupSeq
-   * @return {*} groupSeqSorted
+   * @param {Array} groupSeq
+   * 
+   * @return {Array} groupSeqSorted
    */
   sortGroups(groupSeq) {
     const newGroupWithNotification = this.state.groupWithNotificationChange;
     const status = MessageStore.getGroupNotificationDetails()
       .status.get(newGroupWithNotification);
 
-    if (status) {
-      if (newGroupWithNotification !== '') {
-        groupSeq = groupSeq.sort((number1, number2) => {
-          if (number1 === newGroupWithNotification) {
-            return -1;
-          } else if (number2 === newGroupWithNotification) {
-            return 1;
-          }
-          return 0;
-        });
-      }
+    if (status && newGroupWithNotification) {
+      groupSeq = groupSeq.sort((number1, number2) => {
+        if (number1 === newGroupWithNotification) {
+          return -1;
+        } else if (number2 === newGroupWithNotification) {
+          return 1;
+        }
+        return 0;
+      });
     }
     return groupSeq;
   }
 
   /**
    * render the view for the groupList
-   * @return {*} GroupListView
+   * @return {View} GroupListView
    */
   render() {
     return (
@@ -95,6 +94,12 @@ class GroupList extends Component {
           <AddGroupView />
         </div>
         <div className="group-list-body">
+          {this.props.loading &&
+          <div className="loading-groups">
+            <FaRefresh
+              className="fa fa-spinner fa-spin"
+            />
+          </div>}
           <RequestListView />
           <ul className="group-list">
             {this.sortGroups(this.props.groups.keySeq().toArray())

@@ -31,10 +31,6 @@ const config = {
         test: /\.(js)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-
-        query: {
-          presets: ['es2015']
-        }
       },
       {
         test: /\.(jsx)$/,
@@ -43,7 +39,7 @@ const config = {
       },
 
       {
-        test: /\.(css)$/,
+        test: /\.(scss|css)$/,
         loader: ['style-loader', 'css-loader']
       },
       {

@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import FaPlus from 'react-icons/lib/fa/plus';
-import { addGroupApi } from '../../data/postItActions/groupActions';
+import { addGroupApi } from '../../flux/actions/groupActions';
 
 /* global localStorage */
 
 /**
  * Add group adds a new group to list of user's groups
+ * @class AddGroupView
+ * @extends Component
  */
 class AddGroupView extends Component {
   /**
    * constructor creates new react component, initializes state
+   * @return {void}
    */
   constructor() {
     super();
@@ -25,8 +28,10 @@ class AddGroupView extends Component {
   /**
    * handleChange sets input field state when user types
    * @memberof AddGroup
+   * 
+   * @param {Object} event
+   * 
    * @return {void}
-   * @param {*} event
    */
   handleChange(event) {
     const value = event.target.value;
@@ -40,8 +45,10 @@ class AddGroupView extends Component {
   /**
    * handleSubmit handles calling the sendmessage action when button is clicked
    * @memberof AddGroup
+   * 
+   * @param {Object} event
+   * 
    * @return {void}
-   * @param {*} event
    */
   handleSubmit(event) {
     event.preventDefault();
@@ -58,6 +65,7 @@ class AddGroupView extends Component {
   /**
    * render renders the component
    * @return {void}
+   * 
    * @memberof AddGroup
    */
   render() {

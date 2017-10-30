@@ -1,8 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-// import socket from 'socket.io-client';
-import GroupStore from 'GroupStore';
-import Dashboard from '../views/GroupContainer/Dashboard.jsx';
+import GroupStore from 'GroupStore';    // eslint-disable-line
+import Dashboard from '../../views/GroupContainer/Dashboard.jsx';
 
 /* global jest localStorage window */
 

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import googleSignInAction from '../../data/postItActions/googleSignInAction';
-
-/* global gapi window */
+import GoogleFa from 'react-icons/lib/fa/google-plus';
+import googleSignInAction from '../../flux/actions/googleSignInAction';
 
 /**
  * Google login button
+ * @class GoogleLogin
+ * @extends Component
  */
 export default class GoogleLogin extends Component {
   /**
@@ -13,48 +14,21 @@ export default class GoogleLogin extends Component {
    */
   constructor() {
     super();
-
-    this.onSignIn = this.onSignIn.bind(this);
-    this.renderGoogleLoginButton = this.renderGoogleLoginButton.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   /* eslint class-methods-use-this: 0 */
 
   /**
-   * callback for google sign in authentication
-   * @return {void}
-   * @param {*} googleUser
-   */
-  onSignIn(googleUser) {
-    const token = googleUser.getAuthResponse().id_token;
-    googleSignInAction({
-      idToken: token
-    });
-  }
-
-  /**
-   * renders google login button
+   * @memberof GoogleLogin
+   * 
+   * @param {Object} event 
+   * 
    * @return {void}
    */
-  renderGoogleLoginButton() {
-    // console.log('rendering google signin button');
-    gapi.signin2.render('my-signin2', {
-      scope: 'https://www.googleapis.com/auth/plus.login',
-      width: 200,
-      height: 50,
-      longtitle: true,
-      theme: 'dark',
-      onsuccess: this.onSignIn
-    });
-  }
-
-  /**
-   * hook for when component mounts
-   * listen for google load event on window object
-   * @return {void}
-   */
-  componentDidMount() {
-    window.addEventListener('google-loaded', this.renderGoogleLoginButton);
+  handleSubmit(event) {
+    event.preventDefault();
+    googleSignInAction();
   }
 
   /**
@@ -64,7 +38,18 @@ export default class GoogleLogin extends Component {
   render() {
     return (
       <div className="google-signin">
-        <div id="my-signin2">
+        <div className="google-text">
+          <span>
+            Sign in with
+          </span>
+        </div>
+        <div className="google-signin-button">
+          <button
+            className = 'button'
+            onClick = {this.handleSubmit}
+            type = 'submit'>
+            <GoogleFa />
+          </button>
         </div>
       </div>
     );

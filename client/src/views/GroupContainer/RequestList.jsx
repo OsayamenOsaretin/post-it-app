@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import RequestStore from '../../data/postItStores/PostItGroupRequestStore';
-import RequestView from '../../views/GroupContainer/RequestItem.jsx';
+import RequestStore from '../../flux/stores/GroupRequestStore';
+import RequestItem from '../../views/GroupContainer/RequestItem.jsx';
 
 /**
  * component for the list of group requests
+ * @class RequestList
+ * @extends Component
  */
 class RequestList extends Component {
   /**
    * react component constructor
-   * @param {*} props
+   * @param {Object} props
    */
   constructor(props) {
     super(props);
@@ -54,20 +56,20 @@ class RequestList extends Component {
     return (
       this.state.requests.size > 0 ?
         <div>
-          {this.state.requests.map((requestItem, key) => (
-            <div className='group-list-item'>
+          {this.state.requests.entrySeq().map(([key, requestItem]) => (
+            <div key={key} className='group-list-item'>
               <div className='invite'>
                 Invited to join
               </div>
-              <p>
-                <RequestView
+              <div>
+                <RequestItem
                   request = {requestItem}
                   groupId={key}
                 />
-              </p>
+              </div>
             </div>
           ))}
-        </div> : <div></div>
+        </div> : <div className='no-requests'></div>
     );
   }
 }

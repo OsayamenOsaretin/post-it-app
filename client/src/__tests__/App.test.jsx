@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import UserStore from 'UserStore';
+import UserStore from 'UserStore';    // eslint-disable-line
 import AppView from '../views/App.jsx';
 
 /* global jest localStorage window */
@@ -54,28 +54,30 @@ describe('AppView', () => {
     expect(routeComponents.length).toBeGreaterThan(0);
   });
 
-  it('should render a password recovery button when no token and no password reset', () => {
-    const component = appView();
-    component.setState({
-      token: undefined,
-      passwordReset: true
+  it('should render password recovery button when no token and password reset',
+    () => {
+      const component = appView();
+      component.setState({
+        token: undefined,
+        passwordReset: true
+      });
+      const passwordRecoveryButton = component.find('.forgot-password-button');
+      expect(passwordRecoveryButton).toBeDefined();
     });
-    const passwordRecoveryButton = component.find('.forgot-password-button');
-    expect(passwordRecoveryButton).toBeDefined();
-  });
 
-  it('should render a reset password component when recovery button is clicked', () => {
-    const component = appView();
-    component.setState({
-      token: undefined,
-      passwordReset: true,
-      redirect: false
+  it('should render a reset password component when recovery button is clicked',
+    () => {
+      const component = appView();
+      component.setState({
+        token: undefined,
+        passwordReset: true,
+        redirect: false
+      });
+      const passwordRecoveryButton = component.find('.forgot-password-button').first();
+      passwordRecoveryButton.simulate('click');
+      const resetPasswordComponent = component.find('ResetPasswordComponent');
+      expect(resetPasswordComponent).toBeDefined();
     });
-    const passwordRecoveryButton = component.find('.forgot-password-button').first();
-    passwordRecoveryButton.simulate('click');
-    const resetPasswordComponent = component.find('ResetPasswordComponent');
-    expect(resetPasswordComponent).toBeDefined();
-  });
 
   it('should render a message when message has been sent', () => {
     const component = appView();

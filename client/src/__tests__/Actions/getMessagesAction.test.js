@@ -1,36 +1,125 @@
-import GetMessagesAction from 'GetMessagesAction';
-import PostItActionTypes from '../data/PostItActionTypes';
+import { mockAuth, mockDatabase } from 'firebase';
+import getMessagesAction from '../../flux/actions/getMessagesAction';
+import PostItActionTypes from '../../flux/ActionTypes';
+import PostItDispatcher from '../../flux/Dispatcher';
 
-/* global jest */
+/* global jest localStorage */
 
-jest.mock('superagent');
-// jest.mock('GetMessagesAction', () => jest.fn());
-jest.mock('../data/PostItDispatcher');
+jest.mock('firebase');
+jest.mock('../../flux/Dispatcher');
+Object.defineProperty(window, 'localStorage', { value: jest.fn() });
+localStorage.getItem = () => {
+  return 'testUser';
+};
+localStorage.setItem = jest.fn();
+
+const testMessage = {
+  message: 'This is test message 1',
+  sender: 'testUser1',
+  read: {
+    testUser2: true
+  }
+};
+
+const messagesRef = mockDatabase.child('/messages');
+const groupMessagesRef = mockDatabase
+  .child('/groups/testGroupId/messages');
+
+messagesRef.set({
+  testMessage1: testMessage
+});
+
+groupMessagesRef.set({
+  testMessage1: true
+});
+
+mockDatabase.flush();
 
 describe('getMessagesAction', () => {
-  let PostItDispatcher;
+  const groupId = {
+    groupId: 'testGroupId'
+  };
 
-  // const groupId = {
-  //   groupId: 'testId'
-  // };
-
-  beforeEach(() => {
-    PostItDispatcher = require('../data/PostItDispatcher');
+  it('should dispatch server action of type recieve messages on success', async () => {
+    const dispatcherSpy = spyOn(PostItDispatcher, 'handleServerAction');
+    mockAuth.changeAuthState({
+      uid: 'testUid',
+      provider: 'custom',
+      token: 'authToken',
+    });
+    messagesRef.set({
+      testMessage1: testMessage
+    });
+    const groupMessageMap = new Map();
+    groupMessageMap.set('testMessage1', testMessage);
+    mockAuth.autoFlush();
+    mockDatabase.autoFlush();
+    await getMessagesAction(groupId);
+    expect(dispatcherSpy).toHaveBeenCalledWith({
+      type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
+      Id: 'testGroupId',
+      messages: groupMessageMap,
+      notify: true
+    });
   });
 
-  it('should dispatch server action of type got messages on success', () => {
-    GetMessagesAction();
-    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
-      type: PostItActionTypes.SUCCEED_GET_MESSAGES
+  it('should dispatch server with notification as false when messages has been read', async () => {
+    const dispatcherSpy = spyOn(PostItDispatcher, 'handleServerAction');
+    mockAuth.changeAuthState({
+      uid: 'testUid',
+      provider: 'custom',
+      token: 'authToken',
+    });
+    testMessage.read = {
+      testUser: true
+    };
+    messagesRef.set({
+      testMessage1: testMessage
+    });
+    const groupMessageMap = new Map();
+    groupMessageMap.set('testMessage1', testMessage);
+    mockAuth.autoFlush();
+    mockDatabase.autoFlush();
+    await getMessagesAction(groupId);
+    expect(dispatcherSpy).toHaveBeenCalledWith({
+      type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
+      Id: 'testGroupId',
+      messages: groupMessageMap,
+      notify: false
+    });
+  });
+
+  it('should dispatch server action with notify as true when messages from someone has not been read', async () => {
+    const dispatcherSpy = spyOn(PostItDispatcher, 'handleServerAction');
+    mockAuth.changeAuthState({
+      uid: 'testUid',
+      provider: 'custom',
+      token: 'authToken',
+    });
+    testMessage.read = undefined;
+    messagesRef.set({
+      testMessage1: testMessage
+    });
+    const groupMessageMap = new Map();
+    groupMessageMap.set('testMessage1', testMessage);
+    mockAuth.autoFlush();
+    mockDatabase.autoFlush();
+    await getMessagesAction(groupId);
+    expect(dispatcherSpy).toHaveBeenCalledWith({
+      type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
+      Id: 'testGroupId',
+      messages: groupMessageMap,
+      notify: true
     });
   });
 
   it('should dispatch server action to handle fail scenario', () => {
-    require('superagent').__setMockError({
-      message: 'get all users failed'
-    });
-    GetMessagesAction();
-    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+    const dispatcherSpy = spyOn(PostItDispatcher, 'handleServerAction');
+    mockAuth.changeAuthState(undefined);
+    mockAuth.autoFlush();
+    mockDatabase.autoFlush();
+    getMessagesAction(groupId);
+    expect(dispatcherSpy).toHaveBeenCalledWith({
       type: PostItActionTypes.FAILED_GET_MESSAGES
     });
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import SignOutAction from 'SignOutAction';
+import SignOutAction from 'SignOutAction';    // eslint-disable-line
 import HeaderView from '../views/Header.jsx';
 
 /* global jest localStorage window */

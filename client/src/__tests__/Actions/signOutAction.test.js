@@ -1,28 +1,33 @@
-import SignOutAction from 'SignOutAction';
-import PostItActionTypes from '../data/PostItActionTypes';
+import { mockAuth } from 'firebase';
+import SignOutAction from '../../flux/actions/signOutAction';
+import PostItActionTypes from '../../flux/ActionTypes';
+import PostItDispatcher from '../../flux/Dispatcher';
 
 /* global jest */
 
-jest.mock('superagent');
-jest.mock('../data/PostItDispatcher');
+jest.mock('firebase');
+jest.mock('../../flux/Dispatcher');
 
 describe('userSignOutAction', () => {
-  const PostItDispatcher = require('../data/PostItDispatcher');
-
   it('should dispatch to user store to sign out user', () => {
-    SignOutAction();
-    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
-      type: PostItActionTypes.SIGN_OUT
-    });
+    const spyOnDispatcher = spyOn(PostItDispatcher, 'handleServerAction');
+    mockAuth.autoFlush();
+    expect.assertions(1);
+    return SignOutAction()
+      .then(() => {
+        expect(spyOnDispatcher.calls.count()).toBe(6);
+      });
   });
 
   it('should dispatch error payload when sign out fails', () => {
-    require('superagent').__setMockError({
-      message: 'Error!!!'
-    });
-    SignOutAction();
-    expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
-      type: PostItActionTypes.FAILED_SIGN_OUT
-    });
+    const spyOnDispatcher = spyOn(PostItDispatcher, 'handleServerAction');
+    const error = new Error('error');
+    mockAuth.failNext('signOut', error);
+    return SignOutAction()
+      .then(() => {
+        expect(spyOnDispatcher).toHaveBeenCalledWith({
+          type: PostItActionTypes.FAILED_SIGN_OUT
+        });
+      });
   });
 });

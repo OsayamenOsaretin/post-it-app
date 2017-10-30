@@ -6,11 +6,14 @@ import LoginRegisterContainer from
 import Dashboard from './GroupContainer/Dashboard.jsx';
 import ResetPasswordComponent from
   './LoginRegisterContainer/ResetPasswordView.jsx';
-import UserStore from '../data/postItStores/PostItUserStore';
-import { firebaseInit } from '../data/firebaseFunctions';
+import UserStore from '../flux/stores/UserStore';
+import { firebaseInit } from '../flux/firebaseHelpers';
+import signOutAction from '../flux/actions/signOutAction';
 
 /**
  * App view that holds the entire container view for the app
+ * @class App
+ * @extends Component
  */
 export default class App extends Component {
   /**
@@ -21,7 +24,7 @@ export default class App extends Component {
     super();
     firebaseInit();
     this.state = {
-      token: UserStore.getSignedInState(),
+      token: this.authenticateUser(),
       passwordReset: true,
       messageSent: false,
       redirect: false
@@ -30,21 +33,23 @@ export default class App extends Component {
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
+    this.authenticateUser = this.authenticateUser.bind(this);
   }
 
   /**
    * Attaches event listener to the UserStore
-   * @return {void}
    * @memberof App
+   * @return {void}
    */
   componentDidMount() {
+    this.authenticateUser();
     UserStore.addChangeListener(this.onChange);
   }
 
   /**
    * Removes event listener from the UserStore
-   * @return {void}
    * @memberof App
+   * @return {void}
    */
   componentWillUnmount() {
     UserStore.removeChangeListener(this.onChange);
@@ -61,7 +66,7 @@ export default class App extends Component {
       redirectStatus = true;
     }
     this.setState({
-      token: UserStore.getSignedInState(),
+      token: this.authenticateUser(),
       messageSent: UserStore.getPasswordResetMessageState(),
       redirect: redirectStatus
     });
@@ -70,7 +75,8 @@ export default class App extends Component {
   /**
    * handle click event
    * @return {void}
-   * @param {*} event
+   * 
+   * @param {Object} event
    */
   handleClick(event) {
     event.preventDefault();
@@ -81,14 +87,28 @@ export default class App extends Component {
 
   /**
    * hanlde reset click event
+   * @param {Object} event 
+   * 
    * @return {void}
-   * @param {any} event 
+   * 
    * @memberof App
    */
   handleResetClick() {
     this.setState({
       passwordReset: true
     });
+  }
+  /**
+ * @returns {void}
+ * @memberof App
+ */
+  authenticateUser() {
+    const tokenState = UserStore.getSignedInState();
+    if (tokenState === 'expired') {
+      signOutAction();
+      return undefined;
+    }
+    return tokenState;
   }
 
   /**
@@ -101,6 +121,12 @@ export default class App extends Component {
         <Router>
           <div>
             <Switch>
+              <Route path='/login' component={() => {
+                if (!this.state.redirect) {
+                  return <Redirect to='/' />;
+                }
+                return (this.state.passwordReset && <LoginRegisterContainer />);
+              }} />
               <Route path='/' component={() => {
                 if (this.state.redirect) {
                   return <Redirect to='/login' />;
@@ -108,12 +134,6 @@ export default class App extends Component {
                 return (!this.state.token ?
                   (this.state.passwordReset &&
                     <LoginRegisterContainer />) : (<Dashboard />));
-              }} />
-              <Route path='/login' component={() => {
-                if (!this.state.redirect) {
-                  return <Redirect to='/' />;
-                }
-                return (this.state.passwordReset && <LoginRegisterContainer />);
               }} />
             </Switch>
           </div>

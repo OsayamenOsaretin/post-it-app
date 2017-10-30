@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import UserListView from '../views/GroupContainer/GroupBodyContainer/userListView.jsx';
+import UserListView from
+  '../../views/GroupContainer/GroupBodyContainer/userListView.jsx';
 import UserListAction from 'UserListAction';
 
 /* global jest */
@@ -22,7 +23,10 @@ describe('UserListView ', () => {
   beforeEach(() => {
     mountedComponent = undefined;
     props = {
-      users: []
+      users: {
+        entrySeq: () => ([])
+      },
+      handleStatusChange: jest.fn()
     };
   });
 

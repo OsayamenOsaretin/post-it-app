@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import SendMessageView from '../views/GroupContainer/GroupBodyContainer/SendMessageView.jsx';
-import SendMessageAction from 'SendMessageAction';
+import SendMessageView from
+  '../../views/GroupContainer/GroupBodyContainer/SendMessageView.jsx';
+import SendMessageAction from 'SendMessageAction';   // eslint-disable-line
 
 /* global jest window localStorage */
 
@@ -43,7 +44,7 @@ describe('SendMessageView', () => {
     input.simulate('change', {
       target: { value: 'test message' }
     });
-    const button = component.find('button').at(1);
+    const button = component.find('button');
     button.simulate('click');
     expect(SendMessageAction.mock.calls.length).toBe(1);
   });

@@ -1,18 +1,20 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import addUserAction from '../../../data/postItActions/addUserGroup';
+import addUserAction from '../../../flux/actions/addUserGroup';
 
 
 /**
  * GroupContainer holds the navigation links for each group
  * @return {void}
- * @param {*} props
+ * 
+ * @param {Object} props
  */
 function UserList(props) {
   /**
    * handleSelect handles selection and makes api call to add user to group
+   * @param {Object} event
+   * 
    * @returns {void}
-   * @param {*} event
    */
   const handleSelect = (event) => {
     event.preventDefault();
@@ -28,15 +30,13 @@ function UserList(props) {
 
   /**
    * logic to show name or request sent message
-   * @param {*} key 
+   * @param {String} key 
+   * 
    * @return {void}
    */
   const showRequestMessageOrName = (key) => {
     const statusMap = props.userStatus;
-    if (statusMap.get(key)) {
-      return false;
-    }
-    return true;
+    return !statusMap.get(key);
   };
 
   return (

@@ -1,13 +1,14 @@
 import React from 'react';
 import FaSignOut from 'react-icons/lib/fa/sign-out';
-import signOutAction from '../data/postItActions/signOutAction';
+import signOutAction from '../flux/actions/signOutAction';
 
 /* global localStorage */
 
 /**
  * calls sign out action
+ * @param {Object} event
+ * 
  * @returns {void}
- * @param {*} event
  */
 const signOutHandler = (event) => {
   event.preventDefault();

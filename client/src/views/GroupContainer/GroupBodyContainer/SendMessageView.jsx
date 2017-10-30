@@ -2,27 +2,56 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FaExclamationCircle from 'react-icons/lib/fa/exclamation-circle';
 import FaPaperPlane from 'react-icons/lib/fa/paper-plane';
-import SendMessageAction from '../../../data/postItActions/sendMessageAction';
+import SendMessageAction from '../../../flux/actions/sendMessageAction';
 
 /* global localStorage */
 
+const defaultState = {
+  message: '',
+  priorityLevel: 0,
+  stringLevel: 'grey',
+  priority: 'normal',
+};
+
+const getLevelAndPriority = (newState) => {
+  let messagePriority;
+  let level;
+
+  switch (newState) {
+  case 0: {
+    level = 'grey';
+    messagePriority = 'normal';
+    break;
+  }
+  case 1: {
+    level = 'orange';
+    messagePriority = 'urgent';
+    break;
+  }
+  case 2: {
+    level = 'red';
+    messagePriority = 'critical';
+    break;
+  }
+  default: {
+    level = 'grey';
+    messagePriority = 'normal';
+  }
+  }
+  return { level, messagePriority };
+};
 /**
  * Renders view for sending message to a group
  */
 class SendMessageView extends Component {
   /**
    * constructor creates new react component
-   * @param {*} props
+   * @param {Object} props
    */
   constructor(props) {
     super(props);
 
-    this.state = {
-      message: '',
-      priorityLevel: 0,
-      stringLevel: 'grey',
-      priority: 'normal',
-    };
+    this.state = defaultState;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,7 +62,7 @@ class SendMessageView extends Component {
    * handleChange sets input field state when user types
    * @memberof SendMessageView
    * @return {void}
-   * @param {*} event
+   * @param {Object} event
    */
   handleChange(event) {
     const value = event.target.value;
@@ -48,7 +77,7 @@ class SendMessageView extends Component {
      * action when button is clicked
      * @memberof SendMessageView
      * @return {void}
-     * @param {*} event
+     * @param {Object} event
      */
   handleSubmit(event) {
     event.preventDefault();
@@ -62,12 +91,7 @@ class SendMessageView extends Component {
       priorityLevel: this.state.priority
     };
     SendMessageAction(messageDetails);
-    this.setState({
-      message: '',
-      priorityLevel: 0,
-      stringLevel: 'grey',
-      priority: 'normal'
-    });
+    this.setState(defaultState);
   }
 
   /**
@@ -79,31 +103,8 @@ class SendMessageView extends Component {
     event.preventDefault();
     const priorityLevel = this.state.priorityLevel;
     const newState = (priorityLevel + 1) % 3;
-    let messagePriority;
 
-    let level;
-
-    switch (newState) {
-    case 0: {
-      level = 'grey';
-      messagePriority = 'normal';
-      break;
-    }
-    case 1: {
-      level = 'orange';
-      messagePriority = 'urgent';
-      break;
-    }
-    case 2: {
-      level = 'red';
-      messagePriority = 'critical';
-      break;
-    }
-    default: {
-      level = 'grey';
-      messagePriority = 'normal';
-    }
-    }
+    const { level, messagePriority } = getLevelAndPriority(newState);
 
     this.setState({
       priorityLevel: newState,

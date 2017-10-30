@@ -1,8 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ResetPasswordView from '../views/LoginRegisterContainer/ResetPasswordView.jsx';
-import ResetPasswordAction from 'ResetPasswordAction';
-import UserStore from 'UserStore';
+import ResetPasswordView from
+  '../../views/LoginRegisterContainer/ResetPasswordView.jsx';
+import ResetPasswordAction from 'ResetPasswordAction';    // eslint-disable-line
+import UserStore from 'UserStore';    // eslint-disable-line
 
 /* global jest localStorage window */
 

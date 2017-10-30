@@ -3,16 +3,16 @@ import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaSquareO from 'react-icons/lib/fa/square-o';
 import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
-import registerAction from '../../data/postItActions/registerUserAction';
-import ErrorStore from '../../data/postItStores/PostItErrorStore';
+import registerAction from '../../flux/actions/registerUserAction';
+import ErrorStore from '../../flux/stores/ErrorStore';
 
 /**
- *
+ * @class RegisterForm
+ * @extends Component
  */
 export default class RegisterForm extends Component {
   /**
   * Instantiates an instance of a React Component for Registration
-  *
   */
   constructor() {
     super();
@@ -34,20 +34,23 @@ export default class RegisterForm extends Component {
 
   /**
    * @memberof RegisterComponent
+   * @param {Object} event
+   * 
    * @returns {void}
-   * @param {*} event
    */
   handleChange(event) {
-    const value = event.target.value;
+    const { name, value } = event.target;
     this.setState({
-      [event.target.name]: value
+      [name]: value
     });
   }
 
   /**
      * @memberof RegisterComponent
+     * 
+     * @param {Object} event
+     * 
      * @returns {void}
-     * @param {*} event
      */
   handleSubmit(event) {
     event.preventDefault();
@@ -153,7 +156,7 @@ export default class RegisterForm extends Component {
             !this.state.password || !this.state.confirmPassword}
           onClick={this.handleSubmit}
         >
-          Register {this.state.registering && 
+          Register {this.state.registering &&
           <FaSpinner className="fa fa-spinner fa-spin" />}
         </button>
 
