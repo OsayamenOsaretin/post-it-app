@@ -1,35 +1,36 @@
-import { Dispatcher } from 'flux';
+import { Dispatcher as FluxDispatcher } from 'flux';
 
 /**
  * DispatcherClass(singleton) extends flux Dispatcher module
  * @class DispatcherClass
  * @extends Dispatcher
  */
-class DispatcherClass extends Dispatcher {
+class DispatcherClass extends FluxDispatcher {
 /**
  * handles view actions
  * @return {void}
- * @param {Object} act
+ * @param {Object} action
  */
-  handleViewAction(act) {
+  handleViewAction(action) {
     this.dispatch({
       source: 'VIEW_ACTION',
-      action: act
+      action
     });
   }
 
   /**
    * handles server actions
    * @return {void}
-   * @param {Object} act
+   * @param {Object} action
    */
-  handleServerAction(act) {
+  handleServerAction(action) {
     this.dispatch({
       source: 'SERVER_ACTION',
-      action: act
+      action
     });
   }
 }
+const Dispatcher = new DispatcherClass();
 
-export default new DispatcherClass();
+export default Dispatcher;
 
