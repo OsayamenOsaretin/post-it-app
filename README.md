@@ -74,7 +74,7 @@ To run the app on your machine:
 
 ## Contributions are welcome
  See anything that could have been done, or done better. Please Open a pull request. Also, please try to follow these guidelines
- - This project is written with the Airbnb style guide
+ - This project subscribes to the airbnb style guide.
  - Pull requests should be made to the develop branch
  
  Thank you!
