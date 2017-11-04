@@ -14,9 +14,9 @@ const checkDateDiff = (firstDate, secondDate) => {
 };
 
 /**
- * UserStore manages state for the signed in user
+ * UserStoreClass manages state for the signed in user
  */
-class UserStore extends EventEmitter {
+class UserStoreClass extends EventEmitter {
   /**
    * Adds changeListener
    * @param {Function} callback
@@ -29,7 +29,7 @@ class UserStore extends EventEmitter {
 
   /**
    * Removes changeListener
-   * @memberof UserStore
+   * @memberof UserStoreClass
    * 
    * @param {Function} callback
    * 
@@ -45,7 +45,7 @@ class UserStore extends EventEmitter {
    * returns sign in state of the user;
    * @return {boolean} signedInState
    * 
-   * @memberof UserStore
+   * @memberof UserStoreClass
    */
   getSignedInState() {
     const signinDate = new Date(localStorage.getItem('loginDate'));
@@ -64,14 +64,14 @@ class UserStore extends EventEmitter {
    * returns password reset state
    * @returns {bool} passwordResetMessageState
    * 
-   * @memberof UserStore
+   * @memberof UserStoreClass
    */
   getPasswordResetMessageState() {
     return passwordResetMessageState;
   }
 }
 
-const userStore = new UserStore();
+const UserStore = new UserStoreClass();
 
 Dispatcher.register((payload) => {
   const action = payload.action;
@@ -88,13 +88,13 @@ Dispatcher.register((payload) => {
       localStorage.setItem('username', displayName);
       localStorage.setItem('userId', uid);
       localStorage.setItem('loginDate', date);
-      userStore.emit(CHANGE_EVENT);
+      UserStore.emit(CHANGE_EVENT);
     }
     break;
 
   case ActionTypes.RESET_MESSAGE_SENT:
     passwordResetMessageState = true;
-    userStore.emit(CHANGE_EVENT);
+    UserStore.emit(CHANGE_EVENT);
     break;
 
 
@@ -103,7 +103,7 @@ Dispatcher.register((payload) => {
     localStorage.removeItem('username');
     localStorage.removeItem('loginDate');
     localStorage.removeItem('userId');
-    userStore.emit(CHANGE_EVENT);
+    UserStore.emit(CHANGE_EVENT);
     break;
 
   default:
@@ -111,5 +111,5 @@ Dispatcher.register((payload) => {
   }
 });
 
-export default userStore;
+export default UserStore;
 

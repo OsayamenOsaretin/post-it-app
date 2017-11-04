@@ -19,13 +19,13 @@ const addNewMessageGroup = (newMessageGroup) => {
 
 
 /**
- * MessageStore holds store logic for messages
+ * MessageStoreClass holds store logic for messages
  * @return {void}
  */
-class MessageStore extends EventEmitter {
+class MessageStoreClass extends EventEmitter {
   /**
    * addChangeListener
-   * @memberof MessageStore
+   * @memberof MessageStoreClass
    * @param {Function} callback
    * 
    * @param {String} CHANGE_EVENT_ID
@@ -38,7 +38,7 @@ class MessageStore extends EventEmitter {
 
   /**
   * removeChangeListener
-  * @memberof MessageStore
+  * @memberof MessageStoreClass
   *
   * @param {Function} callback
   * @param {String} CHANGE_EVENT_ID
@@ -71,7 +71,7 @@ class MessageStore extends EventEmitter {
 
   /**
    * GetMessage
-   * @memberof MessageStore
+   * @memberof MessageStoreClass
    * 
    * @param {String} id
    * 
@@ -93,7 +93,7 @@ class MessageStore extends EventEmitter {
   }
 }
 
-const messageStore = new MessageStore();
+const MessageStore = new MessageStoreClass();
 
 Dispatcher.register((payload) => {
   const action = payload.action;
@@ -113,7 +113,7 @@ Dispatcher.register((payload) => {
     groupWithNewMessageId = groupId;
     if (notify) {
       notificationMap.set(groupId, true);
-      messageStore.emit(CHANGE_EVENT);
+      MessageStore.emit(CHANGE_EVENT);
     }
 
     groupMessages = messages.get(groupId);
@@ -129,7 +129,7 @@ Dispatcher.register((payload) => {
         new ImmutableMap(messageResponse));
       addNewMessageGroup(messageMap);
     }
-    messageStore.emit(groupId);
+    MessageStore.emit(groupId);
     break;
 
 
@@ -138,7 +138,7 @@ Dispatcher.register((payload) => {
 
     groupWithNewMessageId = Id;
     notificationMap.set(Id, false);
-    messageStore.emit(CHANGE_EVENT);
+    MessageStore.emit(CHANGE_EVENT);
     break;
 
 
@@ -152,4 +152,4 @@ Dispatcher.register((payload) => {
   }
 });
 
-export default messageStore;
+export default MessageStore;

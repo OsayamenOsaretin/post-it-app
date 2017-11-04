@@ -7,14 +7,13 @@ const CHANGE_EVENT = 'change';
 let loginError, registerError, resetPasswordError;
 
 /**
- * ErrorStore handles error display for ui/ux
+ * ErrorStoreClass handles error display for ui/ux
  * @return {void}
  */
-class ErrorStore extends EventEmitter {
-
+class ErrorStoreClass extends EventEmitter {
   /**
    * addChangeListener
-   * @memberof ErrorStore
+   * @memberof ErrorStoreClass
    * 
    * @param {Function} callback
    * 
@@ -26,7 +25,7 @@ class ErrorStore extends EventEmitter {
 
   /**
    * removeChangeListener
-   * @memberof ErrorStore
+   * @memberof ErrorStoreClass
    * 
    * @param {Function} callback
    * 
@@ -41,7 +40,7 @@ class ErrorStore extends EventEmitter {
   /** getLoginError
    * @return {string} loginError
    * 
-   * @memberof ErrorStore
+   * @memberof ErrorStoreClass
    */
   getLoginError() {
     return loginError;
@@ -50,7 +49,7 @@ class ErrorStore extends EventEmitter {
   /** getRegistrationError
    * @return {string} registerError
    * 
-   * @memberof ErrorStore
+   * @memberof ErrorStoreClass
    */
   getRegisterError() {
     return registerError;
@@ -59,14 +58,14 @@ class ErrorStore extends EventEmitter {
   /**
    * @returns {String} resetPasswordError
    * 
-   * @memberof ErrorStore
+   * @memberof ErrorStoreClass
    */
   getResetPasswordError() {
     return resetPasswordError;
   }
 }
 
-const errorStore = new ErrorStore();
+const ErrorStore = new ErrorStoreClass();
 
 Dispatcher.register((payload) => {
   const action = payload.action;
@@ -75,23 +74,23 @@ Dispatcher.register((payload) => {
   case ActionTypes.LOGIN_ERROR:
     loginError = action.errorMessage;
     registerError = undefined;
-    errorStore.emit(CHANGE_EVENT);
+    ErrorStore.emit(CHANGE_EVENT);
     break;
 
   case ActionTypes.REGISTER_ERROR:
     registerError = action.errorMessage;
     loginError = undefined;
-    errorStore.emit(CHANGE_EVENT);
+    ErrorStore.emit(CHANGE_EVENT);
     break;
 
   case ActionTypes.FAILED_RESET_PASSWORD:
     resetPasswordError = action.message;
-    errorStore.emit(CHANGE_EVENT);
+    ErrorStore.emit(CHANGE_EVENT);
     break;
 
   case ActionTypes.RESET_MESSAGE_SENT:
     resetPasswordError = '';
-    errorStore.emit(CHANGE_EVENT);
+    ErrorStore.emit(CHANGE_EVENT);
     break;
 
   default:
@@ -99,4 +98,4 @@ Dispatcher.register((payload) => {
   }
 });
 
-export default errorStore;
+export default ErrorStore;

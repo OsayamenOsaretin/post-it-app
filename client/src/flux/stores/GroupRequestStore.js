@@ -12,14 +12,14 @@ const addNewRequests = (newRequestList) => {
 };
 
 /**
- * RequestStore holds Store logic for groups
+ * RequestStoreClass holds Store logic for groups
  * @return {void}
  *
  */
-class RequestStore extends EventEmitter {
+class RequestStoreClass extends EventEmitter {
   /**
    * addChangeListener
-   * @memberof RequestStore
+   * @memberof RequestStoreClass
    * 
    * @param {Function} callback
    * 
@@ -31,7 +31,7 @@ class RequestStore extends EventEmitter {
 
   /**
    * removeChangeListener
-   * @memberof RequestStore
+   * @memberof RequestStoreClass
    * 
    * @param {Function} callback
    * 
@@ -52,7 +52,8 @@ class RequestStore extends EventEmitter {
   }
 }
 
-const requestStore = new RequestStore();
+
+const GroupRequestStore = new RequestStoreClass();
 
 Dispatcher.register((payload) => {
   const action = payload.action;
@@ -63,13 +64,13 @@ Dispatcher.register((payload) => {
   case ActionTypes.RECEIVE_REQUESTS:
     requestsMap = new Map(action.requests);
     addNewRequests(requestsMap);
-    requestStore.emit(CHANGE_EVENT);
+    GroupRequestStore.emit(CHANGE_EVENT);
     break;
 
   case ActionTypes.DELETE_REQUEST:
     groupId = action.id;
     requests = requests.delete(groupId);
-    requestStore.emit(CHANGE_EVENT);
+    GroupRequestStore.emit(CHANGE_EVENT);
     break;
 
   case ActionTypes.CLEAR_GROUP_REQUEST_STORE:
@@ -80,4 +81,4 @@ Dispatcher.register((payload) => {
     return true;
   }
 });
-export default requestStore;
+export default GroupRequestStore; 

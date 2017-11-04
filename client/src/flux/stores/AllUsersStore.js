@@ -16,10 +16,10 @@ const addNewUsers = (newUserList) => {
  * PosItAllUsersStore holds Store logic for users
  * @return {void}
  */
-class AllUserStore extends EventEmitter {
+class AllUserStoreClass extends EventEmitter {
 /**
  * addChangeListener
- * @memberof AllUserStore
+ * @memberof AllUserStoreClass
  * 
  * @param {function} callback
  * @param {String} CHANGE_EVENT_GROUP
@@ -32,7 +32,7 @@ class AllUserStore extends EventEmitter {
 
   /**
  * removeChangeListener
- * @memberof AllUserStore
+ * @memberof AllUserStoreClass
  * 
  * @param {function} callback
  * @param {String} CHANGE_EVENT_GROUP
@@ -47,7 +47,7 @@ class AllUserStore extends EventEmitter {
 
   /**
    * getUsers
-   * @memberof AllUserStore
+   * @memberof AllUserStoreClass
    * 
    * @param {string} groupId
    * 
@@ -58,7 +58,7 @@ class AllUserStore extends EventEmitter {
   }
 }
 
-const allUserStore = new AllUserStore();
+const AllUserStore = new AllUserStoreClass();
 
 Dispatcher.register((payload) => {
   const action = payload.action;
@@ -86,7 +86,7 @@ Dispatcher.register((payload) => {
       newUserMap.set(groupId, new UserList(userList));
       addNewUsers(newUserMap);
     }
-    allUserStore.emit(groupId);
+    AllUserStore.emit(groupId);
     break;
 
   case ActionTypes.DELETE_USER:
@@ -98,7 +98,7 @@ Dispatcher.register((payload) => {
       const newUsersForGroupMap = new Map();
       newUsersForGroupMap.set(groupId, new UserList(usersForGroup));
       addNewUsers(newUsersForGroupMap);
-      allUserStore.emit(groupId);
+      AllUserStore.emit(groupId);
     }
     break;
 
@@ -111,4 +111,4 @@ Dispatcher.register((payload) => {
   }
 });
 
-export default allUserStore;
+export default AllUserStore;

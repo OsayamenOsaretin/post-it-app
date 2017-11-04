@@ -2,7 +2,6 @@ import { EventEmitter } from 'events';
 import GroupList from '../models/groupList';
 import Dispatcher from '../Dispatcher';
 import ActionTypes from '../ActionTypes';
-import { getGroups, addGroupApi } from '../actions/groupActions';
 
 const CHANGE_EVENT = 'change';
 
@@ -15,14 +14,14 @@ const addNewGroups = (newGroupList) => {
 };
 
 /**
- * GroupStore holds Store logic for groups
+ * GroupStoreClass holds Store logic for groups
  * @return {void}
  *
  */
-class GroupStore extends EventEmitter {
+class GroupStoreClass extends EventEmitter {
   /**
    * addChangeListener
-   * @memberof GroupStore
+   * @memberof GroupStoreClass
    * 
    * @param {Function} callback
    * 
@@ -34,7 +33,7 @@ class GroupStore extends EventEmitter {
 
   /**
    * removeChangeListener
-   * @memberof GroupStore
+   * @memberof GroupStoreClass
    * 
    * @param {Function} callback
    * 
@@ -47,7 +46,7 @@ class GroupStore extends EventEmitter {
 
   /**
    * getGroups
-   * @memberof GroupStore
+   * @memberof GroupStoreClass
    * 
    * @return {Map} groups
    */
@@ -57,7 +56,7 @@ class GroupStore extends EventEmitter {
 
   /**
    * getGroupUser
-   * @memberof GroupStore
+   * @memberof GroupStoreClass
    * 
    * @return {List} groupUsers
    * 
@@ -68,30 +67,18 @@ class GroupStore extends EventEmitter {
   }
 }
 
-const groupStore = new GroupStore();
+const GroupStore = new GroupStoreClass();
 
 Dispatcher.register((payload) => {
   const action = payload.action;
-  const source = payload.source;
   let groupMap;
 
 
   switch (action.type) {
-  case ActionTypes.GET_GROUPS:
-    if (source === 'SERVER_ACTION') {
-      getGroups();
-    }
-    break;
-
-  case ActionTypes.ADD_GROUP:
-    // make api call to add group name
-    addGroupApi(action.groupName);
-    break;
-
   case ActionTypes.RECIEVE_GROUP_RESPONSE:
     groupMap = new Map(action.userGroups);
     addNewGroups(groupMap);
-    groupStore.emit(CHANGE_EVENT);
+    GroupStore.emit(CHANGE_EVENT);
     break;
 
   case ActionTypes.CLEAR_GROUPS_STORE:
@@ -102,5 +89,5 @@ Dispatcher.register((payload) => {
     return true;
   }
 });
-export default groupStore;
+export default GroupStore;
 
