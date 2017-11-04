@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
  * Nav holds routes to login and register components
  */
 export default () => (
-  <ul className = 'nav'>
+  <ul className = 'auth-nav'>
     <li>
       <NavLink exact activeClassName='active' to='/login'>
           Log in
