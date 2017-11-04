@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import FaPlus from 'react-icons/lib/fa/plus';
-import { addGroupApi } from '../../flux/actions/groupActions';
+import addGroup from '../../flux/actions/addGroup';
 
-/* global localStorage */
 
 /**
  * Add group adds a new group to list of user's groups
@@ -52,10 +51,8 @@ class AddGroupView extends Component {
    */
   handleSubmit(event) {
     event.preventDefault();
-    const userId = localStorage.getItem('userId');
-    addGroupApi({
-      groupName: this.state.fieldInput,
-      id: userId
+    addGroup({
+      groupName: this.state.fieldInput
     });
     this.setState({
       fieldInput: ''
