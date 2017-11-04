@@ -32,23 +32,22 @@ input {
   display: inline-block;
 }
 
-.nav {
+.auth-nav {
   display: flex;
   margin-bottom: 10px;
   margin-right: 10px;
   margin-top: 0px;
   max-width: 30%;
-  margin-left: 2px;
   li {
     list-style-type: none;
     margin-right: 2px;
     font-size: 15px;
     background-color: snow;
-    color: black;
-    padding: 10px;
+		padding: 10px;
+    color: black !important;
     font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,Verdana,sans-serif;
     .active {
-      color: #29a6dc;
+      color: #29a6dc !important;
       z-index: -1;
     }
   }
@@ -118,6 +117,7 @@ input {
   background-repeat: no-repeat;
 }
 
+
 .login-register-container {
   float: right;
   width: 60%;
@@ -169,7 +169,6 @@ input {
 }
 
 .add-group {
-  height: 8%;
   width: 100%;
   border-bottom: 1px solid #314050;
 }
@@ -583,4 +582,103 @@ input {
   color: snow;
   padding: 0;
   font-size: 20px;
+}
+
+@media only screen and (max-device-width: 768px) {
+  .mail-box-img {
+    height: 20%;
+    width: 100%;
+    background-image: url('./resources/mailbox.png');
+    background-repeat: no-repeat;
+  }
+  .landing-page-container {
+    margin-top: 20vh;
+    padding: 0;
+    .button {
+      width: 100%
+    }
+    input {
+      width: 100%;
+    }
+  }
+  .post-it-img {
+    height: 8%;
+    margin-top: 90px;
+  }
+
+  .group-list-nav {
+    width: 100%;
+    background-color: #23313e;
+  }
+
+  .toggle-out {
+    position: absolute;
+    z-index: 1;
+    right: 70vh;
+  }
+
+	.toggle-button-toggle-in {
+		color: #578ec9;
+		margin-left: 88%;
+		position:absolute;
+		top: 43px;
+		left: 5%;
+		font-size: 55px
+	}
+
+	.group-list-item {
+		height: 7%;
+	}
+
+	.add-group-button {
+		position: absolute;
+		top: 35px;
+		right: 30px;
+	}
+
+	.new-group-input {
+    height: 5%;
+		
+	}
+
+	.toggle-button-toggle-out {
+		color: #578ec9;
+		position:absolute;
+		top: 43px;
+		left: 5%;
+		font-size: 55px
+	}
+	
+  .toggle-in {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .group-details {
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+  }
+	
+	.send-message {
+		width: 100%;
+		height: 7%;
+	}
+
+	.add-user {
+		position: absolute;
+		top: 2%;
+	}
+
+	.sender-initials-alternate {
+		position: absolute;
+		right: 10px;
+	}
+	
+
+	.message-view-alternate {
+		max-width: 75%;
+		margin-left: 17%
+	}
+
 }
