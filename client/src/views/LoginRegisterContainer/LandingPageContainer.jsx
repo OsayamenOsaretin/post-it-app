@@ -7,16 +7,22 @@ import GoogleSignIn from './GoogleSignInComponent.jsx';
  */
 export default function LandingPageContainer() {
   return (
-    <div className='landing-page-container'>
-      <div className='landing-img-container'>
-        <div className = "post-it-img">
+    <div className="container landing-page-container">
+      <div className="row">
+        <div className="col-sm-12 col-md-4">
+          <div className="col-sm-6 col-md-12">
+            <div className="post-it-img">
+            </div>
+          </div>
+          <div className="col-sm-6 col-md-12">
+            <div className="mail-box-img">
+            </div>
+          </div>
         </div>
-        <div className = "mail-box-img">
+        <div className="col-sm-12 col-md-8">
+          <LoginRegisterComponent />
+          <GoogleSignIn />
         </div>
-      </div>
-      <div className="login-register-container">
-        <LoginRegisterComponent />
-        <GoogleSignIn />
       </div>
     </div>
   );
