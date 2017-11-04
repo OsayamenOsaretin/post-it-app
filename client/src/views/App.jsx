@@ -98,10 +98,11 @@ export default class App extends Component {
       passwordReset: true
     });
   }
+
   /**
- * @returns {void}
- * @memberof App
- */
+   * @returns {void}
+   * @memberof App
+   */
   authenticateUser() {
     const tokenState = UserStore.getSignedInState();
     if (tokenState === 'expired') {
