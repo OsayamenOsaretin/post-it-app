@@ -138,7 +138,7 @@ export default class RegisterForm extends Component {
           autoComplete='off'
           value={this.state.password}
           onChange={this.handleChange}
-        /> {this.state.password.length < 6 ? <FaSquareO /> : <FaCheckSquareO />}
+        />
         <input
           name='confirmPassword'
           placeholder='confirmpassword'
@@ -146,9 +146,7 @@ export default class RegisterForm extends Component {
           autoComplete='off'
           value={this.state.confirmPassword}
           onChange={this.handleChange}
-        /> {this.state.password !== this.state.confirmPassword ||
-         this.state.password.length
-          < 6 ? <FaSquareO /> : <FaCheckSquareO />}
+        />
         <button
           className='button'
           type='submit'
