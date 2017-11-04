@@ -8,9 +8,9 @@ import { getAuth } from '../firebaseHelpers';
  * @export
  * @function
  * 
- * @param {*} email
+ * @param {String} email
  * 
- * @returns {void}
+ * @returns {Promise} sends password reset email
  */
 export default function ResetPassword({ email }) {
   const auth = getAuth();

@@ -12,7 +12,7 @@ import { getAuth } from '../firebaseHelpers';
  * @param {String} email
  * @param {String} password
  * 
- * @returns {void}
+ * @returns {Promise} sign in promise
  */
 export default function SignInAction({ email, password }) {
   const auth = getAuth();
