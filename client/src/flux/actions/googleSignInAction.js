@@ -8,7 +8,7 @@ import { getAuth, getDatabase, googleProvider } from '../firebaseHelpers';
  * @export
  * @function
  * 
- * @returns {void}
+ * @returns {Promise} signInPromise
  */
 export default function GoogleSignInAction() {
   const auth = getAuth();
