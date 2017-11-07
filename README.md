@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/OsayamenOsaretin/post-it-app.svg?branch=develop)](https://travis-ci.org/OsayamenOsaretin/post-it-app) [![Coverage Status](https://coveralls.io/repos/github/OsayamenOsaretin/post-it-app/badge.svg?branch=develop)](https://coveralls.io/github/OsayamenOsaretin/post-it-app?branch=develop)
+[![Build Status](https://travis-ci.org/OsayamenOsaretin/post-it-app.svg?branch=develop)](https://travis-ci.org/OsayamenOsaretin/post-it-app) [![Coverage Status](https://coveralls.io/repos/github/OsayamenOsaretin/post-it-app/badge.svg?branch=develop)](https://coveralls.io/github/OsayamenOsaretin/post-it-app?branch=feedback-implementation)
 [![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
 # PostIt
 
