@@ -1,15 +1,16 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import GroupAction from 'GroupAction'; // eslint-disable-line
-import AddGroup from '../../views/GroupContainer/AddGroup.jsx';
+// import GroupAction from 'GroupAction'; // eslint-disable-line
+import addGroupAction from '../../flux/actions/addGroup';
+import AddGroupView from '../../views/GroupContainer/AddGroup.jsx';
 
 /* global jest window localStorage */
 
-jest.mock('GroupAction', () => jest.fn());
+jest.mock('../../flux/actions/addGroup');
 Object.defineProperty(window, 'localStorage', { value: jest.fn() });
-localStorage.getItem = () => {
-  return 'testUser';
-};
+localStorage.getItem = () => (
+  'testUser'
+);
 localStorage.setItem = jest.fn();
 
 describe('AddGroup', () => {
@@ -17,7 +18,7 @@ describe('AddGroup', () => {
   const addGroup = () => {
     if (!mountedComponent) {
       mountedComponent = mount(
-        <AddGroup />
+        <AddGroupView />
       );
     }
     return mountedComponent;
@@ -41,7 +42,6 @@ describe('AddGroup', () => {
   });
 
   it('should call add group action when button is clicked', () => {
-    GroupAction.addGroupApi = jest.fn();
     const component = addGroup();
     const button = component.find('button').first();
     const input = component.find('input').first();
@@ -49,6 +49,6 @@ describe('AddGroup', () => {
       value: 'test Group'
     } });
     button.simulate('click');
-    expect(GroupAction.addGroupApi.mock.calls.length).toBe(1);
+    expect(addGroupAction).toHaveBeenCalled();
   });
 });

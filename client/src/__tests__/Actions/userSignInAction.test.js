@@ -44,10 +44,14 @@ describe('userSignInAction', () => {
     () => {
       const dispatcherSpy = spyOn(PostItDispatcher, 'handleServerAction');
       mockAuth.autoFlush();
-      SignInAction({ email: 'bademailstring', password: 'thepassword' });
-      expect(dispatcherSpy).toHaveBeenCalledWith({
-        type: PostItActionTypes.LOGIN_ERROR,
-        errorMessage: 'Invalid email address'
+      return SignInAction({
+        email: 'bademailstring',
+        password: 'thepassword' }
+      ).then(() => {
+        expect(dispatcherSpy).toHaveBeenCalledWith({
+          type: PostItActionTypes.LOGIN_ERROR,
+          errorMessage: 'Invalid email address'
+        });
       });
     });
 });

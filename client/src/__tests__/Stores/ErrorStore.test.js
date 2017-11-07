@@ -18,6 +18,25 @@ describe('PostItErrorStore', () => {
     }
   };
 
+  const resetMessageSent = {
+    action: {
+      type: PostItActionTypes.RESET_MESSAGE_SENT
+    }
+  };
+
+  const failedReset = {
+    action: {
+      type: PostItActionTypes.FAILED_RESET_PASSWORD,
+      message: 'failed password reset'
+    }
+  };
+
+  const defaultPayload = {
+    action: {
+      type: 'DEFAULT_TYPE'
+    }
+  };
+
   let callback;
   let PostItDispatcher;
   let PostItErrorStore;
@@ -58,6 +77,25 @@ describe('PostItErrorStore', () => {
       const errorStatus = PostItErrorStore.getRegisterError();
       expect(errorStatus).toBe('testRegisterError');
     });
+
+  it('should update reset password error after recieving failed_reset payload',
+    () => {
+      callback(failedReset);
+      const errorStatus = PostItErrorStore.getResetPasswordError();
+      expect(errorStatus).toBe('failed password reset');
+    });
+
+  it('should reset reset password error when action type is reset message sent'
+    , () => {
+      callback(resetMessageSent);
+      const errorStatus = PostItErrorStore.getResetPasswordError();
+      expect(errorStatus).toBe('');
+    });
+
+  it('should plainly return true for the default action type case', () => {
+    const returnValue = callback(defaultPayload);
+    expect(returnValue).toBe(true);
+  });
 
   it('should attach event emitter when add change listener is called', () => {
     const spyOnAddEvent = spyOn(PostItErrorStore, 'on');

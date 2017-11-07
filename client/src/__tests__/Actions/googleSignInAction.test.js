@@ -8,27 +8,32 @@ jest.mock('../../flux/Dispatcher');
 jest.mock('firebase');
 
 describe('googleSignInAction', () => {
+  let dispatcherSpy;
   beforeEach(() => {
+    dispatcherSpy = spyOn(Dispatcher, 'handleServerAction');
     mockAuth.autoFlush();
     mockDatabase.autoFlush();
-    expect.assertions(1);
-  });
-  it('should dispatch payload to error store on failed database update', () => {
-    const dispatcherSpy = spyOn(Dispatcher, 'handleServerAction');
-    return googleSignInAction()
-      .then(() => {
-        expect(dispatcherSpy).toHaveBeenCalledWith({
-          type: PostItActionTypes.FAILED_GOOGLE_LOGIN
-        });
-      });
   });
 
+  it('should dispatch payload to login user on successful sign in ', () => (
+    googleSignInAction()
+      .then(() => {
+        expect(dispatcherSpy).toHaveBeenCalledWith({
+          type: PostItActionTypes.LOGIN_USER,
+          user: expect.anything()
+        });
+      })
+  ));
+
   it('should dispatch error payload when sign in fails', () => {
-    const dispatcherSpy = spyOn(Dispatcher, 'handleServerAction');
+    const error = new Error('error');
+    mockAuth.failNext('signInWithPopup', error);
+    mockAuth.autoFlush();
     return googleSignInAction()
       .then(() => {
         expect(dispatcherSpy).toHaveBeenCalledWith({
-          type: PostItActionTypes.FAILED_GOOGLE_LOGIN
+          type: PostItActionTypes.LOGIN_ERROR,
+          errorMessage: 'Google sign in failed, try again'
         });
       });
   });

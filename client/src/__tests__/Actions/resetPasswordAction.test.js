@@ -30,4 +30,17 @@ describe('resetPasswordAction', () => {
         });
       });
   });
+
+  it('should dispatch correct error message when user does not exits', () => {
+    const error = new Error('error');
+    error.code = 'auth/user-not-found';
+    mockAuth.failNext('sendPasswordResetEmail', error);
+    return ResetPasswordAction({ resetEmail: 'testEmail@email.com' })
+      .then(() => {
+        expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
+          type: PostItActionTypes.FAILED_RESET_PASSWORD,
+          message: 'Oops! Incorrect email'
+        });
+      });
+  });
 });

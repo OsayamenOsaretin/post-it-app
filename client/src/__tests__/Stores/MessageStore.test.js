@@ -21,6 +21,12 @@ describe('PostItMessageStore', () => {
     }
   };
 
+  const clearMessageStore = {
+    action: {
+      type: PostItActionTypes.CLEAR_MESSAGES_STORE
+    }
+  };
+
   let callback;
   let PostItDispatcher;
   let PostItMessageStore;
@@ -38,7 +44,7 @@ describe('PostItMessageStore', () => {
 
   it('should update map of messages in on recieve callback', () => {
     callback(recieveMessages);
-    expect((PostItMessageStore.getMessage('testId')).size).toBeGreaterThan(0);
+    expect((PostItMessageStore.getMessage('testId')).size).toBe(1);
   });
 
   it('should emit change on receive mark read dispatch', () => {
@@ -73,5 +79,12 @@ describe('PostItMessageStore', () => {
     const mockCallBack = jest.fn();
     PostItMessageStore.removeNotificationChangeListener(mockCallBack);
     expect(spyOnRemoveEvent).toHaveBeenCalledWith('change', mockCallBack);
+  });
+
+  it('should clear messages for clear message store payload', () => {
+    callback(recieveMessages);
+    expect((PostItMessageStore.getMessage('testId')).size).toBe(1);
+    callback(clearMessageStore);
+    expect((PostItMessageStore.getMessage('testId'))).not.toBeDefined();
   });
 });

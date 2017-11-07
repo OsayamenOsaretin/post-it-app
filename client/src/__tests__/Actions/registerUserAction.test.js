@@ -25,25 +25,28 @@ describe('registerUserAction', () => {
       mockAuth.autoFlush();
       mockDatabase.autoFlush();
       userDetails.email = 'badEmail';
-      RegisterAction(userDetails);
-      expect(dispatcherSpy).toHaveBeenCalledWith({
-        type: PostItActionTypes.REGISTER_ERROR,
-        errorMessage: 'Invalid email, please enter your actual email'
+      RegisterAction(userDetails).then(() => {
+        expect(dispatcherSpy).toHaveBeenCalledWith({
+          type: PostItActionTypes.REGISTER_ERROR,
+          errorMessage: 'Invalid email, please enter your actual email'
+        });
       });
     });
 
-  it('should dispatch error payload when username is nvalid',
+  it('should dispatch error payload when username is invalid',
     () => {
       const dispatcherSpy = spyOn(Dispatcher, 'handleServerAction');
       mockAuth.autoFlush();
       mockDatabase.autoFlush();
       userDetails.email = 'testEmail@email.com';
-      userDetails.userName = undefined;
-      RegisterAction(userDetails);
-      expect(dispatcherSpy).toHaveBeenCalledWith({
-        type: PostItActionTypes.REGISTER_ERROR,
-        errorMessage: 'Invalid Username, please enter a username'
-      });
+      userDetails.userName = '';
+      return RegisterAction(userDetails)
+        .then(() => {
+          expect(dispatcherSpy).toHaveBeenCalledWith({
+            type: PostItActionTypes.REGISTER_ERROR,
+            errorMessage: 'Invalid Username, please enter a valid username'
+          });
+        });
     });
 
   it('should dispatch error payload when password is invalid',
@@ -54,12 +57,14 @@ describe('registerUserAction', () => {
       userDetails.email = 'testEmail@email.com';
       userDetails.userName = 'testUsername';
       userDetails.password = 'bad';
-      RegisterAction(userDetails);
-      expect(dispatcherSpy).toHaveBeenCalledWith({
-        type: PostItActionTypes.REGISTER_ERROR,
-        errorMessage:
-        'Invalid password, please a password greater than 6 characters'
-      });
+      return RegisterAction(userDetails)
+        .then(() => {
+          expect(dispatcherSpy).toHaveBeenCalledWith({
+            type: PostItActionTypes.REGISTER_ERROR,
+            errorMessage:
+                'Invalid password, please use a password longer than 6 characters'
+          });
+        });
     });
 
   it('should dispatch server action to sign in on successful sign up', () => {

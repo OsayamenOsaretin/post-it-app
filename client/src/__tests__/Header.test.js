@@ -13,10 +13,11 @@ jest.mock('SignOutAction', () => jest.fn());
 
 describe('HeaderView', () => {
   let mountedComponent;
+  let props;
   const headerView = () => {
     if (!mountedComponent) {
       mountedComponent = mount(
-        <HeaderView />
+        <HeaderView {...props} />
       );
     }
     return mountedComponent;
@@ -24,16 +25,20 @@ describe('HeaderView', () => {
 
   beforeEach(() => {
     mountedComponent = undefined;
+    props = {
+      username: 'test user',
+      signOutHandler: jest.fn()
+    };
   });
 
   it('should render header view', () => {
     expect(headerView()).toBeDefined();
   });
 
-  it('should call sign out action on button click', () => {
+  it('should render with the right props', () => {
     const component = headerView();
-    const signOutButton = component.find('button').first();
-    signOutButton.simulate('click');
-    expect(SignOutAction.mock.calls.length).toBeGreaterThan(0);
+    const componentProps = component.props();
+    expect(componentProps.username).toEqual('test user');
+    expect(Object.keys(componentProps).length).toBe(2);
   });
 });
