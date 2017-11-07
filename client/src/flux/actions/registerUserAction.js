@@ -61,14 +61,9 @@ export default ({ email, password, userName, phone }) => {
         email: user.email,
         number: phone });
 
-      user.sendEmailVerification().then(() => {
-        user.getIdToken().then((idToken) => {
-          PostItDispatcher.handleServerAction({
-            type: PostItActionTypes.LOGIN_USER,
-            user,
-            idToken
-          });
-        });
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.LOGIN_USER,
+        user
       });
     });
 };
