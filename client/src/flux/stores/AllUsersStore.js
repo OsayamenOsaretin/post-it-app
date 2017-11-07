@@ -77,13 +77,15 @@ Dispatcher.register((payload) => {
     userList = action.users;
     usersForGroup = users.get(groupId);
     if (usersForGroup) {
-      usersForGroup = usersForGroup.merge(new Map(userList));
+      userList = new UserList(userList);
+      usersForGroup = usersForGroup.merge(userList);
       const newUserMap = new Map();
       newUserMap.set(groupId, usersForGroup);
       addNewUsers(newUserMap);
     } else {
       const newUserMap = new Map();
-      newUserMap.set(groupId, new UserList(userList));
+      userList = new UserList(userList);
+      newUserMap.set(groupId, userList);
       addNewUsers(newUserMap);
     }
     AllUserStore.emit(groupId);
