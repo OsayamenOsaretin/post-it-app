@@ -4,7 +4,7 @@ import { getDatabase, getAuth } from '../firebaseHelpers';
 
 
 /**
- * addUserToGroups - sends a new message to a group
+ * addUserToGroups - sends request to user invited to group 
  * 
  * @param {Object} Details the user and group details
  * 
@@ -16,7 +16,6 @@ export default ({ groupId, userId }) => {
 
   auth.onAuthStateChanged((user) => {
     if (user) {
-      // add group to user's list of groups
       database.ref(`/users/${userId}/requests`).child(groupId).set(true);
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.DELETE_USER,

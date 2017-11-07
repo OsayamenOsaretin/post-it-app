@@ -2,6 +2,8 @@ import { getAuth, getDatabase } from '../firebaseHelpers';
 import receiveGroups from './receivGroups';
 import bulkMessageRequest from '../../utility/bulkMessageRequest';
 import getRequests from './getRequests';
+import PostItDispatcher from '../Dispatcher';
+import PostItActionTypes from '../ActionTypes';
 
 /**
  * getGroups makes an api call for user's groups and dispatches(res)
@@ -38,6 +40,10 @@ export default function getGroups() {
       });
 
       getRequests(userId, database);
+    } else {
+      PostItDispatcher.handleServerAction({
+        type: PostItActionTypes.LOGIN_ERROR
+      });
     }
   });
 }
