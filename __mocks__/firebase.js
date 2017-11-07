@@ -21,8 +21,8 @@ function mockPathFn(path) {
 function mockAuthFn() {
   return mockAuth;
 }
-const mockSdk = MockFirebaseSdk(mockPathFn, mockAuthFn);
-mockSdk.auth.GoogleAuthProvider.credential = jest.fn(() => 'test');
+const firebase = MockFirebaseSdk(mockPathFn, mockAuthFn);
+firebase.auth.GoogleAuthProvider.credential = jest.fn(() => 'test');
 
-export default mockSdk;
+export default firebase;
 

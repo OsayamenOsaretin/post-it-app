@@ -43,12 +43,13 @@ class GroupListView extends Component {
     return (
       <BrowserRouter >
         <div className="main-view">
-					<button
+          <button
             onClick={this.handleToggleClick}
-				    className={`toggle-button-${this.state.toggleMode} visible-sm visible-xs`}	
-					>
-						{this.state.toggleMode !== 'toggle-in' ? <FaBars /> : <FaClose />} 
-            </button>
+            className={`toggle-button-${this.state.toggleMode
+            } visible-sm visible-xs`}
+          >
+            {this.state.toggleMode !== 'toggle-in' ? <FaBars /> : <FaClose />}
+          </button>
           <div className={`group-list-nav ${this.state.toggleMode}`}>
             <GroupList groups={this.props.groups} loading={this.props.loading}/>
           </div>
@@ -56,7 +57,7 @@ class GroupListView extends Component {
             <Switch>
               <Route exact path='/groupBody/:groupId/:groupName'
                 component={groupProps => (
-									<GroupItem {...groupProps} />
+                  <GroupItem {...groupProps} />
                 )} />
               <Route path='/' component={WelcomeView} />
             </Switch>
