@@ -81,14 +81,16 @@ Dispatcher.register((payload) => {
   switch (action.type) {
   case ActionTypes.LOGIN_USER:
     if (source === 'SERVER_ACTION') {
-      const { user, idToken } = action;
-      const { displayName, uid } = user;
-      const date = new Date();
-      localStorage.setItem('token', idToken);
-      localStorage.setItem('username', displayName);
-      localStorage.setItem('userId', uid);
-      localStorage.setItem('loginDate', date);
-      UserStore.emit(CHANGE_EVENT);
+      const { user } = action;
+      user.getIdToken().then((idToken) => {
+        localStorage.setItem('token', idToken);
+        const { displayName, uid } = user;
+        const date = new Date();
+        localStorage.setItem('username', displayName);
+        localStorage.setItem('userId', uid);
+        localStorage.setItem('loginDate', date);
+        UserStore.emit(CHANGE_EVENT);
+      });
     }
     break;
 
