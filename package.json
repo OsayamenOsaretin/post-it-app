@@ -13,6 +13,9 @@
     "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test": "jest --coverage && npm run coverage"
   },
+  "engines": {
+    "node": "8.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OsayamenOsaretin/post-it-app.git"
