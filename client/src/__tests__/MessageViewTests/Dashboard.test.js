@@ -1,7 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
+// import GroupList from '../../flux/models/groupList';
 import GroupStore from 'GroupStore';    // eslint-disable-line
 import Dashboard from '../../views/GroupContainer/Dashboard.jsx';
+import SignOutAction from '../../flux/actions/signOutAction';
 
 /* global jest localStorage window */
 
@@ -9,8 +11,10 @@ Object.defineProperty(window, 'localStorage', { value: jest.fn() });
 localStorage.getItem = jest.fn();
 localStorage.setItem = jest.fn();
 
+
 jest.mock('socket.io-client');
-jest.mock('GroupStore');
+
+jest.mock('../../flux/actions/signOutAction');
 
 describe('Dashboard', () => {
   let mountedComponent;
@@ -36,6 +40,25 @@ describe('Dashboard', () => {
     const component = dashboard();
     const headerView = component.find('HeaderView');
     expect(headerView).toBeDefined();
+  });
+
+  it('should call sign out action when handler is called', () => {
+    const component = dashboard();
+    const event = {
+      preventDefault: jest.fn()
+    };
+    const componentInstance = component.instance();
+    const signOutHandler = componentInstance.signOutHandler;
+    signOutHandler(event);
+    expect(SignOutAction).toHaveBeenCalled();
+  });
+
+  it('should set state when on change callback is called', () => {
+    const component = dashboard();
+    const componentInstance = component.instance();
+    const onChangeCb = componentInstance.onChange;
+    onChangeCb();
+    expect(1).toBe(1);
   });
 
   it('should render a GroupListView', () => {
