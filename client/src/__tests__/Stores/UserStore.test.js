@@ -6,6 +6,7 @@ jest.mock('../../flux/Dispatcher');
 Object.defineProperty(window, 'localStorage', { value: jest.fn() });
 localStorage.getItem = jest.fn();
 localStorage.setItem = jest.fn();
+localStorage.removeItem = jest.fn();
 
 describe('PostItUserStore', () => {
   const loginUser = {
@@ -19,9 +20,22 @@ describe('PostItUserStore', () => {
     }
   };
 
+  const signOut = {
+    source: 'SERVER_ACTION',
+    action: {
+      type: PostItActionTypes.SIGN_OUT
+    }
+  };
+
   const resetMessage = {
     action: {
       type: PostItActionTypes.RESET_MESSAGE_SENT
+    }
+  };
+
+  const defaultAction = {
+    action: {
+      type: 'DEFAULT_ACTION'
     }
   };
 
@@ -41,10 +55,15 @@ describe('PostItUserStore', () => {
   });
 
   it('should store display name and token in local storage on login', 
-    async () => {
+    async () =>{                      //eslint-disable-line
       await callback(loginUser);
       expect(localStorage.setItem.mock.calls.length).toBe(4);
     });
+
+  it('should wipe localStorage on sign out', () => {
+    callback(signOut);
+    expect(localStorage.removeItem.mock.calls.length).toBe(4);
+  })
 
   it('should get token item from local storage when get signed in state called',
     () => {
@@ -55,6 +74,10 @@ describe('PostItUserStore', () => {
   it('should set the reset password state', () => {
     callback(resetMessage);
     expect(PostItUserStore.getPasswordResetMessageState()).toBe(true);
+  });
+
+  it('should plainly return true when action type is default', () => {
+    expect(callback(defaultAction)).toBe(true);
   });
 
   it('should attach event emitter when add change listener is called', () => {
