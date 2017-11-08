@@ -18,25 +18,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-const config= require('../webpack.config');   // eslint-disable-line
-const compiler = webpack(config);
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
+  const config= require('../webpack.config');   // eslint-disable-line
+  const compiler = webpack(config);
   app.use(webpackMiddleWare(compiler, {
     hot: true,
     publicPath: config.output.publicPath,
     noInfo: true,
   }));
   app.use(webpackHotMiddleWare(compiler));
+
+  app.use(express.static(path.join(__dirname, '../dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
+  });
+} else {
+  app.use(express.static(path.join(__dirname, '../../dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../dist/index.html'));
+  });
 }
 
-app.use(express.static(path.join(__dirname, '../dist')));
-
-// use routes imported
 routes(app);
-
-// default route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
 
 app.listen(port);
