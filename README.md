@@ -74,7 +74,8 @@ To run the app on your machine:
 
 ## Contributions are welcome
  See anything that could have been done, or done better. Please Open a pull request. Also, please try to follow these guidelines
- - This project subscribes to the airbnb style guide.
+ - Code written for this project should be written in es6 and subscribe to the airbnb styleguide
+ - Commit messages should be clear and descriptive 
  - Pull requests should be made to the develop branch
  
  Thank you!
