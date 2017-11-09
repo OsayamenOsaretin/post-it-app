@@ -12,31 +12,31 @@ export default function addGroup({ groupName }) {
   const auth = getAuth();
   const database = getDatabase();
 
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      const newUserId = user.uid;
+  const user = auth.currentUser;
 
-      const newGroupKey = database.ref('groups').push({
-        groupname: groupName,
-        creator: newUserId,
-      }).key;
+  if (user) {
+    const userId = user.uid;
 
-      database.ref(`groups/${newGroupKey}/users/${newUserId}`).set({
-        Id: newUserId,
-      });
+    const newGroupKey = database.ref('groups').push({
+      groupname: groupName,
+      creator: userId,
+    }).key;
 
-      // add group key to list of a user's group
-      database.ref(`/users/${newUserId}/groups/`).child(newGroupKey).set(
-        { id: newGroupKey }
-      );
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.ADD_GROUP,
-        groupName
-      });
-    } else {
-      PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.FAILED_ADD_GROUP
-      });
-    }
-  });
+    database.ref(`/groups/${newGroupKey}/users/${userId}`).set({
+      Id: userId,
+    });
+
+    // add group key to list of a user's group
+    database.ref(`/users/${userId}/groups/`).child(newGroupKey).set(
+      { id: newGroupKey }
+    );
+    PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.ADD_GROUP,
+      groupName
+    });
+  } else {
+    PostItDispatcher.handleServerAction({
+      type: PostItActionTypes.FAILED_ADD_GROUP
+    });
+  }
 }
