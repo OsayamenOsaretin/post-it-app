@@ -35,7 +35,7 @@ describe('userSignInAction', () => {
         expect(dispatcherSpy).toHaveBeenCalledWith({
           type: PostItActionTypes.LOGIN_ERROR,
           errorMessage:
-            'Ouch!, Your username or password is incorrect, please try again'
+            'Something went wrong, please try again'
         });
       });
   });

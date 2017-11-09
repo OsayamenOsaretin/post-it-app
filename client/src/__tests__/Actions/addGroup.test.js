@@ -16,11 +16,10 @@ describe('AddGroupAction', () => {
   });
 
   it('should dispatch to stores with right arguments on add group', () => {
-    mockAuth.changeAuthState({
-      uid: 'testUserId',
-      provider: 'custom',
-      token: 'authToken'
-    });
+    mockAuth.currentUser = {
+      id: 'testUserId',
+      provider: 'custom'
+    };
     mockAuth.autoFlush();
     addGroup(newGroup);
     expect(dispatcherSpy).toHaveBeenCalledWith({
