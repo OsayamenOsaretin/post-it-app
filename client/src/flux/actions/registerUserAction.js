@@ -2,6 +2,7 @@ import validator from 'validator';
 import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
 import { getAuth, getDatabase } from '../firebaseHelpers';
+import friendlyErrorHelper from '../../utility/friendlyErrorHelper';
 
 /**
  * helper function to promisify error handling
@@ -45,7 +46,7 @@ export default ({ email, password, userName, phone }) => {
 
   if (!validator.isLength(password, { max: 100, min: 6 })) {
     errorMessage =
-        'Invalid password, please use a password longer than 6 characters';
+      'Invalid password, please use a password longer than 6 characters';
     return handleError(errorMessage);
   }
 
@@ -54,16 +55,22 @@ export default ({ email, password, userName, phone }) => {
     .then((user) => {
       user.updateProfile({
         displayName: userName
+      }).then(() => {
+        PostItDispatcher.handleServerAction({
+          type: PostItActionTypes.LOGIN_USER,
+          user
+        });
       });
 
       database.ref(`users/${user.uid}`).set({
         username: userName,
-        email: user.email,
+        email,
         number: phone });
-
+    }).catch((error) => {
+      errorMessage = friendlyErrorHelper(error);
       PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.LOGIN_USER,
-        user
+        type: PostItActionTypes.REGISTER_ERROR,
+        errorMessage
       });
     });
 };
