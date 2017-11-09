@@ -116,7 +116,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.0.1",
     "expect": "^21.2.1",
-    "firebase-mock": "https://github.com/OsayamenOsaretin/firebase-mock/tarball/1f0e59c622e48e3436e9c0c2ab169ccf3677f9d4",
+    "firebase-mock": "https://github.com/OsayamenOsaretin/firebase-mock/tarball/e35b1056248367c04034ad89bdccb84b1dc2de0b",
     "jest": "^20.0.4",
     "mockery": "^2.1.0",
     "react-test-renderer": "^15.6.1",
