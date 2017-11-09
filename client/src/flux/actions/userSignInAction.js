@@ -2,6 +2,7 @@ import validator from 'validator';
 import PostItDispatcher from '../Dispatcher';
 import PostItActionTypes from '../ActionTypes';
 import { getAuth } from '../firebaseHelpers';
+import friendlyErrorHelper from '../../utility/friendlyErrorHelper';
 
 
 /**
@@ -25,11 +26,10 @@ export default function SignInAction({ email, password }) {
           user
         });
       })
-      .catch(() => {
+      .catch((error) => {
         PostItDispatcher.handleServerAction({
           type: PostItActionTypes.LOGIN_ERROR,
-          errorMessage:
-          'Ouch!, Your username or password is incorrect, please try again'
+          errorMessage: friendlyErrorHelper(error)
         });
       });
   }
