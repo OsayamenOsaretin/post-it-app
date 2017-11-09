@@ -21,6 +21,7 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
+      username: localStorage.getItem('username'),
       groups: GroupStore.getGroups(),
       loading: true
     };
@@ -83,7 +84,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <HeaderView signOutHandler={this.signOutHandler}
-          username={localStorage.getItem('username')}/>
+          username={this.state.username}/>
         <GroupListView groups={this.state.groups} loading={this.state.loading}/>
       </div>
     );
