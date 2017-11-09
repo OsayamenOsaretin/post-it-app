@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import UserListView from
   '../../views/GroupContainer/GroupBodyContainer/userListView.jsx';
-import UserListAction from 'UserListAction';
+import UserListAction from 'UserListAction';    // eslint-disable-line
 
 /* global jest */
 
@@ -20,17 +20,22 @@ describe('UserListView ', () => {
     return mountedComponent;
   };
 
+  const users = {
+    entrySeq: () => ([])
+  };
+
+
+  const handleStatusChange = jest.fn();
+
   beforeEach(() => {
     mountedComponent = undefined;
     props = {
-      users: {
-        entrySeq: () => ([])
-      },
-      handleStatusChange: jest.fn()
+      users,
+      handleStatusChange
     };
   });
 
-  it('should render', () => {
+  it('should successfully mount component', () => {
     expect(userListView()).toBeDefined();
   });
 
@@ -41,8 +46,12 @@ describe('UserListView ', () => {
     expect(UserListAction.mock.calls.length).toBe(1);
   });
 
-  it('should take props', () => {
+  it('should mount with the right props', () => {
     const component = userListView();
-    expect(Object.keys(component.props()).length).toBeGreaterThan(0);
+    const componentProps = component.instance().props;
+    expect(componentProps).toEqual({
+      users,
+      handleStatusChange
+    });
   });
 });

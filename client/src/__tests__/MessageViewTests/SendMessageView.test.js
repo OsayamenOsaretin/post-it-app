@@ -24,7 +24,7 @@ describe('SendMessageView', () => {
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should render component successfully', () => {
     expect(sendMessageView()).toBeDefined();
   });
 
@@ -47,10 +47,5 @@ describe('SendMessageView', () => {
     const button = component.find('button');
     button.simulate('click');
     expect(SendMessageAction.mock.calls.length).toBe(1);
-  });
-
-  it('should not take props', () => {
-    const component = sendMessageView();
-    expect(Object.keys(component.props()).length).toBe(0);
   });
 });

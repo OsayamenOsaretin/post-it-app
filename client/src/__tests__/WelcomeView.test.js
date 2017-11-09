@@ -17,7 +17,7 @@ describe('WelcomeView', () => {
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should mount component successfully', () => {
     expect(welcomeView()).toBeDefined();
   });
 

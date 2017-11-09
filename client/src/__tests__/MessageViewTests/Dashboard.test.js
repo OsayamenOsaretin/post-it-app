@@ -32,7 +32,7 @@ describe('Dashboard', () => {
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should successfully mount component', () => {
     expect(dashboard()).toBeDefined();
   });
 

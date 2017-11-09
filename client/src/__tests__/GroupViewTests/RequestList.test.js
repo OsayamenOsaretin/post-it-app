@@ -49,8 +49,14 @@ describe('RequestList', () => {
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should mount component successfully', () => {
     expect(requestListView()).toBeDefined();
+  });
+
+  it('should mount with the right props', () => {
+    const component = requestListView();
+    const groupIdProp = component.instance().props.groupId;
+    expect(groupIdProp).toBe('testGroupId');
   });
 
   it('should add event listener on component mount', () => {

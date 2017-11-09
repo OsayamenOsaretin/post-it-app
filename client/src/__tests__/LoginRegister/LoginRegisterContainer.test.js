@@ -18,7 +18,7 @@ describe('LoginRegisterContainer', () => {
     });
   };
 
-  it('should render', () => {
+  it('should mount component successfully', () => {
     const component = logRegContainer();
     expect(component).toBeDefined();
   });

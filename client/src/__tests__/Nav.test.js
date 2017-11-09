@@ -17,7 +17,7 @@ describe('Nav', () => {
     mountedNavigation = undefined;
   });
 
-  it('should be defined after mount', () => {
+  it('should mount component successfully', () => {
     const component = nav();
     expect(component).toBeDefined();
   });

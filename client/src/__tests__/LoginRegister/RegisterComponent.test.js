@@ -23,26 +23,22 @@ describe('RegisterComponent', () => {
     mountedRegisterComponent = undefined;
   });
 
-  it('does not recieve any props', () => {
-    expect(registerComponent().props().length).toBe(undefined);
-  });
-
-  it('always renders a form', () => {
+  it('should always render a form', () => {
     const form = registerComponent().find('form');
     expect(form.length).toBe(1);
   });
 
-  it('always renders 4 input fields', () => {
+  it('should always render 4 input fields', () => {
     const inputs = registerComponent().find('input');
     expect(inputs.length).toBe(5);
   });
 
-  it('always renders a button', () => {
+  it('should always render a button', () => {
     const button = registerComponent().find('button');
     expect(button.length).toBe(1);
   });
 
-  it('first input field should update username state', () => {
+  it('should update username state in the first input field', () => {
     const inputs = registerComponent().find('input');
     const usernameInput = inputs.first();
     usernameInput.simulate('change',
@@ -50,7 +46,7 @@ describe('RegisterComponent', () => {
     expect(registerComponent().state().userName).toBe('username');
   });
 
-  it('second input field should update email state', () => {
+  it('should update email state in second input field', () => {
     const inputs = registerComponent().find('input');
     const emailInput = inputs.at(1);
     emailInput.simulate('change',
@@ -58,7 +54,7 @@ describe('RegisterComponent', () => {
     expect(registerComponent().state().email).toBe('testing@email.com');
   });
 
-  it('third input field should update password state', () => {
+  it('should update password state in the third input field', () => {
     const inputs = registerComponent().find('input');
     const passwordInput = inputs.at(2);
     passwordInput.simulate('change',
@@ -66,7 +62,7 @@ describe('RegisterComponent', () => {
     expect(registerComponent().state().password).toBe('supersecretpassword');
   });
 
-  it('fourth input field should update confirmpassword state', () => {
+  it('should update confirmpassword state with the fourth input field', () => {
     const inputs = registerComponent().find('input');
     const confirmPasswordInput = inputs.at(3);
     confirmPasswordInput.simulate('change',

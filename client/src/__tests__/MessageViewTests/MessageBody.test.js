@@ -46,7 +46,7 @@ describe('MessageBody', () => {
     };
   });
 
-  it('should render', () => {
+  it('should should successfully mount component', () => {
     expect(messageBodyView()).toBeDefined();
   });
 

@@ -33,7 +33,7 @@ describe('ResetPasswordView', () => {
     mountedComponent = undefined;
   });
 
-  it('should render the component', () => {
+  it('should sucessfully render the component', () => {
     expect(resetPasswordView()).toBeDefined();
   });
 

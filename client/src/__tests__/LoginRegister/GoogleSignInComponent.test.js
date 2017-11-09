@@ -3,8 +3,6 @@ import { mount } from 'enzyme';
 import GoogleSignInComponent from
   '../../views/LoginRegisterContainer/GoogleSignInComponent.jsx';
 
-/* global window */
-
 
 describe('GoogleSignInComponent', () => {
   let mountedComponent;
@@ -21,7 +19,7 @@ describe('GoogleSignInComponent', () => {
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should successfully mount component', () => {
     expect(googleSignIn()).toBeDefined();
   });
 

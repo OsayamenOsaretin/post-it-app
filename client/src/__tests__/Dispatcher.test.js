@@ -1,7 +1,7 @@
 import PostItDispatcher from '../flux/Dispatcher';
 
 describe('PostItDispatcher', () => {
-  it('should call handle view action', () => {
+  it('should call handleview action, when handle view action is calld', () => {
     const spyOnDispatcher = spyOn(PostItDispatcher, 'dispatch');
     PostItDispatcher.handleViewAction({
       type: 'FakeTestAction'
@@ -14,7 +14,7 @@ describe('PostItDispatcher', () => {
     });
   });
 
-  it('should call handle server action', () => {
+  it('should call handle server action, for handle server action', () => {
     const spyOnDispatcher = spyOn(PostItDispatcher, 'dispatch');
     PostItDispatcher.handleServerAction({
       type: 'FakeTestAction'

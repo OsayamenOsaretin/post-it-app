@@ -73,7 +73,8 @@ describe('AppView', () => {
         passwordReset: true,
         redirect: false
       });
-      const passwordRecoveryButton = component.find('.forgot-password-button').first();
+      const passwordRecoveryButton = component
+        .find('.forgot-password-button').first();
       passwordRecoveryButton.simulate('click');
       const resetPasswordComponent = component.find('ResetPasswordComponent');
       expect(resetPasswordComponent).toBeDefined();

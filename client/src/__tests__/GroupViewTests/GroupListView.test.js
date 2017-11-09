@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import GroupListView from '../../views/GroupContainer/GroupListView.jsx';
+import groupListMap from '../../flux/models/groupList';
 import BulkMessageRequest from 'BulkMessageRequest'; // eslint-disable-line
 
 /* global jest */
@@ -20,14 +21,17 @@ describe('GroupListView', () => {
     }
     return mountedComponent;
   };
+  const groups = new groupListMap([['firstKey', new Map()],
+    ['secondKey', new Map()]]);
+
   beforeEach(() => {
     mountedComponent = undefined;
     props = {
-      groups: undefined,
+      groups
     };
   });
 
-  it('should render', () => {
+  it('should successfully mount component', () => {
     expect(groupListView()).toBeDefined();
   });
 
@@ -38,10 +42,10 @@ describe('GroupListView', () => {
     expect(groupList).toBeDefined();
   });
 
-  it('should take props', () => {
+  it('should render with the right props', () => {
     const component = groupListView();
-
-    expect(Object.keys(component.props()).length).toBeGreaterThan(0);
+    const groupProp = component.instance().props.groups;
+    expect(groupProp).toBe(groups);
   });
 
   it('should render a switch and routes', () => {

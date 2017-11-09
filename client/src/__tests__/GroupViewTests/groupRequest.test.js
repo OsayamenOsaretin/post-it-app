@@ -36,7 +36,7 @@ describe('AcceptRejectGroupView', () => {
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should mount successfully', () => {
     expect(acceptRejectView()).toBeDefined();
   });
 

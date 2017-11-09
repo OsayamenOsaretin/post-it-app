@@ -19,7 +19,7 @@ describe('LandingPageContainer ', () => {
     mountedLandingPage = undefined;
   });
 
-  it('mount should be defined', () => {
+  it('should mount component successfully', () => {
     const component = landingPageContainer();
     expect(component).toBeDefined();
   });

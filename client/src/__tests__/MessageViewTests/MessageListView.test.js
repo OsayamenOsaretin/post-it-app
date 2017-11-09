@@ -22,26 +22,30 @@ describe('MessageListView', () => {
     return mountedComponent;
   };
 
+  const messages = {
+    valueSeq: () => [
+      ['first', {
+        sender: 'testSender'
+      }]
+    ]
+  };
+
   beforeEach(() => {
     props = {
-      messages: {
-        valueSeq: () => [
-          ['first', {
-            sender: 'testSender'
-          }]
-        ]
-      }
+      messages
     };
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should render successfully', () => {
     expect(messageList()).toBeDefined();
   });
 
   it('should take props', () => {
     const component = messageList();
-
-    expect(Object.keys(component.props()).length).toBeGreaterThan(0);
+    const componentProps = component.instance().props;
+    expect(componentProps).toEqual({
+      messages
+    });
   });
 });

@@ -42,12 +42,12 @@ describe('AddUserView', () => {
     };
   });
 
-  it('should render', () => {
+  it('should sucessfully mount the component', () => {
     expect(addUserView()).toBeDefined();
   });
 
-  it('should recieve props', () => {
-    expect(Object.keys(addUserView().props()).length).toBeGreaterThan(0);
+  it('should mount with the right props', () => {
+    expect(addUserView().props().groupId).toBe('testGroupId');
   });
 
   it('should render a user list view', () => {
@@ -59,9 +59,6 @@ describe('AddUserView', () => {
 
   it('should attach all user store event listener when component mounts',
     () => {
-    // const UserStoreSpy = spyOn(AllUsersStore, 'addChangeListener');
-    // const node = document.createElement('div');
-    // ReactDOM.render(<AddUserView groupId='testGroupId'/>, node);
       addUserView();
       expect(AllUsersStore.addChangeListener).toHaveBeenCalled();
     });

@@ -16,24 +16,27 @@ describe('GroupItem', () => {
 
   beforeEach(() => {
     props = {
-      groupName: undefined,
+      groupName: 'testGroupName',
       match: {
         params: {
-          groupId: undefined,
+          groupId: 'testGroupId',
         }
       }
     };
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should mount successfully', () => {
     const component = groupItem();
     expect(component).toBeDefined();
   });
 
-  it('should have props', () => {
+  it('should mount with the right props', () => {
     const component = groupItem();
-    expect(Object.keys(component.props()).length).toBeGreaterThan(0);
+    const groupNameProps = component.instance().props.groupName;
+    const groupIdProps = component.instance().props.match.params.groupId;
+    expect(groupNameProps).toBe('testGroupName');
+    expect(groupIdProps).toBe('testGroupId');
   });
 
   it('changes add user state on button click', () => {

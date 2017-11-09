@@ -23,27 +23,22 @@ describe('LoginComponent', () => {
     mountedLoginComponent = undefined;
   });
 
-  // tests go here
-  it('does not recieve any props', () => {
-    expect(loginComponent().props().length).toBe(undefined);
-  });
-
-  it('always renders a form', () => {
+  it('should render a form', () => {
     const form = loginComponent().find('form');
     expect(form.length).toBe(1);
   });
 
-  it('always render two input fields', () => {
+  it('should render two input fields', () => {
     const inputs = loginComponent().find('input');
     expect(inputs.length).toBe(2);
   });
 
-  it('always renders a button', () => {
+  it('should render a button', () => {
     const button = loginComponent().find('button');
     expect(button.length).toBe(1);
   });
 
-  it('first input field should update email state', () => {
+  it('should update email state with first input field', () => {
     const inputs = loginComponent().find('input');
     const emailInput = inputs.first();
     emailInput.simulate('change',
@@ -51,7 +46,7 @@ describe('LoginComponent', () => {
     expect(loginComponent().state().email).toBe('testing@email.com');
   });
 
-  it('second input field should update password state', () => {
+  it('should update password state with second input field', () => {
     const inputs = loginComponent().find('input');
     const passwordInput = inputs.at(1);
     passwordInput.simulate('change',

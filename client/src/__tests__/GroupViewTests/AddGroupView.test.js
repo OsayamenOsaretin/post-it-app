@@ -28,7 +28,7 @@ describe('AddGroup', () => {
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
+  it('should successfully mount the component', () => {
     const component = addGroup();
     expect(component).toBeDefined();
   });

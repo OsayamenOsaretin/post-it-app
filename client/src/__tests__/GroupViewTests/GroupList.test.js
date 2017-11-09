@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Immutable from 'immutable';
 import GroupList from '../../views/GroupContainer/GroupList.jsx';
+import groupListMap from '../../flux/models/groupList';
 
 describe('GroupList', () => {
   let mountedComponent;
@@ -15,22 +15,25 @@ describe('GroupList', () => {
     return mountedComponent;
   };
 
+  const groups = new groupListMap([['firstkey', new Map()],
+    ['second', new Map()]]);
+
   beforeEach(() => {
     props = {
-      groups: new Immutable.Map()
+      groups
     };
     mountedComponent = undefined;
   });
 
-  it('should render', () => {
-    // const groupSequenceSpy = spyOn(props.groups, 'KeySeq');
+  it('should successfully mount component', () => {
     const component = groupList();
     expect(component).toBeDefined();
   });
 
-  it('should take props', () => {
+  it('should mount with the right props', () => {
     const component = groupList();
-    expect(Object.keys(component.props()).length).toBeGreaterThan(0);
+    const groupProp = component.instance().props.groups;
+    expect(groupProp).toBe(groups);
   });
 
   it('should render add group view', () => {

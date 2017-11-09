@@ -72,7 +72,7 @@ describe('PostItAllUsersStore ', () => {
     callback = PostItDispatcher.register.mock.calls[0][0];
   });
 
-  it('registers a callback with the dispatcher', () => {
+  it('should register a callback with the dispatcher', () => {
     expect(PostItDispatcher.register.mock.calls.length).toBe(1);
   });
 
