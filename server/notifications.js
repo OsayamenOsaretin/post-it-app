@@ -9,5 +9,7 @@ import notify from './utilities/notificationHelper';
 export default function sendNotifications(req, res) {
   const { emails, numbers, priorityLevel } = req.body;
   notify(emails, numbers, priorityLevel);
-  res.status(200).send('notifications sent!');
+  res.status(200).send({
+    message: 'notification sent!'
+  });
 }
