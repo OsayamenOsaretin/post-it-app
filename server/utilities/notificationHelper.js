@@ -28,6 +28,7 @@ const emailOptions = {
  * @return {void}
  */
 export default (emails, numbers, priorityLevel) => {
+  console.log('gets here in production');
   switch (priorityLevel) {
   case 'urgent': {
     emails.forEach((email) => {
