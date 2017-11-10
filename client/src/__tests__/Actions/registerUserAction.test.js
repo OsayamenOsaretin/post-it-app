@@ -11,6 +11,7 @@ describe('registerUserAction', () => {
   const userDetails = {
     email: 'testEmail@email.com',
     password: 'testPassword',
+    confirmPassword: 'testPassword',
     userName: 'testUsername',
     phone: 'somephonenumber'
   };
@@ -57,15 +58,34 @@ describe('registerUserAction', () => {
       userDetails.email = 'testEmail@email.com';
       userDetails.userName = 'testUsername';
       userDetails.password = 'bad';
+      userDetails.confirmPassword = 'bad';
       return RegisterAction(userDetails)
         .then(() => {
           expect(dispatcherSpy).toHaveBeenCalledWith({
             type: PostItActionTypes.REGISTER_ERROR,
             errorMessage:
-                'Invalid password, please use a password longer than 6 characters'
+            'Invalid password, please use a password longer than 6 characters' //eslint-disable-line
           });
         });
     });
+
+  it('should dispatch error payload when passwords do not match', () => {
+    const dispatcherSpy = spyOn(Dispatcher, 'handleServerAction');
+    mockAuth.autoFlush();
+    mockDatabase.autoFlush();
+    userDetails.email = 'testEmail@email.com';
+    userDetails.userName = 'testUsername';
+    userDetails.password = 'this says this';
+    userDetails.confirmPassword = 'this says that';
+    return RegisterAction(userDetails)
+      .then(() => {
+        expect(dispatcherSpy).toHaveBeenCalledWith({
+          type: PostItActionTypes.REGISTER_ERROR,
+          errorMessage:
+          'Passwords do not match!'
+        });
+      });
+  });
 
   it('should dispatch server action to sign in on successful sign up', () => {
     const dispatcherSpy = spyOn(Dispatcher, 'handleServerAction');
@@ -74,6 +94,7 @@ describe('registerUserAction', () => {
     userDetails.email = 'testEmail@email.com';
     userDetails.userName = 'testUsername';
     userDetails.password = 'longenoughpassword';
+    userDetails.confirmPassword = 'longenoughpassword';
     return RegisterAction(userDetails)
       .then(() => {
         expect(dispatcherSpy).toHaveBeenCalledWith({

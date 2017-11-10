@@ -5,7 +5,7 @@ import webpack from 'webpack';
 import webpackMiddleWare from 'webpack-dev-middleware';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
 import bodyParser from 'body-parser';
-import routes from './index';
+import index from './index';
 
 require('dotenv').config();
 
@@ -41,6 +41,6 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-routes(app);
+index(app);
 
 app.listen(port);

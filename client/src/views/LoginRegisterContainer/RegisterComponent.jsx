@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
-import FaSquareO from 'react-icons/lib/fa/square-o';
-import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
 import registerAction from '../../flux/actions/registerUserAction';
 import ErrorStore from '../../flux/stores/ErrorStore';
@@ -12,8 +10,8 @@ import ErrorStore from '../../flux/stores/ErrorStore';
  */
 export default class RegisterForm extends Component {
   /**
-  * Instantiates an instance of a React Component for Registration
-  */
+   * Instantiates an instance of a React Component for Registration
+   */
   constructor() {
     super();
 
@@ -46,26 +44,25 @@ export default class RegisterForm extends Component {
   }
 
   /**
-     * @memberof RegisterComponent
-     * 
-     * @param {Object} event
-     * 
-     * @returns {void}
-     */
+   * @memberof RegisterComponent
+   * 
+   * @param {Object} event
+   * 
+   * @returns {void}
+   */
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.password === this.state.confirmPassword) {
-      registerAction({
-        userName: this.state.userName,
-        password: this.state.password,
-        email: this.state.email,
-        phone: this.state.phone
-      });
-      this.setState({
-        registering: true,
-        errorMessage: ''
-      });
-    }
+    registerAction({
+      userName: this.state.userName,
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
+      email: this.state.email,
+      phone: this.state.phone
+    });
+    this.setState({
+      registering: true,
+      errorMessage: ''
+    });
   }
 
   /**
@@ -151,17 +148,17 @@ export default class RegisterForm extends Component {
           className='button'
           type='submit'
           disabled={!this.state.userName || !this.state.email ||
-            !this.state.password || !this.state.confirmPassword}
+              !this.state.password || !this.state.confirmPassword}
           onClick={this.handleSubmit}
         >
-          Register {this.state.registering &&
-          <FaSpinner className="fa fa-spinner fa-spin" />}
+            Register {this.state.registering &&
+                <FaSpinner className="fa fa-spinner fa-spin" />}
         </button>
 
         {this.state.errorMessage &&
-          <div className="error-login-register">
-            <FaExclamationTriangle /> {this.state.errorMessage}
-          </div>
+                  <div className="error-login-register">
+                    <FaExclamationTriangle /> {this.state.errorMessage}
+                  </div>
         }
       </form>
     );

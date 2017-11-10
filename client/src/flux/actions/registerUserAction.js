@@ -29,10 +29,15 @@ const handleError = errorMessage => (
  * 
  * @param {newUserDetails} newUserDetails
  */
-export default ({ email, password, userName, phone }) => {
+export default ({ email, password, confirmPassword, userName, phone }) => {
   const database = getDatabase();
   const auth = getAuth();
   let errorMessage;
+
+  if (password !== confirmPassword) {
+    errorMessage = 'Passwords do not match!';
+    return handleError(errorMessage);
+  }
 
   if (!validator.isAlphanumeric(userName)) {
     errorMessage = 'Invalid Username, please enter a valid username';

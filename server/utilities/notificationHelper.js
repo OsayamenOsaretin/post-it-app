@@ -28,6 +28,7 @@ const emailOptions = {
  * @return {void}
  */
 export default (emails, numbers, priorityLevel) => {
+  console.log('gets here in production');
   switch (priorityLevel) {
   case 'urgent': {
     emails.forEach((email) => {
@@ -53,8 +54,8 @@ export default (emails, numbers, priorityLevel) => {
         'You have a critical message on Post-It, login to check now!',
         { type: 'unicode' },
         (error, responseData) => {
-          if (error) return error;
-          return responseData;
+          if (error) return console.log(error);
+          return console.log(responseData);
         }
       );
     });
@@ -63,8 +64,8 @@ export default (emails, numbers, priorityLevel) => {
     emails.forEach((email) => {
       emailOptions.to = email;
       transporter.sendMail(emailOptions, (error, info) => {
-        if (error) return error;
-        return info.response;
+        if (error) return console.log(error);
+        return console.log(info.response);
       });
     });
     break;
