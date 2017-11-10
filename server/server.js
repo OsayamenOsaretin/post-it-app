@@ -17,8 +17,15 @@ const port = process.env.PORT || 6969;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const environment = process.env.NODE_ENV;
 
-if (process.env.NODE_ENV !== 'production') {
+if (environment === 'production' || environment === 'test') {
+  app.use(express.static(path.join(__dirname, '../../dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../dist/index.html'));
+  });
+} else {
   const config= require('../webpack.config');   // eslint-disable-line
   const compiler = webpack(config);
   app.use(webpackMiddleWare(compiler, {
@@ -32,12 +39,6 @@ if (process.env.NODE_ENV !== 'production') {
 
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
-  });
-} else {
-  app.use(express.static(path.join(__dirname, '../../dist')));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../dist/index.html'));
   });
 }
 
