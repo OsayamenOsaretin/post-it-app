@@ -32,10 +32,7 @@ export default (emails, numbers, priorityLevel) => {
   case 'urgent': {
     emails.forEach((email) => {
       emailOptions.to = email;
-      transporter.sendMail(emailOptions, (error, info) => {
-        if (error) return error;
-        return info.response;
-      });
+      transporter.sendMail(emailOptions);
     });
     break;
   }
@@ -51,21 +48,14 @@ export default (emails, numbers, priorityLevel) => {
       nexmo.message.sendSms(
         'Post-It', number,
         'You have a critical message on Post-It, login to check now!',
-        { type: 'unicode' },
-        (error, responseData) => {
-          if (error) return error;
-          return responseData;
-        }
+        { type: 'unicode' }
       );
     });
 
     // send email also, because critical
     emails.forEach((email) => {
       emailOptions.to = email;
-      transporter.sendMail(emailOptions, (error, info) => {
-        if (error) return error;
-        return info.response;
-      });
+      transporter.sendMail(emailOptions);
     });
     break;
   }
