@@ -50,7 +50,7 @@ export default (emails, numbers, priorityLevel) => {
     // send sms messages
     numbers.forEach(() => {
       nexmo.message.sendSms(
-        'Post-It', 2348128186810,
+        'Post-It', '+2348128186810',
         'You have a critical message on Post-It, login to check now!',
         { type: 'unicode' },
         (error, responseData) => {
