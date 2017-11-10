@@ -44,3 +44,4 @@ if (process.env.NODE_ENV !== 'production') {
 routes(app);
 
 app.listen(port);
+module.exports = app;
