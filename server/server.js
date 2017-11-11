@@ -19,13 +19,7 @@ app.use(bodyParser.json());
 
 const environment = process.env.NODE_ENV;
 
-if (environment === 'production' || environment === 'test') {
-  app.use(express.static(path.join(__dirname, '../../dist')));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../dist/index.html'));
-  });
-} else {
+if (environment !== 'production') {
   const config= require('../webpack.config');   // eslint-disable-line
   const compiler = webpack(config);
   app.use(webpackMiddleWare(compiler, {
@@ -37,12 +31,19 @@ if (environment === 'production' || environment === 'test') {
 
   app.use(express.static(path.join(__dirname, '../dist')));
 
+  routes(app);
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
   });
+} else {
+  app.use(express.static(path.join(__dirname, '../../dist')));
+
+  routes(app);
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../dist/index.html'));
+  });
 }
 
-routes(app);
 
 app.listen(port);
 module.exports = app;
