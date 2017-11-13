@@ -24,7 +24,6 @@ export default ({ groupId }) => {
 
       const messagesReference = database.ref(`/groups/${groupId}/messages`);
 
-
       // get message Id from groups and iterate through messages node
       messagesReference.orderByKey().on('child_added', (snapshot) => {
         const messageReference = database.ref(`/messages/${snapshot.key}`);
