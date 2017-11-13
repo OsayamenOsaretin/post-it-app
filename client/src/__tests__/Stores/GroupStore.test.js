@@ -22,6 +22,13 @@ describe('PostItGroupStore', () => {
       type: PostItActionTypes.CLEAR_GROUPS_STORE
     }
   };
+
+  const noGroups = {
+    action: {
+      type: PostItActionTypes.NO_GROUPS
+    }
+  };
+
   let callback;
   let PostItDispatcher;
   let PostItGroupStore;
@@ -49,6 +56,12 @@ describe('PostItGroupStore', () => {
   it('should clear groups on clear groups action', () => {
     callback(clearGroups);
     expect((PostItGroupStore.getGroups()).size).toBe(0);
+  });
+
+  it('should change loading state after receiving no groups payload', () => {
+    expect(PostItGroupStore.getLoadingState()).toBe(true);
+    callback(noGroups);
+    expect(PostItGroupStore.getLoadingState()).toBe(false);
   });
 
   it('should attach event emitter when add change listener is called', () => {

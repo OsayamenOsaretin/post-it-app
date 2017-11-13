@@ -7,6 +7,7 @@ const CHANGE_EVENT = 'change';
 
 // create empty immutable map to hold group list
 let groups = new GroupList();
+let loading = true;
 
 // add new groups to list of groups
 const addNewGroups = (newGroupList) => {
@@ -65,6 +66,16 @@ class GroupStoreClass extends EventEmitter {
   getGroup(groupId) {
     return groups.get(groupId);
   }
+
+  /**
+   * gets loading state
+   * @memberof GroupStoreClass
+   *
+   * @returns {String} loading
+   */
+  getLoadingState() {
+    return loading;
+  }
 }
 
 const GroupStore = new GroupStoreClass();
@@ -83,6 +94,11 @@ Dispatcher.register((payload) => {
 
   case ActionTypes.CLEAR_GROUPS_STORE:
     groups = new GroupList();
+    break;
+
+  case ActionTypes.NO_GROUPS:
+    loading = false;
+    GroupStore.emit(CHANGE_EVENT);
     break;
 
   default:

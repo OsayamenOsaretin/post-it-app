@@ -54,6 +54,20 @@ describe('GetGroups', () => {
     expect(bulkMessageRequest).toHaveBeenCalledWith(groupResult);
   });
 
+  it('should dispatch no groups payload when no groups exist', () => {
+    mockAuth.changeAuthState({
+      uid: 'anotherTestUser',
+      provider: 'custom',
+      token: 'authToken'
+    });
+    mockAuth.autoFlush();
+    mockDatabase.autoFlush();
+    getGroups();
+    expect(dispatcherSpy).toHaveBeenCalledWith({
+      type: PostItActionTypes.NO_GROUPS
+    });
+  });
+
   it('should dispatch login error, when authentication fails', () => {
     mockAuth.changeAuthState(undefined);
     mockAuth.autoFlush();

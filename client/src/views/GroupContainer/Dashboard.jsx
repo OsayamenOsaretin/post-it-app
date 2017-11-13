@@ -23,7 +23,7 @@ class Dashboard extends Component {
     this.state = {
       username: localStorage.getItem('username'),
       groups: GroupStore.getGroups(),
-      loading: true
+      loading: GroupStore.getLoadingState()
     };
 
     this.onChange = this.onChange.bind(this);
@@ -57,7 +57,8 @@ class Dashboard extends Component {
    */
   onChange() {
     const newGroups = GroupStore.getGroups();
-    if (this.state.groups.size !== newGroups.size) {
+    if (this.state.groups.size !== newGroups.size ||
+    this.state.loading === true) {
       this.setState({
         groups: GroupStore.getGroups(),
         loading: false
