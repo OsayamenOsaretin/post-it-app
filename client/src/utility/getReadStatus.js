@@ -1,5 +1,11 @@
 // get the read status for a message
 
-export default (message, displayName) => {
-  return message.read && message.read[displayName];
-};
+/**
+ *@param {Object} message
+ *@param {String} displayName
+ *
+ *@returns {Boolean} read status
+ */
+export default (message, displayName) => (
+  message.read && message.read[displayName]
+);

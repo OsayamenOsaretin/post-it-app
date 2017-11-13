@@ -1,5 +1,5 @@
 /**
- * friend email creator collects firebase errors and returns nice error messages
+ * friendly error helper collects firebase errors and returns error messages
  * @param {Object} error
  *
  * @returns {String} errorMessage

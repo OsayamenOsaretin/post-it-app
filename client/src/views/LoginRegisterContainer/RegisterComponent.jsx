@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
-import FaSquareO from 'react-icons/lib/fa/square-o';
-import FaCheckSquareO from 'react-icons/lib/fa/check-square-o';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
 import registerAction from '../../flux/actions/registerUserAction';
 import ErrorStore from '../../flux/stores/ErrorStore';

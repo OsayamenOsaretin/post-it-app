@@ -1,6 +1,9 @@
 import React from 'react';
 import FaPaperPlane from 'react-icons/lib/fa/paper-plane';
 
+/**
+ *@returns {Object} welcome view component
+ */
 export default () => (
   <div className="welcome-view">
     Welcome to the Post-It messaging App.

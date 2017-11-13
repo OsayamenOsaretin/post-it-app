@@ -8,6 +8,11 @@ import PostItActionTypes from '../../flux/ActionTypes';
 
 /* global localStorage */
 
+/**
+ *@param {Object} props
+ *
+ *@returns {Object} component
+ */
 export default (props) => {
   const handleClick = (selectedStatus, event) => {
     event.preventDefault();
