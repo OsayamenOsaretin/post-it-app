@@ -7,7 +7,7 @@ import Nav from './Nav';
 
 /**
  * LoginRegisterContainer holds the login and register components
- * @returns {void}
+ * @returns {View} LoginRegisterContainer component
  */
 export default function LoginRegisterContainer() {
   return (

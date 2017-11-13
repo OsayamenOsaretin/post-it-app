@@ -63,7 +63,7 @@ describe('getMessagesAction', () => {
     });
   });
 
-  it('should dispatch server with notification as false when messages has been read', async () => {
+  it('should dispatch action with notify as false when messages has been read', async () => {
     const dispatcherSpy = spyOn(PostItDispatcher, 'handleServerAction');
     mockAuth.changeAuthState({
       uid: 'testUid',
@@ -113,7 +113,7 @@ describe('getMessagesAction', () => {
     });
   });
 
-  it('should dispatch server action to handle fail scenario', () => {
+  it('should dispatch server action to handle failed authentication scenario', () => {
     const dispatcherSpy = spyOn(PostItDispatcher, 'handleServerAction');
     mockAuth.changeAuthState(undefined);
     mockAuth.autoFlush();

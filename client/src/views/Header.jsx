@@ -4,7 +4,7 @@ import FaSignOut from 'react-icons/lib/fa/sign-out';
 /**
  * @param {Object} props
  * 
- * @return {void}
+ * @return {view} headerview
  */
 export default props => (
   <div className="header">

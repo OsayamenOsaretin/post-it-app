@@ -22,7 +22,6 @@ const usersRef = mockDatabase.child('/users/');
 const usersIngroupRef = mockDatabase
   .child('/groups/testGroupId/users');
 
-  // populate database
 usersRef.set({
   testUser1Id: testUser1
 });
@@ -41,7 +40,7 @@ describe('getAllUsersAction', () => {
     groupId: 'groupId'
   };
 
-  it('should dispatch server action of type got all users on success', () => {
+  it('should dispatch server action of type receive users on success', () => {
     const serverActionSpy = spyOn(Dispatcher, 'handleServerAction');
     mockAuth.changeAuthState({
       uid: 'testUid',
@@ -60,11 +59,12 @@ describe('getAllUsersAction', () => {
     });
   });
 
-  it('should dispatch server action to handle fail scenario', () => {
-    mockAuth.changeAuthState(undefined);
-    getAllUsers(groupId);
-    expect(Dispatcher.handleServerAction).toHaveBeenCalledWith({
-      type: PostItActionTypes.FAILED_GROUP_USERS
+  it('should dispatch action with error payload when authentication fails',
+    () => {
+      mockAuth.changeAuthState(undefined);
+      getAllUsers(groupId);
+      expect(Dispatcher.handleServerAction).toHaveBeenCalledWith({
+        type: PostItActionTypes.FAILED_GROUP_USERS
+      });
     });
-  });
 });

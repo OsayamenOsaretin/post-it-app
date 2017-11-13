@@ -13,6 +13,11 @@ const defaultState = {
   priority: 'normal',
 };
 
+/**
+ *@param {int} newState
+ *
+ *@returns {Object} level, messagePriority
+ */
 const getLevelAndPriority = (newState) => {
   let messagePriority;
   let level;
@@ -40,6 +45,7 @@ const getLevelAndPriority = (newState) => {
   }
   return { level, messagePriority };
 };
+
 /**
  * Renders view for sending message to a group
  */

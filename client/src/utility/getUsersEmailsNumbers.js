@@ -1,5 +1,11 @@
 // get emails for users in a group
 
+/**
+ *@param {Array} userIds
+ *@param {Object} db
+ *
+ *@return {Promise} resolves to emails and numbers
+ */
 const getEmailNumbers = (userIds, db) => {
   const emails = [];
   const numbers = [];
@@ -21,6 +27,14 @@ const getEmailNumbers = (userIds, db) => {
   ));
 };
 
+/**
+ *@param {Object} firebase
+ *@param {String} groupId
+ *@param {String} priorityLevel
+ *@param {Function} callback
+ *
+ *@returns {Promise} thenable that makes api calls
+ */
 export default (firebase, groupId, priorityLevel, callback) => {
   const db = firebase.database();
   const userIds = [];

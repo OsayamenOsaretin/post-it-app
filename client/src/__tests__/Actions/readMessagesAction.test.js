@@ -1,4 +1,4 @@
-import { mockAuth, mockDatabase } from 'firebase';
+import { mockAuth } from 'firebase';
 import readMessagesAction from '../../flux/actions/readMessagesAction';
 import PostItActionTypes from '../../flux/ActionTypes';
 import PostItDispatcher from '../../flux/Dispatcher';
@@ -36,7 +36,7 @@ describe('readMessagesAction', () => {
     });
   });
 
-  it('should dispatch error payload on request fail', () => {
+  it('should dispatch error payload when no authenticated user', () => {
     mockAuth.changeAuthState(undefined);
     readMessagesAction(messages, groupId);
     expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({

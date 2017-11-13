@@ -1,7 +1,7 @@
 import { Dispatcher as FluxDispatcher } from 'flux';
 
 /**
- * DispatcherClass(singleton) extends flux Dispatcher module
+ * DispatcherClass extends flux Dispatcher module
  * @class DispatcherClass
  * @extends Dispatcher
  */

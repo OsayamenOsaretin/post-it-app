@@ -62,7 +62,7 @@ describe('registerUserAction', () => {
           expect(dispatcherSpy).toHaveBeenCalledWith({
             type: PostItActionTypes.REGISTER_ERROR,
             errorMessage:
-                'Invalid password, please use a password longer than 6 characters'
+                'Invalid password, please use a password longer than 6 characters'   // eslint-disable-line
           });
         });
     });

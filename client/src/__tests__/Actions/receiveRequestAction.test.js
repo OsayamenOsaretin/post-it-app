@@ -3,7 +3,7 @@ import ActionTypes from '../../flux/ActionTypes';
 import recieveRequestAction from '../../flux/actions/receiveRequestAction';
 
 describe('RecieveRequestAction', () => {
-  it('should dispatch payload to request store', () => {
+  it('should dispatch payload with right arguments to request store', () => {
     const dispatcherSpy = spyOn(Dispatcher, 'handleServerAction');
     const someRequest = 'testRequest';
     recieveRequestAction(someRequest);

@@ -1,3 +1,6 @@
+// NB: This mock was not originally authored by me
+
+
 // mock for superagent - __mocks__/superagent.js
 
 /* global jest */

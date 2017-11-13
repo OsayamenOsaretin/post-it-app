@@ -54,7 +54,7 @@ describe('GetGroups', () => {
     expect(bulkMessageRequest).toHaveBeenCalledWith(groupResult);
   });
 
-  it('should dispatch error, when authentication fails', () => {
+  it('should dispatch login error, when authentication fails', () => {
     mockAuth.changeAuthState(undefined);
     mockAuth.autoFlush();
     getGroups();

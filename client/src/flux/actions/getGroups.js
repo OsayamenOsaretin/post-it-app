@@ -38,7 +38,6 @@ export default function getGroups() {
           return true;
         });
       });
-
       getRequests(userId, database);
     } else {
       PostItDispatcher.handleServerAction({

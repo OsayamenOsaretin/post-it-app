@@ -8,7 +8,7 @@ jest.mock('firebase');
 jest.mock('../../flux/Dispatcher');
 
 describe('resetPasswordAction', () => {
-  it('should dispatch payload for password reset', () => {
+  it('should dispatch payload of the right type for password reset', () => {
     mockAuth.autoFlush();
     const spyOnDispatcher = spyOn(PostItDispatcher, 'handleServerAction');
     return ResetPasswordAction({ resetEmail: 'testEmail@email.com' })
@@ -19,7 +19,7 @@ describe('resetPasswordAction', () => {
       });
   });
 
-  it('should dispatch error payload', () => {
+  it('should dispatch error payload when reset password action fails', () => {
     const error = new Error('error');
     mockAuth.failNext('sendPasswordResetEmail', error);
     return ResetPasswordAction({ resetEmail: 'testEmail@email.com' })

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
  * @function Nav
  * @memberof Nav.js
  * 
- * @returns {void}
+ * @returns {View} navlink component
  * Nav holds routes to login and register components
  */
 export default () => (
