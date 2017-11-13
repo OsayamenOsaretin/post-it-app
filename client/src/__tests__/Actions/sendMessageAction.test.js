@@ -17,7 +17,7 @@ describe('sendMessageAction', () => {
     message: 'test message'
   };
 
-  it('should get messages after successfully sending messages', async () => {   // eslint-disable-linew
+  it('should get messages after successfully sending messages', async () => {
     const spyOnDispatcher = spyOn(PostItDispatcher, 'handleServerAction');
     mockAuth.changeAuthState({
       uid: 'testUid',
@@ -32,7 +32,7 @@ describe('sendMessageAction', () => {
     });
   });
 
-  it('should dispatch error payload when send message unsuccessful', () => {
+  it('should dispatch error payload when send message is unsuccessful', () => {
     const spyOnDispatcher = spyOn(PostItDispatcher, 'handleServerAction');
     mockAuth.changeAuthState(undefined);
     sendMessageAction(messageDetails);
