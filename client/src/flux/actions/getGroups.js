@@ -23,6 +23,11 @@ export default function getGroups() {
       const groupsReference = database.ref(`/users/${userId}/groups/`);
 
       groupsReference.orderByKey().on('value', (snapshot) => {
+        if (snapshot.val() === null) {
+          PostItDispatcher.handleServerAction({
+            type: PostItActionTypes.NO_GROUPS
+          });
+        }
         groupKeys = [];
         snapshot.forEach((groupSnapshot) => {
           groupKeys.push(groupSnapshot.key);
