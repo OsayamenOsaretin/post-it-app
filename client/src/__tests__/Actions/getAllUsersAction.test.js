@@ -6,7 +6,6 @@ import Dispatcher from '../../flux/Dispatcher';
 /* global jest */
 
 jest.mock('../../flux/Dispatcher');
-jest.mock('firebase');
 
 const testUser1 = {
   id: 'testUser1Id',
@@ -37,7 +36,7 @@ mockDatabase.flush();
 
 describe('getAllUsersAction', () => {
   const groupId = {
-    groupId: 'groupId'
+    groupId: 'testGroupId'
   };
 
   it('should dispatch server action of type receive users on success', () => {
@@ -53,7 +52,7 @@ describe('getAllUsersAction', () => {
     usersNotInGroup.set('testUser2Id', testUser2);
     getAllUsers(groupId);
     expect(serverActionSpy).toHaveBeenLastCalledWith({
-      id: 'groupId',
+      id: 'testGroupId',
       type: PostItActionTypes.RECIEVE_USERS,
       users: usersNotInGroup
     });
