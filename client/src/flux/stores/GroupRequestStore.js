@@ -44,7 +44,6 @@ class RequestStoreClass extends EventEmitter {
   /* eslint class-methods-use-this: 0 */
 
   /**
-   * return requests
    * @return {Map} requests
    */
   getRequests() {

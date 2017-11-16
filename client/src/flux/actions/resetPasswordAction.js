@@ -5,8 +5,6 @@ import { getAuth } from '../firebaseHelpers';
 
 /**
  * Reset password action
- * @export
- * @function
  * 
  * @param {String} email
  * 

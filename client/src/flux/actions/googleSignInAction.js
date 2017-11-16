@@ -5,8 +5,6 @@ import { getAuth, getDatabase, googleProvider } from '../firebaseHelpers';
 
 /**
  *userSignInAction - signs in user & dispatches actions to get groups
- * @export
- * @function
  * 
  * @returns {Promise} signInPromise
  */

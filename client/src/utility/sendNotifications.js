@@ -7,7 +7,7 @@ import ActionTypes from '../flux/ActionTypes';
  *@param {Array} numbers
  *@param {String} priorityLevel
  *
- *@return {void}
+ *@return {Function} dispatcher dispatch
  */
 export default (emails, numbers, priorityLevel) => {
   request

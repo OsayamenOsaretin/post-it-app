@@ -62,7 +62,7 @@ class UserStoreClass extends EventEmitter {
 
   /**
    * returns password reset state
-   * @returns {bool} passwordResetMessageState
+   * @returns {boolean} passwordResetMessageState
    * 
    * @memberof UserStoreClass
    */

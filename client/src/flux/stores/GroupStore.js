@@ -59,7 +59,7 @@ class GroupStoreClass extends EventEmitter {
    * getGroupUser
    * @memberof GroupStoreClass
    * 
-   * @return {List} groupUsers
+   * @return {Map} groupUsers
    * 
    * @param {String} groupId
    */

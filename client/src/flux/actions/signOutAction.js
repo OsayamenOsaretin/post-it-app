@@ -3,6 +3,10 @@ import PostItDispatcher from '../Dispatcher';
 import PostItActionTypes from '../ActionTypes';
 import { getAuth } from '../firebaseHelpers';
 
+/**
+ * sign out action
+ *@return {Promise} sign out handler
+ */
 export default () => {
   const auth = getAuth();
   return auth.signOut()

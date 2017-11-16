@@ -9,7 +9,7 @@ export const message = {
 */
 export default class nexmo {
   /**
-    * constructor for nexmo class
+    * constructor for nexmo mock class
     */
   constructor() {
     this.message = message;

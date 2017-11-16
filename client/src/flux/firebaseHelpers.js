@@ -1,5 +1,9 @@
 import firebase from 'firebase';
 
+/**
+ * helper function to initialize firebase
+ * @returns {void}
+ */
 export const firebaseInit = () => {
   // configure firebase
   const firebaseConfig = {
@@ -13,11 +17,17 @@ export const firebaseInit = () => {
   firebase.initializeApp(firebaseConfig);
 };
 
+/**
+ * @returns {Object} firebase database instance
+ */
 export const getDatabase = () => {
   const database = firebase.database();
   return database;
 };
 
+/**
+ * @returns {Object} auth 
+ */
 export const getAuth = () => {
   const auth = firebase.auth();
   return auth;

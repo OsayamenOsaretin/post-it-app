@@ -7,8 +7,6 @@ import friendlyErrorHelper from '../../utility/friendlyErrorHelper';
 
 /**
  *userSignInAction - signs in user & dispatches actions to get groups
- * @export
- * @function
  * 
  * @param {String} email
  * @param {String} password

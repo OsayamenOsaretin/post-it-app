@@ -2,6 +2,12 @@ import PostItActionTypes from '../ActionTypes';
 import PostItDispatcher from '../Dispatcher';
 import { getAuth, getDatabase } from '../firebaseHelpers';
 
+/**
+ *@param {String} groupId
+ *@param {String} status
+ *
+ *@returns {void}
+ */
 export default ({ groupId, status }) => {
   const auth = getAuth();
   const database = getDatabase();

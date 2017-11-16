@@ -67,8 +67,9 @@ class SendMessageView extends Component {
   /**
    * handleChange sets input field state when user types
    * @memberof SendMessageView
-   * @return {void}
    * @param {Object} event
+   *
+   * @return {void}
    */
   handleChange(event) {
     const value = event.target.value;
@@ -82,8 +83,9 @@ class SendMessageView extends Component {
      * handleSubmit handles calling the sendmessage 
      * action when button is clicked
      * @memberof SendMessageView
-     * @return {void}
      * @param {Object} event
+     *
+     * @return {void}
      */
   handleSubmit(event) {
     event.preventDefault();
@@ -102,8 +104,9 @@ class SendMessageView extends Component {
 
   /**
    * @memberof SendMessageView
+   * @param {Object} event
+   *
    * @return {void}
-   * @param {*} event
    */
   togglePriority(event) {
     event.preventDefault();

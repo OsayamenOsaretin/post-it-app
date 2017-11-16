@@ -56,7 +56,7 @@ class AddUserView extends Component {
 
   /**
    * changes status of user when the user is clicked
-   * @param {int} index
+   * @param {number} index
    * 
    * @return {void}
    */

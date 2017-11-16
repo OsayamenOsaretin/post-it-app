@@ -4,8 +4,6 @@ import { getAuth, getDatabase } from '../firebaseHelpers';
 
 /**
  * messagesAction - marks messages as read by this user
- * @export
- * @function
  * 
  * @param {Map} messages
  * @param {String} groupId
