@@ -26,7 +26,7 @@ describe('resetPasswordAction', () => {
       .then(() => {
         expect(PostItDispatcher.handleServerAction).toHaveBeenCalledWith({
           type: PostItActionTypes.FAILED_RESET_PASSWORD,
-          message: expect.anything()
+          message: 'Something went wrong'
         });
       });
   });

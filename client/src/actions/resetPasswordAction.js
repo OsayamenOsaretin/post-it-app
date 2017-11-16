@@ -21,7 +21,8 @@ export default function ResetPassword({ email }) {
     })
     .catch((error) => {
       const errorMessage =
-        error.code === 'auth/user-not-found' ? 'Oops! Incorrect email' : '';
+        error.code === 'auth/user-not-found' ? 'Oops! Incorrect email' :
+          'Something went wrong';
       PostItDispatcher.handleServerAction({
         type: PostItActionTypes.FAILED_RESET_PASSWORD,
         message: errorMessage

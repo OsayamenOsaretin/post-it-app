@@ -18,7 +18,10 @@ describe('userSignInAction', () => {
       .then(() => {
         expect(dispatcherSpy).toHaveBeenCalledWith({
           type: PostItActionTypes.LOGIN_USER,
-          user: expect.anything()
+          user: {
+            email: 'theemail@email.com',
+            isAnonymous: false
+          }
         });
       });
   });
