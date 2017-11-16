@@ -20,7 +20,12 @@ describe('googleSignInAction', () => {
       .then(() => {
         expect(dispatcherSpy).toHaveBeenCalledWith({
           type: PostItActionTypes.LOGIN_USER,
-          user: expect.anything()
+          user: {
+            isAnonymous: false,
+            providerData: [{
+              providerId: 'google.com'
+            }]
+          }
         });
       })
   ));
