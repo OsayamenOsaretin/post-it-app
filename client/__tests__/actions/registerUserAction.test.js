@@ -76,10 +76,12 @@ describe('registerUserAction', () => {
     userDetails.password = 'longenoughpassword';
     return RegisterAction(userDetails)
       .then(() => {
-        expect(dispatcherSpy).toHaveBeenCalledWith({
-          type: PostItActionTypes.LOGIN_USER,
-          user: expect.anything()
-        });
+        const spyCallArgs = dispatcherSpy.calls.mostRecent().args[0];
+        const actionType = spyCallArgs.type;
+        const actionUser = spyCallArgs.user;
+        const userEmail = actionUser.email;
+        expect(userEmail).toBe('testEmail@email.com');
+        expect(actionType).toBe(PostItActionTypes.LOGIN_USER);
       });
   });
 });
