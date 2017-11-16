@@ -1,5 +1,6 @@
 import sendNotifications from '../../utility/sendNotifications';
 import Dispatcher from '../../flux/Dispatcher';
+import ActionTypes from '../../flux/ActionTypes';
 
 
 /* global jest */
@@ -11,7 +12,7 @@ describe('SendNotificationsFunction', () => {
     const dispatcherSpy = spyOn(Dispatcher, 'handleServerAction');
     sendNotifications([], [], 'normal');
     expect(dispatcherSpy).toHaveBeenCalledWith({
-      type: 'NOTIFICATIONS_SENT'
+      type: ActionTypes.NOTIFICATIONS_SENT
     });
   });
   it('should dispatch failure payload when request fails', () => {
@@ -21,7 +22,7 @@ describe('SendNotificationsFunction', () => {
     });
     sendNotifications([], [], 'normal');
     expect(dispatcherSpy).toHaveBeenCalledWith({
-      type: 'NOTIFICATIONS_FAILED'
+      type: ActionTypes.FAILED_NOTIFICATIONS
     });
   });
 });

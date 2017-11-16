@@ -6,14 +6,14 @@ jest.mock('../../flux/Dispatcher');
 describe('PostItErrorStore', () => {
   const loginError = {
     action: {
-      type: PostItActionTypes.LOGIN_ERROR,
+      type: PostItActionTypes.FAILED_LOGIN,
       errorMessage: 'testLoginError'
     }
   };
 
   const registerError = {
     action: {
-      type: PostItActionTypes.REGISTER_ERROR,
+      type: PostItActionTypes.FAILED_REGISTER,
       errorMessage: 'testRegisterError'
     }
   };

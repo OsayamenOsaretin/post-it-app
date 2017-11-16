@@ -46,7 +46,7 @@ export default function getGroups() {
       getRequests(userId, database);
     } else {
       PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.LOGIN_ERROR
+        type: PostItActionTypes.FAILED_LOGIN
       });
     }
   });

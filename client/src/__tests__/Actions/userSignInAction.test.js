@@ -33,7 +33,7 @@ describe('userSignInAction', () => {
       password: 'thepassword' })
       .then(() => {
         expect(dispatcherSpy).toHaveBeenCalledWith({
-          type: PostItActionTypes.LOGIN_ERROR,
+          type: PostItActionTypes.FAILED_LOGIN,
           errorMessage:
             'Something went wrong, please try again'
         });
@@ -49,7 +49,7 @@ describe('userSignInAction', () => {
         password: 'thepassword' }
       ).then(() => {
         expect(dispatcherSpy).toHaveBeenCalledWith({
-          type: PostItActionTypes.LOGIN_ERROR,
+          type: PostItActionTypes.FAILED_LOGIN,
           errorMessage: 'Invalid email address'
         });
       });

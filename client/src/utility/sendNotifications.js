@@ -1,5 +1,6 @@
 import request from 'superagent';
 import Dispatcher from '../flux/Dispatcher';
+import ActionTypes from '../flux/ActionTypes';
 
 /**
  *@param {Array} emails
@@ -16,11 +17,11 @@ export default (emails, numbers, priorityLevel) => {
     .end((error) => {
       if (error) {
         return Dispatcher.handleServerAction({
-          type: 'NOTIFICATIONS_FAILED'
+          type: ActionTypes.FAILED_NOTIFICATIONS
         });
       }
       return Dispatcher.handleServerAction({
-        type: 'NOTIFICATIONS_SENT'
+        type: ActionTypes.NOTIFICATIONS_SENT
       });
     });
 };

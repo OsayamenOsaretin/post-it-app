@@ -32,7 +32,7 @@ describe('googleSignInAction', () => {
     return googleSignInAction()
       .then(() => {
         expect(dispatcherSpy).toHaveBeenCalledWith({
-          type: PostItActionTypes.LOGIN_ERROR,
+          type: PostItActionTypes.FAILED_LOGIN,
           errorMessage: 'Google sign in failed, try again'
         });
       });

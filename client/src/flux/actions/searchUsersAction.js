@@ -53,7 +53,7 @@ export default ({ groupId, search }) => {
         });
     } else {
       PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.LOGIN_ERROR
+        type: PostItActionTypes.FAILED_LOGIN
       });
     }
   });

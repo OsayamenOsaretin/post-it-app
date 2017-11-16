@@ -27,7 +27,7 @@ describe('registerUserAction', () => {
       userDetails.email = 'badEmail';
       RegisterAction(userDetails).then(() => {
         expect(dispatcherSpy).toHaveBeenCalledWith({
-          type: PostItActionTypes.REGISTER_ERROR,
+          type: PostItActionTypes.FAILED_REGISTER,
           errorMessage: 'Invalid email, please enter your actual email'
         });
       });
@@ -43,7 +43,7 @@ describe('registerUserAction', () => {
       return RegisterAction(userDetails)
         .then(() => {
           expect(dispatcherSpy).toHaveBeenCalledWith({
-            type: PostItActionTypes.REGISTER_ERROR,
+            type: PostItActionTypes.FAILED_REGISTER,
             errorMessage: 'Invalid Username, please enter a valid username'
           });
         });
@@ -60,7 +60,7 @@ describe('registerUserAction', () => {
       return RegisterAction(userDetails)
         .then(() => {
           expect(dispatcherSpy).toHaveBeenCalledWith({
-            type: PostItActionTypes.REGISTER_ERROR,
+            type: PostItActionTypes.FAILED_REGISTER,
             errorMessage:
                 'Invalid password, please use a password longer than 6 characters'   // eslint-disable-line
           });

@@ -14,7 +14,7 @@ const handleError = errorMessage => (
   Promise.resolve()
     .then(() => {
       PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.REGISTER_ERROR,
+        type: PostItActionTypes.FAILED_REGISTER,
         errorMessage
       });
     })
@@ -69,7 +69,7 @@ export default ({ email, password, userName, phone }) => {
     }).catch((error) => {
       errorMessage = friendlyErrorHelper(error);
       PostItDispatcher.handleServerAction({
-        type: PostItActionTypes.REGISTER_ERROR,
+        type: PostItActionTypes.FAILED_REGISTER,
         errorMessage
       });
     });

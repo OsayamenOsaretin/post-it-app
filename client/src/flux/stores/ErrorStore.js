@@ -71,13 +71,13 @@ Dispatcher.register((payload) => {
   const action = payload.action;
 
   switch (action.type) {
-  case ActionTypes.LOGIN_ERROR:
+  case ActionTypes.FAILED_LOGIN:
     loginError = action.errorMessage;
     registerError = undefined;
     ErrorStore.emit(CHANGE_EVENT);
     break;
 
-  case ActionTypes.REGISTER_ERROR:
+  case ActionTypes.FAILED_REGISTER:
     registerError = action.errorMessage;
     loginError = undefined;
     ErrorStore.emit(CHANGE_EVENT);

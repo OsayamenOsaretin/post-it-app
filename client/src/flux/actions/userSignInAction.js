@@ -28,14 +28,14 @@ export default function SignInAction({ email, password }) {
       })
       .catch((error) => {
         PostItDispatcher.handleServerAction({
-          type: PostItActionTypes.LOGIN_ERROR,
+          type: PostItActionTypes.FAILED_LOGIN,
           errorMessage: friendlyErrorHelper(error)
         });
       });
   }
   return Promise.resolve()
     .then(() => PostItDispatcher.handleServerAction({
-      type: PostItActionTypes.LOGIN_ERROR,
+      type: PostItActionTypes.FAILED_LOGIN,
       errorMessage: 'Invalid email address'
     }));
 }

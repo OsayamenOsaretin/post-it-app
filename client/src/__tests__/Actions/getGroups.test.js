@@ -49,7 +49,7 @@ describe('GetGroups', () => {
     mockDatabase.autoFlush();
     getGroups();
     const groupResult = new Map();
-    groupResult.set('testGroupI', testGroup);
+    groupResult.set('testGroupId', testGroup);
     expect(receiveGroup).toHaveBeenCalledWith(groupResult);
     expect(bulkMessageRequest).toHaveBeenCalledWith(groupResult);
   });
@@ -73,7 +73,7 @@ describe('GetGroups', () => {
     mockAuth.autoFlush();
     getGroups();
     expect(dispatcherSpy).toHaveBeenCalledWith({
-      type: PostItActionTypes.LOGIN_ERROR
+      type: PostItActionTypes.FAILED_LOGIN
     });
   });
 });
