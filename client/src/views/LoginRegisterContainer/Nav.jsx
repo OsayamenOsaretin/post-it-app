@@ -2,8 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 /**
- * @function Nav
- * @memberof Nav.js
  * 
  * @returns {View} navlink component
  * Nav holds routes to login and register components
