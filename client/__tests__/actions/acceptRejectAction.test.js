@@ -34,7 +34,7 @@ describe('acceptRejectAction', () => {
     acceptRejectAction(details);
     expect(dispatcherSpy).toHaveBeenCalledWith({
       type: ActionTypes.DELETE_REQUEST,
-      id: expect.anything()
+      id: 'testGroupId'
     });
   });
 });
