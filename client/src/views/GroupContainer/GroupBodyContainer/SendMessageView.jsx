@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FaExclamationCircle from 'react-icons/lib/fa/exclamation-circle';
 import FaPaperPlane from 'react-icons/lib/fa/paper-plane';
-import SendMessageAction from '../../../flux/actions/sendMessageAction';
+import SendMessageAction from '../../../actions/sendMessageAction';
 
 /* global localStorage */
 

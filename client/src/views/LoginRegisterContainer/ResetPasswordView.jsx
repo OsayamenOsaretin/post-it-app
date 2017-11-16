@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import resetPasswordAction from '../../flux/actions/resetPasswordAction';
-import UserStore from '../../flux/stores/UserStore';
-import ErrorStore from '../../flux/stores/ErrorStore';
+import resetPasswordAction from '../../actions/resetPasswordAction';
+import UserStore from '../../stores/UserStore';
+import ErrorStore from '../../stores/ErrorStore';
 
 /**
  * ResetPasswordForm is component for resetting password

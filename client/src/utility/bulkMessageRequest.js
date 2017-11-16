@@ -1,6 +1,6 @@
 
-import getMessageAction from '../flux/actions/getMessagesAction';
-import getUsersList from '../flux/actions/getAllUsersAction';
+import getMessageAction from '../actions/getMessagesAction';
+import getUsersList from '../actions/getAllUsersAction';
 
 /**
  *@param {Map} groups

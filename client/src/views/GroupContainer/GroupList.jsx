@@ -6,7 +6,7 @@ import FaBell from 'react-icons/lib/fa/bell';
 import FaGroup from 'react-icons/lib/fa/group';
 import AddGroupView from './AddGroup.jsx';
 import RequestListView from './RequestList.jsx';
-import MessageStore from '../../flux/stores/MessageStore';
+import MessageStore from '../../stores/MessageStore';
 
 
 /**

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
-import signInAction from '../../flux/actions/userSignInAction';
-import ErrorStore from '../../flux/stores/ErrorStore';
+import signInAction from '../../actions/userSignInAction';
+import ErrorStore from '../../stores/ErrorStore';
 
 
 /**

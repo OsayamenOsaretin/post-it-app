@@ -1,6 +1,6 @@
 import request from 'superagent';
-import Dispatcher from '../flux/Dispatcher';
-import ActionTypes from '../flux/ActionTypes';
+import Dispatcher from '../Dispatcher';
+import ActionTypes from '../ActionTypes';
 
 /**
  *@param {Array} emails

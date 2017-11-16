@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FaPlus from 'react-icons/lib/fa/plus';
-import addGroup from '../../flux/actions/addGroup';
+import addGroup from '../../actions/addGroup';
 
 
 /**

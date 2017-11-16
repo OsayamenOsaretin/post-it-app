@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import GroupListView from './GroupListView.jsx';
-import getGroups from '../../flux/actions/getGroups';
-import GroupStore from '../../flux/stores/GroupStore';
-import signOutAction from '../../flux/actions/signOutAction';
+import getGroups from '../../actions/getGroups';
+import GroupStore from '../../stores/GroupStore';
+import signOutAction from '../../actions/signOutAction';
 import HeaderView from '../Header.jsx';
 
 /* global localStorage */
