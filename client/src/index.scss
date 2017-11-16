@@ -586,10 +586,15 @@ input {
 
 @media only screen and (max-device-width: 768px) {
   .mail-box-img {
-    height: 20%;
+    height: 43%;
     width: 100%;
     background-image: url('./resources/mailbox.png');
     background-repeat: no-repeat;
+  }
+
+  .google-signin {
+    width: 50%;
+    margin-left: 100px;
   }
   .landing-page-container {
     margin-top: 20vh;
@@ -602,8 +607,13 @@ input {
     }
   }
   .post-it-img {
-    height: 8%;
-    margin-top: 90px;
+    height: 15%;
+    margin-left: 10%;
+  }
+
+  .loginRegisterContainer {
+    margin-top: 5%;
+    margin-left: 3%;
   }
 
   .group-list-nav {
@@ -621,34 +631,34 @@ input {
     color: #578ec9;
     margin-left: 88%;
     position:absolute;
-    top: 43px;
-    left: 5%;
+    top: -13px;
+    right: 87%;
     font-size: 55px
   }
 
   .group-list-item {
-    height: 7%;
+    height: 10%;
   }
 
   .add-group-button {
     position: absolute;
-    top: 35px;
+    top: 10px;
     right: 30px;
   }
 
   .new-group-input {
     height: 5%;
-    
+
   }
 
   .toggle-button-toggle-out {
     color: #578ec9;
     position:absolute;
-    top: 43px;
-    left: 5%;
-    font-size: 55px
+    top: 3px;
+    left: 0%;
+    font-size: 25px;
   }
-  
+
   .toggle-in {
     position: absolute;
     z-index: 1;
@@ -657,9 +667,10 @@ input {
   .group-details {
     width: 100%;
     position: absolute;
+    height: 87.5%;
     z-index: 0;
   }
-  
+
   .send-message {
     width: 100%;
     height: 7%;
@@ -674,11 +685,46 @@ input {
     position: absolute;
     right: 10px;
   }
-  
+
 
   .message-view-alternate {
     max-width: 75%;
-    margin-left: 17%
+    margin-left: 15%;
+    padding: 5px;
+  }
+
+  .message-reader-alternate {
+    ul {
+      font-size: 43%;
+      margin-left: 15%;
+    }
+  }
+
+  .message-body-view {
+    font-size: 15px;
+  }
+
+  .auth-nav {
+    max-width: 50%;
+  }
+
+  .forgot-password-button {
+    position: absolute;
+    right: -20px;
+  }
+
+  .greeting {
+    width: 50%;
+    h3 {
+      font-size: 15px;
+      padding: 5px;
+      padding-left: 20px;
+    }
+  }
+
+  .welcome-view {
+    padding: 40px;
+    font-size: 40px;
   }
 
 }
