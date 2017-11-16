@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import LoginForm from './LoginComponent.jsx';
 import RegisterForm from './RegisterComponent.jsx';
-import Nav from './Nav';
+import Nav from './Nav.jsx';
 
 
 /**
