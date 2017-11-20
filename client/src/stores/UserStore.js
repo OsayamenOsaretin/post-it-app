@@ -105,6 +105,7 @@ Dispatcher.register((payload) => {
     localStorage.removeItem('username');
     localStorage.removeItem('loginDate');
     localStorage.removeItem('userId');
+    localStorage.removeItem('takenTour');
     UserStore.emit(CHANGE_EVENT);
     break;
 

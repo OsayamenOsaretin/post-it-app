@@ -62,7 +62,7 @@ describe('PostItUserStore', () => {
 
   it('should wipe localStorage on sign out', () => {
     callback(signOut);
-    expect(localStorage.removeItem.mock.calls.length).toBe(4);
+    expect(localStorage.removeItem.mock.calls.length).toBe(5);
   })
 
   it('should get token item from local storage when get signed in state called',

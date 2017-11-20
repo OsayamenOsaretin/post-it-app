@@ -5,7 +5,7 @@ import GroupStore from '../../stores/GroupStore';
 import signOutAction from '../../actions/signOutAction';
 import HeaderView from '../Header.jsx';
 
-/* global localStorage */
+/* global $ localStorage */
 
 /**
  * Dashboard Component
@@ -39,6 +39,10 @@ class Dashboard extends Component {
     // initial action to get groups
     getGroups();
     GroupStore.addChangeListener(this.onChange);
+    if (!localStorage.getItem('takenTour')) {
+      localStorage.setItem('takenTour', true);
+      $('body').chardinJs('start');
+    }
   }
 
   /**
