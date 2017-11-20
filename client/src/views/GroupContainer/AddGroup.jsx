@@ -67,7 +67,9 @@ class AddGroupView extends Component {
    */
   render() {
     return (
-      <form className="add-group-form">
+      <form className="add-group-form"
+        data-intro="Add a new group"
+        data-position="right">
         <input
           className="new-group-input"
           placeholder="Enter a name for your new group"

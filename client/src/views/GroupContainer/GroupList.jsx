@@ -89,7 +89,9 @@ class GroupList extends Component {
    */
   render() {
     return (
-      <div className="groups">
+      <div className="groups"
+        data-intro="See your lists of groups"
+        data-position="right">
         <div className="add-group">
           <AddGroupView />
         </div>
