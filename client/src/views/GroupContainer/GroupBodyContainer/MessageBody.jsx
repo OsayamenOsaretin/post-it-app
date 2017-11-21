@@ -51,7 +51,7 @@ class MessageBody extends Component {
         messageTour: true,
         mainTour: undefined,
       };
-      localStorage.setItem('tourObject', tourObject);
+      localStorage.setItem('tourObject', JSON.stringify(tourObject));
     }
   }
 
