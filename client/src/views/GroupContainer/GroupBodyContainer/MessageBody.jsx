@@ -37,7 +37,7 @@ class MessageBody extends Component {
    */
   componentDidMount() {
     MessageStore.addChangeListener(this.onChange, this.props.groupId);
-    let tourObject = localStorage.getItem('tourObjcet');
+    let tourObject = localStorage.getItem('tourObject');
     if (tourObject) {
       const parsedTourObject = JSON.parse(tourObject);
       if (!parsedTourObject.messageTour) {
