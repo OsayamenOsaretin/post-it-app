@@ -44,7 +44,7 @@ class Dashboard extends Component {
       if (!parsedTourObject.mainTour) {
         $('body').chardinJs('start');
         parsedTourObject.mainTour = true;
-        localStorage.setItem('tourObject', parsedTourObject);
+        localStorage.setItem('tourObject', JSON.stringify(parsedTourObject));
       }
     } else {
       $('body').chardinJs('start');

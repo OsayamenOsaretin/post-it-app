@@ -43,7 +43,7 @@ class MessageBody extends Component {
       if (!parsedTourObject.messageTour) {
         $('body').chardinJs('start');
         parsedTourObject.messageTour = true;
-        localStorage.setItem('tourObject', parsedTourObject);
+        localStorage.setItem('tourObject', JSON.stringify(parsedTourObject));
       }
     } else {
       $('body').chardinJs('start');
