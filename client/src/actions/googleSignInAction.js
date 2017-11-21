@@ -15,7 +15,7 @@ export default function GoogleSignInAction() {
     .then((result) => {
       const user = result.user;
       // save the user details to the database
-      database.ref(`users/${user.uid}`).set({
+      database.ref(`users/${user.uid}`).update({
         username: user.displayName,
         email: user.email
       });
