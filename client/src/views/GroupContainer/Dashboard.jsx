@@ -41,7 +41,6 @@ class Dashboard extends Component {
     let tourObject = localStorage.getItem('tourObject');
     if (tourObject) {
       const parsedTourObject = JSON.parse(tourObject);
-      console.log(parsedTourObject);
       if (!parsedTourObject.mainTour) {
         $('body').chardinJs('start');
         parsedTourObject.mainTour = true;
