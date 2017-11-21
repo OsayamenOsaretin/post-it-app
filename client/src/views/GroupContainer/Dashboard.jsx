@@ -39,9 +39,21 @@ class Dashboard extends Component {
     // initial action to get groups
     getGroups();
     GroupStore.addChangeListener(this.onChange);
-    if (!localStorage.getItem('takenTour')) {
-      localStorage.setItem('takenTour', true);
+    let tourObject = localStorage.getItem('tourObject');
+    if (tourObject) {
+      const parsedTourObject = JSON.parse(tourObject);
+      if (!parsedTourObject.mainTour) {
+        $('body').chardinJs('start');
+        parsedTourObject.mainTour = true;
+        localStorage.setItem('tourObject', parsedTourObject);
+      }
+    } else {
       $('body').chardinJs('start');
+      tourObject = {
+        messageTour: undefined,
+        mainTour: true,
+      };
+      localStorage.setItem('tourObject', tourObject);
     }
   }
 

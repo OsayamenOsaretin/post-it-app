@@ -133,6 +133,8 @@ class SendMessageView extends Component {
         <form>
           <div
             className="normal"
+            data-intro="Toggle priority"
+            data-position="top"
             title="Pick a priority level, red's a scream ;-)"
             onClick={this.togglePriority}
             disabled={!this.state.message}>
@@ -141,6 +143,8 @@ class SendMessageView extends Component {
               color={this.state.stringLevel} />
           </div>
           <input
+            data-intro="Send your messages"
+            data-position="top"
             type="text"
             autoComplete="off"
             placeholder="Send new message"

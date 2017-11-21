@@ -4,6 +4,8 @@ import markMessagesRead from '../../../actions/readMessagesAction';
 import MessageListView from './MessageListView.jsx';
 import SendMessage from './SendMessageView.jsx';
 
+/* global $ localStorage */
+
 /**
  * MessageBody Component
  * @class MessageBody
@@ -35,6 +37,22 @@ class MessageBody extends Component {
    */
   componentDidMount() {
     MessageStore.addChangeListener(this.onChange, this.props.groupId);
+    let tourObject = localStorage.getItem('tourObjcet');
+    if (tourObject) {
+      const parsedTourObject = JSON.parse(tourObject);
+      if (!parsedTourObject.messageTour) {
+        $('body').chardinJs('start');
+        parsedTourObject.messageTour = true;
+        localStorage.setItem('tourObject', parsedTourObject);
+      }
+    } else {
+      $('body').chardinJs('start');
+      tourObject = {
+        messageTour: true,
+        mainTour: undefined,
+      };
+      localStorage.setItem('tourObject', tourObject);
+    }
   }
 
   /**
