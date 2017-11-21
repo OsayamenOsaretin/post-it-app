@@ -10,6 +10,10 @@ Object.defineProperty(window, 'localStorage', { value: jest.fn() });
 localStorage.getItem = jest.fn();
 localStorage.setItem = jest.fn();
 
+Object.defineProperty(window, '$', { value: () => ({
+  chardinJs: () => jest.fn()
+}) });
+
 jest.mock('MessageStore', () => (
   {
     getMessage: () => (
