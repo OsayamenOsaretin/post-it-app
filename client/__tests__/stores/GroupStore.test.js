@@ -1,4 +1,5 @@
 import PostItActionTypes from '../../src/ActionTypes';
+import groupList from '../../src/models/groupList';
 
 /* global jest */
 
@@ -6,7 +7,7 @@ jest.mock('../../src/Dispatcher');
 
 describe('PostItGroupStore', () => {
   const sampleGroup = new Map();
-  sampleGroup.set('key', 'groupValue');
+  sampleGroup.set('key', {});
   const recieveGroups = {
     action: {
       type: PostItActionTypes.RECIEVE_GROUP_RESPONSE,
@@ -47,7 +48,9 @@ describe('PostItGroupStore', () => {
 
   it('should update group map after recieving dispatch', () => {
     callback(recieveGroups);
-    expect((PostItGroupStore.getGroups()).size).toBe(1);
+    const groupMap = PostItGroupStore.getGroups();
+    const groupKeys = groupMap.keySeq().toArray();
+    expect(groupKeys[0]).toEqual('key');
   });
 
   it('should clear groups on clear groups action', () => {
