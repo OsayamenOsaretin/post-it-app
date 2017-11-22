@@ -6,11 +6,16 @@ jest.mock('../../src/Dispatcher');
 
 describe('PostItMessageStore', () => {
   // message payload
+  const messages = new Map();
+  messages.set('key', {
+    sender: 'testSender',
+    body: 'test message body'
+  });
   const recieveMessages = {
     action: {
       type: PostItActionTypes.RECIEVE_MESSAGE_RESPONSE,
       Id: 'testId',
-      messages: [['message', 'test-message']]
+      messages
     }
   };
 
@@ -44,7 +49,12 @@ describe('PostItMessageStore', () => {
 
   it('should update map of messages in on recieve callback', () => {
     callback(recieveMessages);
-    expect((PostItMessageStore.getMessage('testId')).size).toBe(1);
+    const messageMap = PostItMessageStore.getMessage('testId');
+    const messageValues = messageMap.valueSeq().toArray();
+    expect(messageValues).toEqual([{
+      body: 'test message body',
+      sender: 'testSender'
+    }]);
   });
 
   it('should emit change on receive mark read dispatch', () => {
@@ -83,7 +93,12 @@ describe('PostItMessageStore', () => {
 
   it('should clear messages for clear message store payload', () => {
     callback(recieveMessages);
-    expect((PostItMessageStore.getMessage('testId')).size).toBe(1);
+    const messageMap = PostItMessageStore.getMessage('testId');
+    const messageValues = messageMap.valueSeq().toArray();
+    expect(messageValues).toEqual([{
+      body: 'test message body',
+      sender: 'testSender'
+    }]);
     callback(clearMessageStore);
     expect((PostItMessageStore.getMessage('testId'))).not.toBeDefined();
   });
