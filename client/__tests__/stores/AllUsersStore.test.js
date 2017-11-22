@@ -82,19 +82,27 @@ describe('PostItAllUsersStore ', () => {
 
   it('should update user list after getting new values', () => {
     callback(recieveUsers);
-    expect((PostItAllUsersStore.getUsers('testGroupId')).size).toBe(1);
+    const usersMap = PostItAllUsersStore.getUsers('testGroupId');
+    const userKeys = usersMap.keySeq().toArray();
+    expect(userKeys.length).toBe(1);
+    expect(userKeys[0]).toBe('testUser');
   });
 
   it('should merge a new list with former list when user list updates',
     () => {
       callback(recieveUsers);
       callback(recieveNewUsers);
-      expect((PostItAllUsersStore.getUsers('testGroupId')).size).toBe(3);
+      const usersMap = PostItAllUsersStore.getUsers('testGroupId');
+      const userKeys = usersMap.keySeq().toArray();
+      expect(userKeys).toEqual(['testUser', 'testUser2', 'testUser3']);
     });
 
   it('should clear user list when clear store action is called ', () => {
     callback(recieveUsers);
-    expect((PostItAllUsersStore.getUsers('testGroupId')).size).toBe(1);
+    const usersMap = PostItAllUsersStore.getUsers('testGroupId');
+    const userKeys = usersMap.keySeq().toArray();
+    expect(userKeys.length).toBe(1);
+    expect(userKeys[0]).toBe('testUser');
     callback(clearUsers);
     expect(PostItAllUsersStore.getUsers('testGroupId')).not.toBeDefined();
   });
