@@ -1,7 +1,7 @@
 /* global jest */
 
 export const message = {
-  sendSms: jest.fn()
+  sendSms: () => jest.fn()
 };
 
 /**
