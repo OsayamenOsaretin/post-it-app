@@ -1,6 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import addUserAction from '../../../flux/actions/addUserGroup';
+import addUserAction from '../../../actions/addUserGroup';
 
 
 /**

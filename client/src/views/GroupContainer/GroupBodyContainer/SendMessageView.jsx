@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FaExclamationCircle from 'react-icons/lib/fa/exclamation-circle';
 import FaPaperPlane from 'react-icons/lib/fa/paper-plane';
-import SendMessageAction from '../../../flux/actions/sendMessageAction';
+import SendMessageAction from '../../../actions/sendMessageAction';
 
 /* global localStorage */
 
@@ -67,8 +67,9 @@ class SendMessageView extends Component {
   /**
    * handleChange sets input field state when user types
    * @memberof SendMessageView
-   * @return {void}
    * @param {Object} event
+   *
+   * @return {void}
    */
   handleChange(event) {
     const value = event.target.value;
@@ -82,8 +83,9 @@ class SendMessageView extends Component {
      * handleSubmit handles calling the sendmessage 
      * action when button is clicked
      * @memberof SendMessageView
-     * @return {void}
      * @param {Object} event
+     *
+     * @return {void}
      */
   handleSubmit(event) {
     event.preventDefault();
@@ -102,8 +104,9 @@ class SendMessageView extends Component {
 
   /**
    * @memberof SendMessageView
+   * @param {Object} event
+   *
    * @return {void}
-   * @param {*} event
    */
   togglePriority(event) {
     event.preventDefault();
@@ -130,6 +133,8 @@ class SendMessageView extends Component {
         <form>
           <div
             className="normal"
+            data-intro="Toggle priority"
+            data-position="top"
             title="Pick a priority level, red's a scream ;-)"
             onClick={this.togglePriority}
             disabled={!this.state.message}>
@@ -138,6 +143,8 @@ class SendMessageView extends Component {
               color={this.state.stringLevel} />
           </div>
           <input
+            data-intro="Send your messages"
+            data-position="top"
             type="text"
             autoComplete="off"
             placeholder="Send new message"

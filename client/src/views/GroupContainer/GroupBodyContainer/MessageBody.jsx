@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import MessageStore from '../../../flux/stores/MessageStore';
-import markMessagesRead from '../../../flux/actions/readMessagesAction';
+import MessageStore from '../../../stores/MessageStore';
+import markMessagesRead from '../../../actions/readMessagesAction';
 import MessageListView from './MessageListView.jsx';
 import SendMessage from './SendMessageView.jsx';
+
+/* global $ localStorage */
 
 /**
  * MessageBody Component
@@ -35,6 +37,22 @@ class MessageBody extends Component {
    */
   componentDidMount() {
     MessageStore.addChangeListener(this.onChange, this.props.groupId);
+    let tourObject = localStorage.getItem('tourObject');
+    if (tourObject) {
+      const parsedTourObject = JSON.parse(tourObject);
+      if (!parsedTourObject.messageTour) {
+        $('body').chardinJs('start');
+        parsedTourObject.messageTour = true;
+        localStorage.setItem('tourObject', JSON.stringify(parsedTourObject));
+      }
+    } else {
+      $('body').chardinJs('start');
+      tourObject = {
+        messageTour: true,
+        mainTour: undefined,
+      };
+      localStorage.setItem('tourObject', JSON.stringify(tourObject));
+    }
   }
 
   /**

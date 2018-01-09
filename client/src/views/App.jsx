@@ -6,9 +6,9 @@ import LoginRegisterContainer from
 import Dashboard from './GroupContainer/Dashboard.jsx';
 import ResetPasswordComponent from
   './LoginRegisterContainer/ResetPasswordView.jsx';
-import UserStore from '../flux/stores/UserStore';
-import { firebaseInit } from '../flux/firebaseHelpers';
-import signOutAction from '../flux/actions/signOutAction';
+import UserStore from '../stores/UserStore';
+import { firebaseInit } from '../firebaseHelpers';
+import signOutAction from '../actions/signOutAction';
 
 /**
  * App view that holds the entire container view for the app

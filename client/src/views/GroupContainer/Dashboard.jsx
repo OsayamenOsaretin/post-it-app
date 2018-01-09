@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import GroupListView from './GroupListView.jsx';
-import getGroups from '../../flux/actions/getGroups';
-import GroupStore from '../../flux/stores/GroupStore';
-import signOutAction from '../../flux/actions/signOutAction';
+import getGroups from '../../actions/getGroups';
+import GroupStore from '../../stores/GroupStore';
+import signOutAction from '../../actions/signOutAction';
 import HeaderView from '../Header.jsx';
 
-/* global localStorage */
+/* global $ localStorage */
 
 /**
  * Dashboard Component
@@ -38,6 +38,22 @@ class Dashboard extends Component {
   componentDidMount() {
     // initial action to get groups
     getGroups();
+    let tourObject = localStorage.getItem('tourObject');
+    if (tourObject) {
+      const parsedTourObject = JSON.parse(tourObject);
+      if (!parsedTourObject.mainTour) {
+        $('body').chardinJs('start');
+        parsedTourObject.mainTour = true;
+        localStorage.setItem('tourObject', JSON.stringify(parsedTourObject));
+      }
+    } else {
+      $('body').chardinJs('start');
+      tourObject = {
+        messageTour: undefined,
+        mainTour: true,
+      };
+      localStorage.setItem('tourObject', JSON.stringify(tourObject));
+    }
     GroupStore.addChangeListener(this.onChange);
   }
 

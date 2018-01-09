@@ -13,7 +13,9 @@ export default props => (
           Hi, {props.username}
       </h3>
     </div>
-    <div className="sign-out">
+    <div className="sign-out"
+      data-intro="Sign out here"
+      data-position="left">
       <button
         title="Log out"
         className="sign-out-button"

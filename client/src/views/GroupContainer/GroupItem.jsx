@@ -62,7 +62,9 @@ class GroupItem extends Component {
               {this.props.match.params.groupName}
             </h4>
           </div>
-          <div className="add-user">
+          <div className="add-user"
+            data-intro="Add users to this group"
+            data-position="bottom">
             <button
               className="add-user-button"
               onClick={this.handleClick}>

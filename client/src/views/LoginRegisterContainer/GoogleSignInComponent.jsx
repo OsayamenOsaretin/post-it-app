@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoogleFa from 'react-icons/lib/fa/google-plus';
-import googleSignInAction from '../../flux/actions/googleSignInAction';
+import googleSignInAction from '../../actions/googleSignInAction';
 
 /**
  * Google login button

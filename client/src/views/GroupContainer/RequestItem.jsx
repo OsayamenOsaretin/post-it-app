@@ -2,9 +2,9 @@ import React from 'react';
 import FaClose from 'react-icons/lib/fa/close';
 import FaCheck from 'react-icons/lib/fa/check';
 import AcceptRejectAction from
-  '../../flux/actions/acceptRejectGroupRequestAction';
-import PostItDispatcher from '../../flux/Dispatcher';
-import PostItActionTypes from '../../flux/ActionTypes';
+  '../../actions/acceptRejectGroupRequestAction';
+import PostItDispatcher from '../../Dispatcher';
+import PostItActionTypes from '../../ActionTypes';
 
 /* global localStorage */
 

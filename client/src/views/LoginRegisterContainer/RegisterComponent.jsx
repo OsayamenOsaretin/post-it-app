@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import FaSpinner from 'react-icons/lib/fa/spinner';
 import FaExclamationTriangle from 'react-icons/lib/fa/exclamation-triangle';
-import registerAction from '../../flux/actions/registerUserAction';
-import ErrorStore from '../../flux/stores/ErrorStore';
+import registerAction from '../../actions/registerUserAction';
+import ErrorStore from '../../stores/ErrorStore';
 
 /**
  * @class RegisterForm

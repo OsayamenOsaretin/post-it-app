@@ -6,7 +6,7 @@ import FaBell from 'react-icons/lib/fa/bell';
 import FaGroup from 'react-icons/lib/fa/group';
 import AddGroupView from './AddGroup.jsx';
 import RequestListView from './RequestList.jsx';
-import MessageStore from '../../flux/stores/MessageStore';
+import MessageStore from '../../stores/MessageStore';
 
 
 /**
@@ -89,7 +89,9 @@ class GroupList extends Component {
    */
   render() {
     return (
-      <div className="groups">
+      <div className="groups"
+        data-intro="See your lists of groups"
+        data-position="right">
         <div className="add-group">
           <AddGroupView />
         </div>

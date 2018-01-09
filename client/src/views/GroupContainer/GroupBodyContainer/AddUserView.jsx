@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AllUserStore from '../../../flux/stores/AllUsersStore';
+import AllUserStore from '../../../stores/AllUsersStore';
 import UserListView from './userListView.jsx';
 
 
@@ -56,7 +56,7 @@ class AddUserView extends Component {
 
   /**
    * changes status of user when the user is clicked
-   * @param {int} index
+   * @param {number} index
    * 
    * @return {void}
    */
