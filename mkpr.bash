@@ -34,7 +34,7 @@ case $OPTION in
 done
 shift $(($OPTIND - 1))
 
-GITUNCOMMITTED=$(git status | sed -n 2p) && GITUNCOMMITTED=${GITUNCOMMITTED:0:7}
+GITUNCOMMITTED=$(git status | sed -n 5p) && GITUNCOMMITTED=${GITUNCOMMITTED:0:7}
 if [ "$GITUNCOMMITTED" != 'nothing' ]
 then
     echo -ne 'Error: Woah, woah, woah. There are uncommitted changes!\n'
