@@ -40,7 +40,7 @@ then
     echo -ne 'Error: Woah, woah, woah. There are uncommitted changes!\n'
     exit $?
 fi
-GITBRANCH=$(git symbolic-ref HEAD | cut -d/ -f3)
+GITBRANCH=$(git symbolic-ref HEAD | cut -d/ -f3-)
 GITUNPUSHED=$(git log origin/$GITBRANCH..$GITBRANCH --pretty=oneline --abbrev-commit)
 if [ "$GITUNPUSHED" != '' ]
 then
