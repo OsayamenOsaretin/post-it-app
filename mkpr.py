@@ -93,5 +93,5 @@ if '--create' in options:
     except NameError:
         title = input()
     command_string = 'sudo bash ./mkpr.bash -b {} -t {} -d {}'
-    command = command_string.format(branch, title, description)
+    command = command_string.format(branch, title, 'something')
     system(command)
