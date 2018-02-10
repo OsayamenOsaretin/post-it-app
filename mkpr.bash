@@ -61,7 +61,7 @@ then
 else
 	GITCOMPR=''
 fi
-GITPULLREQ=$(curl -Flogin=$GITUSER -Ftoken=$GITTOKEN  -Fmessage[title]=$GITTITLE -Fmessage[base]=$GITBASE -Fmessage[body]=$GITDESCRIPTION "http://github.com/$GITUSER/$GITPROJECT/pull_request/$GITBRANCH" 2> /dev/null | sed -e 's/.*You are.*/OK/')
+GITPULLREQ=$(curl -Flogin=$GITUSER -Ftoken=$GITTOKEN -Fmessage[base]=$GITBASE "http://github.com/$GITUSER/$GITPROJECT/pull_request/$GITBRANCH" 2> /dev/null | sed -e 's/.*You are.*/OK/')
 if [ $GITPULLREQ != 'OK' ]
 then
 	echo -ne 'Could not complete pull request.\n'
