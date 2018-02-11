@@ -8,3 +8,6 @@
 .DS_Store
 /server/dist
 npm-debug.log
+mkpr.py
+mkpr.bash
+pull-request.txt
