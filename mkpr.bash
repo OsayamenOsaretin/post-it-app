@@ -63,6 +63,11 @@ then
 else
 	GITCOMPR=''
 fi
+echo -ne $GITUSER
+echo -ne $GITTOKEN
+echo -ne $GITBASE
+echo -ne $GITTITLE
+echo -ne $GITBRANCH
 GITPULLREQ=$(curl -Flogin=$GITUSER -Ftoken=$GITTOKEN -Fmessage[base]=$GITBASE "https://api.github.com/repos/$GITUSER/$GITPROJECT/pull_request/$GITBRANCH" 2> /dev/null | sed -e 's/.*You are.*/OK/')
 # GITPULLREQ=$(curl -d '{"title":$GITTITLE, "base":$GITBASE, "head":GITBRANCH}' "https://api.github.com/repos/$GITUSER/$GITPROJECT/pulls" 2> /dev/null | sed -e 's/.You are.*/OK/')
 echo -ne $GITPULLREQ

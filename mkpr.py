@@ -71,11 +71,11 @@ def write_pr(index, mode):
         pass
 
 
-if '--continue' in options:
-    continueFromUserEnd()
-else:
-    index = 0
-    write_pr(index, 'w')
+#  if '--continue' in options:
+    #  continueFromUserEnd()
+#  else:
+    #  index = 0
+    #  write_pr(index, 'w')
 
 if '--create' in options:
     try:
@@ -86,7 +86,7 @@ if '--create' in options:
     description_file = open('pull-request.txt')
     description = ''.join(description_file.readlines())
     description_file.close()
-    remove('pull-request.txt')
+    #  remove('pull-request.txt')
     try:
         print('Enter the title of the PR:')
         title = raw_input()
