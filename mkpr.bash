@@ -34,6 +34,12 @@ case $OPTION in
 done
 shift $(($OPTIND - 1))
 
+GITUNPUSHED=$(git log origin/$GITBRANCH..$GITBRANCH --pretty=oneline --abbrev-commit)
+if [ "$GITUNPUSHED" != '' ]
+then
+    echo -ne 'Error: Push your changes!\n'
+    exit $?
+fi
 GITUNCOMMITTED=$(git status | sed -n 4p) && GITUNCOMMITTED=${GITUNCOMMITTED:0:7}
 if [ "$GITUNCOMMITTED" != 'nothing' ]
 then
@@ -41,12 +47,6 @@ then
     exit $?
 fi
 GITBRANCH=$(git symbolic-ref HEAD | cut -d/ -f3-)
-GITUNPUSHED=$(git log origin/$GITBRANCH..$GITBRANCH --pretty=oneline --abbrev-commit)
-if [ "$GITUNPUSHED" != '' ]
-then
-    echo -ne 'Error: Push your changes!\n'
-    exit $?
-fi
 GITUSER=$(git config github.user)
 GITPROJECT=$(grep 'url =' .git/config | sed -n 1p | sed -e 's/.*url = git@github.com:'$GITUSER'.*[/]\(.*\).git$/\1/')
 GITTOKEN=$(git config github.token)
