@@ -1,0 +1,13 @@
+/node_modules
+/~
+.vscode/
+/server/routes/npm-debug.log
+/dist
+/coverage
+.env
+.DS_Store
+/server/dist
+npm-debug.log
+mkpr.py
+mkpr.bash
+pull-request.txt
