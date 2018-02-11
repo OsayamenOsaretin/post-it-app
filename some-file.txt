@@ -1,3 +1,0 @@
-this is a line
-from the random file
-i created
